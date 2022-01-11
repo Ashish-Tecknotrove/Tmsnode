@@ -23,10 +23,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
-const login_controller_1 = __importDefault(require("../../app/root/login.controller"));
+const curriculum_validator_1 = __importDefault(require("../../validator/root/curriculum.validator"));
 const auth_1 = __importDefault(require("../../middleware/auth"));
-const login_validator_1 = __importDefault(require("../../validator/root/login.validator"));
-const Router = express.Router();
-//TODO LOGIN ROUTES
-Router.post('/authentication', login_validator_1.default.checkLoginParameters(), auth_1.default.handleValidatorError, login_controller_1.default.login);
-exports.default = Router;
+const curriculum_controller_1 = __importDefault(require("../../app/root/curriculum.controller"));
+const router = express.Router();
+router.post('/create_curriculum_parent_category', curriculum_validator_1.default.parentCategory(), auth_1.default.generateAuth, curriculum_controller_1.default.create_curriculum_parent_category);
+router.post('/add_curriculum_parent_list', curriculum_validator_1.default.parentCategory(), auth_1.default.generateAuth, curriculum_controller_1.default.add_curriculum_parent_test);
+router.get('/technology', auth_1.default.verifyAuthenticateToken, curriculum_controller_1.default.getTechnology);
+router.post('/get_curriculum_parent_category', auth_1.default.verifyAuthenticateToken, curriculum_controller_1.default.getCurriculumParent);
+router.post('/get_curriculum_parent_category_test', auth_1.default.verifyAuthenticateToken, curriculum_controller_1.default.getCurriculumParentTest);
+exports.default = router;

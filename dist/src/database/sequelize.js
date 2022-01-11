@@ -25,8 +25,9 @@ const dbUser = process.env.DB_USER;
 const dbHost = process.env.DB_HOST;
 const dbDriver = process.env.DB_DRIVER;
 const dbPassword = process.env.DB_PASSWORD;
-const sequelizeconnection = new Sequelize.Sequelize(dbName, dbUser, dbPassword, {
-    host: dbHost,
-    dialect: dbDriver
+const sequelizeconnection = new Sequelize.Sequelize("momsi4dx_tmsnode", "momsi4dx_tmsnode", "tmsnode@2021", {
+    host: "162.241.123.34",
+    dialect: 'mysql'
 });
+sequelizeconnection.sync({ force: false });
 exports.default = sequelizeconnection;
