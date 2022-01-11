@@ -34,7 +34,7 @@ class LoginController {
 
 
             if (userdata === null) {
-                return res.status(400).json({ response_code: 0, message: 'Invalid username or password', data: '' })
+                return res.status(401).json({ response_code: 0, message: 'Invalid username or password', data: '' })
             }
             else {
 
