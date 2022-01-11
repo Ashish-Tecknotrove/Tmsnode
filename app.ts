@@ -24,8 +24,12 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(upload.array()); 
 app.use(express.static('public'));
 
-app.listen(process.env.PORT || 3000,()=>{
-    console.log("Node Server Started Running")
+// app.listen(process.env.PORT || 3000,()=>{
+//     console.log("Node Server Started Running")
+// });
+
+app.listen((process.env.PORT || 5000), function(){
+  console.log('listening on *:5000');
 });
 
 app.use("/TMS",root_route);
