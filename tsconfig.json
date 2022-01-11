@@ -3,7 +3,7 @@
 
     "outDir": "dist",
     "target": "es6",                                     
-    "module": "ESNEXT",      
+    "module": "commonjs",      
     "experimentalDecorators":true,                         
     "esModuleInterop": true,                                                  
     "forceConsistentCasingInFileNames": true,            
