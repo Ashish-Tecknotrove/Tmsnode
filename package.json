@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "TMS Project Verion 2.0",
   "main": "app.ts",
-  "type": "module",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "start": "node --loader ts-node/esm .\app.ts",
+    "start": "node app.ts",
     "dev": "nodemon  app.ts",
     "test": "mocha 'test/**/*.ts' --recursive --exit"
   },
