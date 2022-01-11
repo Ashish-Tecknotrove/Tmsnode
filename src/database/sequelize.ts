@@ -9,8 +9,8 @@ const dbDriver = process.env.DB_DRIVER as Dialect
 const dbPassword = process.env.DB_PASSWORD
 
 
-const sequelizeconnection = new Sequelize.Sequelize("tms_node","root","Tecknotrove@2021",{
-    host:"localhost",
+const sequelizeconnection = new Sequelize.Sequelize("momsi4dx_tmsnode","momsi4dx_tmsnode","tmsnode@2021",{
+    host:"162.241.123.34",
     dialect:'mysql'
 });
 
