@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "TMS Project Verion 2.0",
   "main": "app.ts",
+  "type": "module",
   "directories": {
     "test": "tests"
   },
