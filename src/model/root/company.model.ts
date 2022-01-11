@@ -100,7 +100,6 @@ Company.init({
       },
       contact_person_count:{
         type:DataTypes.STRING,
-        allowNull:false 
       },
       trainee_unique_login: {
         type:DataTypes.ENUM('email','mobile','aadhar'),

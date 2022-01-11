@@ -198,7 +198,7 @@ Trainee.init({
         allowNull: false
     },
     company_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references:{
             model:Company,

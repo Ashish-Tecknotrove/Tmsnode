@@ -158,7 +158,7 @@ Users.init({
     allowNull: false
   },
   portal_language: {
-    type: DataType.TINYINT,
+    type: DataTypes.TINYINT,
     defaultValue: 1
   },
   is_user_active: {

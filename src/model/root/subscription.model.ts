@@ -57,7 +57,7 @@ Subscription.init({
         allowNull: false
       },
       curriculum_id:{
-        type:DataTypes.STRING(50),
+        type:DataTypes.INTEGER,
         allowNull: false,
         references:{
           model:Curriculum,

@@ -93,7 +93,7 @@ Trainer.init({
         allowNull:true
     },
     login_table_id:{
-        type:DataTypes.STRING(100),
+        type:DataTypes.INTEGER,
         allowNull:true,
         references:{
             model:Users,
