@@ -28,8 +28,8 @@ app.use(express.static('public'));
 //     console.log("Node Server Started Running")
 // });
 
-app.listen(process.env.PORT || 5000), function(){
-  console.log('listening on *:5000');
+app.listen(process.env.PORT || 3000), function(){
+  console.log('listening on *:3000');
 });
 
 app.use("/TMS",root_route);
