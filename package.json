@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "node app.ts",
+    "start": "node --loader ts-node/esm .\app.ts",
     "dev": "nodemon  app.ts",
     "test": "mocha 'test/**/*.ts' --recursive --exit"
   },
