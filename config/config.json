@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "Tecknotrove@2021",
-    "database": "tms_node",
-    "host": "localhost",
+   "username": "momsi4dx_tmsnode",
+    "password": "tmsnode@2021",
+    "database": "momsi4dx_tmsnode",
+    "host": "162.241.123.34",
     "dialect": "mysql"
   },
   "test": {
