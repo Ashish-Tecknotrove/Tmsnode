@@ -23,6 +23,15 @@ class CurriculumValidator
             body('created_by').notEmpty().withMessage('parameter is missing')
         ]
     }
+
+    buildCurriculumParameter()
+    {
+        return[
+            body('company_id').notEmpty().withMessage('parameter is missing'),
+            body('name').notEmpty().withMessage('parameter is missing'),
+            body('curriculum').notEmpty().withMessage('parameter is missing')
+        ]
+    }
 }
 
 export default new CurriculumValidator();

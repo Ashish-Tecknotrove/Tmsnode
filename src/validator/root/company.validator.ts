@@ -1,30 +1,44 @@
-import {body} from "express-validator";
+import { body } from "express-validator";
 
-class CompanyValidator{
+class CompanyValidator {
 
 
-    registerCommpanyParameter()
-    {
-        return[
+    registerCommpanyParameter() {
+        return [
             body('company_name').notEmpty().withMessage('parameter is missing'),
-            body('gst_number').notEmpty().withMessage('parameter is missing'),
+            body('gst').notEmpty().withMessage('parameter is missing'),
             body('pincode').notEmpty().withMessage('parameter is missing'),
-            body('country').notEmpty().withMessage('parameter is missing'),
-            body('state').notEmpty().withMessage('parameter is missing'),
-            body('city').notEmpty().withMessage('parameter is missing'),
+            body('country_id').notEmpty().withMessage('parameter is missing'),
+            body('state_id').notEmpty().withMessage('parameter is missing'),
+            body('city_id').notEmpty().withMessage('parameter is missing'),
             body('address').notEmpty().withMessage('parameter is missing'),
-            body('trainee_unique_fields').notEmpty().withMessage('parameter is missing')
-            // body('logo').notEmpty().withMessage('parameter is missing')
+            body('trainee_unique_fields').notEmpty().withMessage('parameter is missing'),
+            body('created_by').notEmpty().withMessage('parameter is missing'),
+            body('updated_by').notEmpty().withMessage('parameter is missing'),
+            body('picture').notEmpty().withMessage('parameter is missing'),
         ];
     }
 
-    companyPersonofcontact()
-    {
-        return[
+    companyPersonofcontact() {
+        return [
             body('name').notEmpty().withMessage('parameter is missing'),
             body('department').notEmpty().withMessage('parameter is missing'),
             body('contact_number').notEmpty().withMessage('parameter is missing'),
             body('email').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+
+    companyPersonLogin()
+    {
+        return [
+            body('company_id').notEmpty().withMessage('parameter is missing'),
+            body('name').notEmpty().withMessage('parameter is missing'),
+            body('department').notEmpty().withMessage('parameter is missing'),
+            body('mobile_no').notEmpty().withMessage('parameter is missing'),
+            body('email').notEmpty().withMessage('parameter is missing'),
+            body('password').notEmpty().withMessage('parameter is missing'),
+            body('created_by').notEmpty().withMessage('parameter is missing'),
+            body('updated_by').notEmpty().withMessage('parameter is missing')
         ];
     }
 }

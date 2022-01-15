@@ -11,18 +11,20 @@ interface CompanyUserAttributes
     name:string;
     department:string;
     mobile_no:string;
+    canlogin:number;
     created_by:number;
     updated_by:number;
 }
 
 
-export default class CompanyUser extends Model<CompanyUserAttributes> implements CompanyUserAttributes
+export default class CompanyUser extends Model
 {
-    id!: number;
+    declare id: number;
     company_id!: number;
     name!: string;
     department!: string;
     mobile_no!: string;
+    canlogin!:number;
     created_by!: number;
     updated_by!: number;
 
@@ -56,16 +58,20 @@ CompanyUser.init({
         type: DataTypes.STRING,
         allowNull: false
       },
+    canlogin:{
+        type:DataTypes.ENUM("1","0"),
+        defaultValue:"0"
+    },
       created_by: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER
       },
       updated_by: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER
       }
 },{
     timestamps:true,
     sequelize:sequelizeconnection,
-    tableName:"companyUser"
+    tableName:"company_contacts"
 })
 
 

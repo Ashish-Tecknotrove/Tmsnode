@@ -23,7 +23,7 @@ interface TrainerAttributes{
 }
 
 
-export default class Trainer extends Model<TrainerAttributes> implements TrainerAttributes{
+export default class Trainer extends Model{
     id!: number;
     company_id!: number;
     name!: string;
@@ -84,11 +84,11 @@ Trainer.init({
         type:DataTypes.STRING(100),
         allowNull:true
     },
-    created_at:{
+    created_by:{
         type:DataTypes.STRING(100),
         allowNull:true
     },
-    updated_at:{
+    updated_by:{
         type:DataTypes.STRING(100),
         allowNull:true
     },
@@ -99,9 +99,22 @@ Trainer.init({
             model:Users,
             key:'id'
         }
+    },
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: DataTypes.TINYINT,
+        defaultValue: 0
     }
 },{
-    timestamps:false,
+    timestamps:true,
     sequelize:sequelizeconnection,
     tableName:'trainers'
 })

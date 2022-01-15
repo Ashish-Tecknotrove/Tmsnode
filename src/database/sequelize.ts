@@ -1,16 +1,33 @@
 import * as Sequelize from "sequelize";
 import { Dialect } from "sequelize";
 
+const config=require("../../config/config.json");
 
-const dbName = process.env.DB_NAME as string
-const dbUser = process.env.DB_USER as string
-const dbHost = process.env.DB_HOST
-const dbDriver = process.env.DB_DRIVER as Dialect
-const dbPassword = process.env.DB_PASSWORD
+// console.log(config.development)
+
+let dbName="" , dbUser="" , dbHost="" ,dbPassword="";
+
+if(process.env.NODE_ENV === 'production')
+{
+    dbName = config.production.database
+    dbUser = config.production.user
+    dbHost = config.production.host
+    dbPassword = config.production.password
+}
+
+if(process.env.NODE_ENV === 'development')
+{
+    dbName = config.development.database
+    dbUser = config.development.user
+    dbHost = config.development.host
+    dbPassword = config.development.password
+}
+
+const currentDatabase = "";
 
 
-const sequelizeconnection = new Sequelize.Sequelize("momsi4dx_tmsnode","momsi4dx_tmsnode","tmsnode@2021",{
-    host:"162.241.123.34",
+const sequelizeconnection = new Sequelize.Sequelize(dbName,dbUser,dbPassword,{
+    host:dbHost,
     dialect:'mysql'
 });
 

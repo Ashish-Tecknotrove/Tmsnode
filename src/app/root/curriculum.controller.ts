@@ -2,6 +2,8 @@ import CurriculumParentCategory from "../../model/root/curriculum_parent_categor
 import { Request, Response } from "express";
 import TechnologyCategory from "../../model/root/technology.model";
 import CurriculumParentCategoryTest from "../../model/root/curriculum_parent_category_test.model";
+import CurriculumBuilder from "../../model/root/curriculumbuilder.model";
+import Curriculum from "../../model/root/curriculum.model";
 
 
 class CurriculumController {
@@ -47,9 +49,13 @@ class CurriculumController {
             const technology_id=req.body.technology_id;
 
             const getCurriculum = await CurriculumParentCategory.findAll({
+                include:[{
+                    model:CurriculumParentCategoryTest
+                }],
                 where:{
                     technology_type_id:technology_id
-                }
+                },
+
             });
 
             if (getCurriculum != null) {
@@ -109,7 +115,69 @@ class CurriculumController {
 
     async buildCurriculum(req:Request,res:Response)
     {
-        
+
+        //Create Curriculum
+        const curriculum={
+            company_id:req.body.company_id,
+            name:req.body.name,
+            created_by:req.body.created_by,
+            updated_by:req.body.updated_by,
+        };
+
+        //Check Curriculum Already Exist
+        var check_curriculum_exist=await Curriculum.findOne({
+            where:{
+                name:req.body.name
+            }
+        });
+
+        if(check_curriculum_exist == null)
+        {
+            //Parse JSON String into JSON Object
+            var curriculumBody=req.body.curriculum;
+            var curriculumBodyData=JSON.parse(curriculumBody);
+            //Parse JSON String into JSON Object
+
+            //Step 1 Create Curriculum Data
+            await Curriculum.create({...curriculum}).then(function (data)
+            {
+                //Get Curriculum Id
+                var curriculum_id=data['id'];
+
+                //Add This id and Created Curriculum Builder with parent id
+                for(var i=0;i < curriculumBodyData.length;i++)
+                {
+                    var curriculum_data={
+                        curriculum_id:curriculum_id,
+                        curriculum_parent_category_id:curriculumBodyData[i]["cp_id"],
+                        curriculum_parent_category_test_id:curriculumBodyData[i]["cptest_id"],
+                        created_by:curriculumBodyData[i]["created_by"],
+                        updated_by:curriculumBodyData[i]["updated_by"]
+                    }
+
+                    CurriculumBuilder.create({...curriculum_data}).then(function ()
+                    {
+
+                    }).catch(function (err){
+                        console.log(err);
+                    })
+                }
+
+                res.status(200).json({response_code:1,curriculum_id:data['id'],message:"Curriculum Created Successfully..."})
+
+            }).catch(function (err){
+                res.status(500).json({response_code:0,message:err});
+            });
+        }
+        else
+        {
+            res.status(500).json({response_code:0,message:"Curriculum Already Exist"});
+        }
+
+
+
+
+
     }
 
 

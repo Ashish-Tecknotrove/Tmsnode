@@ -23,7 +23,7 @@ class Middleware{
     async generateAuth(payload:any)
     {
        
-        return sign(payload,process.env.jwt_secreate as string,{expiresIn:60*60});
+        return sign(payload,process.env.jwt_secreate as string,{expiresIn:160*160});
     
         
     }

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import {Request, Response} from "express";
 import auth from "../../middleware/auth";
 import Languages from "../../model/language/language.model";
 import Company from "../../model/root/company.model";
@@ -6,9 +6,10 @@ import Trainee from "../../model/root/trainee.model";
 import Trainer from "../../model/root/trainer.model";
 import Users from "../../model/root/users.model";
 import UserType from "../../model/root/usertype.model";
+import {sign, verify} from "jsonwebtoken";
+import dotenv from 'dotenv';
 
-
-
+dotenv.config();
 
 class LoginController {
 
@@ -22,11 +23,10 @@ class LoginController {
 
             const userdata = await Users.findOne({
                 include: [
-                    { model: Languages },
-                    { model: Company }
+                    {model: Languages},
+                    {model: Company}
                 ],
-                where:
-                {
+                where: {
                     email: username,
                     password: password
                 }
@@ -34,18 +34,17 @@ class LoginController {
 
 
             if (userdata === null) {
-                return res.status(401).json({ response_code: 0, message: 'Invalid username or password', data: '' })
+                return res.status(401).json({response_code: 0, message: 'Invalid username or password', data: ''})
             }
             else {
 
                 var user_type = userdata['user_type'];
 
 
-                 //TODO Authentication Token----------
-                 var payload = { username: userdata['name'] };
-                 let authentication_token = await auth.generateAuth(payload);
-                 //TODO Authentication  Token----------
-
+                //TODO Authentication Token----------
+                var payload = {username: userdata['name']};
+                let authentication_token = await auth.generateAuth(payload);
+                //TODO Authentication  Token----------
 
 
                 if (userdata['is_admin'] == 1) {
@@ -55,7 +54,8 @@ class LoginController {
                         {
                             response_code: 1,
                             token: authentication_token,
-                            user_type: "Super Admin",
+                            user: "Super Admin",
+                            user_type:user_type,
                             message: 'user login successfully...',
                             data: userdata
                         });
@@ -65,8 +65,8 @@ class LoginController {
                     {
                         var trainee_data = await Trainee.findOne({
                             include: [
-                                { model: Users },
-                                { model: Company }
+                                {model: Users},
+                                {model: Company}
                             ],
                             where: {
                                 login_table_id: userdata['id']
@@ -95,8 +95,8 @@ class LoginController {
                     else if (user_type == '4') {
                         var trainer_data = await Trainer.findOne({
                             include: [
-                                { model: Users },
-                                { model: Company }
+                                {model: Users},
+                                {model: Company}
                             ],
                             where: {
                                 login_table_id: userdata['id']
@@ -140,8 +140,24 @@ class LoginController {
 
         }
         catch (e) {
-            return res.status(500).json({ message: e });
+            return res.status(500).json({message: e});
         }
+    }
+
+    async verify_token(req: Request, res: Response) {
+
+        const token = req.body.access_token;
+
+        await verify(token, process.env.jwt_secreate as string, (err:any, user:any) => {
+
+            if (err) {
+                return res.status(401).json({response_code: 0,message: err});
+            }
+            else {
+                return res.status(200).json({response_code: 1, message: 'access token is valid'});
+            }
+
+        });
     }
 }
 

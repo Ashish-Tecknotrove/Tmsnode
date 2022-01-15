@@ -5,8 +5,11 @@ import Subscription from '../model/root/subscription.model';
 import Trainee from '../model/root/trainee.model';
 import Trainer from '../model/root/trainer.model';
 import Users from '../model/root/users.model';
+import CurriculumParentCategory from "../model/root/curriculum_parent_category.model";
+import CurriculumParentCategoryTest from "../model/root/curriculum_parent_category_test.model";
+import CurriculumBuilder from "../model/root/curriculumbuilder.model";
 
-const isDevelopment = process.env.NODE_ENV === 'development'
+
 
 const dbinitialized =  ()=>{
     
@@ -18,6 +21,9 @@ const dbinitialized =  ()=>{
     Trainer.sync();
     CompanyUser.sync();
     Subscription.sync();
+    CurriculumParentCategory.sync();
+    CurriculumParentCategoryTest.sync();
+    CurriculumBuilder.sync();
      //TODO Root Model END 
 }
 

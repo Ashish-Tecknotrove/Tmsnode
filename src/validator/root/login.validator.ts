@@ -11,6 +11,13 @@ class LoginValidator{
         ];
     }
 
+    verifytokenParameters()
+    {
+        return[
+            body('access_token').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+
 }
 
 

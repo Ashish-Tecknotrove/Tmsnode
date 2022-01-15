@@ -12,7 +12,7 @@ interface LanguagesAttributes{
     active:number;
 }
 
-export default class Languages extends Model<LanguagesAttributes> implements LanguagesAttributes
+export default class Languages extends Model
 {
     id!:number; 
     name! :string;
@@ -40,9 +40,8 @@ Languages.init({
         type: DataTypes.TEXT,
         allowNull:true  
     },
-    active :{
+    isDeleted :{
         type: DataTypes.TINYINT,
-        allowNull:true,
         defaultValue:1
     }
 },{

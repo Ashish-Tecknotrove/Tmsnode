@@ -63,7 +63,7 @@ interface TraineeAttributes {
 
 }
 
-export default class Trainee extends Model<TraineeAttributes> implements TraineeAttributes {
+export default class Trainee extends Model {
     id!: number;
     RegNo!: string;
     login_table_id!: number;
@@ -322,23 +322,32 @@ Trainee.init({
         allowNull: false
     },
     created_by: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     updated_by: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     IsBlock: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    IsDeleted: {
-        type: DataTypes.STRING,
-        allowNull: false
+    createdAt: {
+        type: "TIMESTAMP"
     },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: DataTypes.TINYINT,
+        defaultValue: 0
+    }
 }, {
-    timestamps: false,
+    timestamps: true,
     sequelize: sequelizeconnection,
     tableName: 'trainees'
 });

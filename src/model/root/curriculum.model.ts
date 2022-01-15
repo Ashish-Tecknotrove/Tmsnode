@@ -13,9 +13,9 @@ interface CurriculumAttributes{
 }
 
 
-export default class Curriculum extends Model<CurriculumAttributes> implements CurriculumAttributes
+export default class Curriculum extends Model
 {
-    id!: number;
+    declare id: number;
     company_id!: number;
     name!: string;
     created_by!: number;
@@ -40,16 +40,30 @@ Curriculum.init({
         }
     },
     name:{
-        type:DataTypes.INTEGER,
+        type:DataTypes.STRING(100),
     },
     created_by:{
         type:DataTypes.INTEGER
     },
     updated_by:{
         type:DataTypes.INTEGER
+    },
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: DataTypes.TINYINT,
+        defaultValue: 0
     }
 
 },{
+    timestamps:true,
     sequelize:sequelizeconnection,
     tableName:'curriculum'
 })

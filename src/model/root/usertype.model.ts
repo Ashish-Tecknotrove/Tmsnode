@@ -12,7 +12,7 @@ interface UserTypeAttributes{
 }
 
 
-export default class UserType extends Model<UserTypeAttributes> implements UserTypeAttributes
+export default class UserType extends Model
 {
     id!:Number;
     name!:String;
@@ -42,6 +42,19 @@ UserType.init({
         type:DataTypes.TINYINT,
         defaultValue:1,
         allowNull:false
+    },
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: DataTypes.TINYINT,
+        defaultValue: 0
     }
 },{
     timestamps:true,

@@ -2,6 +2,7 @@ import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Languages from "../language/language.model";
 import CurriculumParentCategory from "./curriculum_parent_category.model";
+import TechnologyCategory from "./technology.model";
 
 
 interface CurriculumParentCategoryTestAttributes {
@@ -15,9 +16,9 @@ interface CurriculumParentCategoryTestAttributes {
     updated_by: number;
 }
 
-export default class CurriculumParentCategoryTest extends
-    Model<CurriculumParentCategoryTestAttributes> implements CurriculumParentCategoryTestAttributes {
-    id!: number;
+export default class CurriculumParentCategoryTest extends Model
+{
+    declare id: number;
     prefix!: string;
     title!: string;
     parent_id!: number;
@@ -50,7 +51,11 @@ CurriculumParentCategoryTest.init({
         }
     },
     technology_type_id: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        references:{
+            model:TechnologyCategory,
+            key:"id"
+        }
     },
     language_id: {
         type: DataTypes.INTEGER,
@@ -64,6 +69,19 @@ CurriculumParentCategoryTest.init({
     },
     updated_by: {
         type: DataTypes.INTEGER
+    },
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: DataTypes.TINYINT,
+        defaultValue: 0
     }
 }, {
     timestamps: true,
@@ -80,6 +98,5 @@ CurriculumParentCategoryTest.belongsTo(Languages, {
 
 //TODO ASSOCIATION Parent ID
 
-CurriculumParentCategoryTest.belongsTo(CurriculumParentCategory, {
-    foreignKey: "parent_id"
-})
+
+
