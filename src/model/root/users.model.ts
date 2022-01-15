@@ -35,7 +35,7 @@ interface UsersAttributes {
     sequence_test: number;
     created_by: number;
     updated_by: number;
-    deleted_at: number;
+    deletedAt: string;
 }
 
 export default class Users extends Model {
@@ -64,7 +64,7 @@ export default class Users extends Model {
     sequence_test!: number;
     created_by!: number;
     updated_by!: number;
-    deleted_at!: number;
+    deletedAt!: string;
 }
 
 
