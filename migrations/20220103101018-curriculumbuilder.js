@@ -41,6 +41,19 @@ module.exports = {
       },
       updated_by: {
         type: DataTypes.INTEGER
+      },
+      createdAt: {
+        type: "TIMESTAMP"
+      },
+      updatedAt: {
+        type: "TIMESTAMP"
+      },
+      deletedAt: {
+        type: "TIMESTAMP"
+      },
+      IsDeleted: {
+        type: DataTypes.TINYINT,
+        defaultValue: 0
       }
     });
 

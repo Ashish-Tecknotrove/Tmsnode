@@ -1,32 +1,26 @@
 'use strict';
-
 const {DataTypes} = require("sequelize");
-
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-
-        queryInterface.createTable("curriculum", {
+        queryInterface.createTable("companies", {
             id: {
                 type: DataTypes.INTEGER,
+                autoIncrement: true,
                 primaryKey: true,
-                autoIncrement: true
-            },
-            company_id: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                references: {
-                    model: "companies",
-                    key: "id"
-                }
+                allowNull: false
             },
             name: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
+                allowNull: false
             },
-            created_by: {
-                type: DataTypes.INTEGER
+            description: {
+                type: DataTypes.STRING,
+                allowNull: true
             },
-            updated_by: {
-                type: DataTypes.INTEGER
+            active: {
+                type: DataTypes.TINYINT,
+                defaultValue: 1,
+                allowNull: false
             },
             createdAt: {
                 type: "TIMESTAMP"
@@ -41,7 +35,7 @@ module.exports = {
                 type: DataTypes.TINYINT,
                 defaultValue: 0
             }
-        });
+        })
     },
 
     down: async (queryInterface, Sequelize) => {

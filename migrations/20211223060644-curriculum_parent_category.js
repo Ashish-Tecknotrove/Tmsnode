@@ -1,39 +1,52 @@
 'use strict';
 
-const { DataTypes } = require("sequelize");
+const {DataTypes} = require("sequelize");
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+    up: async (queryInterface, Sequelize) => {
 
-    queryInterface.createTable("curriculum_parent_category",{
-      id:{
-        type:DataTypes.INTEGER,
-        autoIncrement:true,
-        primaryKey:true,
-        allowNull:false
+        queryInterface.createTable("curriculum_parent_category", {
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+                allowNull: false
+            },
+            title: {
+                type: DataTypes.STRING(100),
+                allowNull: false
+            },
+            technology_type_id: {
+                type: DataTypes.INTEGER
+            },
+            created_by: {
+                type: DataTypes.INTEGER
+            },
+            updated_by: {
+                type: DataTypes.INTEGER
+            },
+            createdAt: {
+                type: "TIMESTAMP"
+            },
+            updatedAt: {
+                type: "TIMESTAMP"
+            },
+            deletedAt: {
+                type: "TIMESTAMP"
+            },
+            IsDeleted: {
+                type: DataTypes.TINYINT,
+                defaultValue: 0
+            }
+        });
     },
-    title:{
-        type:DataTypes.STRING(100),
-        allowNull:false
-    },
-    technology_type_id:{
-        type:DataTypes.INTEGER
-    },
-    created_by:{
-        type:DataTypes.INTEGER
-    },
-    updated_by:{
-        type:DataTypes.INTEGER
+
+    down: async (queryInterface, Sequelize) => {
+        /**
+         * Add reverting commands here.
+         *
+         * Example:
+         * await queryInterface.dropTable('users');
+         */
     }
-    });
-  },
-
-  down: async (queryInterface, Sequelize) => {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
-  }
 };

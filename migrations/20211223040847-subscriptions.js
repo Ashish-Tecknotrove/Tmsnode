@@ -30,11 +30,9 @@ module.exports = {
       },
       technology_type:{
         type:DataTypes.INTEGER,
-        allowNull: false
       },
       course:{
         type:DataTypes.STRING(50),
-        allowNull: false
       },
       day_no:{
         type:DataTypes.STRING(50),
@@ -50,7 +48,6 @@ module.exports = {
       },
       no_of_licence:{
         type:DataTypes.STRING(100),
-        allowNull: false
       },
       payment_type:{
         type:DataTypes.STRING(100),
@@ -62,20 +59,16 @@ module.exports = {
       },
       expiry_date:{
         type:DataTypes.DATE,
-        allowNull: false
       },
       payment_note:{
         type:DataTypes.STRING(50),
-        allowNull: false
       },
       status:{
         type:DataTypes.ENUM('0','1'),
-        defaultValue:"0",
-        allowNull: false
+        defaultValue:"1",
       },
       note:{
         type:DataTypes.STRING(50),
-        allowNull: false
       },
       created_by:{
         type:DataTypes.INTEGER,
@@ -85,6 +78,19 @@ module.exports = {
         type:DataTypes.INTEGER,
         allowNull: false
       },
+      createdAt: {
+        type: "TIMESTAMP"
+      },
+      updatedAt: {
+        type: "TIMESTAMP"
+      },
+      deletedAt: {
+        type: "TIMESTAMP"
+      },
+      IsDeleted: {
+        type: DataTypes.TINYINT,
+        defaultValue: 0
+      }
 
     });
 

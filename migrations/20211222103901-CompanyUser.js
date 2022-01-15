@@ -1,5 +1,7 @@
 'use strict';
 
+import {DataTypes} from "sequelize";
+
 const { DataType } = require("sequelize-typescript");
 
 module.exports = {
@@ -32,15 +34,30 @@ module.exports = {
         type: DataType.STRING,
         allowNull: false
       },
+      canlogin:{
+        type:DataType.ENUM("1","0"),
+        defaultValue:"0"
+      },
       created_by: {
-        type: DataType.STRING
+        type: DataType.STRING,
+        allowNull:false
       },
       updated_by: {
-        type: DataType.STRING
+        type: DataType.STRING,
+        allowNull:false
       },
-      active: {
-        type: DataType.TINYINT,
-        defaultValue: 1
+      createdAt: {
+        type: "TIMESTAMP"
+      },
+      updatedAt: {
+        type: "TIMESTAMP"
+      },
+      deletedAt: {
+        type: "TIMESTAMP"
+      },
+      IsDeleted:{
+        type:DataType.TINYINT,
+        defaultValue:0
       }
     })
   },
