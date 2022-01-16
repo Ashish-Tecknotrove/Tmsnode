@@ -1,23 +1,23 @@
 {
   "development": {
-   "username": "momsi4dx_tmsnode",
-    "password": "tmsnode@2021",
-    "database": "momsi4dx_tmsnode",
-    "host": "162.241.123.34",
+    "user": "root",
+    "password": "Ashish@1997",
+    "database": "tmsnode",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "user": "root",
+    "password": "",
+    "database": "root",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "user": "momsi4dx_tmsnode",
+    "password": "tmsnode@2021",
+    "database": "momsi4dx_tmsnode",
+    "host": "162.241.123.34",
     "dialect": "mysql"
   }
 }
