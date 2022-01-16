@@ -20,7 +20,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Sequelize = __importStar(require("sequelize"));
-const config = require("../../config/config.json");
+const config = require("../../../config/config.json");
 // console.log(config.development)
 let dbName = "", dbUser = "", dbHost = "", dbPassword = "";
 if (process.env.NODE_ENV === 'production') {
