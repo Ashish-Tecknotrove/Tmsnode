@@ -7,6 +7,7 @@ const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const language_model_1 = __importDefault(require("../language/language.model"));
 const curriculum_parent_category_model_1 = __importDefault(require("./curriculum_parent_category.model"));
+const technology_model_1 = __importDefault(require("./technology.model"));
 class CurriculumParentCategoryTest extends sequelize_1.Model {
 }
 exports.default = CurriculumParentCategoryTest;
@@ -31,7 +32,11 @@ CurriculumParentCategoryTest.init({
         }
     },
     technology_type_id: {
-        type: sequelize_1.DataTypes.INTEGER
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: technology_model_1.default,
+            key: "id"
+        }
     },
     language_id: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -45,6 +50,19 @@ CurriculumParentCategoryTest.init({
     },
     updated_by: {
         type: sequelize_1.DataTypes.INTEGER
+    },
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
     }
 }, {
     timestamps: true,
@@ -56,6 +74,3 @@ CurriculumParentCategoryTest.belongsTo(language_model_1.default, {
     foreignKey: 'language_id'
 });
 //TODO ASSOCIATION Parent ID
-CurriculumParentCategoryTest.belongsTo(curriculum_parent_category_model_1.default, {
-    foreignKey: "parent_id"
-});

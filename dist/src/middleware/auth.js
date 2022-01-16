@@ -26,7 +26,7 @@ class Middleware {
     }
     generateAuth(payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            return (0, jsonwebtoken_1.sign)(payload, process.env.jwt_secreate, { expiresIn: 60 * 60 });
+            return (0, jsonwebtoken_1.sign)(payload, process.env.jwt_secreate, { expiresIn: 160 * 160 });
         });
     }
     verifyAuthenticateToken(req, res, next) {

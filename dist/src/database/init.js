@@ -10,7 +10,9 @@ const subscription_model_1 = __importDefault(require("../model/root/subscription
 const trainee_model_1 = __importDefault(require("../model/root/trainee.model"));
 const trainer_model_1 = __importDefault(require("../model/root/trainer.model"));
 const users_model_1 = __importDefault(require("../model/root/users.model"));
-const isDevelopment = process.env.NODE_ENV === 'development';
+const curriculum_parent_category_model_1 = __importDefault(require("../model/root/curriculum_parent_category.model"));
+const curriculum_parent_category_test_model_1 = __importDefault(require("../model/root/curriculum_parent_category_test.model"));
+const curriculumbuilder_model_1 = __importDefault(require("../model/root/curriculumbuilder.model"));
 const dbinitialized = () => {
     //TODO Root Model START 
     users_model_1.default.sync();
@@ -20,6 +22,9 @@ const dbinitialized = () => {
     trainer_model_1.default.sync();
     compayuser_model_1.default.sync();
     subscription_model_1.default.sync();
+    curriculum_parent_category_model_1.default.sync();
+    curriculum_parent_category_test_model_1.default.sync();
+    curriculumbuilder_model_1.default.sync();
     //TODO Root Model END 
 };
 exports.default = dbinitialized;

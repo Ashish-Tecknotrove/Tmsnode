@@ -1,11 +1,11 @@
 "use strict";
-require("assert");
-const expect = require("chai").expect;
-describe('Users Test', () => {
-    it('should return hello world', () => {
-        expect('Hello World!').to.equal('Hello World!');
-    });
-    it('should return hello', () => {
-        expect('Hello!').to.equal('Hello!');
-    });
-});
+// import { expect } from 'chai';
+//
+//
+//
+// describe('Hello function', () => {
+//     it('should return hello world', () => {
+//         //const result = hello();
+//         expect("Hello").to.equal('Hello');
+//     });
+// });

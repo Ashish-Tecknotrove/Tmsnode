@@ -28,9 +28,8 @@ Languages.init({
         type: sequelize_1.DataTypes.TEXT,
         allowNull: true
     },
-    active: {
+    isDeleted: {
         type: sequelize_1.DataTypes.TINYINT,
-        allowNull: true,
         defaultValue: 1
     }
 }, {

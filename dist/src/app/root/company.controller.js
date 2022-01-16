@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const company_model_1 = __importDefault(require("../../model/root/company.model"));
 const compayuser_model_1 = __importDefault(require("../../model/root/compayuser.model"));
+const users_model_1 = __importDefault(require("../../model/root/users.model"));
 class CompanyController {
     registerCompany(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -26,7 +27,7 @@ class CompanyController {
                 });
                 if (checkName == null) {
                     yield company_model_1.default.create(Object.assign({}, req.body)).then(function (response) {
-                        res.status(200).json({ response_code: 1, message: "company registered successfully", response: response });
+                        res.status(200).json({ response_code: 1, message: "company registered successfully", data: response });
                     }).catch(function (err) {
                         res.status(500).json({ response_code: 0, message: err });
                     });
@@ -43,8 +44,8 @@ class CompanyController {
     add_company_user(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield compayuser_model_1.default.create(Object.assign({}, req.body)).then(function (response) {
-                    res.status(200).json({ response_code: 1, message: "company user added" });
+                yield compayuser_model_1.default.create(Object.assign({}, req.body)).then(function (data) {
+                    res.status(200).json({ response_code: 1, message: "company user added", data: data });
                 }).catch(function (err) {
                     res.status(500).json({ response_code: 0, message: err });
                 });
@@ -52,6 +53,40 @@ class CompanyController {
             catch (error) {
                 return res.status(500).json({ response_code: 0, message: error });
             }
+        });
+    }
+    add_company_login(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //Table Fields for Company Contact
+            const company_contact = {
+                company_id: req.body.company_id,
+                name: req.body.name,
+                department: req.body.department,
+                mobile_no: req.body.mobile_no,
+                canlogin: 1,
+                created_by: req.body.created_by,
+                updated_by: req.body.updated_by,
+            };
+            yield compayuser_model_1.default.create(Object.assign({}, company_contact)).then(function () {
+                //Add login in User table
+                const userLoginData = {
+                    company_id: req.body.company_id,
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: req.body.password,
+                    user_type: 2,
+                    language: 1,
+                    created_by: req.body.created_by,
+                    updated_by: req.body.updated_by,
+                };
+                users_model_1.default.create(Object.assign({}, userLoginData)).then(function () {
+                    res.status(200).json({ response_code: 1, message: "company Login Created" });
+                }).catch(function (err) {
+                    res.status(500).json({ response_code: 0, message: err });
+                });
+            }).catch(function (err) {
+                res.status(500).json({ response_code: 0, message: err });
+            });
         });
     }
 }

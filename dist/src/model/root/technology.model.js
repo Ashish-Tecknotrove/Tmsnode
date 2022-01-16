@@ -27,6 +27,19 @@ TechnologyCategory.init({
     },
     updated_by: {
         type: sequelize_1.DataTypes.INTEGER
+    },
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
     }
 }, {
     sequelize: sequelize_2.default,

@@ -18,27 +18,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const Sequelize = __importStar(require("sequelize"));
-const config = require("../../../config/config.json");
-// console.log(config.development)
-let dbName = "", dbUser = "", dbHost = "", dbPassword = "";
-if (process.env.NODE_ENV === 'production') {
-    dbName = config.production.database;
-    dbUser = config.production.user;
-    dbHost = config.production.host;
-    dbPassword = config.production.password;
-}
-if (process.env.NODE_ENV === 'development') {
-    dbName = config.development.database;
-    dbUser = config.development.user;
-    dbHost = config.development.host;
-    dbPassword = config.development.password;
-}
-const currentDatabase = "";
-const sequelizeconnection = new Sequelize.Sequelize(dbName, dbUser, dbPassword, {
-    host: dbHost,
-    dialect: 'mysql'
-});
-sequelizeconnection.sync({ force: false });
-exports.default = sequelizeconnection;
+const express = __importStar(require("express"));
+const auth_1 = __importDefault(require("../../middleware/auth"));
+const subscription_validator_1 = __importDefault(require("../../validator/root/subscription.validator"));
+const subscription_controller_1 = __importDefault(require("../../app/root/subscription.controller"));
+const Router = express.Router();
+var multer = require('multer');
+var formData = multer();
+//TODO Register New Company
+Router.post('/createSubscription', formData.none(), auth_1.default.verifyAuthenticateToken, subscription_validator_1.default.newSubscriptionParameter(), auth_1.default.handleValidatorError, subscription_controller_1.default.createNewSubscription);
+exports.default = Router;

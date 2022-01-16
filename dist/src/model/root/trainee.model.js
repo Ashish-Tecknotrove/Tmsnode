@@ -213,23 +213,32 @@ Trainee.init({
         allowNull: false
     },
     created_by: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     updated_by: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     IsBlock: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
-    IsDeleted: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+    createdAt: {
+        type: "TIMESTAMP"
     },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
+    }
 }, {
-    timestamps: false,
+    timestamps: true,
     sequelize: sequelize_2.default,
     tableName: 'trainees'
 });

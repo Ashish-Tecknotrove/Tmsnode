@@ -35,11 +35,9 @@ Subscription.init({
     },
     technology_type: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
     },
     course: {
         type: sequelize_1.DataTypes.STRING(50),
-        allowNull: false
     },
     day_no: {
         type: sequelize_1.DataTypes.STRING(50),
@@ -55,7 +53,6 @@ Subscription.init({
     },
     no_of_licence: {
         type: sequelize_1.DataTypes.STRING(100),
-        allowNull: false
     },
     payment_type: {
         type: sequelize_1.DataTypes.STRING(100),
@@ -67,20 +64,16 @@ Subscription.init({
     },
     expiry_date: {
         type: sequelize_1.DataTypes.DATE,
-        allowNull: false
     },
     payment_note: {
         type: sequelize_1.DataTypes.STRING(50),
-        allowNull: false
     },
     status: {
         type: sequelize_1.DataTypes.ENUM('0', '1'),
-        defaultValue: 0,
-        allowNull: false
+        defaultValue: "1",
     },
     note: {
         type: sequelize_1.DataTypes.STRING(50),
-        allowNull: false
     },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -90,6 +83,19 @@ Subscription.init({
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
+    }
 }, {
     timestamps: true,
     sequelize: sequelize_2.default,

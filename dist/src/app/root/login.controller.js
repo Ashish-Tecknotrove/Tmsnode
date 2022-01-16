@@ -18,6 +18,9 @@ const company_model_1 = __importDefault(require("../../model/root/company.model"
 const trainee_model_1 = __importDefault(require("../../model/root/trainee.model"));
 const trainer_model_1 = __importDefault(require("../../model/root/trainer.model"));
 const users_model_1 = __importDefault(require("../../model/root/users.model"));
+const jsonwebtoken_1 = require("jsonwebtoken");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 class LoginController {
     //UserLogin
     login(req, res) {
@@ -37,7 +40,7 @@ class LoginController {
                     }
                 });
                 if (userdata === null) {
-                    return res.status(400).json({ response_code: 0, message: 'Invalid username or password', data: '' });
+                    return res.status(401).json({ response_code: 0, message: 'Invalid username or password', data: '' });
                 }
                 else {
                     var user_type = userdata['user_type'];
@@ -49,7 +52,8 @@ class LoginController {
                         return res.status(200).json({
                             response_code: 1,
                             token: authentication_token,
-                            user_type: "Super Admin",
+                            user: "Super Admin",
+                            user_type: user_type,
                             message: 'user login successfully...',
                             data: userdata
                         });
@@ -126,6 +130,19 @@ class LoginController {
             catch (e) {
                 return res.status(500).json({ message: e });
             }
+        });
+    }
+    verify_token(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const token = req.body.access_token;
+            yield (0, jsonwebtoken_1.verify)(token, process.env.jwt_secreate, (err, user) => {
+                if (err) {
+                    return res.status(401).json({ response_code: 0, message: err });
+                }
+                else {
+                    return res.status(200).json({ response_code: 1, message: 'access token is valid' });
+                }
+            });
         });
     }
 }

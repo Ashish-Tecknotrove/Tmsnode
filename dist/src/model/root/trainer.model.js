@@ -53,11 +53,11 @@ Trainer.init({
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: true
     },
-    created_at: {
+    created_by: {
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: true
     },
-    updated_at: {
+    updated_by: {
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: true
     },
@@ -68,9 +68,22 @@ Trainer.init({
             model: users_model_1.default,
             key: 'id'
         }
+    },
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
     }
 }, {
-    timestamps: false,
+    timestamps: true,
     sequelize: sequelize_2.default,
     tableName: 'trainers'
 });

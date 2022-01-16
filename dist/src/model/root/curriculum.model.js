@@ -24,15 +24,29 @@ Curriculum.init({
         }
     },
     name: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.STRING(100),
     },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER
     },
     updated_by: {
         type: sequelize_1.DataTypes.INTEGER
+    },
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
     }
 }, {
+    timestamps: true,
     sequelize: sequelize_2.default,
     tableName: 'curriculum'
 });

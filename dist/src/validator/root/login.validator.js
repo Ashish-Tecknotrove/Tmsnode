@@ -8,5 +8,10 @@ class LoginValidator {
             (0, express_validator_1.body)('password').notEmpty().withMessage('parameter is missing')
         ];
     }
+    verifytokenParameters() {
+        return [
+            (0, express_validator_1.body)('access_token').notEmpty().withMessage('parameter is missing')
+        ];
+    }
 }
 exports.default = new LoginValidator();

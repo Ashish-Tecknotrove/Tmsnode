@@ -27,6 +27,19 @@ UserType.init({
         type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 1,
         allowNull: false
+    },
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
     }
 }, {
     timestamps: true,

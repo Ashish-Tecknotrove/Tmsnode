@@ -32,18 +32,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
-const multer = require("multer");
 const company_validator_1 = __importDefault(require("../../validator/root/company.validator"));
 const auth_1 = __importDefault(require("../../middleware/auth"));
 const company_controller_1 = __importDefault(require("../../app/root/company.controller"));
 const Router = express.Router();
+var multer = require('multer');
+var formData = multer();
 //TODO COMPANY ROUTES
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './resources/company_logo');
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname + '-' + Date.now());
+        cb(null, file.originalname);
     }
 });
 const fileFilter = (req, file, cb) => {
@@ -57,13 +58,14 @@ const fileFilter = (req, file, cb) => {
     }
 };
 const upload = multer({ storage: storage, fileFilter: fileFilter });
-Router.post('/uploadTest', upload.array('image', 5), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+Router.post('/uploadTest', upload.array('picture_pic', 5), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     res.send(200);
 }));
 //TODO Register New Company
-Router.post('/registerCompany', auth_1.default.verifyAuthenticateToken, upload.array('picture_pic', 5), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+Router.post('/registerCompany', auth_1.default.verifyAuthenticateToken, upload.single('picture_pic'), //FormData With File
+(req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     next();
 }), company_validator_1.default.registerCommpanyParameter(), auth_1.default.handleValidatorError, company_controller_1.default.registerCompany);
 //Create New User
-Router.post('/addCompanyUser', auth_1.default.verifyAuthenticateToken, company_validator_1.default.companyPersonofcontact(), auth_1.default.handleValidatorError, company_controller_1.default.add_company_user);
+Router.post('/addCompanyUserLogin', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.companyPersonLogin(), auth_1.default.handleValidatorError, company_controller_1.default.add_company_login);
 exports.default = Router;

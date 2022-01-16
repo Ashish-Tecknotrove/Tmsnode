@@ -36,16 +36,20 @@ CompanyUser.init({
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
+    canlogin: {
+        type: sequelize_1.DataTypes.ENUM("1", "0"),
+        defaultValue: "0"
+    },
     created_by: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.INTEGER
     },
     updated_by: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.INTEGER
     }
 }, {
     timestamps: true,
     sequelize: sequelize_2.default,
-    tableName: "companyUser"
+    tableName: "company_contacts"
 });
 //TODO Association with Company
 CompanyUser.belongsTo(company_model_1.default, {

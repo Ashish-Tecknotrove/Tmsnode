@@ -38,14 +38,25 @@ CompanyContact.init({
         allowNull: false
     },
     created_by: {
-        type: sequelize_typescript_1.DataType.STRING
+        type: sequelize_typescript_1.DataType.STRING,
+        allowNull: false
     },
     updated_by: {
-        type: sequelize_typescript_1.DataType.STRING
+        type: sequelize_typescript_1.DataType.STRING,
+        allowNull: false
     },
-    active: {
+    createdAt: {
+        type: "TIMESTAMP"
+    },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
         type: sequelize_typescript_1.DataType.TINYINT,
-        defaultValue: 1
+        defaultValue: 0
     }
 }, {
     timestamps: true,

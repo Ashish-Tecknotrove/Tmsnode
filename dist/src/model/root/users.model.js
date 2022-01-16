@@ -35,41 +35,27 @@ Users.init({
         allowNull: false
     },
     aadhar_no: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        type: sequelize_1.DataTypes.STRING
     },
     mobile_no: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        type: sequelize_1.DataTypes.STRING
     },
     department: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: true
+        type: sequelize_1.DataTypes.INTEGER
     },
     email_verified_at: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        type: sequelize_1.DataTypes.STRING
     },
     is_admin: {
         type: sequelize_1.DataTypes.TINYINT,
-        defaultValue: '0',
-        allowNull: true
+        defaultValue: '0'
     },
     password: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
     password_wordpress: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true
-    },
-    created_at: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: true
-    },
-    updated_at: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: true
+        type: sequelize_1.DataTypes.STRING
     },
     user_type: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -80,16 +66,13 @@ Users.init({
         }
     },
     product_purchased: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        type: sequelize_1.DataTypes.STRING
     },
     activation_date: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: true
+        type: sequelize_1.DataTypes.DATE
     },
     deactivation_date: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: true
+        type: sequelize_1.DataTypes.DATE
     },
     language: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -104,33 +87,38 @@ Users.init({
         defaultValue: 1
     },
     is_user_active: {
-        type: sequelize_1.DataTypes.TINYINT,
-        allowNull: true
+        type: sequelize_1.DataTypes.TINYINT
     },
     disable_user: {
-        type: sequelize_1.DataTypes.TINYINT,
-        allowNull: true
+        type: sequelize_1.DataTypes.TINYINT
     },
     trainee_license_limit: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        type: sequelize_1.DataTypes.STRING
     },
     sequence_test: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        type: sequelize_1.DataTypes.STRING
     },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
     },
     updated_by: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
     },
-    deleted_at: {
-        type: sequelize_1.DataTypes.DATE,
-        allowNull: true
+    createdAt: {
+        type: "TIMESTAMP"
     },
+    updatedAt: {
+        type: "TIMESTAMP"
+    },
+    deletedAt: {
+        type: "TIMESTAMP",
+    },
+    IsDeleted: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
+    }
 }, {
     timestamps: true,
     sequelize: sequelize_2.default,
