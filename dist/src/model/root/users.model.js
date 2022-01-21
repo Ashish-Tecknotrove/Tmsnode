@@ -126,7 +126,7 @@ Users.init({
 });
 //TODO Association with Language
 Users.belongsTo(language_model_1.default, {
-    foreignKey: "portal_language",
+    foreignKey: "language",
     as: ""
 });
 //TODO Accociation with Company

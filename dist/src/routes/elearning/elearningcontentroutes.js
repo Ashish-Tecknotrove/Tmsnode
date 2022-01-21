@@ -32,42 +32,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
-const company_validator_1 = __importDefault(require("../../validator/root/company.validator"));
-const auth_1 = __importDefault(require("../../middleware/auth"));
-const company_controller_1 = __importDefault(require("../../app/root/company.controller"));
+const elearningContent_controller_1 = __importDefault(require("../../app/elearning/elearningContent.controller"));
 const Router = express.Router();
 var multer = require('multer');
 var formData = multer();
-//TODO COMPANY ROUTES
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './resources/company_logo');
+        cb(null, './resources/test');
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
     }
 });
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype === "image/jpg" ||
-        file.mimetype === "image/jpeg" ||
-        file.mimetype === "image/png") {
-        cb(null, true);
-    }
-    else {
-        cb(new Error("Image uploaded is not of type jpg/jpeg or png"), false);
-    }
+    // if (file.mimetype === "zip") {
+    //     cb(null, true);
+    // } else {
+    //     cb(new Error("Image uploaded is not of type jpg/jpeg or png"), false);
+    // }
 };
-const upload = multer({ storage: storage, fileFilter: fileFilter });
-Router.post('/uploadTest', upload.array('picture_pic', 5), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send(200);
-}));
-//TODO Register New Company
-Router.post('/registerCompany', auth_1.default.verifyAuthenticateToken, upload.single('picture_pic'), //FormData With File
+const upload = multer({ storage: storage });
+Router.post('/addElearningTestLink', upload.single('testfile'), //FormData With File
 (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     next();
-}), company_validator_1.default.registerCommpanyParameter(), auth_1.default.handleValidatorError, company_controller_1.default.registerCompany);
-//Create New User
-Router.post('/addCompanyUserLogin', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.companyPersonLogin(), auth_1.default.handleValidatorError, company_controller_1.default.add_company_login);
-Router.get('/get_register_Company', company_controller_1.default.getCompany);
-Router.get('/company_count', company_controller_1.default.total_companies);
+}), elearningContent_controller_1.default.elearningTestLink);
 exports.default = Router;

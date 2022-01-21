@@ -29,6 +29,7 @@ const subscription_controller_1 = __importDefault(require("../../app/root/subscr
 const Router = express.Router();
 var multer = require('multer');
 var formData = multer();
-//TODO Register New Company
+//TODO Create Subscription
 Router.post('/createSubscription', formData.none(), auth_1.default.verifyAuthenticateToken, subscription_validator_1.default.newSubscriptionParameter(), auth_1.default.handleValidatorError, subscription_controller_1.default.createNewSubscription);
+Router.get('/subscriptionCount', subscription_controller_1.default.total_subscription);
 exports.default = Router;

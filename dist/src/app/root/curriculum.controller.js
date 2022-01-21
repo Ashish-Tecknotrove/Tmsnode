@@ -17,6 +17,8 @@ const technology_model_1 = __importDefault(require("../../model/root/technology.
 const curriculum_parent_category_test_model_1 = __importDefault(require("../../model/root/curriculum_parent_category_test.model"));
 const curriculumbuilder_model_1 = __importDefault(require("../../model/root/curriculumbuilder.model"));
 const curriculum_model_1 = __importDefault(require("../../model/root/curriculum.model"));
+const sequelize_1 = require("sequelize");
+const sequelize_2 = __importDefault(require("sequelize"));
 class CurriculumController {
     create_curriculum_parent_category() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -59,8 +61,13 @@ class CurriculumController {
                             model: curriculum_parent_category_test_model_1.default
                         }],
                     where: {
-                        technology_type_id: technology_id
+                        technology_type_id: {
+                            [sequelize_1.Op.in]: [sequelize_2.default.literal(`${technology_id}`)]
+                        }
                     },
+                    logging: console.log
+                }).catch(err => {
+                    res.status(500).json({ message: err });
                 });
                 if (getCurriculum != null) {
                     return res.status(200).json({
@@ -75,7 +82,7 @@ class CurriculumController {
             }
             catch (e) {
                 return res.status(200).json({
-                    response_code: 1,
+                    response_code: 0,
                     message: e,
                     data: ''
                 });

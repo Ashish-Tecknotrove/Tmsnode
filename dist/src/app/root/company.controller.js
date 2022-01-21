@@ -41,6 +41,16 @@ class CompanyController {
             }
         });
     }
+    total_companies(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var company_count = yield company_model_1.default.count({
+                where: {
+                    IsDeleted: 0
+                }
+            });
+            res.status(200).json({ response_code: 1, count: company_count });
+        });
+    }
     add_company_user(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -87,6 +97,22 @@ class CompanyController {
             }).catch(function (err) {
                 res.status(500).json({ response_code: 0, message: err });
             });
+        });
+    }
+    getCompany(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const data = yield company_model_1.default.findAll({
+                where: {
+                    IsDeleted: 0
+                },
+                order: [
+                    ['id', 'DESC']
+                ]
+            }).catch(err => {
+                console.log(err);
+                res.status(500).json({ response_code: 0, message: err });
+            });
+            res.status(200).json({ response_code: 1, data: data });
         });
     }
 }
