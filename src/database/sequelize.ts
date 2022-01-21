@@ -3,6 +3,7 @@ import { Dialect } from "sequelize";
 
 const config=require("../../config/config.json");
 
+
 // console.log(config.development)
 
 let dbName="" , dbUser="" , dbHost="" ,dbPassword="";

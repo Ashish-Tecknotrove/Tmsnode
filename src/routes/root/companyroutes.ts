@@ -63,5 +63,8 @@ Router.post('/addCompanyUserLogin',
     companyController.add_company_login
 );
 
+Router.get('/get_register_Company',companyController.getCompany);
+Router.get('/company_count',companyController.total_companies);
+
 
 export default Router;

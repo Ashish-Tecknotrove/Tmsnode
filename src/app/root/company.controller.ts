@@ -38,6 +38,17 @@ class CompanyController {
         }
     }
 
+    async total_companies(req: Request, res: Response)
+    {
+        var company_count=await Company.count({
+            where:{
+                IsDeleted:0
+            }
+        });
+
+        res.status(200).json({response_code:1,count:company_count});
+    }
+
 
     async add_company_user(req: Request, res: Response) {
         try {
@@ -93,7 +104,26 @@ class CompanyController {
         });
 
     }
+
+    async getCompany(req:Request,res:Response)
+    {
+        const data = await Company.findAll({
+            where:{
+                IsDeleted:0
+            },
+            order:[
+                ['id','DESC']
+            ]
+        }).catch(err=>{
+            console.log(err);
+            res.status(500).json({response_code:0,message:err});
+        });
+
+        res.status(200).json({response_code:1,data:data});
+
+    }
 }
+
 
 
 export default new CompanyController();

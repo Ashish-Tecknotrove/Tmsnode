@@ -4,9 +4,16 @@ import TechnologyCategory from "../../model/root/technology.model";
 import CurriculumParentCategoryTest from "../../model/root/curriculum_parent_category_test.model";
 import CurriculumBuilder from "../../model/root/curriculumbuilder.model";
 import Curriculum from "../../model/root/curriculum.model";
+import Company from "../../model/root/company.model";
+import { Op } from "sequelize";
+import { parse } from "path/posix";
+import sequelize from "sequelize";
 
 
 class CurriculumController {
+
+
+   
 
     async create_curriculum_parent_category() {
 
@@ -53,9 +60,14 @@ class CurriculumController {
                     model:CurriculumParentCategoryTest
                 }],
                 where:{
-                    technology_type_id:technology_id
+                    technology_type_id:{
+                        [Op.in]:[sequelize.literal(`${technology_id}`)]
+                    }
                 },
+                logging: console.log
 
+            }).catch(err=>{
+                res.status(500).json({message:err})
             });
 
             if (getCurriculum != null) {
@@ -72,7 +84,7 @@ class CurriculumController {
         }
         catch (e) {
             return res.status(200).json({
-                response_code: 1,
+                response_code: 0,
                 message: e,
                 data: ''
             })

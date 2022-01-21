@@ -11,7 +11,7 @@ var formData = multer();
 
 
 
-//TODO Register New Company
+//TODO Create Subscription
 Router.post('/createSubscription',
     formData.none(),
     auth.verifyAuthenticateToken,
@@ -20,5 +20,6 @@ Router.post('/createSubscription',
     SubscriptionController.createNewSubscription
 );
 
+Router.get('/subscriptionCount',SubscriptionController.total_subscription);
 
 export default Router;

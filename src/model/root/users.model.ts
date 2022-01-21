@@ -185,7 +185,7 @@ Users.init({
 
 //TODO Association with Language
 Users.belongsTo(Languages, {
-    foreignKey: "portal_language",
+    foreignKey: "language",
     as: ""
 });
 

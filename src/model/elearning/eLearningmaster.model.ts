@@ -1,3 +1,4 @@
+import { TINYINT } from "sequelize";
 import { DataTypes,Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 
@@ -10,17 +11,19 @@ interface ElearningMasterAttribute{
     created_by:string;
     updated_by:string;
     delete_by:string;
+    IsDeleted:number
 }
 
-export default class ElearningMaster extends Model<ElearningMasterAttribute> implements ElearningMasterAttribute
+export default class ElearningMaster extends Model
 {
-    id!: number;
+    declare id: number;
     test_id!: number;
     zipname!: string;
     link!: string;
     created_by!: string;
     updated_by!: string;
     delete_by!: string;
+    IsDeleted!:number;
 
 }
 
@@ -53,7 +56,12 @@ ElearningMaster.init({
       },
       delete_by:{
         type: DataTypes.INTEGER
+      },
+      IsDeleted:{
+        type:TINYINT,
+        defaultValue:"0"
       }
+
 },{
     tableName:'elearning_master',
     sequelize:sequelizeconnection
