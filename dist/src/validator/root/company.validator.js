@@ -17,6 +17,27 @@ class CompanyValidator {
             (0, express_validator_1.body)('picture').notEmpty().withMessage('parameter is missing'),
         ];
     }
+    updateCommpanyParameter() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('company_name').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('gst').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('pincode').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('country_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('state_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('city_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('address').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('trainee_unique_fields').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('picture').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+    deleteCommpanyParameter() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing')
+        ];
+    }
     companyPersonofcontact() {
         return [
             (0, express_validator_1.body)('name').notEmpty().withMessage('parameter is missing'),
@@ -34,6 +55,17 @@ class CompanyValidator {
             (0, express_validator_1.body)('email').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('password').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+    getcompanyPerson() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+    deletecompanyPerson() {
+        return [
+            (0, express_validator_1.body)('user_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing')
         ];
     }

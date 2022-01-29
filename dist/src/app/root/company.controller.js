@@ -51,6 +51,91 @@ class CompanyController {
             res.status(200).json({ response_code: 1, count: company_count });
         });
     }
+    updateCompany(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let company_id = req.body.company_id;
+            let check_company_is_valid = yield company_model_1.default.findOne({
+                where: {
+                    id: company_id,
+                    IsDeleted: 0
+                },
+                logging: console.log
+            }).catch(err => {
+                res.status(500).json({ response_code: 0, message: err });
+            });
+            if (check_company_is_valid != null) {
+                yield company_model_1.default.update(Object.assign({}, req.body), { where: { id: company_id } }).then(function (data) {
+                    res.status(200).json({ response_code: 1, message: "company updated successfully" });
+                }).catch(function (err) {
+                    res.status(500).json({ response_code: 0, message: err });
+                });
+            }
+            else {
+                res.status(400).json({ response_code: 0, message: "Invalid Company please check company id or company is deleted" });
+            }
+        });
+    }
+    deleteCompany(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let company_id = req.body.company_id;
+            let check_company_is_valid = yield company_model_1.default.findOne({
+                where: {
+                    id: company_id,
+                    IsDeleted: 0
+                },
+                logging: console.log
+            }).catch(err => {
+                res.status(500).json({ response_code: 0, message: err });
+            });
+            if (check_company_is_valid != null) {
+                let updateData = {
+                    IsDeleted: 1,
+                    updated_by: req.body.updated_by
+                };
+                yield company_model_1.default.update(Object.assign({}, updateData), { where: { id: company_id } }).then(function (data) {
+                    res.status(200).json({ response_code: 1, message: "company deleted successfully" });
+                }).catch(function (err) {
+                    res.status(500).json({ response_code: 0, message: err });
+                });
+            }
+            else {
+                res.status(400).json({ response_code: 0, message: "Invalid Company please check company id or company is deleted" });
+            }
+        });
+    }
+    getCompany(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let company_id = '';
+            let where_condition = {};
+            //TODOD Get Company By 
+            if (req.body.company_id) {
+                company_id = req.body.company_id;
+                where_condition = { id: company_id, IsDeleted: 0 };
+            }
+            //TODO Get All Company 
+            else {
+                where_condition = { IsDeleted: 0 };
+            }
+            const getCompany = yield company_model_1.default.findAll({
+                where: where_condition,
+                order: [
+                    ['id', 'DESC']
+                ]
+            })
+                .then(data => {
+                if (data) {
+                    res.status(200).json({ response_code: 1, message: "response successfull...", data: data });
+                }
+                else {
+                    res.status(200).json({ response_code: 0, message: "no data found" });
+                }
+            }).catch(err => {
+                console.log(err);
+                res.status(500).json({ response_code: 0, message: err });
+            });
+        });
+    }
+    //TODO Company Login Calls
     add_company_user(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -77,7 +162,7 @@ class CompanyController {
                 created_by: req.body.created_by,
                 updated_by: req.body.updated_by,
             };
-            yield compayuser_model_1.default.create(Object.assign({}, company_contact)).then(function () {
+            yield compayuser_model_1.default.create(Object.assign({}, company_contact)).then(userdata => {
                 //Add login in User table
                 const userLoginData = {
                     company_id: req.body.company_id,
@@ -89,7 +174,11 @@ class CompanyController {
                     created_by: req.body.created_by,
                     updated_by: req.body.updated_by,
                 };
-                users_model_1.default.create(Object.assign({}, userLoginData)).then(function () {
+                users_model_1.default.create(Object.assign({}, userLoginData)).then(data => {
+                    const updateId = {
+                        login_table_id: data['id']
+                    };
+                    compayuser_model_1.default.update(Object.assign({}, updateId), { where: { id: userdata['id'] } }).catch(err => { res.status(500).json({ message: err }); });
                     res.status(200).json({ response_code: 1, message: "company Login Created" });
                 }).catch(function (err) {
                     res.status(500).json({ response_code: 0, message: err });
@@ -99,20 +188,49 @@ class CompanyController {
             });
         });
     }
-    getCompany(req, res) {
+    get_company_user(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const data = yield company_model_1.default.findAll({
+            const company_id = req.body.company_id;
+            const company_user_data = yield compayuser_model_1.default.findAll({
+                include: [
+                    {
+                        model: users_model_1.default
+                    },
+                    {
+                        model: company_model_1.default,
+                        where: {
+                            IsDeleted: 0
+                        }
+                    }
+                ],
                 where: {
+                    company_id: company_id,
+                    canlogin: 1,
                     IsDeleted: 0
-                },
-                order: [
-                    ['id', 'DESC']
-                ]
+                }
             }).catch(err => {
-                console.log(err);
                 res.status(500).json({ response_code: 0, message: err });
             });
-            res.status(200).json({ response_code: 1, data: data });
+            if (company_user_data) {
+                res.status(200).json({ response_code: 0, message: "company user fetched successfully...", data: company_user_data });
+            }
+            else {
+                res.status(200).json({ response_code: 0, message: "no data found" });
+            }
+        });
+    }
+    delete_company_user(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const user_id = req.body.user_id;
+            let updateData = {
+                IsDeleted: 1,
+                updated_by: req.body.updated_by
+            };
+            yield compayuser_model_1.default.update(Object.assign({}, updateData), { where: { id: user_id } }).then(function (data) {
+                res.status(200).json({ response_code: 1, message: "company user deleted successfully" });
+            }).catch(function (err) {
+                res.status(500).json({ response_code: 0, message: err });
+            });
         });
     }
 }

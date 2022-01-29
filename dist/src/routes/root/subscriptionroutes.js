@@ -31,5 +31,8 @@ var multer = require('multer');
 var formData = multer();
 //TODO Create Subscription
 Router.post('/createSubscription', formData.none(), auth_1.default.verifyAuthenticateToken, subscription_validator_1.default.newSubscriptionParameter(), auth_1.default.handleValidatorError, subscription_controller_1.default.createNewSubscription);
+Router.post('/updateSubscription', formData.none(), auth_1.default.verifyAuthenticateToken, subscription_validator_1.default.updateSubscriptionParameter(), auth_1.default.handleValidatorError, subscription_controller_1.default.updateSubscription);
+Router.post('/deleteSubscription', formData.none(), auth_1.default.verifyAuthenticateToken, subscription_validator_1.default.deleteSubscriptionParameter(), auth_1.default.handleValidatorError, subscription_controller_1.default.deleteSubscription);
 Router.get('/subscriptionCount', subscription_controller_1.default.total_subscription);
+Router.post('/getSubscription', formData.none(), auth_1.default.verifyAuthenticateToken, subscription_controller_1.default.getSubscription);
 exports.default = Router;

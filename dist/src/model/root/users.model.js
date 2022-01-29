@@ -135,3 +135,7 @@ Users.belongsTo(company_model_1.default, {
     as: ""
 });
 //TODO Assciaction with Trainee Table
+// Users.belongsTo(CompanyContact, {
+//     foreignKey: "id",
+//     as: ""
+// });

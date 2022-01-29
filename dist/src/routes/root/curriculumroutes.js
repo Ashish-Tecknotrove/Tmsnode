@@ -34,5 +34,6 @@ router.post('/add_curriculum_parent_list', curriculum_validator_1.default.parent
 router.get('/technology', auth_1.default.verifyAuthenticateToken, curriculum_controller_1.default.getTechnology);
 router.post('/get_curriculum_parent_category', formData.none(), auth_1.default.verifyAuthenticateToken, curriculum_controller_1.default.getCurriculumParent);
 router.post('/get_curriculum_parent_category_test', auth_1.default.verifyAuthenticateToken, curriculum_controller_1.default.getCurriculumParentTest);
+router.post('/getCompanyCurriculum', auth_1.default.verifyAuthenticateToken, curriculum_controller_1.default.getCompanyCurriculum);
 router.post('/buildCurriculum', formData.none(), auth_1.default.verifyAuthenticateToken, curriculum_validator_1.default.buildCurriculumParameter(), auth_1.default.handleValidatorError, curriculum_controller_1.default.buildCurriculum);
 exports.default = router;

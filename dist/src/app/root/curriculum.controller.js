@@ -52,6 +52,25 @@ class CurriculumController {
             }
         });
     }
+    getCompanyCurriculum(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const company_id = req.body.company_id;
+                yield curriculum_model_1.default.findAll({
+                    where: {
+                        company_id: company_id
+                    }
+                }).then(data => {
+                    res.status(200).json({ response_code: 0, message: 'Curriculum Fetched', data: data });
+                }).catch(err => {
+                    res.status(500).json({ response_code: 0, message: err });
+                });
+            }
+            catch (err) {
+                res.status(500).json({ response_code: 1, message: err });
+            }
+        });
+    }
     getCurriculumParent(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -130,8 +149,10 @@ class CurriculumController {
             //Check Curriculum Already Exist
             var check_curriculum_exist = yield curriculum_model_1.default.findOne({
                 where: {
-                    name: req.body.name
-                }
+                    name: req.body.name,
+                    IsDeleted: 0
+                },
+                logging: console.log
             });
             if (check_curriculum_exist == null) {
                 //Parse JSON String into JSON Object

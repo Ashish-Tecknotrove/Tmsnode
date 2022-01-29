@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const company_model_1 = __importDefault(require("./company.model"));
+const users_model_1 = __importDefault(require("./users.model"));
 class CompanyUser extends sequelize_1.Model {
 }
 exports.default = CompanyUser;
@@ -21,6 +22,14 @@ CompanyUser.init({
         allowNull: true,
         references: {
             model: company_model_1.default,
+            key: 'id'
+        }
+    },
+    login_table_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+            model: users_model_1.default,
             key: 'id'
         }
     },
@@ -54,4 +63,7 @@ CompanyUser.init({
 //TODO Association with Company
 CompanyUser.belongsTo(company_model_1.default, {
     foreignKey: "company_id"
+});
+CompanyUser.belongsTo(users_model_1.default, {
+    foreignKey: "login_table_id"
 });

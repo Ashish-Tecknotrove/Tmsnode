@@ -66,8 +66,20 @@ Router.post('/registerCompany', auth_1.default.verifyAuthenticateToken, upload.s
 (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     next();
 }), company_validator_1.default.registerCommpanyParameter(), auth_1.default.handleValidatorError, company_controller_1.default.registerCompany);
+//TODO Update Company
+Router.post('/updateCompany', auth_1.default.verifyAuthenticateToken, upload.single('picture_pic'), //FormData With File
+(req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    next();
+}), company_validator_1.default.updateCommpanyParameter(), auth_1.default.handleValidatorError, company_controller_1.default.updateCompany);
+//TODO Delete Company
+Router.post('/deleteCompany', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.deleteCommpanyParameter(), auth_1.default.handleValidatorError, company_controller_1.default.deleteCompany);
+//TODO GET Company
+Router.post('/getRegisterCompany', formData.any(), auth_1.default.verifyAuthenticateToken, company_controller_1.default.getCompany);
+Router.get('/company_count', company_controller_1.default.total_companies);
+//TODO Company Login
 //Create New User
 Router.post('/addCompanyUserLogin', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.companyPersonLogin(), auth_1.default.handleValidatorError, company_controller_1.default.add_company_login);
-Router.get('/get_register_Company', company_controller_1.default.getCompany);
-Router.get('/company_count', company_controller_1.default.total_companies);
+// Get Company New User
+Router.post('/getCompanyUser', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.getcompanyPerson(), auth_1.default.handleValidatorError, company_controller_1.default.get_company_user);
+Router.post('/deleteCompanyUser', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.deletecompanyPerson(), auth_1.default.handleValidatorError, company_controller_1.default.delete_company_user);
 exports.default = Router;
