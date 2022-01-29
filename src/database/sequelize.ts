@@ -29,7 +29,8 @@ const currentDatabase = "";
 
 const sequelizeconnection = new Sequelize.Sequelize(dbName,dbUser,dbPassword,{
     host:dbHost,
-    dialect:'mysql'
+    dialect:'mysql',
+    logging:false
 });
 
 sequelizeconnection.sync({force:false});

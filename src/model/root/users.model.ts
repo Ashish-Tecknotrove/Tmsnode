@@ -5,6 +5,7 @@ import {DataType} from "sequelize-typescript";
 import sequelizeConnection from "../../database/sequelize";
 import Languages from "../language/language.model";
 import Company from "./company.model";
+import CompanyContact from "./companycontacts.model";
 import Trainee from "./trainee.model";
 import UserType from "./usertype.model";
 
@@ -198,3 +199,7 @@ Users.belongsTo(Company, {
 
 
 //TODO Assciaction with Trainee Table
+// Users.belongsTo(CompanyContact, {
+//     foreignKey: "id",
+//     as: ""
+// });

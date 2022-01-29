@@ -5,6 +5,7 @@ import {Request, Response} from "express";
 import companyValidator from "../../validator/root/company.validator";
 import auth from "../../middleware/auth";
 import companyController from "../../app/root/company.controller";
+import { validationResult } from "express-validator";
 
 const Router = express.Router();
 
@@ -54,6 +55,37 @@ Router.post('/registerCompany',
     companyController.registerCompany,
 );
 
+//TODO Update Company
+Router.post('/updateCompany',
+    auth.verifyAuthenticateToken,
+    upload.single('picture_pic'), //FormData With File
+    async (req: Request, res: Response, next: NextFunction) => {
+        next();
+    },
+    companyValidator.updateCommpanyParameter(),
+    auth.handleValidatorError,
+    companyController.updateCompany,
+);
+
+//TODO Delete Company
+Router.post('/deleteCompany',
+    formData.any(),
+    auth.verifyAuthenticateToken,
+    companyValidator.deleteCommpanyParameter(),
+    auth.handleValidatorError,
+    companyController.deleteCompany,
+);
+
+//TODO GET Company
+Router.post('/getRegisterCompany',
+formData.any(),
+auth.verifyAuthenticateToken,
+companyController.getCompany);
+
+Router.get('/company_count',companyController.total_companies);
+
+//TODO Company Login
+
 //Create New User
 Router.post('/addCompanyUserLogin',
     formData.any(),
@@ -63,8 +95,21 @@ Router.post('/addCompanyUserLogin',
     companyController.add_company_login
 );
 
-Router.get('/get_register_Company',companyController.getCompany);
-Router.get('/company_count',companyController.total_companies);
+// Get Company New User
+Router.post('/getCompanyUser',
+    formData.any(),
+    auth.verifyAuthenticateToken,
+    companyValidator.getcompanyPerson(),
+    auth.handleValidatorError,
+    companyController.get_company_user
+);
 
+Router.post('/deleteCompanyUser',
+    formData.any(),
+    auth.verifyAuthenticateToken,
+    companyValidator.deletecompanyPerson(),
+    auth.handleValidatorError,
+    companyController.delete_company_user
+);
 
 export default Router;

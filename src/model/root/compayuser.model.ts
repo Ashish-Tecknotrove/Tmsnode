@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Company from "./company.model";
+import Users from "./users.model";
 
 
 
@@ -8,6 +9,7 @@ interface CompanyUserAttributes
 {
     id:number;
     company_id:number;
+    login_table_id:number;
     name:string;
     department:string;
     mobile_no:string;
@@ -21,6 +23,7 @@ export default class CompanyUser extends Model
 {
     declare id: number;
     company_id!: number;
+    login_table_id!:number;
     name!: string;
     department!: string;
     mobile_no!: string;
@@ -43,6 +46,14 @@ CompanyUser.init({
         allowNull: true,
         references:{
           model:Company,
+          key:'id'
+        }
+      },
+      login_table_id:{
+        type:DataTypes.INTEGER,
+        allowNull:true,
+        references:{
+          model:Users,
           key:'id'
         }
       },
@@ -79,3 +90,8 @@ CompanyUser.init({
 CompanyUser.belongsTo(Company,{
     foreignKey:"company_id"
 });
+
+CompanyUser.belongsTo(Users,{
+  foreignKey:"login_table_id"
+});
+

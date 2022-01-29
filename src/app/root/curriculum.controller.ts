@@ -50,6 +50,32 @@ class CurriculumController {
         }
     }
 
+    async getCompanyCurriculum(req: Request, res: Response)
+    {
+        try
+        {
+            const company_id=req.body.company_id;
+
+            await Curriculum.findAll({
+                where:{
+                    company_id:company_id
+                }
+            }).then(data=>{
+
+                res.status(200).json({response_code:0,message:'Curriculum Fetched',data:data});
+    
+            }).catch(err=>{
+
+                res.status(500).json({response_code:0,message:err});
+            });
+        }
+        catch(err)
+        {
+            res.status(500).json({response_code:1,message:err});
+        }
+    }
+
+
     async getCurriculumParent(req: Request, res: Response) {
         try {
 
@@ -139,8 +165,10 @@ class CurriculumController {
         //Check Curriculum Already Exist
         var check_curriculum_exist=await Curriculum.findOne({
             where:{
-                name:req.body.name
-            }
+                name:req.body.name,
+                IsDeleted:0
+            },
+            logging: console.log
         });
 
         if(check_curriculum_exist == null)

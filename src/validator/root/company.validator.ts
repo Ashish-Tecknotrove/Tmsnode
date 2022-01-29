@@ -1,3 +1,4 @@
+import { Response } from "express";
 import { body } from "express-validator";
 
 class CompanyValidator {
@@ -16,6 +17,29 @@ class CompanyValidator {
             body('created_by').notEmpty().withMessage('parameter is missing'),
             body('updated_by').notEmpty().withMessage('parameter is missing'),
             body('picture').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+
+    updateCommpanyParameter() {
+        return [
+            body('company_id').notEmpty().withMessage('parameter is missing'),
+            body('company_name').notEmpty().withMessage('parameter is missing'),
+            body('gst').notEmpty().withMessage('parameter is missing'),
+            body('pincode').notEmpty().withMessage('parameter is missing'),
+            body('country_id').notEmpty().withMessage('parameter is missing'),
+            body('state_id').notEmpty().withMessage('parameter is missing'),
+            body('city_id').notEmpty().withMessage('parameter is missing'),
+            body('address').notEmpty().withMessage('parameter is missing'),
+            body('trainee_unique_fields').notEmpty().withMessage('parameter is missing'),
+            body('updated_by').notEmpty().withMessage('parameter is missing'),
+            body('picture').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+
+    deleteCommpanyParameter() {
+        return [
+            body('company_id').notEmpty().withMessage('parameter is missing'),
+            body('updated_by').notEmpty().withMessage('parameter is missing')
         ];
     }
 
@@ -38,6 +62,21 @@ class CompanyValidator {
             body('email').notEmpty().withMessage('parameter is missing'),
             body('password').notEmpty().withMessage('parameter is missing'),
             body('created_by').notEmpty().withMessage('parameter is missing'),
+            body('updated_by').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+
+    getcompanyPerson()
+    {
+        return [
+            body('company_id').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+
+    deletecompanyPerson()
+    {
+        return [
+            body('user_id').notEmpty().withMessage('parameter is missing'),
             body('updated_by').notEmpty().withMessage('parameter is missing')
         ];
     }

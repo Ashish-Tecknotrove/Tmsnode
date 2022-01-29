@@ -36,6 +36,11 @@ router.post('/get_curriculum_parent_category_test',
     curriculumController.getCurriculumParentTest
 );
 
+router.post('/getCompanyCurriculum',
+    auth.verifyAuthenticateToken,
+    curriculumController.getCompanyCurriculum
+);
+
 router.post('/buildCurriculum',
     formData.none(),
     auth.verifyAuthenticateToken,
