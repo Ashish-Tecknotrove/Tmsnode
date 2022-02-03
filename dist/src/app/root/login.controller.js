@@ -18,8 +18,9 @@ const company_model_1 = __importDefault(require("../../model/root/company.model"
 const trainee_model_1 = __importDefault(require("../../model/root/trainee.model"));
 const trainer_model_1 = __importDefault(require("../../model/root/trainer.model"));
 const users_model_1 = __importDefault(require("../../model/root/users.model"));
-const jsonwebtoken_1 = require("jsonwebtoken");
 const dotenv_1 = __importDefault(require("dotenv"));
+const response_strings_1 = __importDefault(require("../../strings/response-strings"));
+const response_codes_1 = __importDefault(require("../../strings/response-codes"));
 dotenv_1.default.config();
 class LoginController {
     //UserLogin
@@ -36,11 +37,13 @@ class LoginController {
                     ],
                     where: {
                         email: username,
-                        password: password
-                    }
+                        password: password,
+                        IsDeleted: 0
+                    },
+                    // logging:console.log
                 });
                 if (userdata === null) {
-                    return res.status(401).json({ response_code: 0, message: 'Invalid username or password', data: '' });
+                    return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: 'Invalid username or password', data: '' });
                 }
                 else {
                     var user_type = userdata['user_type'];
@@ -49,7 +52,7 @@ class LoginController {
                     let authentication_token = yield auth_1.default.generateAuth(payload);
                     //TODO Authentication  Token----------
                     if (userdata['is_admin'] == 1) {
-                        return res.status(200).json({
+                        return res.status(response_codes_1.default.SUCCESS).json({
                             response_code: 1,
                             token: authentication_token,
                             user: "Super Admin",
@@ -71,7 +74,7 @@ class LoginController {
                                 }
                             });
                             if (trainee_data != null) {
-                                return res.status(200).json({
+                                return res.status(response_codes_1.default.SUCCESS).json({
                                     response_code: 1,
                                     token: authentication_token,
                                     user_type: "Trainee",
@@ -80,7 +83,7 @@ class LoginController {
                                 });
                             }
                             else {
-                                return res.status(401).json({
+                                return res.status(response_codes_1.default.UNAUTHORIZED).json({
                                     response_code: 0,
                                     message: 'Trainee Not Found',
                                     data: ''
@@ -98,7 +101,7 @@ class LoginController {
                                 }
                             });
                             if (trainer_data != null) {
-                                return res.status(200).json({
+                                return res.status(response_codes_1.default.SUCCESS).json({
                                     response_code: 1,
                                     token: authentication_token,
                                     user_type: "Trainer",
@@ -107,7 +110,7 @@ class LoginController {
                                 });
                             }
                             else {
-                                return res.status(401).json({
+                                return res.status(response_codes_1.default.UNAUTHORIZED).json({
                                     response_code: 0,
                                     message: 'Trainer Not Found',
                                     data: ''
@@ -117,8 +120,11 @@ class LoginController {
                         else if (user_type == '3') //Company User
                          {
                         }
+                        else if (user_type == '2') //Company User
+                         {
+                        }
                         else {
-                            return res.status(401).json({
+                            return res.status(response_codes_1.default.UNAUTHORIZED).json({
                                 response_code: 0,
                                 message: 'Trainee Not Found',
                                 data: ''
@@ -128,21 +134,13 @@ class LoginController {
                 }
             }
             catch (e) {
-                return res.status(500).json({ message: e });
+                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ message: e });
             }
         });
     }
     verify_token(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const token = req.body.access_token;
-            yield (0, jsonwebtoken_1.verify)(token, process.env.jwt_secreate, (err, user) => {
-                if (err) {
-                    return res.status(401).json({ response_code: 0, message: err });
-                }
-                else {
-                    return res.status(200).json({ response_code: 1, message: 'access token is valid' });
-                }
-            });
+            return res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.tokenValid });
         });
     }
 }

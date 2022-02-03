@@ -19,13 +19,36 @@ const curriculumbuilder_model_1 = __importDefault(require("../../model/root/curr
 const curriculum_model_1 = __importDefault(require("../../model/root/curriculum.model"));
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("sequelize"));
+const response_codes_1 = __importDefault(require("../../strings/response-codes"));
+const language_model_1 = __importDefault(require("../../model/language/language.model"));
+const moment_1 = __importDefault(require("moment"));
 class CurriculumController {
-    create_curriculum_parent_category() {
+    create_curriculum_parent_category(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield curriculum_parent_category_model_1.default.create(Object.assign({}, req.body)).then(function (data) {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "Create Curriculum Parent Category Successfully.", data: data });
+                }).catch(function (err) {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                });
+            }
+            catch (error) {
+                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+            }
         });
     }
-    add_curriculum_parent_test() {
+    create_curriculum_parent_category_test(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield curriculum_parent_category_test_model_1.default.create(Object.assign({}, req.body)).then(function (data) {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "Create Curriculum Parent Category Test Successfully.", data: data });
+                }).catch(function (err) {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                });
+            }
+            catch (error) {
+                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+            }
         });
     }
     getTechnology(req, res) {
@@ -76,22 +99,17 @@ class CurriculumController {
             try {
                 const technology_id = req.body.technology_id;
                 const getCurriculum = yield curriculum_parent_category_model_1.default.findAll({
-                    include: [{
-                            model: curriculum_parent_category_test_model_1.default
-                        }],
                     where: {
                         technology_type_id: {
                             [sequelize_1.Op.in]: [sequelize_2.default.literal(`${technology_id}`)]
                         }
                     },
-                    logging: console.log
-                }).catch(err => {
-                    res.status(500).json({ message: err });
+                    // logging: console.log
                 });
                 if (getCurriculum != null) {
                     return res.status(200).json({
                         response_code: 1,
-                        message: "Fetching Curriculum List...",
+                        message: "Fetching Curriculum Parent Category List...",
                         data: getCurriculum
                     });
                 }
@@ -113,19 +131,28 @@ class CurriculumController {
             try {
                 const parent_id = req.body.parent_id;
                 const getTest = yield curriculum_parent_category_test_model_1.default.findAll({
+                    include: [
+                        {
+                            model: language_model_1.default,
+                            attributes: {
+                                exclude: ['id', 'description', 'created_by', 'isDeleted', 'createdAt', 'updatedAt'],
+                            },
+                        }
+                    ],
                     where: {
-                        parent_id: parent_id
+                        parent_id: parent_id,
+                        IsDeleted: 0
                     }
                 });
                 if (getTest != null) {
                     return res.status(200).json({
                         response_code: 1,
-                        message: "Fetching List...",
+                        message: "Fetching Curriculum Test List...",
                         data: getTest
                     });
                 }
                 else {
-                    return res.status(500).json({ response_code: 0, message: "No  Parent Category Found...", data: "" });
+                    return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "No  Parent Category Found...", data: "" });
                 }
             }
             catch (e) {
@@ -134,6 +161,70 @@ class CurriculumController {
                     message: e,
                     data: ''
                 });
+            }
+        });
+    }
+    deleteCurriculumParentCategoryTest(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const test_id = req.body.test_id;
+                let check_company_is_valid = yield curriculum_parent_category_test_model_1.default.findOne({
+                    where: {
+                        id: test_id,
+                        IsDeleted: 0
+                    },
+                    // logging:console.log
+                }).catch(err => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                });
+                const updateData = {
+                    IsDeleted: 1,
+                    deletedAt: (0, moment_1.default)().format('YYYY-MM-DD HH:mm:ss')
+                };
+                // console.log("check_company_is_valid->",check_company_is_valid);
+                if (check_company_is_valid != null) {
+                    yield curriculum_parent_category_test_model_1.default.update(updateData, { where: { id: test_id } }).then(function (data) {
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "Curriculam Parent Category Test Delete successfully" });
+                    }).catch(function (err) {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    });
+                }
+                else {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Curriculam Parent Category Test not found!" });
+                }
+            }
+            catch (e) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: e });
+            }
+        });
+    }
+    updateCurriculumParentCategoryTest(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const test_id = req.body.test_id;
+                let check_company_is_valid = yield curriculum_parent_category_test_model_1.default.findOne({
+                    where: {
+                        id: test_id,
+                        IsDeleted: 0
+                    },
+                    // logging:console.log
+                }).catch(err => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                });
+                const updateData = {
+                    prefix: req.body.prefix,
+                    title: req.body.title
+                };
+                if (check_company_is_valid != null) {
+                    yield curriculum_parent_category_test_model_1.default.update(updateData, { where: { id: test_id } }).then(function (data) {
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "Curriculam Parent Category Test Update successfully" });
+                    }).catch(function (err) {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    });
+                }
+            }
+            catch (e) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: e });
             }
         });
     }

@@ -45,3 +45,7 @@ TechnologyCategory.init({
     sequelize: sequelize_2.default,
     tableName: 'technology_type'
 });
+// TechnologyCategory.hasMany(CurriculumParentCategory,{
+//     as: 'technology',
+//     foreignKey:'technology_type_id'
+// });

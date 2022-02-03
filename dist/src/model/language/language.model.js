@@ -42,4 +42,7 @@ Languages.hasMany(app_label_value_1.default, {
     foreignKey: 'f_languageid',
     as: 'app_label_value'
 });
-app_label_value_1.default.belongsTo(Languages, { foreignKey: "f_languageid", targetKey: "id" });
+app_label_value_1.default.belongsTo(Languages, {
+    foreignKey: "f_languageid",
+    targetKey: "id"
+});

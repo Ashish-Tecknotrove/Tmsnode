@@ -69,8 +69,15 @@ CurriculumParentCategoryTest.init({
     sequelize: sequelize_2.default,
     tableName: 'curriculum_parent_category_test'
 });
+//TODO ASSOCATION Curriculum Parent Category
+CurriculumParentCategoryTest.belongsTo(curriculum_parent_category_model_1.default, {
+    foreignKey: 'technology_type_id'
+});
+//TODO ASSOCATION Technology Category
+CurriculumParentCategoryTest.belongsTo(technology_model_1.default, {
+    foreignKey: 'parent_id'
+});
 //TODO ASSOCATION LANGUAGE
 CurriculumParentCategoryTest.belongsTo(language_model_1.default, {
     foreignKey: 'language_id'
 });
-//TODO ASSOCIATION Parent ID

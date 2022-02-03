@@ -34,8 +34,7 @@ var formData = multer();
 //TODO LOGIN ROUTES
 Router.post('/authentication', formData.none(), //Accept Form Data
 login_validator_1.default.checkLoginParameters(), auth_1.default.handleValidatorError, login_controller_1.default.login);
-Router.post('/authenticate_token', formData.none(), //Accept Form Data
-login_validator_1.default.verifytokenParameters(), auth_1.default.handleValidatorError, login_controller_1.default.verify_token);
+Router.post('/authenticate_token', auth_1.default.verifyAuthenticateToken, login_controller_1.default.verify_token);
 //Additional Resources
 Router.get('/getCountries', additionalresources_controller_1.default.getCountry);
 Router.post('/getStates', formData.none(), additionalresources_controller_1.default.getState);
