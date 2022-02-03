@@ -3,24 +3,50 @@ import { body } from "express-validator";
 
 class CurriculumValidator
 {
+    technology()
+    {
+        return[
+            body('technology_id').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+    
     parentCategory()
     {
         return[
             body('title').notEmpty().withMessage('parameter is missing'),
-            body('technology_type_id').notEmpty().withMessage('parameter is missing'),
-            body('created_by').notEmpty().withMessage('parameter is missing')
+            body('technology_type_id').notEmpty().withMessage('parameter is missing')
         ];
     }
 
     parentCategoryTest()
     {
         return[
-            body('subcategory_prefix').notEmpty().withMessage('parameter is missing'),
-            body('subcategory_name').notEmpty().withMessage('parameter is missing'),
-            body('title').notEmpty().withMessage('parameter is missing'),
-            body('parent_id').notEmpty().withMessage('parameter is missing'),
             body('technology_type_id').notEmpty().withMessage('parameter is missing'),
-            body('created_by').notEmpty().withMessage('parameter is missing')
+            body('parent_id').notEmpty().withMessage('parameter is missing'),
+            body('prefix').notEmpty().withMessage('parameter is missing'),
+            body('title').notEmpty().withMessage('parameter is missing'),
+            body('language_id').notEmpty().withMessage('parameter is missing'),
+        ]
+    }
+
+    getParentCategory()
+    {
+        return[
+            body('parent_id').notEmpty().withMessage('parameter is missing'),
+        ]
+    }
+
+    getParentCategoryTest()
+    {
+        return[
+            body('test_id').notEmpty().withMessage('parameter is missing'),
+        ]
+    }
+
+    updateParentCategoryTest(){
+        return[
+            body('prefix').notEmpty().withMessage('parameter is missing'),
+            body('title').notEmpty().withMessage('parameter is missing'),
         ]
     }
 

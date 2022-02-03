@@ -1,5 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
+import CurriculumParentCategory from "./curriculum_parent_category.model";
 
 interface TechnologyCategoryAttributes{
     id:number;
@@ -58,3 +59,9 @@ TechnologyCategory.init({
     sequelize:sequelizeconnection,
     tableName:'technology_type'
 });
+
+
+// TechnologyCategory.hasMany(CurriculumParentCategory,{
+//     as: 'technology',
+//     foreignKey:'technology_type_id'
+// });

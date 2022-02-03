@@ -8,20 +8,41 @@ import Company from "../../model/root/company.model";
 import { Op } from "sequelize";
 import { parse } from "path/posix";
 import sequelize from "sequelize";
+import responseCodes from "../../strings/response-codes";
+import Languages from "../../model/language/language.model";
+import moment from "moment";
 
 
 class CurriculumController {
 
 
-   
+    async create_curriculum_parent_category(req: Request, res: Response) {
+        try {
+            await CurriculumParentCategory.create({ ...req.body }).then(function (data) {
+                res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Create Curriculum Parent Category Successfully." ,data:data});
 
-    async create_curriculum_parent_category() {
-
+            }).catch(function (err) {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+            });
+        }
+        catch (error) {
+            return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+        }
     }
 
 
-    async add_curriculum_parent_test() {
+    async create_curriculum_parent_category_test(req: Request, res: Response) {
+        try {
+            await CurriculumParentCategoryTest.create({ ...req.body }).then(function (data) {
+                res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Create Curriculum Parent Category Test Successfully." ,data:data});
 
+            }).catch(function (err) {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+            });
+        }
+        catch (error) {
+            return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+        }
     }
 
     async getTechnology(req: Request, res: Response)
@@ -82,24 +103,19 @@ class CurriculumController {
             const technology_id=req.body.technology_id;
 
             const getCurriculum = await CurriculumParentCategory.findAll({
-                include:[{
-                    model:CurriculumParentCategoryTest
-                }],
                 where:{
                     technology_type_id:{
                         [Op.in]:[sequelize.literal(`${technology_id}`)]
                     }
                 },
-                logging: console.log
+                // logging: console.log
 
-            }).catch(err=>{
-                res.status(500).json({message:err})
             });
 
             if (getCurriculum != null) {
                 return res.status(200).json({
                     response_code: 1,
-                    message: "Fetching Curriculum List...",
+                    message: "Fetching Curriculum Parent Category List...",
                     data: getCurriculum
                 });
 
@@ -125,21 +141,29 @@ class CurriculumController {
             const parent_id=req.body.parent_id;
 
             const getTest = await CurriculumParentCategoryTest.findAll({
+                 include:[
+                    {
+                         model:Languages, 
+                         attributes : {
+                             exclude:['id','description', 'created_by','isDeleted','createdAt','updatedAt'],
+                        },
+                    }],
                 where:{
-                    parent_id:parent_id
+                    parent_id:parent_id,
+                    IsDeleted:0
                 }
             });
 
             if (getTest != null) {
                 return res.status(200).json({
                     response_code: 1,
-                    message: "Fetching List...",
+                    message: "Fetching Curriculum Test List...",
                     data: getTest
                 });
 
             }
             else {
-                return res.status(500).json({ response_code: 0, message: "No  Parent Category Found...",data:"" })
+                return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "No  Parent Category Found...",data:"" })
             }
         }
         catch (e) {
@@ -149,6 +173,90 @@ class CurriculumController {
                 data: ''
             })
         }
+    }
+
+    async deleteCurriculumParentCategoryTest(req:Request,res:Response){
+
+        try {
+
+            const test_id=req.body.test_id;
+
+            let check_company_is_valid=await CurriculumParentCategoryTest.findOne({
+                where:{
+                    id:test_id,
+                    IsDeleted:0
+                },
+                // logging:console.log
+            }).catch(err=>{
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code:0,message:err});
+            });
+
+            const updateData={
+                IsDeleted:1,
+                deletedAt:moment().format('YYYY-MM-DD HH:mm:ss')
+            }
+
+            // console.log("check_company_is_valid->",check_company_is_valid);
+
+            if(check_company_is_valid != null){
+                await CurriculumParentCategoryTest.update(updateData,{where:{id:test_id}}).then(function (data) 
+                {
+                    res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Curriculam Parent Category Test Delete successfully"});
+    
+                }).catch(function (err) {
+    
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                });
+            }else{
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Curriculam Parent Category Test not found!"});
+            }
+
+        }catch(e){
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code:1,message:e});
+        }
+
+
+
+    }
+
+    async updateCurriculumParentCategoryTest(req:Request,res:Response){
+
+        try {
+
+            const test_id=req.body.test_id;
+
+            let check_company_is_valid=await CurriculumParentCategoryTest.findOne({
+                where:{
+                    id:test_id,
+                    IsDeleted:0
+                },
+                // logging:console.log
+            }).catch(err=>{
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code:0,message:err});
+            });
+
+            const updateData={
+                prefix:req.body.prefix,
+                title:req.body.title
+            }
+
+            if(check_company_is_valid != null){
+                await CurriculumParentCategoryTest.update(updateData,{where:{id:test_id}}).then(function (data) 
+                {
+                    res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Curriculam Parent Category Test Update successfully"});
+    
+                }).catch(function (err) {
+    
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                });
+            }
+
+        }catch(e){
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code:1,message:e});
+        }
+
+
+
     }
 
     async buildCurriculum(req:Request,res:Response)

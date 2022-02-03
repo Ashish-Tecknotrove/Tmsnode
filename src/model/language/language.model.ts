@@ -56,4 +56,7 @@ Languages.hasMany(ApplabelValue,{
     as:'app_label_value'
 });
 
-ApplabelValue.belongsTo(Languages,{foreignKey:"f_languageid",targetKey:"id"});
+ApplabelValue.belongsTo(Languages,{
+    foreignKey:"f_languageid",
+    targetKey:"id"
+});

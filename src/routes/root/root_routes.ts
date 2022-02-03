@@ -22,9 +22,7 @@ Router.post('/authentication',
 )
 
 Router.post('/authenticate_token',
-    formData.none(),//Accept Form Data
-    loginValidator.verifytokenParameters(),
-    auth.handleValidatorError,
+    auth.verifyAuthenticateToken,
     loginController.verify_token
 )
 

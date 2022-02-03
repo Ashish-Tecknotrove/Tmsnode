@@ -33,7 +33,7 @@ const sequelizeconnection = new Sequelize.Sequelize(dbName,dbUser,dbPassword,{
     logging:false
 });
 
-sequelizeconnection.sync({force:false});
+sequelizeconnection.sync({force:false});    
 
 export default sequelizeconnection;
 

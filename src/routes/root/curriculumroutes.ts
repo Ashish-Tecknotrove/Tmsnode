@@ -1,3 +1,4 @@
+import { any } from 'bluebird';
 import Router from "./root_routes";
 import * as express from "express";
 import CurriculumValidator from "../../validator/root/curriculum.validator";
@@ -9,15 +10,19 @@ const multer = require("multer");
 const formData = multer();
 
 router.post('/create_curriculum_parent_category',
+    formData.any(),
+    auth.verifyAuthenticateToken,
     CurriculumValidator.parentCategory(),
-    auth.generateAuth,
+    auth.handleValidatorError,  
     curriculumController.create_curriculum_parent_category
 );
 
-router.post('/add_curriculum_parent_list',
-    CurriculumValidator.parentCategory(),
-    auth.generateAuth,
-    curriculumController.add_curriculum_parent_test
+router.post('/create_curriculum_parent_category_test',
+    formData.any(),
+    auth.verifyAuthenticateToken,
+    CurriculumValidator.parentCategoryTest(),
+    auth.handleValidatorError,
+    curriculumController.create_curriculum_parent_category_test
 );
 
 router.get('/technology',
@@ -28,12 +33,33 @@ router.get('/technology',
 router.post('/get_curriculum_parent_category',
     formData.none(),
     auth.verifyAuthenticateToken,
+    CurriculumValidator.technology(),
+    auth.handleValidatorError,
     curriculumController.getCurriculumParent
 );
 
 router.post('/get_curriculum_parent_category_test',
+    formData.none(),
     auth.verifyAuthenticateToken,
+    CurriculumValidator.getParentCategory(),
+    auth.handleValidatorError,
     curriculumController.getCurriculumParentTest
+);
+
+router.post('/delete_curriculum_parent_category_test',
+    formData.none(),
+    auth.verifyAuthenticateToken,
+    CurriculumValidator.getParentCategoryTest(),
+    auth.handleValidatorError,
+    curriculumController.deleteCurriculumParentCategoryTest 
+);
+
+router.post('/update_curriculum_parent_category_test',
+    formData.none(),
+    auth.verifyAuthenticateToken,
+    CurriculumValidator.updateParentCategoryTest(),
+    auth.handleValidatorError,
+    curriculumController.updateCurriculumParentCategoryTest 
 );
 
 router.post('/getCompanyCurriculum',

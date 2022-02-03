@@ -8,6 +8,8 @@ import Users from "../../model/root/users.model";
 import UserType from "../../model/root/usertype.model";
 import {sign, verify} from "jsonwebtoken";
 import dotenv from 'dotenv';
+import ResponseStrings from "../../strings/response-strings";
+import ResponseCodes from "../../strings/response-codes";
 
 dotenv.config();
 
@@ -28,13 +30,14 @@ class LoginController {
                 ],
                 where: {
                     email: username,
-                    password: password
-                }
+                    password: password,
+                    IsDeleted: 0
+                },
+                // logging:console.log
             });
 
-
             if (userdata === null) {
-                return res.status(401).json({response_code: 0, message: 'Invalid username or password', data: ''})
+                return res.status(ResponseCodes.UNAUTHORIZED).json({response_code: 0, message: 'Invalid username or password', data: ''})
             }
             else {
 
@@ -43,6 +46,7 @@ class LoginController {
 
                 //TODO Authentication Token----------
                 var payload = {username: userdata['name']};
+
                 let authentication_token = await auth.generateAuth(payload);
                 //TODO Authentication  Token----------
 
@@ -50,7 +54,7 @@ class LoginController {
                 if (userdata['is_admin'] == 1) {
 
 
-                    return res.status(200).json(
+                    return res.status(ResponseCodes.SUCCESS).json(
                         {
                             response_code: 1,
                             token: authentication_token,
@@ -74,7 +78,7 @@ class LoginController {
                         });
 
                         if (trainee_data != null) {
-                            return res.status(200).json(
+                            return res.status(ResponseCodes.SUCCESS).json(
                                 {
                                     response_code: 1,
                                     token: authentication_token,
@@ -84,7 +88,7 @@ class LoginController {
                                 });
                         }
                         else {
-                            return res.status(401).json(
+                            return res.status(ResponseCodes.UNAUTHORIZED).json(
                                 {
                                     response_code: 0,
                                     message: 'Trainee Not Found',
@@ -104,7 +108,7 @@ class LoginController {
                         });
 
                         if (trainer_data != null) {
-                            return res.status(200).json(
+                            return res.status(ResponseCodes.SUCCESS).json(
                                 {
                                     response_code: 1,
                                     token: authentication_token,
@@ -114,7 +118,7 @@ class LoginController {
                                 });
                         }
                         else {
-                            return res.status(401).json(
+                            return res.status(ResponseCodes.UNAUTHORIZED).json(
                                 {
                                     response_code: 0,
                                     message: 'Trainer Not Found',
@@ -126,8 +130,12 @@ class LoginController {
                     {
 
                     }
+                    else if (user_type == '2')//Company User
+                    {
+                       
+                    }
                     else {
-                        return res.status(401).json(
+                        return res.status(ResponseCodes.UNAUTHORIZED).json(
                             {
                                 response_code: 0,
                                 message: 'Trainee Not Found',
@@ -140,24 +148,13 @@ class LoginController {
 
         }
         catch (e) {
-            return res.status(500).json({message: e});
+            return res.status(ResponseCodes.INTERNAL_SERVER_ERROR).json({message: e});
         }
     }
 
     async verify_token(req: Request, res: Response) {
 
-        const token = req.body.access_token;
-
-        await verify(token, process.env.jwt_secreate as string, (err:any, user:any) => {
-
-            if (err) {
-                return res.status(401).json({response_code: 0,message: err});
-            }
-            else {
-                return res.status(200).json({response_code: 1, message: 'access token is valid'});
-            }
-
-        });
+        return res.status(ResponseCodes.SUCCESS).json({response_code: 1, message: ResponseStrings.tokenValid});
     }
 }
 

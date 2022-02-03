@@ -89,14 +89,17 @@ CurriculumParentCategoryTest.init({
     tableName: 'curriculum_parent_category_test'
 });
 
+//TODO ASSOCATION Curriculum Parent Category
+CurriculumParentCategoryTest.belongsTo(CurriculumParentCategory,{
+    foreignKey:'technology_type_id'
+})
+
+//TODO ASSOCATION Technology Category
+CurriculumParentCategoryTest.belongsTo(TechnologyCategory,{
+    foreignKey:'parent_id'
+})
 
 //TODO ASSOCATION LANGUAGE
-
 CurriculumParentCategoryTest.belongsTo(Languages, {
     foreignKey: 'language_id'
 })
-
-//TODO ASSOCIATION Parent ID
-
-
-

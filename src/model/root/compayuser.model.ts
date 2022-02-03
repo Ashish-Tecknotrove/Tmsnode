@@ -19,7 +19,7 @@ interface CompanyUserAttributes
 }
 
 
-export default class CompanyUser extends Model
+export default class  CompanyUser extends Model
 {
     declare id: number;
     company_id!: number;
@@ -94,4 +94,6 @@ CompanyUser.belongsTo(Company,{
 CompanyUser.belongsTo(Users,{
   foreignKey:"login_table_id"
 });
+
+
 
