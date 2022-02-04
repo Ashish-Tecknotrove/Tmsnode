@@ -11,6 +11,11 @@ const curriculumroutes_1 = __importDefault(require("./src/routes/root/curriculum
 const companyroutes_1 = __importDefault(require("./src/routes/root/companyroutes"));
 const subscriptionroutes_1 = __importDefault(require("./src/routes/root/subscriptionroutes"));
 const elearningcontentroutes_1 = __importDefault(require("./src/routes/elearning/elearningcontentroutes"));
+process.env.TZ = "Asia/Calcutta";
+const nDate = new Date().toLocaleString('en-US', {
+    timeZone: 'Asia/Calcutta'
+});
+console.log(nDate);
 var multer = require('multer');
 var formData = multer();
 var cors = require('cors');
@@ -30,7 +35,7 @@ app.use("/TMS", root_routes_1.default);
 app.use("/TMS", curriculumroutes_1.default);
 app.use("/TMS", companyroutes_1.default);
 app.use("/TMS/subscription", subscriptionroutes_1.default);
-app.use("/TMS/Elearning", elearningcontentroutes_1.default);
+app.use("/TMS/elearning", elearningcontentroutes_1.default);
 // app.use("/api/v1/",LanguageRoutes)
 app.get('/', (req, res) => {
     res.status(200).json({ message: "Welcome To TMS" });

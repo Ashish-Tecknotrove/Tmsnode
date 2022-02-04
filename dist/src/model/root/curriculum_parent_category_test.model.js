@@ -70,9 +70,9 @@ CurriculumParentCategoryTest.init({
     tableName: 'curriculum_parent_category_test'
 });
 //TODO ASSOCATION Curriculum Parent Category
-CurriculumParentCategoryTest.belongsTo(curriculum_parent_category_model_1.default, {
-    foreignKey: 'technology_type_id'
-});
+// CurriculumParentCategoryTest.belongsTo(CurriculumParentCategory,{
+// foreignKey:'technology_type_id'
+// })
 //TODO ASSOCATION Technology Category
 CurriculumParentCategoryTest.belongsTo(technology_model_1.default, {
     foreignKey: 'parent_id'

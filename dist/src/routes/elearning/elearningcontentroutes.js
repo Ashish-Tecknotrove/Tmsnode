@@ -32,7 +32,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
+const express_validator_1 = require("express-validator");
+const moment_1 = __importDefault(require("moment"));
 const elearningContent_controller_1 = __importDefault(require("../../app/elearning/elearningContent.controller"));
+const auth_1 = __importDefault(require("../../middleware/auth"));
+const elearning_validator_1 = __importDefault(require("../../validator/root/elearning.validator"));
 const Router = express.Router();
 var multer = require('multer');
 var formData = multer();
@@ -41,7 +45,7 @@ const storage = multer.diskStorage({
         cb(null, './resources/test');
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname);
+        cb(null, (0, moment_1.default)().format('YYYYMMDDHHmmss') + '_' + file.originalname);
     }
 });
 const fileFilter = (req, file, cb) => {
@@ -52,8 +56,18 @@ const fileFilter = (req, file, cb) => {
     // }
 };
 const upload = multer({ storage: storage });
-Router.post('/addElearningTestLink', upload.single('testfile'), //FormData With File
-(req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+Router.post('/addElearningTestLink', 
+// formData.none(),
+auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.checkElearning(), auth_1.default.handleValidatorError, (0, express_validator_1.check)('testfile').custom((value, { req }) => {
+    if (req.files.mimetype === 'application/zip') {
+        return '.zip'; // return "non-falsy" value to indicate valid data"
+    }
+    else {
+        return false; // return "falsy" value to indicate invalid data
+    }
+})
+    .withMessage('Please only submit zip documents.'), // custom error message that will be send back if the file in not a pdf. 
+upload.single('testfile'), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     next();
 }), elearningContent_controller_1.default.elearningTestLink);
 exports.default = Router;

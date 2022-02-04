@@ -15,20 +15,33 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const eLearningmaster_model_1 = __importDefault(require("../../model/elearning/eLearningmaster.model"));
 class ElearningContent {
     elearningTestLink(req, res) {
+        var _a;
         return __awaiter(this, void 0, void 0, function* () {
-            //var createdBy=req.body.createdBy;
             try {
-                yield eLearningmaster_model_1.default.create(Object.assign({}, req.body)).then(function (data) {
-                    res.status(200).json({ response_code: 1, message: "Elearning Content Uploaded", data: data });
-                    //logController.createLog(createdBy,"New Elearning Content Updated");
-                }).catch(err => {
-                    res.status(500).json({ response_code: 0, message: err });
+                const checkExists = yield eLearningmaster_model_1.default.findOne({
+                    where: {
+                        test_id: req.body.test_id,
+                        IsDeleted: 0
+                    }
                 });
+                if (checkExists == null) {
+                    let obj = {
+                        test_id: req.body.test_id,
+                        zipname: (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename
+                    };
+                    yield eLearningmaster_model_1.default.create(obj).then(function (data) {
+                        res.status(200).json({ response_code: 1, message: "Elearning Content Uploaded", data: data });
+                    }).catch(err => {
+                        res.status(500).json({ response_code: 0, message: err });
+                    });
+                }
+                else {
+                    res.status(500).json({ response_code: 0, message: "Elearning Content already exits" });
+                }
             }
             catch (err) {
                 res.status(500).json({ response_code: 0, message: err });
             }
-            res.status(500).json({ response_code: 0, message: "Done" });
         });
     }
 }

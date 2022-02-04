@@ -99,6 +99,11 @@ class CurriculumController {
             try {
                 const technology_id = req.body.technology_id;
                 const getCurriculum = yield curriculum_parent_category_model_1.default.findAll({
+                    include: [
+                        {
+                            model: curriculum_parent_category_test_model_1.default,
+                        }
+                    ],
                     where: {
                         technology_type_id: {
                             [sequelize_1.Op.in]: [sequelize_2.default.literal(`${technology_id}`)]
