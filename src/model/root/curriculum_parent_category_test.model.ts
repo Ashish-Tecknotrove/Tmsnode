@@ -90,9 +90,9 @@ CurriculumParentCategoryTest.init({
 });
 
 //TODO ASSOCATION Curriculum Parent Category
-CurriculumParentCategoryTest.belongsTo(CurriculumParentCategory,{
-    foreignKey:'technology_type_id'
-})
+// CurriculumParentCategoryTest.belongsTo(CurriculumParentCategory,{
+    // foreignKey:'technology_type_id'
+// })
 
 //TODO ASSOCATION Technology Category
 CurriculumParentCategoryTest.belongsTo(TechnologyCategory,{

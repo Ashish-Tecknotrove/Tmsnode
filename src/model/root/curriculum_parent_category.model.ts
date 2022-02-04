@@ -72,7 +72,7 @@ CurriculumParentCategory.belongsTo(TechnologyCategory,{
     foreignKey:"technology_type_id"
 })
 
-// CurriculumParentCategory.hasMany(CurriculumParentCategoryTest, {
-//     foreignKey: "parent_id"
-// })
+CurriculumParentCategory.hasMany(CurriculumParentCategoryTest, {
+    foreignKey: "parent_id"
+})
 

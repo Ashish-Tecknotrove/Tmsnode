@@ -103,6 +103,10 @@ class CurriculumController {
             const technology_id=req.body.technology_id;
 
             const getCurriculum = await CurriculumParentCategory.findAll({
+                include:[
+                    {
+                         model:CurriculumParentCategoryTest,
+                    }],
                 where:{
                     technology_type_id:{
                         [Op.in]:[sequelize.literal(`${technology_id}`)]
