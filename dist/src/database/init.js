@@ -13,7 +13,6 @@ const users_model_1 = __importDefault(require("../model/root/users.model"));
 const curriculum_parent_category_model_1 = __importDefault(require("../model/root/curriculum_parent_category.model"));
 const curriculum_parent_category_test_model_1 = __importDefault(require("../model/root/curriculum_parent_category_test.model"));
 const curriculumbuilder_model_1 = __importDefault(require("../model/root/curriculumbuilder.model"));
-const log_model_1 = __importDefault(require("../app/root/log.model"));
 const isDevelopment = process.env.NODE_ENV === 'development';
 const dbinitialized = () => {
     //TODO Root Model START 
@@ -27,7 +26,6 @@ const dbinitialized = () => {
     curriculum_parent_category_model_1.default.sync();
     curriculum_parent_category_test_model_1.default.sync();
     curriculumbuilder_model_1.default.sync();
-    log_model_1.default.sync();
     //TODO Root Model END 
 };
 exports.default = dbinitialized;

@@ -35,5 +35,11 @@ class AdditionalresourcesController {
             res.status(200).json({ response_code: 1, data: cities });
         });
     }
+    getLanguages(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var languages = yield sequelize_1.default.query(`Select * from languages`, { type: sequelize_2.default.QueryTypes.SELECT });
+            res.status(200).json({ response_code: 1, data: languages });
+        });
+    }
 }
 exports.default = new AdditionalresourcesController();

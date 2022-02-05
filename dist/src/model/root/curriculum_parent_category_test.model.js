@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
+const eLearningmaster_model_1 = __importDefault(require("../elearning/eLearningmaster.model"));
 const language_model_1 = __importDefault(require("../language/language.model"));
 const curriculum_parent_category_model_1 = __importDefault(require("./curriculum_parent_category.model"));
 const technology_model_1 = __importDefault(require("./technology.model"));
@@ -80,4 +81,7 @@ CurriculumParentCategoryTest.belongsTo(technology_model_1.default, {
 //TODO ASSOCATION LANGUAGE
 CurriculumParentCategoryTest.belongsTo(language_model_1.default, {
     foreignKey: 'language_id'
+});
+CurriculumParentCategoryTest.hasOne(eLearningmaster_model_1.default, {
+    foreignKey: "test_id"
 });

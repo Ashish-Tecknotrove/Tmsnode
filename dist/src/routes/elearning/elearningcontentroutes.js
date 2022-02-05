@@ -32,10 +32,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
-const express_validator_1 = require("express-validator");
 const moment_1 = __importDefault(require("moment"));
 const elearningContent_controller_1 = __importDefault(require("../../app/elearning/elearningContent.controller"));
 const auth_1 = __importDefault(require("../../middleware/auth"));
+const response_codes_1 = __importDefault(require("../../strings/response-codes"));
 const elearning_validator_1 = __importDefault(require("../../validator/root/elearning.validator"));
 const Router = express.Router();
 var multer = require('multer');
@@ -45,7 +45,7 @@ const storage = multer.diskStorage({
         cb(null, './resources/test');
     },
     filename: function (req, file, cb) {
-        cb(null, (0, moment_1.default)().format('YYYYMMDDHHmmss') + '_' + file.originalname);
+        cb(null, (0, moment_1.default)().format('YYYYMMDDHHmmss') + '_' + file.originalname.toLowerCase().split(' ').join('-'));
     }
 });
 const fileFilter = (req, file, cb) => {
@@ -55,19 +55,61 @@ const fileFilter = (req, file, cb) => {
     //     cb(new Error("Image uploaded is not of type jpg/jpeg or png"), false);
     // }
 };
-const upload = multer({ storage: storage });
-Router.post('/addElearningTestLink', 
-// formData.none(),
-auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.checkElearning(), auth_1.default.handleValidatorError, (0, express_validator_1.check)('testfile').custom((value, { req }) => {
-    if (req.files.mimetype === 'application/zip') {
-        return '.zip'; // return "non-falsy" value to indicate valid data"
+const upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        console.log("file->", file);
+        if (file.mimetype == "application/zip") {
+            cb(null, true);
+        }
+        else {
+            //   cb(null, false);
+            cb(new Error('Only .zip format allowed!'));
+        }
     }
-    else {
-        return false; // return "falsy" value to indicate invalid data
-    }
-})
-    .withMessage('Please only submit zip documents.'), // custom error message that will be send back if the file in not a pdf. 
-upload.single('testfile'), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    next();
-}), elearningContent_controller_1.default.elearningTestLink);
+}).single('testfile');
+Router.post('/addElearningTestLink', auth_1.default.verifyAuthenticateToken, 
+// upload.single('testfile'),
+function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        upload(req, res, function (err) {
+            if (err instanceof multer.MulterError) {
+                // A Multer error occurred when uploading.
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+            }
+            else if (err) {
+                // An unknown error occurred when uploading.
+                console.log("unknown error->", err);
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Only .zip format allowed!" });
+            }
+            else {
+                console.log("Everything went fine");
+                next();
+            }
+        });
+    });
+}, elearning_validator_1.default.checkElearning(), auth_1.default.handleValidatorError, elearningContent_controller_1.default.elearningTestLink);
+Router.post('/updateElearningTestLink', auth_1.default.verifyAuthenticateToken, 
+// upload.single('testfile'),
+function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        upload(req, res, function (err) {
+            if (err instanceof multer.MulterError) {
+                // A Multer error occurred when uploading.
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+            }
+            else if (err) {
+                // An unknown error occurred when uploading.
+                console.log("unknown error->", err);
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Only .zip format allowed!" });
+            }
+            else {
+                console.log("Everything went fine");
+                next();
+            }
+        });
+    });
+}, elearning_validator_1.default.checkElearningId(), auth_1.default.handleValidatorError, elearningContent_controller_1.default.updateElearnigTestLink);
+Router.post('/getElearningTestLink', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.getElearning(), auth_1.default.handleValidatorError, elearningContent_controller_1.default.getElearnigTestLink);
+Router.post('/deleteElearningTestLink', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.checkElearningId(), auth_1.default.handleValidatorError, elearningContent_controller_1.default.deleteElearningTestLink);
 exports.default = Router;

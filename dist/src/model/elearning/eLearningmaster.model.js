@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = require("sequelize");
 const sequelize_3 = __importDefault(require("../../database/sequelize"));
+const curriculum_parent_category_test_model_1 = __importDefault(require("../root/curriculum_parent_category_test.model"));
 class ElearningMaster extends sequelize_2.Model {
 }
 exports.default = ElearningMaster;
@@ -17,9 +18,8 @@ ElearningMaster.init({
     },
     test_id: {
         type: sequelize_2.DataTypes.INTEGER,
-        allowNull: false,
         references: {
-            model: "curriculum_parent_category_test",
+            model: curriculum_parent_category_test_model_1.default,
             key: "id"
         }
     },
@@ -38,6 +38,9 @@ ElearningMaster.init({
     delete_by: {
         type: sequelize_2.DataTypes.INTEGER
     },
+    deleteAt: {
+        type: sequelize_2.DataTypes.STRING
+    },
     IsDeleted: {
         type: sequelize_1.TINYINT,
         defaultValue: "0"
@@ -46,3 +49,7 @@ ElearningMaster.init({
     tableName: 'elearning_master',
     sequelize: sequelize_3.default
 });
+// ElearningMaster.belongsTo(CurriculumParentCategoryTest, {
+//   foreignKey: "test_id",
+//   as:""
+// });

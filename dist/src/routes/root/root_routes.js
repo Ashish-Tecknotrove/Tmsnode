@@ -39,4 +39,5 @@ Router.post('/authenticate_token', auth_1.default.verifyAuthenticateToken, login
 Router.get('/getCountries', additionalresources_controller_1.default.getCountry);
 Router.post('/getStates', formData.none(), additionalresources_controller_1.default.getState);
 Router.post('/getCities', formData.none(), additionalresources_controller_1.default.getCities);
+Router.get('/getLanguages', formData.none(), additionalresources_controller_1.default.getLanguages);
 exports.default = Router;

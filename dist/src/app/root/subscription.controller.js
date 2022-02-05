@@ -16,103 +16,133 @@ const moment_1 = __importDefault(require("moment"));
 const sequelize_1 = require("sequelize");
 const company_model_1 = __importDefault(require("../../model/root/company.model"));
 const subscription_model_1 = __importDefault(require("../../model/root/subscription.model"));
+const response_codes_1 = __importDefault(require("../../strings/response-codes"));
+const response_strings_1 = __importDefault(require("../../strings/response-strings"));
 class SubscriptionController {
     total_subscription(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const now = (0, moment_1.default)(new Date()).format("YYYY-MM-DD");
-            var subscription_count = yield subscription_model_1.default.count({
-                where: {
-                    IsDeleted: 0,
-                    expiry_date: {
-                        [sequelize_1.Op.gt]: now
+            try {
+                const now = (0, moment_1.default)(new Date()).format("YYYY-MM-DD");
+                yield subscription_model_1.default.count({
+                    where: {
+                        IsDeleted: 0,
+                        expiry_date: {
+                            [sequelize_1.Op.gt]: now
+                        }
                     }
-                }
-            }).catch(err => {
-                res.status(500).json({ response_code: 0, message: err });
-            });
-            res.status(200).json({ response_code: 1, count: subscription_count });
+                }).then((result) => {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, count: result });
+                }).catch(err => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                });
+            }
+            catch (e) {
+                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                    response_code: 1,
+                    message: e,
+                    data: "",
+                });
+            }
         });
     }
     createNewSubscription(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            var checkSubscriptionExist = yield subscription_model_1.default.findOne({
-                where: {
-                    curriculum_id: req.body.curriculum_id,
-                    company_id: req.body.company_id,
-                    status: "0"
-                },
-                logging: console.log
-            }).catch(err => {
-                res.status(500).json({ response_code: 0, message: err });
-            });
-            if (checkSubscriptionExist == null) {
-                var actication_date = req.body.activation_date;
-                var day_no = req.body.day_no;
-                var calender_type = req.body.calender_type;
-                //Calculate Expire Date
-                var current = (0, moment_1.default)(actication_date, "YYYY-MM-DD").format("YYYY-MM-DD");
-                var expiredate = (0, moment_1.default)(actication_date, "YYYY-MM-DD").add(day_no, calender_type).format("YYYY-MM-DD");
-                var subscriptionData = {
-                    curriculum_id: req.body.curriculum_id,
-                    company_id: req.body.company_id,
-                    day_no: req.body.day_no,
-                    calender_type: req.body.calender_type,
-                    licence_no: req.body.licence_no,
-                    payment_type: req.body.payment_type,
-                    activation_date: req.body.activation_date,
-                    expiry_date: expiredate,
-                    created_by: req.body.created_by,
-                    createdAt: req.body.createdAt,
-                };
-                yield subscription_model_1.default.create(Object.assign({}, subscriptionData)).then(function (data) {
-                    res.status(200).json({ response_code: 1, message: "New Subscription Created" });
-                }).catch(function (err) {
-                    res.status(500).json({ response_code: 0, message: err });
+            try {
+                var checkSubscriptionExist = yield subscription_model_1.default.findOne({
+                    where: {
+                        curriculum_id: req.body.curriculum_id,
+                        company_id: req.body.company_id,
+                        status: "0"
+                    },
+                    logging: console.log
+                }).catch(err => {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.EXISTS });
                 });
+                if (checkSubscriptionExist == null) {
+                    var actication_date = req.body.activation_date;
+                    var day_no = req.body.day_no;
+                    var calender_type = req.body.calender_type;
+                    //Calculate Expire Date
+                    var current = (0, moment_1.default)(actication_date, "YYYY-MM-DD").format("YYYY-MM-DD");
+                    var expiredate = (0, moment_1.default)(actication_date, "YYYY-MM-DD").add(day_no, calender_type).format("YYYY-MM-DD");
+                    var subscriptionData = {
+                        curriculum_id: req.body.curriculum_id,
+                        company_id: req.body.company_id,
+                        day_no: req.body.day_no,
+                        calender_type: req.body.calender_type,
+                        licence_no: req.body.licence_no,
+                        payment_type: req.body.payment_type,
+                        activation_date: req.body.activation_date,
+                        expiry_date: expiredate,
+                        created_by: req.body.created_by,
+                        createdAt: req.body.createdAt,
+                    };
+                    yield subscription_model_1.default.create(Object.assign({}, subscriptionData)).then(function (data) {
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.ADD });
+                    }).catch(function (err) {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    });
+                }
+                else {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.EXISTS });
+                }
             }
-            else {
-                res.status(500).json({ response_code: 0, message: "Subscription Already Exist" });
+            catch (e) {
+                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                    response_code: 1,
+                    message: e,
+                    data: "",
+                });
             }
         });
     }
     updateSubscription(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            let subscription_id = req.body.subscription_id;
-            let check_subscription_is_valid = yield subscription_model_1.default.findOne({
-                where: {
-                    id: subscription_id,
-                    IsDeleted: 0
-                },
-                logging: console.log
-            }).catch(err => {
-                res.status(500).json({ response_code: 0, message: err });
-            });
-            if (check_subscription_is_valid != null) {
-                var actication_date = req.body.activation_date;
-                var day_no = req.body.day_no;
-                var calender_type = req.body.calender_type;
-                //Calculate Expire Date
-                var current = (0, moment_1.default)(actication_date, "YYYY-MM-DD").format("YYYY-MM-DD");
-                var expiredate = (0, moment_1.default)(actication_date, "YYYY-MM-DD").add(day_no, calender_type).format("YYYY-MM-DD");
-                var subscriptionData = {
-                    day_no: req.body.day_no,
-                    calender_type: req.body.calender_type,
-                    licence_no: req.body.licence_no,
-                    payment_type: req.body.payment_type,
-                    activation_date: req.body.activation_date,
-                    expiry_date: expiredate,
-                    updated_by: req.body.updated_by,
-                    updatedAt: req.body.updatedAt
-                };
-                yield subscription_model_1.default.update(Object.assign({}, subscriptionData), { where: { id: subscription_id } }).
-                    then(function (response) {
-                    res.status(200).json({ response_code: 1, message: "Subscription Update Successfully" });
+            try {
+                let subscription_id = req.body.subscription_id;
+                let check_subscription_is_valid = yield subscription_model_1.default.findOne({
+                    where: {
+                        id: subscription_id,
+                        IsDeleted: 0
+                    },
+                    logging: console.log
                 }).catch(err => {
-                    res.status(500).json({ response_code: 0, message: err });
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.EXISTS });
                 });
+                if (check_subscription_is_valid != null) {
+                    var actication_date = req.body.activation_date;
+                    var day_no = req.body.day_no;
+                    var calender_type = req.body.calender_type;
+                    //Calculate Expire Date
+                    var current = (0, moment_1.default)(actication_date, "YYYY-MM-DD").format("YYYY-MM-DD");
+                    var expiredate = (0, moment_1.default)(actication_date, "YYYY-MM-DD").add(day_no, calender_type).format("YYYY-MM-DD");
+                    var subscriptionData = {
+                        day_no: req.body.day_no,
+                        calender_type: req.body.calender_type,
+                        licence_no: req.body.licence_no,
+                        payment_type: req.body.payment_type,
+                        activation_date: req.body.activation_date,
+                        expiry_date: expiredate,
+                        updated_by: req.body.updated_by,
+                        updatedAt: req.body.updatedAt
+                    };
+                    yield subscription_model_1.default.update(Object.assign({}, subscriptionData), { where: { id: subscription_id } }).
+                        then(function (response) {
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.UPDATED });
+                    }).catch(err => {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    });
+                }
+                else {
+                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Invalid Subscription please check subscription id or subscription is deleted" });
+                }
             }
-            else {
-                res.status(400).json({ response_code: 0, message: "Invalid Subscription please check subscription id or subscription is deleted" });
+            catch (e) {
+                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                    response_code: 1,
+                    message: e,
+                    data: "",
+                });
             }
         });
     }
@@ -136,48 +166,49 @@ class SubscriptionController {
                         }],
                     where: whereCondition,
                     logging: console.log
+                }).then((result) => {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.GET, data: subscriptionData });
                 }).catch(err => {
-                    res.status(500).json({ response_code: 0, message: err });
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.NOT });
                 });
-                if (subscriptionData != null) {
-                    res.status(200).json({ response_code: 1, message: "subscription fetched successfully...", data: subscriptionData });
-                }
-                else {
-                    res.status(200).json({ response_code: 0, message: "no subscription found" });
-                }
             }
             catch (err) {
-                res.status(500).json({ response_code: 0, message: err });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
             }
         });
     }
     deleteSubscription(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            let subscription_id = req.body.subscription_id;
-            let check_subscription_is_valid = yield subscription_model_1.default.findOne({
-                where: {
-                    id: subscription_id,
-                    IsDeleted: 0
-                },
-                logging: console.log
-            }).catch(err => {
-                res.status(500).json({ response_code: 0, message: err });
-            });
-            if (check_subscription_is_valid != null) {
-                var subscriptionData = {
-                    IsDeleted: 1,
-                    updated_by: req.body.updated_by,
-                    deletedAt: req.body.deletedAt,
-                };
-                yield subscription_model_1.default.update(Object.assign({}, subscriptionData), { where: { id: subscription_id } }).
-                    then(function (response) {
-                    res.status(200).json({ response_code: 1, message: "Subscription Deleted Successfully" });
+            try {
+                let subscription_id = req.body.subscription_id;
+                let check_subscription_is_valid = yield subscription_model_1.default.findOne({
+                    where: {
+                        id: subscription_id,
+                        IsDeleted: 0
+                    },
+                    logging: console.log
                 }).catch(err => {
-                    res.status(500).json({ response_code: 0, message: err });
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.NOT });
                 });
+                if (check_subscription_is_valid != null) {
+                    var subscriptionData = {
+                        IsDeleted: 1,
+                        updated_by: req.body.updated_by,
+                        deletedAt: req.body.deletedAt,
+                    };
+                    yield subscription_model_1.default.update(Object.assign({}, subscriptionData), { where: { id: subscription_id } }).
+                        then(function (response) {
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.DELETE });
+                    }).catch(err => {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    });
+                }
+                else {
+                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Invalid Subscription please check subscription id or subscription already deleted" });
+                }
             }
-            else {
-                res.status(400).json({ response_code: 0, message: "Invalid Subscription please check subscription id or subscription already deleted" });
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
             }
         });
     }

@@ -11,6 +11,7 @@ const curriculumroutes_1 = __importDefault(require("./src/routes/root/curriculum
 const companyroutes_1 = __importDefault(require("./src/routes/root/companyroutes"));
 const subscriptionroutes_1 = __importDefault(require("./src/routes/root/subscriptionroutes"));
 const elearningcontentroutes_1 = __importDefault(require("./src/routes/elearning/elearningcontentroutes"));
+const morgan_1 = __importDefault(require("morgan"));
 process.env.TZ = "Asia/Calcutta";
 const nDate = new Date().toLocaleString('en-US', {
     timeZone: 'Asia/Calcutta'
@@ -37,6 +38,9 @@ app.use("/TMS", companyroutes_1.default);
 app.use("/TMS/subscription", subscriptionroutes_1.default);
 app.use("/TMS/elearning", elearningcontentroutes_1.default);
 // app.use("/api/v1/",LanguageRoutes)
+app.use(express_1.default.urlencoded({ extended: true }));
+app.use((0, morgan_1.default)('dev'));
+app.use(express_1.default.static(__dirname));
 app.get('/', (req, res) => {
     res.status(200).json({ message: "Welcome To TMS" });
 });
