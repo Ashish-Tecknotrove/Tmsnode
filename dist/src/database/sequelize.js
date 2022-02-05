@@ -40,7 +40,7 @@ const sequelizeconnection = new Sequelize.Sequelize(dbName, dbUser, dbPassword, 
     host: dbHost,
     dialect: 'mysql',
     // logging:true
-    logging: true
+    logging: false
 });
 sequelizeconnection.sync({ force: false });
 exports.default = sequelizeconnection;
