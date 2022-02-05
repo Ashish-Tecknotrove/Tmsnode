@@ -1,5 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
+import ElearningMaster from "../elearning/eLearningmaster.model";
 import Languages from "../language/language.model";
 import CurriculumParentCategory from "./curriculum_parent_category.model";
 import TechnologyCategory from "./technology.model";
@@ -102,4 +103,9 @@ CurriculumParentCategoryTest.belongsTo(TechnologyCategory,{
 //TODO ASSOCATION LANGUAGE
 CurriculumParentCategoryTest.belongsTo(Languages, {
     foreignKey: 'language_id'
+})
+
+
+CurriculumParentCategoryTest.hasOne(ElearningMaster, {
+    foreignKey: "test_id"
 })

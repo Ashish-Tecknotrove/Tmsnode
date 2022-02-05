@@ -8,7 +8,6 @@ import Users from '../model/root/users.model';
 import CurriculumParentCategory from "../model/root/curriculum_parent_category.model";
 import CurriculumParentCategoryTest from "../model/root/curriculum_parent_category_test.model";
 import CurriculumBuilder from "../model/root/curriculumbuilder.model";
-import Log from '../app/root/log.model';
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -25,7 +24,6 @@ const dbinitialized =  ()=>{
     CurriculumParentCategory.sync();
     CurriculumParentCategoryTest.sync();
     CurriculumBuilder.sync();
-    Log.sync();
      //TODO Root Model END 
 }
 

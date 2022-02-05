@@ -1,6 +1,7 @@
 import { TINYINT } from "sequelize";
 import { DataTypes,Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
+import CurriculumParentCategoryTest from "../root/curriculum_parent_category_test.model";
 
 
 interface ElearningMasterAttribute{
@@ -11,6 +12,7 @@ interface ElearningMasterAttribute{
     created_by:string;
     updated_by:string;
     delete_by:string;
+    deleteAt:string;
     IsDeleted:number
 }
 
@@ -23,6 +25,7 @@ export default class ElearningMaster extends Model
     created_by!: string;
     updated_by!: string;
     delete_by!: string;
+    deleteAt!: string;
     IsDeleted!:number;
 
 }
@@ -36,9 +39,8 @@ ElearningMaster.init({
       },
       test_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         references: {
-          model: "curriculum_parent_category_test",
+          model: CurriculumParentCategoryTest,
           key: "id"
         }
       },
@@ -57,6 +59,9 @@ ElearningMaster.init({
       delete_by:{
         type: DataTypes.INTEGER
       },
+      deleteAt:{
+        type: DataTypes.STRING
+      },
       IsDeleted:{
         type:TINYINT,
         defaultValue:"0"
@@ -66,3 +71,9 @@ ElearningMaster.init({
     tableName:'elearning_master',
     sequelize:sequelizeconnection
 });
+
+
+// ElearningMaster.belongsTo(CurriculumParentCategoryTest, {
+//   foreignKey: "test_id",
+//   as:""
+// });

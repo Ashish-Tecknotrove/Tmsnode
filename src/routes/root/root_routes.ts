@@ -40,5 +40,10 @@ Router.post('/getCities',
     formData.none(),
     additionalResourcesController.getCities
 )
+
+Router.get('/getLanguages',
+    formData.none(),
+    additionalResourcesController.getLanguages
+)
 export default Router;
 

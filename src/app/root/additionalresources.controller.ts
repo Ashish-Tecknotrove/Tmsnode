@@ -33,6 +33,13 @@ class AdditionalresourcesController
 
         res.status(200).json({response_code:1,data:cities});
     }
+
+    async getLanguages(req:Request,res:Response){
+        var languages = await sequelizeconnection.query(`Select * from languages`,
+            {type: sequelize.QueryTypes.SELECT});
+
+        res.status(200).json({response_code:1,data:languages});
+    }
 }
 
 

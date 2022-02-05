@@ -5,10 +5,18 @@ import root_route from "./src/routes/root/root_routes" ;
 import curriculumroutes from "./src/routes/root/curriculumroutes";
 import companyroutes from "./src/routes/root/companyroutes";
 import subscriptionroutes from "./src/routes/root/subscriptionroutes";
+import elearningroutes from "./src/routes/elearning/elearningcontentroutes";
 import Languages from "./src/model/language/language.model";
 import LanguageRoutes from "./src/routes/language/language.routes";
+import morgan from "morgan";
 
+process.env.TZ = "Asia/Calcutta";
+const nDate = new Date().toLocaleString('en-US', {
+    timeZone: 'Asia/Calcutta'
+    });
 
+    console.log(nDate); 
+    
 var multer = require('multer');
 var formData = multer();
 var cors = require('cors');
@@ -33,10 +41,20 @@ app.use("/TMS",root_route);
 app.use("/TMS",curriculumroutes);
 app.use("/TMS",companyroutes);
 app.use("/TMS/subscription",subscriptionroutes);
+app.use("/TMS/elearning",elearningroutes);
 // app.use("/api/v1/",LanguageRoutes)
 
+
+app.use(express.urlencoded({extended: true}));
+app.use(morgan('dev'));
+
+app.use(express.static(__dirname));
+
 app.get('/',(req,res)=>{
+
     res.status(200).json({message:"Welcome To TMS"});
 });
 
 export default app;
+
+
