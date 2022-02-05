@@ -13,7 +13,7 @@ const users_model_1 = __importDefault(require("../model/root/users.model"));
 const curriculum_parent_category_model_1 = __importDefault(require("../model/root/curriculum_parent_category.model"));
 const curriculum_parent_category_test_model_1 = __importDefault(require("../model/root/curriculum_parent_category_test.model"));
 const curriculumbuilder_model_1 = __importDefault(require("../model/root/curriculumbuilder.model"));
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === 'test';
 const dbinitialized = () => {
     //TODO Root Model START 
     users_model_1.default.sync();
