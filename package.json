@@ -1,7 +1,7 @@
 {
   "name": "tmsversion2",
   "version": "1.0.0",
-  "description": "TMS Project Verion 2.0",
+  "description": "TMS Project Verion 3.0",
   "main": "app.ts",
   "directories": {
     "test": "tests"
