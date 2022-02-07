@@ -42,7 +42,7 @@ var multer = require('multer');
 var formData = multer();
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './resources/test');
+        cb(null, '../../../../resources/test');
     },
     filename: function (req, file, cb) {
         cb(null, (0, moment_1.default)().format('YYYYMMDDHHmmss') + '_' + file.originalname.toLowerCase().split(' ').join('-'));
