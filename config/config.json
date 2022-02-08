@@ -1,20 +1,20 @@
 {
   "development": {
-    "user": "root",
+    "username": "root",
     "password": "Ashish@1997",
     "database": "tmsnode",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
-    "user": "root",
+    "username": "root",
     "password": "",
     "database": "root",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
-    "user": "momsi4dx_tmsnode",
+    "username": "momsi4dx_tmsnode",
     "password": "tmsnode@2021",
     "database": "momsi4dx_tmsnode",
     "host": "162.241.123.34",
