@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Company from "./company.model";
+import Subscription from "./subscription.model";
 
 
 interface CurriculumAttributes{
@@ -69,6 +70,10 @@ Curriculum.init({
 })
 
 
-Curriculum.belongsTo(Company,{
-    foreignKey:"company_id"
+// Curriculum.belongsTo(Company,{
+//     foreignKey:"company_id"
+// })
+
+Curriculum.hasMany(Subscription,{
+    foreignKey:'curriculum_id'
 })

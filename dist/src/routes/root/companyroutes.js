@@ -82,4 +82,5 @@ Router.post('/addCompanyUserLogin', formData.any(), auth_1.default.verifyAuthent
 // Get Company New User
 Router.post('/getCompanyUser', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.getcompanyPerson(), auth_1.default.handleValidatorError, company_controller_1.default.get_company_user);
 Router.post('/deleteCompanyUser', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.deletecompanyPerson(), auth_1.default.handleValidatorError, company_controller_1.default.delete_company_user);
+Router.post('/getCompanyDetailsById', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.getcompanyPerson(), auth_1.default.handleValidatorError, company_controller_1.default.get_company_details_by_id);
 exports.default = Router;

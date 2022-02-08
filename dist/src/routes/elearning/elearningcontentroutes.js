@@ -80,7 +80,7 @@ function (req, res, next) {
             else if (err) {
                 // An unknown error occurred when uploading.
                 console.log("unknown error->", err);
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Only .zip format allowed!" });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
             }
             else {
                 console.log("Everything went fine");

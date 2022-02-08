@@ -84,8 +84,8 @@ CompanyContact.init({
     tableName: 'company_contacts'
 });
 
-//TODO Company User
-CompanyUser.belongsTo(Company, {
-    foreignKey: 'company_id'
-});
+// //TODO Company User
+// CompanyUser.belongsTo(Company, {
+//     foreignKey: 'company_id'
+// });
 

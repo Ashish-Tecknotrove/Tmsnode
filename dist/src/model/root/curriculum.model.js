@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const company_model_1 = __importDefault(require("./company.model"));
+const subscription_model_1 = __importDefault(require("./subscription.model"));
 class Curriculum extends sequelize_1.Model {
 }
 exports.default = Curriculum;
@@ -50,6 +51,9 @@ Curriculum.init({
     sequelize: sequelize_2.default,
     tableName: 'curriculum'
 });
-Curriculum.belongsTo(company_model_1.default, {
-    foreignKey: "company_id"
+// Curriculum.belongsTo(Company,{
+//     foreignKey:"company_id"
+// })
+Curriculum.hasMany(subscription_model_1.default, {
+    foreignKey: 'curriculum_id'
 });

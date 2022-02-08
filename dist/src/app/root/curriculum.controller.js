@@ -27,19 +27,37 @@ class CurriculumController {
     create_curriculum_parent_category(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield curriculum_parent_category_model_1.default.create(Object.assign({}, req.body))
-                    .then(function (data) {
-                    res.status(response_codes_1.default.SUCCESS).json({
-                        response_code: 1,
-                        message: response_strings_1.default.ADD,
-                        data: data,
-                    });
-                })
-                    .catch(function (err) {
+                yield curriculum_parent_category_model_1.default.findOne({
+                    where: {
+                        title: req.body.title,
+                        IsDeleted: 0,
+                    },
+                }).then((result) => __awaiter(this, void 0, void 0, function* () {
+                    if (result == null) {
+                        yield curriculum_parent_category_model_1.default.create(Object.assign({}, req.body))
+                            .then(function (data) {
+                            res.status(response_codes_1.default.SUCCESS).json({
+                                response_code: 1,
+                                message: response_strings_1.default.ADD,
+                                data: data,
+                            });
+                        })
+                            .catch(function (err) {
+                            res
+                                .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
+                                .json({ response_code: 0, message: err });
+                        });
+                    }
+                    else {
+                        res
+                            .status(response_codes_1.default.CREATED)
+                            .json({ response_code: 0, message: response_strings_1.default.EXISTS });
+                    }
+                })).catch((err) => __awaiter(this, void 0, void 0, function* () {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
                         .json({ response_code: 0, message: err });
-                });
+                }));
             }
             catch (error) {
                 return res
@@ -101,14 +119,12 @@ class CurriculumController {
     getCompanyCurriculum(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const company_id = req.body.company_id;
                 yield curriculum_model_1.default.findAll({
                     where: {
-                        company_id: company_id,
+                        company_id: req.body.company_id,
                         IsDeleted: 0
                     },
-                })
-                    .then((data) => {
+                }).then((data) => {
                     res.status(response_codes_1.default.SUCCESS).json({
                         response_code: 0,
                         message: response_strings_1.default.GET,
@@ -116,6 +132,7 @@ class CurriculumController {
                     });
                 })
                     .catch((err) => {
+                    console.log("err1->", err);
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
                         .json({ response_code: 0, message: err });
@@ -146,17 +163,18 @@ class CurriculumController {
                     },
                     // logging: console.log
                 });
-                if (getCurriculum != null) {
+                // console.log(getCurriculum);
+                if (getCurriculum.length == 0) {
+                    return res
+                        .status(response_codes_1.default.SUCCESS)
+                        .json({ response_code: 0, message: response_strings_1.default.NOT, data: getCurriculum });
+                }
+                else {
                     return res.status(response_codes_1.default.SUCCESS).json({
                         response_code: 1,
                         message: response_strings_1.default.GET,
                         data: getCurriculum,
                     });
-                }
-                else {
-                    return res
-                        .status(response_codes_1.default.SUCCESS)
-                        .json({ response_code: 0, message: response_strings_1.default.NOT, data: "" });
                 }
             }
             catch (e) {
@@ -326,7 +344,7 @@ class CurriculumController {
                         name: req.body.name,
                         IsDeleted: 0,
                     },
-                    logging: console.log,
+                    // logging: console.log,
                 });
                 if (check_curriculum_exist == null) {
                     //Parse JSON String into JSON Object
@@ -349,25 +367,23 @@ class CurriculumController {
                                 updated_by: curriculumBodyData[i]["updated_by"],
                             };
                             curriculumbuilder_model_1.default.create(Object.assign({}, curriculum_data))
-                                .then(function () {
-                                trueFalse = 1;
+                                .then((result) => {
+                                trueFalse = trueFalse + 1;
+                                // console.log("trueFalse->",trueFalse)
+                                if (trueFalse == curriculumBodyData.length) {
+                                    res.status(response_codes_1.default.SUCCESS).json({
+                                        response_code: 1,
+                                        curriculum_id: data["id"],
+                                        message: response_strings_1.default.ADD,
+                                    });
+                                }
                             })
-                                .catch(function (err) {
+                                .catch((err) => {
                                 console.log(err);
-                            });
-                        }
-                        if (trueFalse == 1) {
-                            res.status(response_codes_1.default.SUCCESS).json({
-                                response_code: 1,
-                                curriculum_id: data["id"],
-                                message: response_strings_1.default.ADD,
-                            });
-                        }
-                        else {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
-                                response_code: 1,
-                                curriculum_id: data["id"],
-                                message: response_strings_1.default.DATABASE_ERROR,
+                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: err,
+                                });
                             });
                         }
                     })

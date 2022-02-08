@@ -34,8 +34,14 @@ class CurriculumValidator {
     }
     updateParentCategoryTest() {
         return [
+            (0, express_validator_1.body)('test_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('prefix').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('title').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+    getComapnyCurriculamValidId() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
         ];
     }
     buildCurriculumParameter() {

@@ -14,9 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const company_model_1 = __importDefault(require("../../model/root/company.model"));
 const compayuser_model_1 = __importDefault(require("../../model/root/compayuser.model"));
+const subscription_model_1 = __importDefault(require("../../model/root/subscription.model"));
 const users_model_1 = __importDefault(require("../../model/root/users.model"));
 const response_codes_1 = __importDefault(require("../../strings/response-codes"));
 const response_strings_1 = __importDefault(require("../../strings/response-strings"));
+const companycontacts_model_1 = __importDefault(require("../../model/root/companycontacts.model"));
 class CompanyController {
     registerCompany(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -187,16 +189,33 @@ class CompanyController {
             try {
                 let company_id = "";
                 let where_condition = {};
+                let include_condition = {};
                 //TODOD Get Company By
                 if (req.body.company_id) {
                     company_id = req.body.company_id;
                     where_condition = { id: company_id, IsDeleted: 0 };
+                    include_condition = {};
                 }
                 //TODO Get All Company
                 else {
                     where_condition = { IsDeleted: 0 };
                 }
                 const getCompany = yield company_model_1.default.findAll({
+                    // include: [{
+                    //   model: Curriculum,
+                    //   required: false,
+                    //   where: {
+                    //     IsDeleted: 0
+                    //   },
+                    //   include:[{
+                    //     model:Subscription,
+                    //     required:false,
+                    //     where:{
+                    //       IsDeleted: 0,
+                    //       company_id:company_id
+                    //     }
+                    //   }]
+                    // }],
                     where: where_condition,
                     order: [["id", "DESC"]],
                 })
@@ -227,6 +246,55 @@ class CompanyController {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
                     .json({ response_code: 0, message: error });
+            }
+        });
+    }
+    get_company_details_by_id(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield company_model_1.default.findOne({
+                    include: [
+                        {
+                            model: companycontacts_model_1.default,
+                            where: {
+                                IsDeleted: 0
+                            },
+                            required: false
+                        },
+                        {
+                            model: subscription_model_1.default,
+                            where: {
+                                IsDeleted: 0,
+                                company_id: req.body.company_id
+                            },
+                            required: false
+                        }
+                    ],
+                    where: {
+                        id: req.body.company_id,
+                        IsDeleted: 0
+                    }
+                }).then((result) => {
+                    if (result) {
+                        res
+                            .status(response_codes_1.default.SUCCESS)
+                            .json({
+                            response_code: 1,
+                            message: response_strings_1.default.GET,
+                            data: result,
+                        });
+                    }
+                    else {
+                        res
+                            .status(response_codes_1.default.SUCCESS)
+                            .json({ response_code: 0, message: response_strings_1.default.NOT });
+                    }
+                });
+            }
+            catch (err) {
+                return res
+                    .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
+                    .json({ response_code: 0, message: err });
             }
         });
     }

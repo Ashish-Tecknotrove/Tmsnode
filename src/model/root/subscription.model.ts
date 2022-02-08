@@ -141,7 +141,11 @@ Subscription.init({
 });
 
 
-//TODO Association With Company
-Subscription.belongsTo(Company, {
-    foreignKey: 'company_id'
-})
+// //TODO Association With Company
+// Subscription.belongsTo(Company, {
+//     foreignKey: 'company_id'
+// })
+
+// Subscription.hasMany(Curriculum,{
+//     foreignKey:'curriculum_id',
+// })

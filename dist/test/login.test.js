@@ -28,17 +28,4 @@ describe('Check Authentication Test', () => {
             done();
         });
     });
-    it('Login API Parameter missing test', (done) => {
-        let user = {
-            username: "super@gmail.com",
-        };
-        chai_1.default.request(app_1.default)
-            .post('/TMS/authentication')
-            .field(user)
-            .end((err, res) => {
-            //if(err)done(err);
-            expect(res).to.have.status(400);
-            done();
-        });
-    });
 });

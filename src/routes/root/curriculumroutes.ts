@@ -17,6 +17,14 @@ router.post('/create_curriculum_parent_category',
     curriculumController.create_curriculum_parent_category
 );
 
+router.post('/get_curriculum_parent_category',
+    formData.none(),
+    auth.verifyAuthenticateToken,
+    CurriculumValidator.technology(),
+    auth.handleValidatorError,
+    curriculumController.getCurriculumParent
+);
+
 router.post('/create_curriculum_parent_category_test',
     formData.any(),
     auth.verifyAuthenticateToken,
@@ -30,13 +38,6 @@ router.get('/technology',
     curriculumController.getTechnology
 )
 
-router.post('/get_curriculum_parent_category',
-    formData.none(),
-    auth.verifyAuthenticateToken,
-    CurriculumValidator.technology(),
-    auth.handleValidatorError,
-    curriculumController.getCurriculumParent
-);
 
 router.post('/get_curriculum_parent_category_test',
     formData.none(),
@@ -63,7 +64,10 @@ router.post('/update_curriculum_parent_category_test',
 );
 
 router.post('/getCompanyCurriculum',
+    formData.none(),
     auth.verifyAuthenticateToken,
+    CurriculumValidator.getComapnyCurriculamValidId(),
+    auth.handleValidatorError,
     curriculumController.getCompanyCurriculum
 );
 

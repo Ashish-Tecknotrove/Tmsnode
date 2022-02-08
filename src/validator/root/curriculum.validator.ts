@@ -45,8 +45,16 @@ class CurriculumValidator
 
     updateParentCategoryTest(){
         return[
+            body('test_id').notEmpty().withMessage('parameter is missing'),
             body('prefix').notEmpty().withMessage('parameter is missing'),
             body('title').notEmpty().withMessage('parameter is missing'),
+        ]
+    }
+
+    getComapnyCurriculamValidId()
+    {
+        return[
+            body('company_id').notEmpty().withMessage('parameter is missing'),
         ]
     }
 

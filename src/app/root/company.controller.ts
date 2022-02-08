@@ -1,11 +1,16 @@
+import { Model } from 'sequelize';
 import { Request, Response } from "express";
 import { body } from "express-validator";
 import { where } from "sequelize/types";
 import Company from "../../model/root/company.model";
 import CompanyUser from "../../model/root/compayuser.model";
+import Curriculum from "../../model/root/curriculum.model";
+import Subscription from "../../model/root/subscription.model";
 import Users from "../../model/root/users.model";
 import responseCodes from "../../strings/response-codes";
 import responseStrings from "../../strings/response-strings";
+import CurriculumParentCategory from '../../model/root/curriculum_parent_category.model';
+import CompanyContact from '../../model/root/companycontacts.model';
 
 class CompanyController {
   async registerCompany(req: Request, res: Response) {
@@ -173,21 +178,39 @@ class CompanyController {
     try {
       let company_id = "";
       let where_condition = {};
+      let include_condition = {};
 
       //TODOD Get Company By
       if (req.body.company_id) {
         company_id = req.body.company_id;
         where_condition = { id: company_id, IsDeleted: 0 };
+        include_condition = {};
       }
       //TODO Get All Company
       else {
         where_condition = { IsDeleted: 0 };
       }
 
-      const getCompany = await Company.findAll({
-        where: where_condition,
-        order: [["id", "DESC"]],
-      })
+      const getCompany = await Company.findAll(
+        {
+          // include: [{
+          //   model: Curriculum,
+          //   required: false,
+          //   where: {
+          //     IsDeleted: 0
+          //   },
+          //   include:[{
+          //     model:Subscription,
+          //     required:false,
+          //     where:{
+          //       IsDeleted: 0,
+          //       company_id:company_id
+          //     }
+          //   }]
+          // }],
+          where: where_condition,
+          order: [["id", "DESC"]],
+        })
         .then((data) => {
           if (data) {
             res
@@ -213,6 +236,52 @@ class CompanyController {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
         .json({ response_code: 0, message: error });
+    }
+  }
+
+  async get_company_details_by_id(req: Request, res: Response) {
+    try {
+      await Company.findOne({
+        include: [
+          {
+            model: CompanyContact,
+            where: {
+              IsDeleted: 0
+            },
+            required: false
+          },
+          {
+            model: Subscription,
+            where: {
+              IsDeleted: 0,
+              company_id: req.body.company_id
+            },
+            required: false
+          }
+        ],
+        where: {
+          id: req.body.company_id,
+          IsDeleted: 0
+        }
+      }).then((result) => {
+        if (result) {
+          res
+            .status(responseCodes.SUCCESS)
+            .json({
+              response_code: 1,
+              message: responseStrings.GET,
+              data: result,
+            });
+        } else {
+          res
+            .status(responseCodes.SUCCESS)
+            .json({ response_code: 0, message: responseStrings.NOT });
+        }
+      })
+    } catch (err) {
+      return res
+        .status(responseCodes.INTERNAL_SERVER_ERROR)
+        .json({ response_code: 0, message: err });
     }
   }
 

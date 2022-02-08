@@ -112,4 +112,11 @@ Router.post('/deleteCompanyUser',
     companyController.delete_company_user
 );
 
+Router.post('/getCompanyDetailsById',
+    formData.any(),
+    auth.verifyAuthenticateToken,
+    companyValidator.getcompanyPerson(),
+    auth.handleValidatorError,
+    companyController.get_company_details_by_id
+)
 export default Router;

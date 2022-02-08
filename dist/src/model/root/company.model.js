@@ -5,6 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
+const companycontacts_model_1 = __importDefault(require("./companycontacts.model"));
+const curriculum_model_1 = __importDefault(require("./curriculum.model"));
+const subscription_model_1 = __importDefault(require("./subscription.model"));
 class Company extends sequelize_1.Model {
 }
 exports.default = Company;
@@ -104,6 +107,15 @@ Company.init({
 });
 // Company.hasMany(Users,{
 //     sourceKey:"id",
-//     foreignKey:"company_id",
+//     foreignKey:'company_id',
 //     as:'companies'
 // })
+Company.hasMany(companycontacts_model_1.default, {
+    foreignKey: 'company_id'
+});
+Company.hasMany(subscription_model_1.default, {
+    foreignKey: 'company_id'
+});
+Company.hasMany(curriculum_model_1.default, {
+    foreignKey: 'company_id',
+});
