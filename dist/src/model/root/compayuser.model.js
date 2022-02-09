@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
-const users_model_1 = __importDefault(require("./users.model"));
 class CompanyUser extends sequelize_1.Model {
 }
 exports.default = CompanyUser;
@@ -77,9 +76,9 @@ CompanyUser.init({
     sequelize: sequelize_2.default,
     tableName: "company_contacts"
 });
-CompanyUser.belongsTo(users_model_1.default, {
-    foreignKey: "login_table_id"
-});
+// CompanyUser.belongsTo(Users,{
+//   foreignKey:"login_table_id"
+// });
 // CompanyUser.belongsTo(Company,{
 //   foreignKey:"company_id",
 //   targetKey:"id"

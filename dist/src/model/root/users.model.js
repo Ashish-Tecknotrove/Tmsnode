@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const language_model_1 = __importDefault(require("../language/language.model"));
+const company_model_1 = __importDefault(require("./company.model"));
 class Users extends sequelize_1.Model {
 }
 exports.default = Users;
@@ -129,4 +130,8 @@ Users.init({
 Users.belongsTo(language_model_1.default, {
     foreignKey: "language",
     as: ""
+});
+Users.belongsTo(company_model_1.default, {
+    foreignKey: "company_id",
+    targetKey: "id",
 });
