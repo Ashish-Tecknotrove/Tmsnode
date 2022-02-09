@@ -114,9 +114,9 @@ CompanyUser.init({
 
 
 
-CompanyUser.belongsTo(Users,{
-  foreignKey:"login_table_id"
-});
+// CompanyUser.belongsTo(Users,{
+//   foreignKey:"login_table_id"
+// });
 
 // CompanyUser.belongsTo(Company,{
 //   foreignKey:"company_id",

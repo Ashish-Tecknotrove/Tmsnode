@@ -201,3 +201,7 @@ Users.belongsTo(Languages, {
     as: ""
 });
 
+Users.belongsTo(Company,{
+    foreignKey:"company_id",
+    targetKey:"id",
+});
