@@ -21,7 +21,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Sequelize = __importStar(require("sequelize"));
 const config = require("../../../config/config.json");
-console.log(config.test);
 let dbName = "", dbusername = "", dbHost = "", dbPassword = "";
 if (process.env.NODE_ENV === 'production') {
     dbName = config.production.database;
@@ -41,10 +40,10 @@ if (process.env.NODE_ENV === 'test') {
     dbHost = config.test.host;
     dbPassword = config.test.password;
 }
-console.log(dbName);
-console.log(dbusername);
-console.log(dbHost);
-console.log(dbPassword);
+// console.log(dbName);
+// console.log(dbusername);
+// console.log(dbHost);
+// console.log(dbPassword);
 const sequelizeconnection = new Sequelize.Sequelize(dbName, dbusername, dbPassword, {
     host: dbHost,
     dialect: 'mysql',

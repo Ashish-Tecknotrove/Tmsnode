@@ -13,7 +13,6 @@ class CompanyValidator {
             (0, express_validator_1.body)('address').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('trainee_unique_fields').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('picture').notEmpty().withMessage('parameter is missing'),
         ];
     }
@@ -35,7 +34,7 @@ class CompanyValidator {
     deleteCommpanyParameter() {
         return [
             (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing')
+            (0, express_validator_1.body)('deleted_by').notEmpty().withMessage('parameter is missing')
         ];
     }
     companyPersonofcontact() {
@@ -55,7 +54,6 @@ class CompanyValidator {
             (0, express_validator_1.body)('email').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('password').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing')
         ];
     }
     getcompanyPerson() {
@@ -66,7 +64,7 @@ class CompanyValidator {
     deletecompanyPerson() {
         return [
             (0, express_validator_1.body)('user_id').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing')
+            (0, express_validator_1.body)('deleted_by').notEmpty().withMessage('parameter is missing')
         ];
     }
 }

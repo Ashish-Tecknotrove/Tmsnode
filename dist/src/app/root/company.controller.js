@@ -18,7 +18,6 @@ const subscription_model_1 = __importDefault(require("../../model/root/subscript
 const users_model_1 = __importDefault(require("../../model/root/users.model"));
 const response_codes_1 = __importDefault(require("../../strings/response-codes"));
 const response_strings_1 = __importDefault(require("../../strings/response-strings"));
-const companycontacts_model_1 = __importDefault(require("../../model/root/companycontacts.model"));
 class CompanyController {
     registerCompany(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -30,6 +29,8 @@ class CompanyController {
                     },
                 });
                 if (checkName == null) {
+                    req.body.updated_by = "";
+                    req.body.createdAt = response_strings_1.default.currentTime;
                     yield company_model_1.default.create(Object.assign({}, req.body))
                         .then(function (response) {
                         res
@@ -108,6 +109,7 @@ class CompanyController {
                         .json({ response_code: 0, message: err });
                 });
                 if (check_company_is_valid != null) {
+                    req.body.updatedAt = response_strings_1.default.currentTime;
                     yield company_model_1.default.update(Object.assign({}, req.body), { where: { id: company_id } })
                         .then(function (data) {
                         res
@@ -154,7 +156,8 @@ class CompanyController {
                 if (check_company_is_valid != null) {
                     let updateData = {
                         IsDeleted: 1,
-                        updated_by: req.body.updated_by,
+                        deletedAt: response_strings_1.default.currentTime,
+                        deleted_by: req.body.deleted_by,
                     };
                     yield company_model_1.default.update(Object.assign({}, updateData), { where: { id: company_id } })
                         .then(function (data) {
@@ -201,26 +204,11 @@ class CompanyController {
                     where_condition = { IsDeleted: 0 };
                 }
                 const getCompany = yield company_model_1.default.findAll({
-                    // include: [{
-                    //   model: Curriculum,
-                    //   required: false,
-                    //   where: {
-                    //     IsDeleted: 0
-                    //   },
-                    //   include:[{
-                    //     model:Subscription,
-                    //     required:false,
-                    //     where:{
-                    //       IsDeleted: 0,
-                    //       company_id:company_id
-                    //     }
-                    //   }]
-                    // }],
                     where: where_condition,
                     order: [["id", "DESC"]],
                 })
                     .then((data) => {
-                    if (data) {
+                    if (data.length != 0) {
                         res
                             .status(response_codes_1.default.SUCCESS)
                             .json({
@@ -255,7 +243,7 @@ class CompanyController {
                 yield company_model_1.default.findOne({
                     include: [
                         {
-                            model: companycontacts_model_1.default,
+                            model: compayuser_model_1.default,
                             where: {
                                 IsDeleted: 0
                             },
@@ -275,7 +263,7 @@ class CompanyController {
                         IsDeleted: 0
                     }
                 }).then((result) => {
-                    if (result) {
+                    if (result != null) {
                         res
                             .status(response_codes_1.default.SUCCESS)
                             .json({
@@ -302,6 +290,7 @@ class CompanyController {
     add_company_user(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                req.body.createdAt = response_strings_1.default.currentTime;
                 yield compayuser_model_1.default.create(Object.assign({}, req.body))
                     .then(function (data) {
                     res
@@ -336,39 +325,53 @@ class CompanyController {
                     mobile_no: req.body.mobile_no,
                     canlogin: 1,
                     created_by: req.body.created_by,
-                    updated_by: req.body.updated_by,
+                    updated_by: "",
+                    createdAt: response_strings_1.default.currentTime
                 };
-                yield compayuser_model_1.default.create(Object.assign({}, company_contact))
-                    .then((userdata) => {
-                    //Add login in User table
-                    const userLoginData = {
-                        company_id: req.body.company_id,
+                const checkUserExist = yield compayuser_model_1.default.findAll({
+                    where: {
                         name: req.body.name,
-                        email: req.body.email,
-                        password: req.body.password,
-                        user_type: 2,
-                        language: 1,
-                        created_by: req.body.created_by,
-                        updated_by: req.body.updated_by,
-                    };
-                    users_model_1.default.create(Object.assign({}, userLoginData))
-                        .then((data) => {
-                        const updateId = {
-                            login_table_id: data["id"],
+                        company_id: req.body.company_id,
+                        IsDeleted: 0
+                    }
+                });
+                if (checkUserExist.length == 0) {
+                    yield compayuser_model_1.default.create(Object.assign({}, company_contact))
+                        .then((userdata) => {
+                        //Add login in User table
+                        const userLoginData = {
+                            company_id: req.body.company_id,
+                            name: req.body.name,
+                            email: req.body.email,
+                            password: req.body.password,
+                            user_type: 2,
+                            language: 1,
+                            createdAt: response_strings_1.default.currentTime,
+                            created_by: req.body.created_by,
+                            updated_by: "",
                         };
-                        compayuser_model_1.default.update(Object.assign({}, updateId), { where: { id: userdata["id"] } }).catch((err) => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ message: err });
+                        users_model_1.default.create(Object.assign({}, userLoginData))
+                            .then((data) => {
+                            const updateId = {
+                                login_table_id: data["id"],
+                            };
+                            compayuser_model_1.default.update(Object.assign({}, updateId), { where: { id: userdata["id"] } }).catch((err) => {
+                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ message: err });
+                            });
+                            res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.ADD });
+                            response_codes_1.default;
+                        })
+                            .catch(function (err) {
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
                         });
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.ADD });
-                        response_codes_1.default;
                     })
                         .catch(function (err) {
                         res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
                     });
-                })
-                    .catch(function (err) {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
-                });
+                }
+                else {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Contact with same name already exist" });
+                }
             }
             catch (error) {
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
@@ -383,13 +386,7 @@ class CompanyController {
                     include: [
                         {
                             model: users_model_1.default,
-                        },
-                        {
-                            model: company_model_1.default,
-                            where: {
-                                IsDeleted: 0,
-                            },
-                        },
+                        }
                     ],
                     where: {
                         company_id: company_id,
@@ -421,22 +418,41 @@ class CompanyController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const user_id = req.body.user_id;
-                let updateData = {
-                    IsDeleted: 1,
-                    updated_by: req.body.updated_by,
-                };
-                yield compayuser_model_1.default.update(Object.assign({}, updateData), { where: { id: user_id } })
-                    .then(function (data) {
-                    res
-                        .status(response_codes_1.default.SUCCESS)
-                        .json({
-                        response_code: 1,
-                        message: response_strings_1.default.DELETE,
-                    });
-                })
-                    .catch(function (err) {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                const UserData = yield compayuser_model_1.default.findOne({
+                    where: {
+                        id: user_id,
+                        IsDeleted: 0
+                    }
                 });
+                if (UserData != null) {
+                    //* This Array has been used to update two table check before any change
+                    let updateData = {
+                        IsDeleted: 1,
+                        deleted_by: req.body.deleted_by,
+                        deletedAt: response_strings_1.default.currentTime
+                    };
+                    //! Delete the User from Company Contacts table
+                    yield compayuser_model_1.default.update(Object.assign({}, updateData), { where: { id: user_id } })
+                        .then(function (data) {
+                        //! Delete the User from user table
+                        const login_table_id = UserData['login_table_id'];
+                        users_model_1.default.update(Object.assign({}, updateData), { where: { id: login_table_id } }).then(function (data) {
+                            res.status(response_codes_1.default.SUCCESS)
+                                .json({
+                                response_code: 1,
+                                message: response_strings_1.default.DELETE,
+                            });
+                        }).catch(function (err) {
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                        });
+                    })
+                        .catch(function (err) {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    });
+                }
+                else {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: "User Id is not valid" });
+                }
             }
             catch (error) {
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });

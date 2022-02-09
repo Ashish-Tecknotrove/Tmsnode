@@ -20,6 +20,7 @@ class CurriculumValidator {
             (0, express_validator_1.body)('prefix').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('title').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('language_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing'),
         ];
     }
     getParentCategory() {
@@ -37,6 +38,13 @@ class CurriculumValidator {
             (0, express_validator_1.body)('test_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('prefix').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('title').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+    deleteParentCategoryTest() {
+        return [
+            (0, express_validator_1.body)('test_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('deleted_by').notEmpty().withMessage('parameter is missing'),
         ];
     }
     getComapnyCurriculamValidId() {

@@ -23,6 +23,7 @@ const response_codes_1 = __importDefault(require("../../strings/response-codes")
 const language_model_1 = __importDefault(require("../../model/language/language.model"));
 const moment_1 = __importDefault(require("moment"));
 const response_strings_1 = __importDefault(require("../../strings/response-strings"));
+//! Last Upated Ashish Rhatwal 9 feb 4:43 PM
 class CurriculumController {
     create_curriculum_parent_category(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -34,6 +35,8 @@ class CurriculumController {
                     },
                 }).then((result) => __awaiter(this, void 0, void 0, function* () {
                     if (result == null) {
+                        req.body.createdAt = response_strings_1.default.currentTime;
+                        req.body.updated_by = "";
                         yield curriculum_parent_category_model_1.default.create(Object.assign({}, req.body))
                             .then(function (data) {
                             res.status(response_codes_1.default.SUCCESS).json({
@@ -69,15 +72,32 @@ class CurriculumController {
     create_curriculum_parent_category_test(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield curriculum_parent_category_test_model_1.default.create(Object.assign({}, req.body))
-                    .then(function (data) {
-                    res.status(response_codes_1.default.SUCCESS).json({
-                        response_code: 1,
-                        message: response_strings_1.default.ADD,
-                        data: data,
-                    });
-                })
-                    .catch(function (err) {
+                req.body.createdAt = response_strings_1.default.currentTime;
+                req.body.updated_by = "";
+                yield curriculum_parent_category_test_model_1.default.findOne({
+                    where: { title: req.body.title },
+                }).then((data) => __awaiter(this, void 0, void 0, function* () {
+                    if (data == null) {
+                        yield curriculum_parent_category_test_model_1.default.create(Object.assign({}, req.body))
+                            .then(function (data) {
+                            res.status(response_codes_1.default.SUCCESS).json({
+                                response_code: 1,
+                                message: response_strings_1.default.ADD,
+                                data: data,
+                            });
+                        })
+                            .catch(function (err) {
+                            res
+                                .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
+                                .json({ response_code: 0, message: err });
+                        });
+                    }
+                    else {
+                        res
+                            .status(response_codes_1.default.CREATED)
+                            .json({ response_code: 0, message: response_strings_1.default.EXISTS });
+                    }
+                })).catch(err => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
                         .json({ response_code: 0, message: err });
@@ -251,6 +271,7 @@ class CurriculumController {
                 const updateData = {
                     IsDeleted: 1,
                     deletedAt: (0, moment_1.default)().format("YYYY-MM-DD HH:mm:ss"),
+                    deleted_by: req.body.deleted_by
                 };
                 // console.log("check_company_is_valid->",check_company_is_valid);
                 if (check_company_is_valid != null) {
@@ -299,6 +320,8 @@ class CurriculumController {
                 const updateData = {
                     prefix: req.body.prefix,
                     title: req.body.title,
+                    updated_by: req.body.updated_by,
+                    updatedAt: response_strings_1.default.currentTime
                 };
                 if (check_company_is_valid != null) {
                     yield curriculum_parent_category_test_model_1.default.update(updateData, {
@@ -337,6 +360,7 @@ class CurriculumController {
                     name: req.body.name,
                     created_by: req.body.created_by,
                     updated_by: req.body.updated_by,
+                    createdAt: response_strings_1.default.currentTime
                 };
                 //Check Curriculum Already Exist
                 var check_curriculum_exist = yield curriculum_model_1.default.findOne({
@@ -365,6 +389,7 @@ class CurriculumController {
                                 curriculum_parent_category_test_id: curriculumBodyData[i]["cptest_id"],
                                 created_by: curriculumBodyData[i]["created_by"],
                                 updated_by: curriculumBodyData[i]["updated_by"],
+                                createdAt: response_strings_1.default.currentTime
                             };
                             curriculumbuilder_model_1.default.create(Object.assign({}, curriculum_data))
                                 .then((result) => {

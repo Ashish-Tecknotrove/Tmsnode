@@ -68,8 +68,10 @@ const upload = multer({
         }
     }
 }).single('testfile');
-Router.post('/addElearningTestLink', auth_1.default.verifyAuthenticateToken, 
-// upload.single('testfile'),
+Router.post('/addElearningTestLink', 
+// formData.any(),
+auth_1.default.verifyAuthenticateToken, 
+// ElearningContent.checkUploadElearningLinkFile,
 function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         upload(req, res, function (err) {
@@ -90,7 +92,8 @@ function (req, res, next) {
     });
 }, elearning_validator_1.default.checkElearning(), auth_1.default.handleValidatorError, elearningContent_controller_1.default.elearningTestLink);
 Router.post('/updateElearningTestLink', auth_1.default.verifyAuthenticateToken, 
-// upload.single('testfile'),
+// ElearningContent.checkUploadElearningLinkFile
+// // upload.single('testfile'),
 function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         upload(req, res, function (err) {

@@ -53,14 +53,6 @@ Trainer.init({
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: true
     },
-    created_by: {
-        type: sequelize_1.DataTypes.STRING(100),
-        allowNull: true
-    },
-    updated_by: {
-        type: sequelize_1.DataTypes.STRING(100),
-        allowNull: true
-    },
     login_table_id: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: true,
@@ -69,11 +61,22 @@ Trainer.init({
             key: 'id'
         }
     },
+    created_by: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
+    },
+    updated_by: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
+    },
+    deleted_by: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
     createdAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     deletedAt: {
         type: "TIMESTAMP"

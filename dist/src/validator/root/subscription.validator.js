@@ -28,8 +28,8 @@ class SubscriptionValidator {
     deleteSubscriptionParameter() {
         return [
             (0, express_validator_1.body)('subscription_id').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('deletedAt').notEmpty().withMessage('parameter is missing')
+            (0, express_validator_1.body)('deleted_by').notEmpty().withMessage('parameter is missing'),
+            // body('deletedAt').notEmpty().withMessage('parameter is missing')
         ];
     }
 }

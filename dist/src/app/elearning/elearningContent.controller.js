@@ -89,6 +89,18 @@ class ElearningContent {
             }
         });
     }
+    checkUploadElearningLinkFile(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                console.log(req.files);
+                console.log(req.body);
+                res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: req.files });
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+            }
+        });
+    }
     updateElearnigTestLink(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

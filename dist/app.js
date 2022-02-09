@@ -28,7 +28,7 @@ app.use(body_parser_1.default.urlencoded()); // For Accepting the x-www-form-Dat
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(cors());
 //app.use(formdata.array());
-app.use(express_1.default.static('public'));
+app.use('/resources', express_1.default.static('resources'));
 app.listen(process.env.PORT || 8000, () => {
     console.log("Node Server Started Running");
 });

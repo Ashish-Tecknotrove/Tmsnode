@@ -13,6 +13,7 @@ chai_1.default.should();
 chai_1.default.use(chaiHttp);
 let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlN1cGVyQWRtaW4iLCJpYXQiOjE2NDQyMjg2NTUsImV4cCI6MTY0NDQwMTQ1NX0.KjYrKcWAsiclpJso7nRLXcDS1XgOzk0r3U8VgGp8UJg";
 let token1 = "";
+// Curriculam Parent Category
 describe('Create Curriculam Parent Category Module', () => {
     it('Testing Auth', (done) => {
         chai_1.default.request(app_1.default)
@@ -135,6 +136,7 @@ describe('Get Curriculam Parent Category Module', () => {
         });
     });
 });
+// Curriculam Parent Category Test
 describe('Create Curriculam Parent Category Test Module', () => {
     let field = {
         prefix: 'mod 1',
@@ -418,7 +420,8 @@ describe('Delete Curriculam Parent Category Test Module', () => {
         });
     });
 });
-describe('Get Company Curriculam Test Module', () => {
+// Company Curriculam
+describe('Get Company Curriculam Module', () => {
     it('Testing Auth', (done) => {
         chai_1.default.request(app_1.default)
             .post('/TMS/getCompanyCurriculum')
@@ -469,7 +472,7 @@ describe('Get Company Curriculam Test Module', () => {
         });
     });
 });
-describe('Build Company Curriculam Test Module', () => {
+describe('Build Company Curriculam Module', () => {
     let CurriculamArray = [
         {
             "cp_id": "1",
@@ -576,3 +579,114 @@ describe('Build Company Curriculam Test Module', () => {
         });
     });
 });
+//  E-learning Test Link
+describe('Get E-learning Test Link Module', () => {
+    it('Testing Auth', (done) => {
+        chai_1.default.request(app_1.default)
+            .post('/TMS/elearning/getElearningTestLink')
+            .auth(token1, { type: 'bearer' })
+            .field({
+            parent_category_id: 16,
+            technology_type_id: 1
+        })
+            .end((err, res) => {
+            expect(res).to.have.status(response_codes_1.default.UNAUTHORIZED);
+            done();
+        });
+    });
+    it('Testing Missing Params', (done) => {
+        chai_1.default.request(app_1.default)
+            .post('/TMS/elearning/getElearningTestLink')
+            .auth(token, { type: 'bearer' })
+            .field({
+            // parent_category_id: 16,
+            technology_type_id: 1
+        })
+            .end((err, res) => {
+            expect(res).to.have.status(response_codes_1.default.BAD_REQUEST);
+            done();
+        });
+    });
+    it('Testing Wrong Params', (done) => {
+        chai_1.default.request(app_1.default)
+            .post('/TMS/elearning/getElearningTestLink')
+            .auth(token, { type: 'bearer' })
+            .field({
+            parent_categoryid: 16,
+            technology_typeid: 1
+        })
+            .end((err, res) => {
+            expect(res).to.have.status(response_codes_1.default.BAD_REQUEST);
+            done();
+        });
+    });
+    it('Testing Get Data', (done) => {
+        chai_1.default.request(app_1.default)
+            .post('/TMS/elearning/getElearningTestLink')
+            .auth(token, { type: 'bearer' })
+            .field({
+            parent_category_id: 16,
+            technology_type_id: 1
+        })
+            .end((err, res) => {
+            // console.log(res);
+            expect(res).to.have.status(response_codes_1.default.SUCCESS);
+            done();
+        });
+    });
+});
+// describe('Add E-learning Test Link Module', () => {
+//    it('Testing Auth', (done) => {
+//       chai.request(app)
+//          .post('/TMS/elearning/addElearningTestLink')
+//          .auth(token1, { type: 'bearer' })
+//          .set('Content-Type', 'multipart/form-data')
+//          .field({
+//             test_id: 16
+//          })
+//          .attach('testfile','./resources/test/20220208093848_monitor.zip')
+//          .end((err, res) => {
+//             expect(res).to.have.status(responseCodes.UNAUTHORIZED)
+//             done();
+//          })
+//    });
+//    it('Testing Missing Params', (done) => {
+//       chai.request(app)
+//          .post('/TMS/elearning/addElearningTestLink')
+//          .auth(token, { type: 'bearer' })
+//          .field({
+//             test_id: 16
+//          })
+//          //  .attach('testfile','./resources/test/20220208093848_monitor.zip')
+//          .end((err, res) => {
+//             expect(res).to.have.status(responseCodes.BAD_REQUEST)
+//             done();
+//          })
+//    });
+//    it('Testing Wrong Params', (done) => {
+//       chai.request(app)
+//          .post('/TMS/elearning/addElearningTestLink')
+//          .auth(token, { type: 'bearer' })
+//          .field({
+//             testid: 16
+//          })
+//           .attach('testfile1','./resources/test/20220208093848_monitor.zip')
+//          .end((err, res) => {
+//             expect(res).to.have.status(responseCodes.BAD_REQUEST)
+//             done();
+//          })
+//    });
+//    it('Testing Empty File', (done) => {
+//       chai.request(app)
+//          .post('/TMS/elearning/addElearningTestLink')
+//          .auth(token, { type: 'bearer' })
+//          .field({
+//             test_id: 16
+//          })
+//          .attach('testfile','')
+//          .end((err, res) => {
+//             expect(res).to.have.status(responseCodes.BAD_REQUEST)
+//             done();
+//          })
+//    }); 
+// });

@@ -52,9 +52,9 @@ class SubscriptionController {
                     where: {
                         curriculum_id: req.body.curriculum_id,
                         company_id: req.body.company_id,
-                        status: "0"
+                        status: "1"
                     },
-                    logging: console.log
+                    // logging: console.log
                 }).catch(err => {
                     res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.EXISTS });
                 });
@@ -71,11 +71,13 @@ class SubscriptionController {
                         day_no: req.body.day_no,
                         calender_type: req.body.calender_type,
                         licence_no: req.body.licence_no,
+                        licenceType: 'licence',
                         payment_type: req.body.payment_type,
                         activation_date: req.body.activation_date,
                         expiry_date: expiredate,
                         created_by: req.body.created_by,
-                        createdAt: req.body.createdAt,
+                        createdAt: response_strings_1.default.currentTime,
+                        updated_by: "",
                     };
                     yield subscription_model_1.default.create(Object.assign({}, subscriptionData)).then(function (data) {
                         res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.ADD });
@@ -84,7 +86,7 @@ class SubscriptionController {
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.EXISTS });
+                    res.status(response_codes_1.default.CREATED).json({ response_code: 0, message: response_strings_1.default.EXISTS });
                 }
             }
             catch (e) {
@@ -105,9 +107,9 @@ class SubscriptionController {
                         id: subscription_id,
                         IsDeleted: 0
                     },
-                    logging: console.log
+                    // logging: console.log
                 }).catch(err => {
-                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.EXISTS });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
                 });
                 if (check_subscription_is_valid != null) {
                     var actication_date = req.body.activation_date;
@@ -124,7 +126,7 @@ class SubscriptionController {
                         activation_date: req.body.activation_date,
                         expiry_date: expiredate,
                         updated_by: req.body.updated_by,
-                        updatedAt: req.body.updatedAt
+                        updatedAt: response_strings_1.default.currentTime
                     };
                     yield subscription_model_1.default.update(Object.assign({}, subscriptionData), { where: { id: subscription_id } }).
                         then(function (response) {
@@ -186,15 +188,15 @@ class SubscriptionController {
                         id: subscription_id,
                         IsDeleted: 0
                     },
-                    logging: console.log
+                    // logging: console.log
                 }).catch(err => {
                     res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.NOT });
                 });
                 if (check_subscription_is_valid != null) {
                     var subscriptionData = {
                         IsDeleted: 1,
-                        updated_by: req.body.updated_by,
-                        deletedAt: req.body.deletedAt,
+                        deleted_by: req.body.deleted_by,
+                        deletedAt: response_strings_1.default.currentTime,
                     };
                     yield subscription_model_1.default.update(Object.assign({}, subscriptionData), { where: { id: subscription_id } }).
                         then(function (response) {
@@ -204,7 +206,7 @@ class SubscriptionController {
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Invalid Subscription please check subscription id or subscription already deleted" });
+                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Invalid Subscription please check subscription or subscription already deleted" });
                 }
             }
             catch (err) {

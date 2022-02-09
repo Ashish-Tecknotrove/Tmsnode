@@ -6,8 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const language_model_1 = __importDefault(require("../language/language.model"));
-const company_model_1 = __importDefault(require("./company.model"));
-const usertype_model_1 = __importDefault(require("./usertype.model"));
 class Users extends sequelize_1.Model {
 }
 exports.default = Users;
@@ -22,7 +20,7 @@ Users.init({
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: company_model_1.default,
+            model: "Company",
             key: 'id'
         }
     },
@@ -61,7 +59,7 @@ Users.init({
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: usertype_model_1.default,
+            model: "UserType",
             key: 'id'
         }
     },
@@ -77,7 +75,7 @@ Users.init({
     language: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
-            model: language_model_1.default,
+            model: "Languages",
             key: 'id'
         },
         allowNull: false
@@ -106,14 +104,17 @@ Users.init({
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
+    deleted_by: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
     createdAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: "TIMESTAMP",
+        type: "TIMESTAMP"
     },
     IsDeleted: {
         type: sequelize_1.DataTypes.TINYINT,
@@ -129,13 +130,3 @@ Users.belongsTo(language_model_1.default, {
     foreignKey: "language",
     as: ""
 });
-//TODO Accociation with Company
-Users.belongsTo(company_model_1.default, {
-    foreignKey: "company_id",
-    as: ""
-});
-//TODO Assciaction with Trainee Table
-// Users.belongsTo(CompanyContact, {
-//     foreignKey: "id",
-//     as: ""
-// });
