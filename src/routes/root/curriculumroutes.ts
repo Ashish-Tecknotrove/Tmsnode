@@ -50,7 +50,7 @@ router.post('/get_curriculum_parent_category_test',
 router.post('/delete_curriculum_parent_category_test',
     formData.none(),
     auth.verifyAuthenticateToken,
-    CurriculumValidator.getParentCategoryTest(),
+    CurriculumValidator.deleteParentCategoryTest(),
     auth.handleValidatorError,
     curriculumController.deleteCurriculumParentCategoryTest 
 );

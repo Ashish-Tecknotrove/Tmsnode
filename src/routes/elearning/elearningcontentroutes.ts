@@ -49,8 +49,9 @@ const upload = multer({
 
 
 Router.post('/addElearningTestLink',
+  // formData.any(),
   auth.verifyAuthenticateToken,
-  // upload.single('testfile'),
+  // ElearningContent.checkUploadElearningLinkFile,
   async function (req: Request, res: Response, next: NextFunction) {
     upload(req, res, function (err: any) {
       if (err instanceof multer.MulterError) {
@@ -73,7 +74,8 @@ Router.post('/addElearningTestLink',
 
 Router.post('/updateElearningTestLink',
   auth.verifyAuthenticateToken,
-  // upload.single('testfile'),
+  // ElearningContent.checkUploadElearningLinkFile
+  // // upload.single('testfile'),
   async function (req: Request, res: Response, next: NextFunction) {
     upload(req, res, function (err: any) {
       if (err instanceof multer.MulterError) {

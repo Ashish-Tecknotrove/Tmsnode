@@ -13,15 +13,20 @@ interface SubscriptionAttributes {
     day_no: number
     calender_type: string;
     licence_no: string;
-    no_of_licence: string
+    licenceType: string
     payment_type: string;
     activation_date: string;
     expiry_date: string;
     payment_note: string;
     status: string;
     note: string;
-    created_by: number;
+    created_by: number
     updated_by: number
+	deleted_by:string
+	deletedAt:string
+    createdAt: string
+    updatedAt: string
+	IsDeleted:number
 }
 
 
@@ -34,15 +39,20 @@ export default class Subscription extends Model {
     day_no!: number;
     calender_type!: string;
     licence_no!: string;
-    no_of_licence!: string;
+    licenceType!: string;
     payment_type!: string;
     activation_date!: string;
     expiry_date!: string;
     payment_note!: string;
     status!: string;
     note!: string;
-    created_by!: number;
-    updated_by!: number;
+    created_by!: number
+    updated_by!: number
+	deleted_by!:string
+    deletedAt!:string
+    createdAt!:string
+    updatedAt!:string
+	IsDeleted!:number
 
 }
 
@@ -89,7 +99,7 @@ Subscription.init({
         type: DataTypes.STRING(100),
         allowNull: false
     },
-    no_of_licence: {
+    licenceType: {
         type: DataTypes.STRING(100),
     },
     payment_type: {
@@ -121,18 +131,21 @@ Subscription.init({
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    deleted_by: {
+        type: DataTypes.INTEGER
+    },
     createdAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     deletedAt: {
         type: "TIMESTAMP"
     },
-    IsDeleted: {
-        type: DataTypes.TINYINT,
-        defaultValue: 0
+    IsDeleted:{
+        type:DataTypes.TINYINT,
+        defaultValue:0
     }
 }, {
     timestamps: true,

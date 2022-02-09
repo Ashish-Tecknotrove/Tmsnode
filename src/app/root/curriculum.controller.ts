@@ -11,7 +11,11 @@ import Languages from "../../model/language/language.model";
 import moment from "moment";
 import responseStrings from "../../strings/response-strings";
 
+//! Last Upated Ashish Rhatwal 9 feb 4:43 PM
 class CurriculumController {
+
+
+
   async create_curriculum_parent_category(req: Request, res: Response) {
     try {
 
@@ -21,7 +25,12 @@ class CurriculumController {
           IsDeleted: 0,
         },
       }).then(async result => {
+
         if (result == null) {
+
+          req.body.createdAt = responseStrings.currentTime;
+          req.body.updated_by = "";
+
           await CurriculumParentCategory.create({ ...req.body })
             .then(function (data) {
               res.status(responseCodes.SUCCESS).json({
@@ -57,19 +66,43 @@ class CurriculumController {
 
   async create_curriculum_parent_category_test(req: Request, res: Response) {
     try {
-      await CurriculumParentCategoryTest.create({ ...req.body })
-        .then(function (data) {
-          res.status(responseCodes.SUCCESS).json({
-            response_code: 1,
-            message: responseStrings.ADD,
-            data: data,
-          });
-        })
-        .catch(function (err) {
+
+      req.body.createdAt = responseStrings.currentTime;
+      req.body.updated_by = "";
+
+      await CurriculumParentCategoryTest.findOne({
+        where: { title: req.body.title },
+      }).then(async data => {
+
+        if (data == null) {
+          await CurriculumParentCategoryTest.create({ ...req.body })
+            .then(function (data) {
+              res.status(responseCodes.SUCCESS).json({
+                response_code: 1,
+                message: responseStrings.ADD,
+                data: data,
+              });
+            })
+            .catch(function (err) {
+              res
+                .status(responseCodes.INTERNAL_SERVER_ERROR)
+                .json({ response_code: 0, message: err });
+            });
+        }
+        else
+        {
           res
-            .status(responseCodes.INTERNAL_SERVER_ERROR)
-            .json({ response_code: 0, message: err });
-        });
+          .status(responseCodes.CREATED)
+          .json({ response_code: 0, message: responseStrings.EXISTS });
+        }
+
+      }).catch(err => {
+        res
+          .status(responseCodes.INTERNAL_SERVER_ERROR)
+          .json({ response_code: 0, message: err });
+      })
+
+
     } catch (error) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
@@ -236,6 +269,7 @@ class CurriculumController {
       const updateData = {
         IsDeleted: 1,
         deletedAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+        deleted_by:req.body.deleted_by
       };
 
       // console.log("check_company_is_valid->",check_company_is_valid);
@@ -285,6 +319,8 @@ class CurriculumController {
       const updateData = {
         prefix: req.body.prefix,
         title: req.body.title,
+        updated_by:req.body.updated_by,
+        updatedAt:responseStrings.currentTime
       };
 
       if (check_company_is_valid != null) {
@@ -321,6 +357,7 @@ class CurriculumController {
         name: req.body.name,
         created_by: req.body.created_by,
         updated_by: req.body.updated_by,
+        createdAt:responseStrings.currentTime
       };
 
       //Check Curriculum Already Exist
@@ -355,6 +392,7 @@ class CurriculumController {
                   curriculumBodyData[i]["cptest_id"],
                 created_by: curriculumBodyData[i]["created_by"],
                 updated_by: curriculumBodyData[i]["updated_by"],
+                createdAt:responseStrings.currentTime
               };
 
               CurriculumBuilder.create({ ...curriculum_data })

@@ -55,11 +55,14 @@ interface TraineeAttributes {
     dg_trainer: string;
     transporter_name: string;
     training_schedule_date: string;
-    created_by: string;
-    updated_by: string;
     IsBlock: string;
-    IsDeleted: string;
-
+    created_by: number
+    updated_by: number
+	deleted_by:string
+	deletedAt:string
+    createdAt: string
+    updatedAt: string
+	IsDeleted:number
 
 }
 
@@ -112,11 +115,14 @@ export default class Trainee extends Model {
     dg_trainer!: string;
     transporter_name!: string;
     training_schedule_date!: string;
-    created_by!: string;
-    updated_by!: string;
     IsBlock!: string;
-    IsDeleted!: string;
-
+    created_by!: number
+    updated_by!: number
+	deleted_by!:string
+    deletedAt!:string
+    createdAt!:string
+    updatedAt!:string
+	IsDeleted!:number
 }
 
 Trainee.init({
@@ -329,22 +335,21 @@ Trainee.init({
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    IsBlock: {
-        type: DataTypes.STRING,
-        allowNull: false
+    deleted_by: {
+        type: DataTypes.INTEGER
     },
     createdAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     deletedAt: {
         type: "TIMESTAMP"
     },
-    IsDeleted: {
-        type: DataTypes.TINYINT,
-        defaultValue: 0
+    IsDeleted:{
+        type:DataTypes.TINYINT,
+        defaultValue:0
     }
 }, {
     timestamps: true,

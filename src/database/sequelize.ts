@@ -4,8 +4,6 @@ import { Dialect } from "sequelize";
 const config=require("../../config/config.json");
 
 
-console.log(config.test)
-
 let dbName="" , dbusername="" , dbHost="" ,dbPassword="";
 
 if(process.env.NODE_ENV === 'production')
@@ -32,10 +30,10 @@ if(process.env.NODE_ENV === 'test')
     dbPassword = config.test.password
 }
 
-console.log(dbName);
-console.log(dbusername);
-console.log(dbHost);
-console.log(dbPassword);
+// console.log(dbName);
+// console.log(dbusername);
+// console.log(dbHost);
+// console.log(dbPassword);
 
 const sequelizeconnection = new Sequelize.Sequelize(dbName,dbusername,dbPassword,{
     host:dbHost,

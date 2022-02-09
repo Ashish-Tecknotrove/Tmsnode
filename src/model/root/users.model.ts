@@ -5,7 +5,7 @@ import {DataType} from "sequelize-typescript";
 import sequelizeConnection from "../../database/sequelize";
 import Languages from "../language/language.model";
 import Company from "./company.model";
-import CompanyContact from "./companycontacts.model";
+import CompanyUser from "./compayuser.model";
 import Trainee from "./trainee.model";
 import UserType from "./usertype.model";
 
@@ -34,9 +34,13 @@ interface UsersAttributes {
     disable_user: number;
     trainee_license_limit: number;
     sequence_test: number;
-    created_by: number;
-    updated_by: number;
-    deletedAt: string;
+    created_by: number
+    updated_by: number
+	deleted_by:string
+	deletedAt:string
+    createdAt: string
+    updatedAt: string
+	IsDeleted:number
 }
 
 export default class Users extends Model {
@@ -63,9 +67,13 @@ export default class Users extends Model {
     disable_user!: number;
     trainee_license_limit!: number;
     sequence_test!: number;
-    created_by!: number;
-    updated_by!: number;
-    deletedAt!: string;
+    created_by!: number
+    updated_by!: number
+	deleted_by!:string
+    deletedAt!:string
+    createdAt!:string
+    updatedAt!:string
+	IsDeleted!:number
 }
 
 
@@ -80,7 +88,7 @@ Users.init({
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: Company,
+            model: "Company",
             key: 'id'
         }
     },
@@ -119,7 +127,7 @@ Users.init({
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: UserType,
+            model: "UserType",
             key: 'id'
         }
     },
@@ -135,7 +143,7 @@ Users.init({
     language: {
         type: DataTypes.INTEGER,
         references: {
-            model: Languages,
+            model: "Languages",
             key: 'id'
         },
         allowNull: false
@@ -164,18 +172,21 @@ Users.init({
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    deleted_by: {
+        type: DataTypes.INTEGER
+    },
     createdAt: {
-        type: "TIMESTAMP"
-    },
-    updatedAt: {
-        type: "TIMESTAMP"
-    },
-    deletedAt: {
         type: "TIMESTAMP",
     },
-    IsDeleted: {
-        type: DataTypes.TINYINT,
-        defaultValue: 0
+    updatedAt: {
+        type: "TIMESTAMP",
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted:{
+        type:DataTypes.TINYINT,
+        defaultValue:0
     }
 }, {
     timestamps: true,
@@ -190,16 +201,3 @@ Users.belongsTo(Languages, {
     as: ""
 });
 
-//TODO Accociation with Company
-
-Users.belongsTo(Company, {
-    foreignKey: "company_id",
-    as: ""
-});
-
-
-//TODO Assciaction with Trainee Table
-// Users.belongsTo(CompanyContact, {
-//     foreignKey: "id",
-//     as: ""
-// });

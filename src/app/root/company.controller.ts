@@ -10,9 +10,11 @@ import Users from "../../model/root/users.model";
 import responseCodes from "../../strings/response-codes";
 import responseStrings from "../../strings/response-strings";
 import CurriculumParentCategory from '../../model/root/curriculum_parent_category.model';
-import CompanyContact from '../../model/root/companycontacts.model';
+import moment from 'moment';
+
 
 class CompanyController {
+
   async registerCompany(req: Request, res: Response) {
     try {
       var company_name = req.body.company_name;
@@ -24,6 +26,10 @@ class CompanyController {
       });
 
       if (checkName == null) {
+
+          req.body.updated_by = "";
+          req.body.createdAt=responseStrings.currentTime
+
         await Company.create({ ...req.body })
           .then(function (response) {
             res
@@ -99,6 +105,9 @@ class CompanyController {
       });
 
       if (check_company_is_valid != null) {
+        
+        req.body.updatedAt=responseStrings.currentTime;
+
         await Company.update({ ...req.body }, { where: { id: company_id } })
           .then(function (data) {
             res
@@ -145,8 +154,10 @@ class CompanyController {
       if (check_company_is_valid != null) {
         let updateData = {
           IsDeleted: 1,
-          updated_by: req.body.updated_by,
+          deletedAt:responseStrings.currentTime,
+          deleted_by: req.body.deleted_by,
         };
+
         await Company.update({ ...updateData }, { where: { id: company_id } })
           .then(function (data) {
             res
@@ -187,32 +198,18 @@ class CompanyController {
         include_condition = {};
       }
       //TODO Get All Company
-      else {
+      else 
+      {
         where_condition = { IsDeleted: 0 };
       }
 
       const getCompany = await Company.findAll(
         {
-          // include: [{
-          //   model: Curriculum,
-          //   required: false,
-          //   where: {
-          //     IsDeleted: 0
-          //   },
-          //   include:[{
-          //     model:Subscription,
-          //     required:false,
-          //     where:{
-          //       IsDeleted: 0,
-          //       company_id:company_id
-          //     }
-          //   }]
-          // }],
           where: where_condition,
           order: [["id", "DESC"]],
         })
         .then((data) => {
-          if (data) {
+          if (data.length != 0) {
             res
               .status(responseCodes.SUCCESS)
               .json({
@@ -240,11 +237,13 @@ class CompanyController {
   }
 
   async get_company_details_by_id(req: Request, res: Response) {
+
     try {
+
       await Company.findOne({
         include: [
           {
-            model: CompanyContact,
+            model: CompanyUser,
             where: {
               IsDeleted: 0
             },
@@ -264,7 +263,8 @@ class CompanyController {
           IsDeleted: 0
         }
       }).then((result) => {
-        if (result) {
+
+        if (result != null) {
           res
             .status(responseCodes.SUCCESS)
             .json({
@@ -289,6 +289,11 @@ class CompanyController {
 
   async add_company_user(req: Request, res: Response) {
     try {
+
+      req.body.createdAt=responseStrings.currentTime;
+
+      
+
       await CompanyUser.create({ ...req.body })
         .then(function (data) {
           res
@@ -321,10 +326,21 @@ class CompanyController {
         mobile_no: req.body.mobile_no,
         canlogin: 1,
         created_by: req.body.created_by,
-        updated_by: req.body.updated_by,
+        updated_by: "",
+        createdAt:responseStrings.currentTime
       };
 
-      await CompanyUser.create({ ...company_contact })
+      const checkUserExist= await CompanyUser.findAll({
+        where:{
+          name:req.body.name,
+          company_id:req.body.company_id,
+          IsDeleted:0
+        }
+      });
+
+      if(checkUserExist.length == 0)
+      {
+        await CompanyUser.create({ ...company_contact })
         .then((userdata) => {
           //Add login in User table
           const userLoginData = {
@@ -334,8 +350,9 @@ class CompanyController {
             password: req.body.password,
             user_type: 2,
             language: 1,
+            createdAt:responseStrings.currentTime,
             created_by: req.body.created_by,
-            updated_by: req.body.updated_by,
+            updated_by: "",
           };
 
           Users.create({ ...userLoginData })
@@ -360,6 +377,13 @@ class CompanyController {
         .catch(function (err) {
           res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
         });
+      }
+      else
+      {
+        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Contact with same name already exist" });
+      }
+
+     
     } catch (error) {
       res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
     }
@@ -369,18 +393,12 @@ class CompanyController {
 
     try {
       const company_id = req.body.company_id;
-
+     
       const company_user_data = await CompanyUser.findAll({
         include: [
           {
             model: Users,
-          },
-          {
-            model: Company,
-            where: {
-              IsDeleted: 0,
-            },
-          },
+          }
         ],
         where: {
           company_id: company_id,
@@ -413,23 +431,55 @@ class CompanyController {
     try {
       const user_id = req.body.user_id;
 
-      let updateData = {
-        IsDeleted: 1,
-        updated_by: req.body.updated_by,
-      };
+      const UserData=await CompanyUser.findOne({
+        where:{
+          id:user_id,
+          IsDeleted:0
+        }
+      });
 
-      await CompanyUser.update({ ...updateData }, { where: { id: user_id } })
-        .then(function (data) {
-          res
-            .status(responseCodes.SUCCESS)
+      if(UserData !=null)
+      {
+        //* This Array has been used to update two table check before any change
+        let updateData = {
+          IsDeleted: 1,
+          deleted_by:req.body.deleted_by,
+          deletedAt:responseStrings.currentTime
+        };
+
+        //! Delete the User from Company Contacts table
+        await CompanyUser.update({ ...updateData }, { where: { id: user_id } })
+        .then(function (data)
+        {
+           //! Delete the User from user table
+          const login_table_id=UserData['login_table_id'];
+         
+          Users.update({...updateData},{where:{id:login_table_id}}).then(function(data)
+          {
+            res.status(responseCodes.SUCCESS)
             .json({
               response_code: 1,
               message: responseStrings.DELETE,
             });
+          }).catch(function(err){
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+          });
+         
+         
         })
         .catch(function (err) {
           res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
         });
+      }
+      else
+      {
+        res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "User Id is not valid" });
+
+      }
+
+      
+
+      
     }
     catch (error) {
       res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });

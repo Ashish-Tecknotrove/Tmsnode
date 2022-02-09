@@ -13,8 +13,13 @@ interface CurriculumParentCategoryTestAttributes {
     parent_id: number;
     technology_type_id: number;
     language_id: number;
-    created_by: number;
-    updated_by: number;
+    created_by: number
+    updated_by: number
+	deleted_by:string
+	deletedAt:string
+    createdAt: string
+    updatedAt: string
+	IsDeleted:number
 }
 
 export default class CurriculumParentCategoryTest extends Model
@@ -25,8 +30,13 @@ export default class CurriculumParentCategoryTest extends Model
     parent_id!: number;
     technology_type_id!: number;
     language_id!: number;
-    created_by!: number;
-    updated_by!: number;
+    created_by!: number
+    updated_by!: number
+	deleted_by!:string
+    deletedAt!:string
+    createdAt!:string
+    updatedAt!:string
+	IsDeleted!:number
 
 }
 
@@ -66,23 +76,28 @@ CurriculumParentCategoryTest.init({
         }
     },
     created_by: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     updated_by: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    deleted_by: {
         type: DataTypes.INTEGER
     },
     createdAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     deletedAt: {
         type: "TIMESTAMP"
     },
-    IsDeleted: {
-        type: DataTypes.TINYINT,
-        defaultValue: 0
+    IsDeleted:{
+        type:DataTypes.TINYINT,
+        defaultValue:0
     }
 }, {
     timestamps: true,

@@ -33,8 +33,8 @@ class SubscriptionValidator {
     {
         return [
             body('subscription_id').notEmpty().withMessage('parameter is missing'),
-            body('updated_by').notEmpty().withMessage('parameter is missing'),
-            body('deletedAt').notEmpty().withMessage('parameter is missing')
+            body('deleted_by').notEmpty().withMessage('parameter is missing'),
+            // body('deletedAt').notEmpty().withMessage('parameter is missing')
         ];
     }
 

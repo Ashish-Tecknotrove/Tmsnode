@@ -1,4 +1,5 @@
-import { DataTypes, Model } from "sequelize";
+import { DataType } from "sequelize-typescript";
+import {Model} from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Company from "./company.model";
 import Users from "./users.model";
@@ -14,8 +15,13 @@ interface CompanyUserAttributes
     department:string;
     mobile_no:string;
     canlogin:number;
-    created_by:number;
-    updated_by:number;
+    created_by: number
+    updated_by: number
+	deleted_by:string
+	deletedAt:string
+    createdAt: string
+    updatedAt: string
+	IsDeleted:number
 }
 
 
@@ -28,72 +34,92 @@ export default class  CompanyUser extends Model
     department!: string;
     mobile_no!: string;
     canlogin!:number;
-    created_by!: number;
-    updated_by!: number;
-
+    created_by!: number
+    updated_by!: number
+	deleted_by!:string
+    deletedAt!:string
+    createdAt!:string
+    updatedAt!:string
+	IsDeleted!:number
 }
 
 
 CompanyUser.init({
     id: {
-        type: DataTypes.INTEGER,
+        type: DataType.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
       },
       company_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
+        type: DataType.INTEGER,
         references:{
-          model:Company,
+          model:"Company",
           key:'id'
         }
       },
       login_table_id:{
-        type:DataTypes.INTEGER,
+        type:DataType.INTEGER,
         allowNull:true,
         references:{
-          model:Users,
+          model:"Users",
           key:'id'
         }
       },
       name: {
-        type: DataTypes.STRING(100),
+        type: DataType.STRING(100),
         allowNull: false
       },
       department: {
-        type: DataTypes.STRING(100),
+        type: DataType.STRING(100),
         allowNull: false
       },
       mobile_no: {
-        type: DataTypes.STRING,
+        type: DataType.STRING,
         allowNull: false
       },
     canlogin:{
-        type:DataTypes.ENUM("1","0"),
+        type:DataType.ENUM("1","0"),
         defaultValue:"0"
     },
-      created_by: {
-        type: DataTypes.INTEGER
-      },
-      updated_by: {
-        type: DataTypes.INTEGER
-      }
+    created_by: {
+      type: DataType.INTEGER,
+      allowNull: false
+  },
+  updated_by: {
+      type: DataType.INTEGER,
+      allowNull: false
+  },
+  deleted_by: {
+      type: DataType.INTEGER
+  },
+  createdAt: {
+      type: "TIMESTAMP",
+  },
+  updatedAt: {
+      type: "TIMESTAMP",
+  },
+  deletedAt: {
+      type: "TIMESTAMP"
+  },
+  IsDeleted:{
+      type:DataType.TINYINT,
+      defaultValue:0
+  }
 },{
     timestamps:true,
     sequelize:sequelizeconnection,
     tableName:"company_contacts"
-})
-
-
-//TODO Association with Company
-CompanyUser.belongsTo(Company,{
-    foreignKey:"company_id"
 });
+
+
 
 CompanyUser.belongsTo(Users,{
   foreignKey:"login_table_id"
 });
 
-
+// CompanyUser.belongsTo(Company,{
+//   foreignKey:"company_id",
+//   targetKey:"id"
+// });
 

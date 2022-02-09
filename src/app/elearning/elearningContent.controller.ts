@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
 import moment from "moment";
 import sequelize from "sequelize";
@@ -9,6 +9,8 @@ import responseCodes from "../../strings/response-codes";
 import responseStrings from "../../strings/response-strings";
 
 class ElearningContent {
+
+
     async elearningTestLink(req: Request, res: Response) {
 
         try {
@@ -87,6 +89,16 @@ class ElearningContent {
 
         } catch (err) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err })
+        }
+    }
+
+    async checkUploadElearningLinkFile(req: Request, res: Response, next: NextFunction) {
+        try{
+            console.log(req.files);
+            console.log(req.body);
+            res.status(responseCodes.SUCCESS).json({ response_code: 1, message: req.files });
+        }catch(err){
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
         }
     }
 

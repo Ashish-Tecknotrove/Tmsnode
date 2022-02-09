@@ -1,3 +1,4 @@
+import moment from "moment";
 
 class ResponseStrings{
     //TODO Success Response
@@ -15,6 +16,8 @@ class ResponseStrings{
     
     tokenExpired="Session Expired! Please Login again..";
     tokenValid="access token is valid";
+
+    currentTime=moment().format('YYYY-MM-DD HH:mm:ss');
     
 
   

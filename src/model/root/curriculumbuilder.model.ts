@@ -11,8 +11,13 @@ interface CurriculumBuilderAttribute {
     vehicle_id: number;
     curriculum_parent_category_id: number;
     curriculum_parent_category_test_id: number;
-    created_by: string;
-    updated_by: string;
+    created_by: number
+    updated_by: number
+	deleted_by:string
+	deletedAt:string
+    createdAt: string
+    updatedAt: string
+	IsDeleted:number
 
 }
 
@@ -23,8 +28,13 @@ export default class CurriculumBuilder extends Model {
     vehicle_id!: number;
     curriculum_parent_category_id!: number;
     curriculum_parent_category_test_id!: number;
-    created_by!: string;
-    updated_by!: string;
+    created_by!: number
+    updated_by!: number
+	deleted_by!:string
+    deletedAt!:string
+    createdAt!:string
+    updatedAt!:string
+	IsDeleted!:number
 
 }
 
@@ -61,23 +71,28 @@ CurriculumBuilder.init({
             }
         },
         created_by: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         updated_by: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        deleted_by: {
             type: DataTypes.INTEGER
         },
         createdAt: {
-            type: "TIMESTAMP"
+            type: "TIMESTAMP",
         },
         updatedAt: {
-            type: "TIMESTAMP"
+            type: "TIMESTAMP",
         },
         deletedAt: {
             type: "TIMESTAMP"
         },
-        IsDeleted: {
-            type: DataTypes.TINYINT,
-            defaultValue: 0
+        IsDeleted:{
+            type:DataTypes.TINYINT,
+            defaultValue:0
         }
     },
     {

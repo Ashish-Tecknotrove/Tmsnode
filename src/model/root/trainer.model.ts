@@ -16,9 +16,14 @@ interface TrainerAttributes{
     trainer_expertise:string;
     user_type:string;
     simulator:string;
-    created_at:string;
-    updated_at:string;
     login_table_id:number;
+    created_by: number
+    updated_by: number
+	deleted_by:string
+	deletedAt:string
+    createdAt: string
+    updatedAt: string
+	IsDeleted:number
 
 }
 
@@ -33,10 +38,14 @@ export default class Trainer extends Model{
     trainer_expertise!: string;
     user_type!: string;
     simulator!: string;
-    created_at!: string;
-    updated_at!: string;
     login_table_id!: number;
-
+	created_by!: number
+    updated_by!: number
+	deleted_by!:string
+    deletedAt!:string
+    createdAt!:string
+    updatedAt!:string
+	IsDeleted!:number
 }
 
 
@@ -84,14 +93,6 @@ Trainer.init({
         type:DataTypes.STRING(100),
         allowNull:true
     },
-    created_by:{
-        type:DataTypes.STRING(100),
-        allowNull:true
-    },
-    updated_by:{
-        type:DataTypes.STRING(100),
-        allowNull:true
-    },
     login_table_id:{
         type:DataTypes.INTEGER,
         allowNull:true,
@@ -100,18 +101,29 @@ Trainer.init({
             key:'id'
         }
     },
+    created_by: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    updated_by: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    deleted_by: {
+        type: DataTypes.INTEGER
+    },
     createdAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     deletedAt: {
         type: "TIMESTAMP"
     },
-    IsDeleted: {
-        type: DataTypes.TINYINT,
-        defaultValue: 0
+    IsDeleted:{
+        type:DataTypes.TINYINT,
+        defaultValue:0
     }
 },{
     timestamps:true,

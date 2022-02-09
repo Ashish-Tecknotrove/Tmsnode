@@ -26,6 +26,7 @@ class CurriculumValidator
             body('prefix').notEmpty().withMessage('parameter is missing'),
             body('title').notEmpty().withMessage('parameter is missing'),
             body('language_id').notEmpty().withMessage('parameter is missing'),
+            body('created_by').notEmpty().withMessage('parameter is missing'),
         ]
     }
 
@@ -48,6 +49,14 @@ class CurriculumValidator
             body('test_id').notEmpty().withMessage('parameter is missing'),
             body('prefix').notEmpty().withMessage('parameter is missing'),
             body('title').notEmpty().withMessage('parameter is missing'),
+            body('updated_by').notEmpty().withMessage('parameter is missing'),
+        ]
+    }
+
+    deleteParentCategoryTest(){
+        return[
+            body('test_id').notEmpty().withMessage('parameter is missing'),
+            body('deleted_by').notEmpty().withMessage('parameter is missing'),
         ]
     }
 

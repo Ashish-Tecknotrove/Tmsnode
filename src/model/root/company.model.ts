@@ -1,9 +1,8 @@
 import {DataTypes, Model} from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
-import CompanyContact from "./companycontacts.model";
+import CompanyUser from "./compayuser.model";
 import Curriculum from "./curriculum.model";
 import Subscription from "./subscription.model";
-import Users from "./users.model";
 
 
 interface CompanyAttributes {
@@ -27,9 +26,10 @@ interface CompanyAttributes {
     calender_type: string
     created_by: number
     updated_by: number
-    active: number
+	deletedAt:string
     createdAt: string
     updatedAt: string
+	IsDeleted:number
 }
 
 export default class Company extends Model {
@@ -54,9 +54,10 @@ export default class Company extends Model {
     calender_type!: string
     created_by!: number
     updated_by!: number
-    active!: number
+    deletedAt!:string
     createdAt!:string
     updatedAt!:string
+	IsDeleted!:number
 }
 
 Company.init({
@@ -156,20 +157,15 @@ Company.init({
 });
 
 
-// Company.hasMany(Users,{
-//     sourceKey:"id",
-//     foreignKey:'company_id',
-//     as:'companies'
-// })
 
-Company.hasMany(CompanyContact,{
+Company.hasMany(CompanyUser,{
     foreignKey:'company_id'
-})
+});
 
 Company.hasMany(Subscription,{
     foreignKey:'company_id'
-})
+});
 
 Company.hasMany(Curriculum,{
     foreignKey:'company_id',
-})
+});

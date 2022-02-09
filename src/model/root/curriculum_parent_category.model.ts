@@ -9,8 +9,13 @@ interface CurriculumParentCategoryAttributes{
     id:number;
     title:string;
     technology_type_id:number;
-    created_by:number;
-    updated_by:number;
+    created_by: number
+    updated_by: number
+	deleted_by:string
+	deletedAt:string
+    createdAt: string
+    updatedAt: string
+	IsDeleted:number
 }
 
 
@@ -19,8 +24,13 @@ export default class CurriculumParentCategory extends Model{
     declare id: number;
     title!: string;
     technology_type_id!: number;
-    created_by!: number;
-    updated_by!: number;
+    created_by!: number
+    updated_by!: number
+	deleted_by!:string
+    deletedAt!:string
+    createdAt!:string
+    updatedAt!:string
+	IsDeleted!:number
 
 }
 
@@ -43,24 +53,29 @@ CurriculumParentCategory.init({
             key:"id"
         }
     },
-    created_by:{
-        type:DataTypes.INTEGER
+    created_by: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
-    updated_by:{
-        type:DataTypes.INTEGER
+    updated_by: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    deleted_by: {
+        type: DataTypes.INTEGER
     },
     createdAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     deletedAt: {
         type: "TIMESTAMP"
     },
-    IsDeleted: {
-        type: DataTypes.TINYINT,
-        defaultValue: 0
+    IsDeleted:{
+        type:DataTypes.TINYINT,
+        defaultValue:0
     }
 },{
     timestamps:false,

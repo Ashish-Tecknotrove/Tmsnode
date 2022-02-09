@@ -8,7 +8,13 @@ interface UserTypeAttributes{
     id:Number,
     name:String,
     description:String,
-    active:Number,
+    created_by: number
+    updated_by: number
+	deleted_by:string
+	deletedAt:string
+    createdAt: string
+    updatedAt: string
+	IsDeleted:number
 }
 
 
@@ -17,7 +23,13 @@ export default class UserType extends Model
     id!:Number;
     name!:String;
     description!:String;
-    active!:Number;
+    created_by!: number
+    updated_by!: number
+	deleted_by!:string
+    deletedAt!:string
+    createdAt!:string
+    updatedAt!:string
+	IsDeleted!:number
 
 }
 
@@ -43,18 +55,29 @@ UserType.init({
         defaultValue:1,
         allowNull:false
     },
+    created_by: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    updated_by: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    deleted_by: {
+        type: DataTypes.INTEGER
+    },
     createdAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     deletedAt: {
         type: "TIMESTAMP"
     },
-    IsDeleted: {
-        type: DataTypes.TINYINT,
-        defaultValue: 0
+    IsDeleted:{
+        type:DataTypes.TINYINT,
+        defaultValue:0
     }
 },{
     timestamps:true,
