@@ -11,6 +11,9 @@ import responseCodes from "../../strings/response-codes";
 import responseStrings from "../../strings/response-strings";
 import CurriculumParentCategory from '../../model/root/curriculum_parent_category.model';
 import moment from 'moment';
+import Countries from '../../model/resources/countries.model';
+import States from '../../model/resources/states.model';
+import Cities from '../../model/resources/cities.model';
 
 
 class CompanyController {
@@ -96,8 +99,7 @@ class CompanyController {
         where: {
           id: company_id,
           IsDeleted: 0,
-        },
-        logging: console.log,
+        }
       }).catch((err) => {
         res
           .status(responseCodes.INTERNAL_SERVER_ERROR)
@@ -121,7 +123,7 @@ class CompanyController {
           });
       } else {
         res
-          .status(responseCodes.CREATED)
+          .status(responseCodes.BAD_REQUEST)
           .json({
             response_code: 0,
             message:
@@ -171,7 +173,7 @@ class CompanyController {
           });
       } else {
         res
-          .status(responseCodes.CREATED)
+          .status(responseCodes.BAD_REQUEST)
           .json({
             response_code: 0,
             message:
@@ -244,6 +246,7 @@ class CompanyController {
         include: [
           {
             model: CompanyUser,
+            attributes:['id','name','department','mobile_no','canlogin'],
             where: {
               IsDeleted: 0
             },
@@ -251,13 +254,37 @@ class CompanyController {
           },
           {
             model: Subscription,
+            include:[{
+              model:Curriculum,
+              attributes:['id','name'],
+              where:{
+                IsDeleted:0
+              },
+              required: false
+            }],
             where: {
               IsDeleted: 0,
               company_id: req.body.company_id
             },
             required: false
+          },
+          {
+            model:Countries,
+            attributes:['title','slug'],
+            required:false
+          },
+          {
+            model:States,
+            attributes:['title','slug'],
+            required:false
+          },
+          {
+            model:Cities,
+            attributes:['title','slug'],
+            required:false
           }
         ],
+        logging:console.log,
         where: {
           id: req.body.company_id,
           IsDeleted: 0
@@ -292,8 +319,7 @@ class CompanyController {
 
       req.body.createdAt=responseStrings.currentTime;
 
-      
-
+    
       await CompanyUser.create({ ...req.body })
         .then(function (data) {
           res
@@ -380,12 +406,78 @@ class CompanyController {
       }
       else
       {
-        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Contact with same name already exist" });
+        res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Contact with same name already exist" });
       }
 
      
     } catch (error) {
       res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+    }
+  }
+
+  async updated_company_user(req:Request, res:Response)
+  {
+    try {
+      let user_id = req.body.user_id;
+
+      let check_company_user_is_valid = await CompanyUser.findOne({
+        where: {
+          id: user_id,
+          IsDeleted: 0,
+        }
+      }).catch((err) => {
+        res
+          .status(responseCodes.INTERNAL_SERVER_ERROR)
+          .json({ response_code: 0, message: err });
+      });
+
+      if (check_company_user_is_valid != null) {
+        
+        req.body.updatedAt=responseStrings.currentTime;
+        const user_login_id=check_company_user_is_valid['login_table_id'];
+
+        await CompanyUser.update({ ...req.body }, { where: { id: user_id } })
+          .then(function (data) {
+
+            const user_table_update={
+              name:req.body.name,
+              email:req.body.email,
+              mobile_no:req.body.mobile_no,
+              password:req.body.password,
+              department:req.body.department,
+              updated_by:req.body.updated_by,
+              updatedAt:responseStrings.currentTime
+            };
+
+            Users.update(user_table_update,{where:{id:user_login_id}}).then(function(data){
+              res
+              .status(responseCodes.SUCCESS)
+              .json({ response_code: 1, message: responseStrings.UPDATED });
+            }).catch(err=>{
+              res
+              .status(responseCodes.INTERNAL_SERVER_ERROR)
+              .json({ response_code: 1, message: responseStrings.DATABASE_ERROR });
+            });
+           
+          })
+          .catch(function (err) {
+            res
+              .status(responseCodes.INTERNAL_SERVER_ERROR)
+              .json({ response_code: 0, message: err });
+          });
+      } else {
+        res
+          .status(responseCodes.BAD_REQUEST)
+          .json({
+            response_code: 0,
+            message:
+              "Invalid Company User  please check user id or user is deleted",
+          });
+      }
+    } catch (error) {
+      return res
+        .status(responseCodes.INTERNAL_SERVER_ERROR)
+        .json({ response_code: 0, message: error });
     }
   }
 
@@ -486,6 +578,7 @@ class CompanyController {
     }
 
   }
+
 }
 
 export default new CompanyController();

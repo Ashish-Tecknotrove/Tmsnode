@@ -14,7 +14,8 @@ class CurriculumValidator
     {
         return[
             body('title').notEmpty().withMessage('parameter is missing'),
-            body('technology_type_id').notEmpty().withMessage('parameter is missing')
+            body('technology_type_id').notEmpty().withMessage('parameter is missing'),
+            body('created_by').notEmpty().withMessage('parameter is missing')
         ];
     }
 
@@ -49,6 +50,7 @@ class CurriculumValidator
             body('test_id').notEmpty().withMessage('parameter is missing'),
             body('prefix').notEmpty().withMessage('parameter is missing'),
             body('title').notEmpty().withMessage('parameter is missing'),
+            body('language_id').notEmpty().withMessage('parameter is missing'),
             body('updated_by').notEmpty().withMessage('parameter is missing'),
         ]
     }
@@ -72,7 +74,8 @@ class CurriculumValidator
         return[
             body('company_id').notEmpty().withMessage('parameter is missing'),
             body('name').notEmpty().withMessage('parameter is missing'),
-            body('curriculum').notEmpty().withMessage('parameter is missing')
+            body('curriculum').notEmpty().withMessage('parameter is missing'),
+            body('created_by').notEmpty().withMessage('parameter is missing')
         ]
     }
 }

@@ -1,44 +1,65 @@
 import { Request, Response } from "express";
 import sequelizeconnection from "../../database/sequelize";
 import sequelize from "sequelize";
+import responseCodes from "../../strings/response-codes";
 
 
-class AdditionalresourcesController
-{
-    async getCountry(req:Request,res:Response)
-    {
-        var country = await sequelizeconnection.query("Select * from countries",
-            {type: sequelize.QueryTypes.SELECT});
+class AdditionalresourcesController {
+    async getCountry(req: Request, res: Response) {
+        try {
+            var country = await sequelizeconnection.query("Select * from countries",
+                { type: sequelize.QueryTypes.SELECT });
 
-        res.status(200).json({response_code:1,data:country});
+            res.status(responseCodes.SUCCESS).json({ response_code: 1, data: country });
+        }
+        catch (err) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err });
+        }
+
 
     }
 
-    async getState(req:Request,res:Response)
-    {
-        var country_id=req.body.country_id
+    async getState(req: Request, res: Response) {
+        try {
+            var country_id = req.body.country_id
+            console.log(country_id);
+            var state = await sequelizeconnection.query(`Select * from states where country_id=${country_id}`,
+                { type: sequelize.QueryTypes.SELECT });
 
-        var state = await sequelizeconnection.query(`Select * from states where country_id=${country_id}`,
-            {type: sequelize.QueryTypes.SELECT});
+            res.status(200).json({ response_code: 1, data: state });
+        }
+        catch (err) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err });
+        }
 
-        res.status(200).json({response_code:1,data:state});
     }
 
-    async getCities(req:Request,res:Response)
-    {
-        var stateid=req.body.state_id
+    async getCities(req: Request, res: Response) {
+        try {
+            var stateid = req.body.state_id
 
-        var cities = await sequelizeconnection.query(`Select * from cities where state_id=${stateid}`,
-            {type: sequelize.QueryTypes.SELECT});
+            var cities = await sequelizeconnection.query(`Select * from cities where state_id=${stateid}`,
+                { type: sequelize.QueryTypes.SELECT });
 
-        res.status(200).json({response_code:1,data:cities});
+            res.status(200).json({ response_code: 1, data: cities });
+        }
+        catch (err) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err });
+        }
+
     }
 
-    async getLanguages(req:Request,res:Response){
-        var languages = await sequelizeconnection.query(`Select * from languages`,
-            {type: sequelize.QueryTypes.SELECT});
+    async getLanguages(req: Request, res: Response) {
+        try {
+            var languages = await sequelizeconnection.query(`Select * from languages`,
+                { type: sequelize.QueryTypes.SELECT });
 
-        res.status(200).json({response_code:1,data:languages});
+            res.status(200).json({ response_code: 1, data: languages });
+        }
+        catch (err) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err });
+        }
+
     }
 }
 

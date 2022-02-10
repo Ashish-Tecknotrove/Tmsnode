@@ -89,6 +89,6 @@ Curriculum.init({
 //     foreignKey:"company_id"
 // })
 
-Curriculum.hasMany(Subscription,{
-    foreignKey:'curriculum_id'
-})
+// Curriculum.hasMany(Subscription,{
+//     foreignKey:'curriculum_id'
+// })

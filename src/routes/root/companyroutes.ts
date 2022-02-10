@@ -104,6 +104,14 @@ Router.post('/getCompanyUser',
     companyController.get_company_user
 );
 
+Router.post('/updatedCompanyUser',
+    formData.any(),
+    auth.verifyAuthenticateToken,
+    companyValidator.updatecompanyPersonLogin(),
+    auth.handleValidatorError,
+    companyController.updated_company_user
+);
+
 Router.post('/deleteCompanyUser',
     formData.any(),
     auth.verifyAuthenticateToken,

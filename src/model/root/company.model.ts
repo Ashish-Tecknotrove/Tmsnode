@@ -1,5 +1,8 @@
 import {DataTypes, Model} from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
+import Cities from "../resources/cities.model";
+import Countries from "../resources/countries.model";
+import States from "../resources/states.model";
 import CompanyUser from "./compayuser.model";
 import Curriculum from "./curriculum.model";
 import Subscription from "./subscription.model";
@@ -167,11 +170,29 @@ Company.hasMany(CompanyUser,{
 });
 
 Company.hasMany(Subscription,{
+    // as:"subscriptions",
     foreignKey:'company_id'
+}); 
+
+Subscription.belongsTo(Company, {
+    foreignKey: 'company_id',
+    targetKey:"id"
 });
 
 Company.hasMany(Curriculum,{
     foreignKey:'company_id',
+});
+
+Company.belongsTo(Countries,{
+    foreignKey:'country_id'
+});
+
+Company.belongsTo(States,{
+    foreignKey:'state_id'
+});
+
+Company.belongsTo(Cities,{
+    foreignKey:'city_id'
 });
 
 // Company.belongsTo("cities",{

@@ -59,6 +59,7 @@ class CompanyValidator {
             body('department').notEmpty().withMessage('parameter is missing'),
             body('mobile_no').notEmpty().withMessage('parameter is missing'),
             body('email').notEmpty().withMessage('parameter is missing'),
+            body('email').isEmail().withMessage('invalid email'),
             body('password').notEmpty().withMessage('parameter is missing'),
             body('created_by').notEmpty().withMessage('parameter is missing'),
         ];
@@ -68,6 +69,20 @@ class CompanyValidator {
     {
         return [
             body('company_id').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+
+    updatecompanyPersonLogin()
+    {
+        return [
+            body('user_id').notEmpty().withMessage('parameter is missing'),
+            body('name').notEmpty().withMessage('parameter is missing'),
+            body('department').notEmpty().withMessage('parameter is missing'),
+            body('mobile_no').notEmpty().withMessage('parameter is missing'),
+            body('email').notEmpty().withMessage('parameter is missing'),
+            body('email').isEmail().withMessage('invalid email'),
+            body('password').notEmpty().withMessage('parameter is missing'),
+            body('updated_by').notEmpty().withMessage('parameter is missing'),
         ];
     }
 

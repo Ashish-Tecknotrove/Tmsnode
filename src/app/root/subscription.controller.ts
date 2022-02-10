@@ -2,6 +2,7 @@ import e, { Request, Response } from "express";
 import moment from "moment";
 import { Op } from "sequelize";
 import Company from "../../model/root/company.model";
+import Curriculum from "../../model/root/curriculum.model";
 import Subscription from "../../model/root/subscription.model";
 import responseCodes from "../../strings/response-codes";
 import responseStrings from "../../strings/response-strings";
@@ -51,6 +52,7 @@ class SubscriptionController {
             }).catch(err => {
 
                 res.status(responseCodes.SUCCESS).json({ response_code: 0, message: responseStrings.EXISTS });
+                
             });
 
 
@@ -177,15 +179,32 @@ class SubscriptionController {
             const subscriptionData = await Subscription.findAll({
                 include: [{
                     model: Company,
-                    required: true //Inner JOIN
-                }],
+                    required: true //*INNER JOIN
+                },
+                {
+                    model:Curriculum,
+                    required:true
+                }
+            ],
+                
                 where: whereCondition,
-                logging: console.log
+               // logging: console.log
 
-            }).then((result) => {
-                res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.GET, data: subscriptionData });
+            }).then((result) => 
+            {
+                if(result.length != 0)
+                {
+                    res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.GET, data: result });
+
+                }
+                else
+                {
+                    res.status(responseCodes.SUCCESS).json({ response_code: 0, message: responseStrings.NOT, data: [] });
+
+                }
             }).catch(err => {
-                res.status(responseCodes.SUCCESS).json({ response_code: 0, message: responseStrings.NOT });
+                console.log(err);
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
             });
 
         }
