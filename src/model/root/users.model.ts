@@ -205,3 +205,9 @@ Users.belongsTo(Company,{
     foreignKey:"company_id",
     targetKey:"id",
 });
+
+CompanyUser.belongsTo(Users,{
+    foreignKey:"login_table_id",
+    targetKey:"id"
+});
+

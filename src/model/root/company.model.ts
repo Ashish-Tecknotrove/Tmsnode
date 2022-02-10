@@ -95,7 +95,11 @@ Company.init({
     },
     city_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references:{
+            model:"cities",
+            key:"id"
+        }
     },
     state_id: {
         type: DataTypes.INTEGER,
@@ -169,3 +173,7 @@ Company.hasMany(Subscription,{
 Company.hasMany(Curriculum,{
     foreignKey:'company_id',
 });
+
+// Company.belongsTo("cities",{
+
+// });
