@@ -46,7 +46,11 @@ Company.init({
     },
     city_id: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: "cities",
+            key: "id"
+        }
     },
     state_id: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -114,3 +118,5 @@ Company.hasMany(subscription_model_1.default, {
 Company.hasMany(curriculum_model_1.default, {
     foreignKey: 'company_id',
 });
+// Company.belongsTo("cities",{
+// });

@@ -7,6 +7,7 @@ const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const language_model_1 = __importDefault(require("../language/language.model"));
 const company_model_1 = __importDefault(require("./company.model"));
+const compayuser_model_1 = __importDefault(require("./compayuser.model"));
 class Users extends sequelize_1.Model {
 }
 exports.default = Users;
@@ -134,4 +135,8 @@ Users.belongsTo(language_model_1.default, {
 Users.belongsTo(company_model_1.default, {
     foreignKey: "company_id",
     targetKey: "id",
+});
+compayuser_model_1.default.belongsTo(Users, {
+    foreignKey: "login_table_id",
+    targetKey: "id"
 });
