@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded()); // For Accepting the x-www-form-Data
 app.use(bodyParser.urlencoded({extended:true }));
 app.use(cors());
 //app.use(formdata.array());
-app.use(express.static('public'));
+app.use('/resources',express.static('resources'));
 
 app.listen(process.env.PORT || 8000,()=>{
     console.log("Node Server Started Running")
