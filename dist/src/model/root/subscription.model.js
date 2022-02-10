@@ -104,10 +104,11 @@ Subscription.init({
     sequelize: sequelize_2.default,
     tableName: 'subscriptions'
 });
-// //TODO Association With Company
-// Subscription.belongsTo(Company, {
-//     foreignKey: 'company_id'
-// })
+// // //TODO Association With Company
+Subscription.belongsTo(curriculum_model_1.default, {
+    foreignKey: 'curriculum_id',
+    targetKey: "id"
+});
 // Subscription.hasMany(Curriculum,{
 //     foreignKey:'curriculum_id',
 // })

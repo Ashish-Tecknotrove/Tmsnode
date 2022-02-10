@@ -10,7 +10,8 @@ class CurriculumValidator {
     parentCategory() {
         return [
             (0, express_validator_1.body)('title').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('technology_type_id').notEmpty().withMessage('parameter is missing')
+            (0, express_validator_1.body)('technology_type_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing')
         ];
     }
     parentCategoryTest() {
@@ -38,6 +39,7 @@ class CurriculumValidator {
             (0, express_validator_1.body)('test_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('prefix').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('title').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('language_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
         ];
     }
@@ -56,7 +58,8 @@ class CurriculumValidator {
         return [
             (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('name').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('curriculum').notEmpty().withMessage('parameter is missing')
+            (0, express_validator_1.body)('curriculum').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing')
         ];
     }
 }

@@ -359,7 +359,7 @@ class CurriculumController {
                     company_id: req.body.company_id,
                     name: req.body.name,
                     created_by: req.body.created_by,
-                    updated_by: req.body.updated_by,
+                    updated_by: '',
                     createdAt: response_strings_1.default.currentTime
                 };
                 //Check Curriculum Already Exist

@@ -5,6 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
+const cities_model_1 = __importDefault(require("../resources/cities.model"));
+const countries_model_1 = __importDefault(require("../resources/countries.model"));
+const states_model_1 = __importDefault(require("../resources/states.model"));
 const compayuser_model_1 = __importDefault(require("./compayuser.model"));
 const curriculum_model_1 = __importDefault(require("./curriculum.model"));
 const subscription_model_1 = __importDefault(require("./subscription.model"));
@@ -113,10 +116,24 @@ Company.hasMany(compayuser_model_1.default, {
     foreignKey: 'company_id'
 });
 Company.hasMany(subscription_model_1.default, {
+    // as:"subscriptions",
     foreignKey: 'company_id'
+});
+subscription_model_1.default.belongsTo(Company, {
+    foreignKey: 'company_id',
+    targetKey: "id"
 });
 Company.hasMany(curriculum_model_1.default, {
     foreignKey: 'company_id',
+});
+Company.belongsTo(countries_model_1.default, {
+    foreignKey: 'country_id'
+});
+Company.belongsTo(states_model_1.default, {
+    foreignKey: 'state_id'
+});
+Company.belongsTo(cities_model_1.default, {
+    foreignKey: 'city_id'
 });
 // Company.belongsTo("cities",{
 // });

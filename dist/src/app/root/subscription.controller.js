@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const moment_1 = __importDefault(require("moment"));
 const sequelize_1 = require("sequelize");
 const company_model_1 = __importDefault(require("../../model/root/company.model"));
+const curriculum_model_1 = __importDefault(require("../../model/root/curriculum.model"));
 const subscription_model_1 = __importDefault(require("../../model/root/subscription.model"));
 const response_codes_1 = __importDefault(require("../../strings/response-codes"));
 const response_strings_1 = __importDefault(require("../../strings/response-strings"));
@@ -164,14 +165,25 @@ class SubscriptionController {
                 const subscriptionData = yield subscription_model_1.default.findAll({
                     include: [{
                             model: company_model_1.default,
-                            required: true //Inner JOIN
-                        }],
+                            required: true //*INNER JOIN
+                        },
+                        {
+                            model: curriculum_model_1.default,
+                            required: true
+                        }
+                    ],
                     where: whereCondition,
-                    logging: console.log
+                    // logging: console.log
                 }).then((result) => {
-                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.GET, data: subscriptionData });
+                    if (result.length != 0) {
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.GET, data: result });
+                    }
+                    else {
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.NOT, data: [] });
+                    }
                 }).catch(err => {
-                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.NOT });
+                    console.log(err);
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
                 });
             }
             catch (err) {

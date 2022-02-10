@@ -14,10 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const company_model_1 = __importDefault(require("../../model/root/company.model"));
 const compayuser_model_1 = __importDefault(require("../../model/root/compayuser.model"));
+const curriculum_model_1 = __importDefault(require("../../model/root/curriculum.model"));
 const subscription_model_1 = __importDefault(require("../../model/root/subscription.model"));
 const users_model_1 = __importDefault(require("../../model/root/users.model"));
 const response_codes_1 = __importDefault(require("../../strings/response-codes"));
 const response_strings_1 = __importDefault(require("../../strings/response-strings"));
+const countries_model_1 = __importDefault(require("../../model/resources/countries.model"));
+const states_model_1 = __importDefault(require("../../model/resources/states.model"));
+const cities_model_1 = __importDefault(require("../../model/resources/cities.model"));
 class CompanyController {
     registerCompany(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -101,8 +105,7 @@ class CompanyController {
                     where: {
                         id: company_id,
                         IsDeleted: 0,
-                    },
-                    logging: console.log,
+                    }
                 }).catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
@@ -124,7 +127,7 @@ class CompanyController {
                 }
                 else {
                     res
-                        .status(response_codes_1.default.CREATED)
+                        .status(response_codes_1.default.BAD_REQUEST)
                         .json({
                         response_code: 0,
                         message: "Invalid Company please check company id or company is deleted",
@@ -173,7 +176,7 @@ class CompanyController {
                 }
                 else {
                     res
-                        .status(response_codes_1.default.CREATED)
+                        .status(response_codes_1.default.BAD_REQUEST)
                         .json({
                         response_code: 0,
                         message: "Invalid Company please check company id or company is deleted",
@@ -244,6 +247,7 @@ class CompanyController {
                     include: [
                         {
                             model: compayuser_model_1.default,
+                            attributes: ['id', 'name', 'department', 'mobile_no', 'canlogin'],
                             where: {
                                 IsDeleted: 0
                             },
@@ -251,13 +255,37 @@ class CompanyController {
                         },
                         {
                             model: subscription_model_1.default,
+                            include: [{
+                                    model: curriculum_model_1.default,
+                                    attributes: ['id', 'name'],
+                                    where: {
+                                        IsDeleted: 0
+                                    },
+                                    required: false
+                                }],
                             where: {
                                 IsDeleted: 0,
                                 company_id: req.body.company_id
                             },
                             required: false
+                        },
+                        {
+                            model: countries_model_1.default,
+                            attributes: ['title', 'slug'],
+                            required: false
+                        },
+                        {
+                            model: states_model_1.default,
+                            attributes: ['title', 'slug'],
+                            required: false
+                        },
+                        {
+                            model: cities_model_1.default,
+                            attributes: ['title', 'slug'],
+                            required: false
                         }
                     ],
+                    logging: console.log,
                     where: {
                         id: req.body.company_id,
                         IsDeleted: 0
@@ -370,11 +398,71 @@ class CompanyController {
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Contact with same name already exist" });
+                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Contact with same name already exist" });
                 }
             }
             catch (error) {
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+            }
+        });
+    }
+    updated_company_user(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let user_id = req.body.user_id;
+                let check_company_user_is_valid = yield compayuser_model_1.default.findOne({
+                    where: {
+                        id: user_id,
+                        IsDeleted: 0,
+                    }
+                }).catch((err) => {
+                    res
+                        .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
+                        .json({ response_code: 0, message: err });
+                });
+                if (check_company_user_is_valid != null) {
+                    req.body.updatedAt = response_strings_1.default.currentTime;
+                    const user_login_id = check_company_user_is_valid['login_table_id'];
+                    yield compayuser_model_1.default.update(Object.assign({}, req.body), { where: { id: user_id } })
+                        .then(function (data) {
+                        const user_table_update = {
+                            name: req.body.name,
+                            email: req.body.email,
+                            mobile_no: req.body.mobile_no,
+                            password: req.body.password,
+                            department: req.body.department,
+                            updated_by: req.body.updated_by,
+                            updatedAt: response_strings_1.default.currentTime
+                        };
+                        users_model_1.default.update(user_table_update, { where: { id: user_login_id } }).then(function (data) {
+                            res
+                                .status(response_codes_1.default.SUCCESS)
+                                .json({ response_code: 1, message: response_strings_1.default.UPDATED });
+                        }).catch(err => {
+                            res
+                                .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
+                                .json({ response_code: 1, message: response_strings_1.default.DATABASE_ERROR });
+                        });
+                    })
+                        .catch(function (err) {
+                        res
+                            .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
+                            .json({ response_code: 0, message: err });
+                    });
+                }
+                else {
+                    res
+                        .status(response_codes_1.default.BAD_REQUEST)
+                        .json({
+                        response_code: 0,
+                        message: "Invalid Company User  please check user id or user is deleted",
+                    });
+                }
+            }
+            catch (error) {
+                return res
+                    .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
+                    .json({ response_code: 0, message: error });
             }
         });
     }
