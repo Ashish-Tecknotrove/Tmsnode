@@ -33,14 +33,14 @@ class SubscriptionController {
                     }
                 }).then((result) => {
                     res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, count: result });
-                }).catch(err => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                }).catch((err) => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                 });
             }
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                     response_code: 1,
-                    message: e,
+                    message: e.message,
                     data: "",
                 });
             }
@@ -56,8 +56,8 @@ class SubscriptionController {
                         status: "1"
                     },
                     // logging: console.log
-                }).catch(err => {
-                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.EXISTS });
+                }).catch((err) => {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: err.message });
                 });
                 if (checkSubscriptionExist == null) {
                     var actication_date = req.body.activation_date;
@@ -83,7 +83,7 @@ class SubscriptionController {
                     yield subscription_model_1.default.create(Object.assign({}, subscriptionData)).then(function (data) {
                         res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.ADD });
                     }).catch(function (err) {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -93,7 +93,7 @@ class SubscriptionController {
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                     response_code: 1,
-                    message: e,
+                    message: e.message,
                     data: "",
                 });
             }
@@ -109,8 +109,8 @@ class SubscriptionController {
                         IsDeleted: 0
                     },
                     // logging: console.log
-                }).catch(err => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                }).catch((err) => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                 });
                 if (check_subscription_is_valid != null) {
                     var actication_date = req.body.activation_date;
@@ -132,8 +132,8 @@ class SubscriptionController {
                     yield subscription_model_1.default.update(Object.assign({}, subscriptionData), { where: { id: subscription_id } }).
                         then(function (response) {
                         res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.UPDATED });
-                    }).catch(err => {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    }).catch((err) => {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -143,7 +143,7 @@ class SubscriptionController {
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                     response_code: 1,
-                    message: e,
+                    message: e.message,
                     data: "",
                 });
             }
@@ -181,13 +181,13 @@ class SubscriptionController {
                     else {
                         res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.NOT, data: [] });
                     }
-                }).catch(err => {
+                }).catch((err) => {
                     console.log(err);
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                 });
             }
             catch (err) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             }
         });
     }
@@ -201,8 +201,8 @@ class SubscriptionController {
                         IsDeleted: 0
                     },
                     // logging: console.log
-                }).catch(err => {
-                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.NOT });
+                }).catch((err) => {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: err.message });
                 });
                 if (check_subscription_is_valid != null) {
                     var subscriptionData = {
@@ -213,8 +213,8 @@ class SubscriptionController {
                     yield subscription_model_1.default.update(Object.assign({}, subscriptionData), { where: { id: subscription_id } }).
                         then(function (response) {
                         res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.DELETE });
-                    }).catch(err => {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    }).catch((err) => {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -222,7 +222,7 @@ class SubscriptionController {
                 }
             }
             catch (err) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             }
         });
     }

@@ -7,7 +7,6 @@ const sequelize_1 = require("sequelize");
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const company_model_1 = __importDefault(require("./company.model"));
-const compayuser_model_1 = __importDefault(require("./compayuser.model"));
 class CompanyContact extends sequelize_1.Model {
 }
 exports.default = CompanyContact;
@@ -63,7 +62,7 @@ CompanyContact.init({
     sequelize: sequelize_2.default,
     tableName: 'company_contacts'
 });
-//TODO Company User
-compayuser_model_1.default.belongsTo(company_model_1.default, {
-    foreignKey: 'company_id'
-});
+// //TODO Company User
+// CompanyUser.belongsTo(Company, {
+//     foreignKey: 'company_id'
+// });

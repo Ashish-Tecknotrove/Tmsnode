@@ -11,6 +11,7 @@ const curriculumroutes_1 = __importDefault(require("./src/routes/root/curriculum
 const companyroutes_1 = __importDefault(require("./src/routes/root/companyroutes"));
 const subscriptionroutes_1 = __importDefault(require("./src/routes/root/subscriptionroutes"));
 const elearningcontentroutes_1 = __importDefault(require("./src/routes/elearning/elearningcontentroutes"));
+const language_routes_1 = __importDefault(require("./src/routes/language/language.routes"));
 const morgan_1 = __importDefault(require("morgan"));
 process.env.TZ = "Asia/Calcutta";
 const nDate = new Date().toLocaleString('en-US', {
@@ -28,7 +29,9 @@ app.use(body_parser_1.default.urlencoded()); // For Accepting the x-www-form-Dat
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(cors());
 //app.use(formdata.array());
-app.use('/resources', express_1.default.static('resources'));
+// app.use(express.static('public'));
+// app.use('/resources',express.static('resources'));
+app.use(express_1.default.static(__dirname));
 app.listen(process.env.PORT || 8000, () => {
     console.log("Node Server Started Running");
 });
@@ -37,10 +40,9 @@ app.use("/TMS", curriculumroutes_1.default);
 app.use("/TMS", companyroutes_1.default);
 app.use("/TMS/subscription", subscriptionroutes_1.default);
 app.use("/TMS/elearning", elearningcontentroutes_1.default);
-// app.use("/api/v1/",LanguageRoutes)
+app.use("/TMS", language_routes_1.default);
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, morgan_1.default)('dev'));
-app.use(express_1.default.static(__dirname));
 app.get('/', (req, res) => {
     res.status(200).json({ message: "Welcome To TMS" });
 });

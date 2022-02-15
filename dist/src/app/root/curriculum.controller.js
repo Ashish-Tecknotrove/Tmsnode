@@ -48,7 +48,7 @@ class CurriculumController {
                             .catch(function (err) {
                             res
                                 .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                                .json({ response_code: 0, message: err });
+                                .json({ response_code: 0, message: err.message });
                         });
                     }
                     else {
@@ -56,16 +56,16 @@ class CurriculumController {
                             .status(response_codes_1.default.CREATED)
                             .json({ response_code: 0, message: response_strings_1.default.EXISTS });
                     }
-                })).catch((err) => __awaiter(this, void 0, void 0, function* () {
+                })).catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err });
-                }));
+                        .json({ response_code: 0, message: err.message });
+                });
             }
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error });
+                    .json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -89,7 +89,7 @@ class CurriculumController {
                             .catch(function (err) {
                             res
                                 .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                                .json({ response_code: 0, message: err });
+                                .json({ response_code: 0, message: err.message });
                         });
                     }
                     else {
@@ -97,16 +97,16 @@ class CurriculumController {
                             .status(response_codes_1.default.CREATED)
                             .json({ response_code: 0, message: response_strings_1.default.EXISTS });
                     }
-                })).catch(err => {
+                })).catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err });
+                        .json({ response_code: 0, message: err.message });
                 });
             }
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error });
+                    .json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -130,7 +130,7 @@ class CurriculumController {
             catch (e) {
                 return res.status(response_codes_1.default.SUCCESS).json({
                     response_code: 1,
-                    message: e,
+                    message: e.message,
                     data: "",
                 });
             }
@@ -155,13 +155,13 @@ class CurriculumController {
                     console.log("err1->", err);
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err });
+                        .json({ response_code: 0, message: err.message });
                 });
             }
             catch (err) {
                 res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 1, message: err });
+                    .json({ response_code: 1, message: err.message });
             }
         });
     }
@@ -200,7 +200,7 @@ class CurriculumController {
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: e,
+                    message: e.message,
                     data: "",
                 });
             }
@@ -247,7 +247,7 @@ class CurriculumController {
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                     response_code: 1,
-                    message: e,
+                    message: e.message,
                     data: "",
                 });
             }
@@ -266,7 +266,7 @@ class CurriculumController {
                 }).catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err });
+                        .json({ response_code: 0, message: err.message });
                 });
                 const updateData = {
                     IsDeleted: 1,
@@ -286,7 +286,7 @@ class CurriculumController {
                         .catch(function (err) {
                         res
                             .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                            .json({ response_code: 0, message: err });
+                            .json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -298,7 +298,7 @@ class CurriculumController {
             catch (e) {
                 res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 1, message: e });
+                    .json({ response_code: 1, message: e.message });
             }
         });
     }
@@ -315,7 +315,7 @@ class CurriculumController {
                 }).catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err });
+                        .json({ response_code: 0, message: err.message });
                 });
                 const updateData = {
                     prefix: req.body.prefix,
@@ -335,7 +335,7 @@ class CurriculumController {
                         .catch(function (err) {
                         res
                             .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                            .json({ response_code: 0, message: err });
+                            .json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -347,7 +347,7 @@ class CurriculumController {
             catch (e) {
                 res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 1, message: e });
+                    .json({ response_code: 1, message: e.message });
             }
         });
     }
@@ -407,7 +407,7 @@ class CurriculumController {
                                 console.log(err);
                                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                                     response_code: 0,
-                                    message: err,
+                                    message: err.message,
                                 });
                             });
                         }
@@ -415,7 +415,7 @@ class CurriculumController {
                         .catch(function (err) {
                         res
                             .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                            .json({ response_code: 0, message: err });
+                            .json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -427,7 +427,7 @@ class CurriculumController {
             catch (err) {
                 res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: err });
+                    .json({ response_code: 0, message: err.message });
             }
         });
     }

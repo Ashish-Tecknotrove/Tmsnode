@@ -48,7 +48,7 @@ class CompanyController {
                         .catch(function (err) {
                         res
                             .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                            .json({ response_code: 0, message: err });
+                            .json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -63,7 +63,7 @@ class CompanyController {
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error });
+                    .json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -87,13 +87,13 @@ class CompanyController {
                     .catch((error) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: error });
+                        .json({ response_code: 0, message: error.message });
                 });
             }
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error });
+                    .json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -109,7 +109,7 @@ class CompanyController {
                 }).catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err });
+                        .json({ response_code: 0, message: err.message });
                 });
                 if (check_company_is_valid != null) {
                     req.body.updatedAt = response_strings_1.default.currentTime;
@@ -122,7 +122,7 @@ class CompanyController {
                         .catch(function (err) {
                         res
                             .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                            .json({ response_code: 0, message: err });
+                            .json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -137,7 +137,7 @@ class CompanyController {
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error });
+                    .json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -171,7 +171,7 @@ class CompanyController {
                         .catch(function (err) {
                         res
                             .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                            .json({ response_code: 0, message: err });
+                            .json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -186,7 +186,7 @@ class CompanyController {
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error });
+                    .json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -230,13 +230,13 @@ class CompanyController {
                     console.log(err);
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err });
+                        .json({ response_code: 0, message: err.message });
                 });
             }
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error });
+                    .json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -310,7 +310,7 @@ class CompanyController {
             catch (err) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: err });
+                    .json({ response_code: 0, message: err.message });
             }
         });
     }
@@ -332,13 +332,13 @@ class CompanyController {
                     .catch(function (err) {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err });
+                        .json({ response_code: 0, message: err.message });
                 });
             }
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error });
+                    .json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -384,17 +384,17 @@ class CompanyController {
                                 login_table_id: data["id"],
                             };
                             compayuser_model_1.default.update(Object.assign({}, updateId), { where: { id: userdata["id"] } }).catch((err) => {
-                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ message: err });
+                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ message: err.message });
                             });
                             res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.ADD });
                             response_codes_1.default;
                         })
                             .catch(function (err) {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                         });
                     })
                         .catch(function (err) {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -402,7 +402,7 @@ class CompanyController {
                 }
             }
             catch (error) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -418,7 +418,7 @@ class CompanyController {
                 }).catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err });
+                        .json({ response_code: 0, message: err.message });
                 });
                 if (check_company_user_is_valid != null) {
                     req.body.updatedAt = response_strings_1.default.currentTime;
@@ -438,16 +438,16 @@ class CompanyController {
                             res
                                 .status(response_codes_1.default.SUCCESS)
                                 .json({ response_code: 1, message: response_strings_1.default.UPDATED });
-                        }).catch(err => {
+                        }).catch((err) => {
                             res
                                 .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                                .json({ response_code: 1, message: response_strings_1.default.DATABASE_ERROR });
+                                .json({ response_code: 1, message: err.message });
                         });
                     })
                         .catch(function (err) {
                         res
                             .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                            .json({ response_code: 0, message: err });
+                            .json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -462,7 +462,7 @@ class CompanyController {
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error });
+                    .json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -482,7 +482,7 @@ class CompanyController {
                         IsDeleted: 0,
                     },
                 }).catch((err) => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                 });
                 if (company_user_data) {
                     res
@@ -498,7 +498,7 @@ class CompanyController {
                 }
             }
             catch (error) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
             }
         });
     }
@@ -531,11 +531,11 @@ class CompanyController {
                                 message: response_strings_1.default.DELETE,
                             });
                         }).catch(function (err) {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                         });
                     })
                         .catch(function (err) {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
@@ -543,7 +543,7 @@ class CompanyController {
                 }
             }
             catch (error) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
             }
         });
     }

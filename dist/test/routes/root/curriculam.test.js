@@ -635,58 +635,58 @@ describe('Get E-learning Test Link Module', () => {
         });
     });
 });
-// describe('Add E-learning Test Link Module', () => {
-//    it('Testing Auth', (done) => {
-//       chai.request(app)
-//          .post('/TMS/elearning/addElearningTestLink')
-//          .auth(token1, { type: 'bearer' })
-//          .set('Content-Type', 'multipart/form-data')
-//          .field({
-//             test_id: 16
-//          })
-//          .attach('testfile','./resources/test/20220208093848_monitor.zip')
-//          .end((err, res) => {
-//             expect(res).to.have.status(responseCodes.UNAUTHORIZED)
-//             done();
-//          })
-//    });
-//    it('Testing Missing Params', (done) => {
-//       chai.request(app)
-//          .post('/TMS/elearning/addElearningTestLink')
-//          .auth(token, { type: 'bearer' })
-//          .field({
-//             test_id: 16
-//          })
-//          //  .attach('testfile','./resources/test/20220208093848_monitor.zip')
-//          .end((err, res) => {
-//             expect(res).to.have.status(responseCodes.BAD_REQUEST)
-//             done();
-//          })
-//    });
-//    it('Testing Wrong Params', (done) => {
-//       chai.request(app)
-//          .post('/TMS/elearning/addElearningTestLink')
-//          .auth(token, { type: 'bearer' })
-//          .field({
-//             testid: 16
-//          })
-//           .attach('testfile1','./resources/test/20220208093848_monitor.zip')
-//          .end((err, res) => {
-//             expect(res).to.have.status(responseCodes.BAD_REQUEST)
-//             done();
-//          })
-//    });
-//    it('Testing Empty File', (done) => {
-//       chai.request(app)
-//          .post('/TMS/elearning/addElearningTestLink')
-//          .auth(token, { type: 'bearer' })
-//          .field({
-//             test_id: 16
-//          })
-//          .attach('testfile','')
-//          .end((err, res) => {
-//             expect(res).to.have.status(responseCodes.BAD_REQUEST)
-//             done();
-//          })
-//    }); 
-// });
+describe('Add E-learning Test Link Module', () => {
+    it('Testing Auth', (done) => {
+        chai_1.default.request(app_1.default)
+            .post('/TMS/elearning/addElearningTestLink')
+            .auth(token1, { type: 'bearer' })
+            .set('Content-Type', 'multipart/form-data')
+            .field({
+            test_id: 16
+        })
+            .attach('testfile', './resources/test/20220208093848_monitor.zip')
+            .end((err, res) => {
+            expect(res).to.have.status(response_codes_1.default.UNAUTHORIZED);
+            done();
+        });
+    });
+    it('Testing Missing Params', (done) => {
+        chai_1.default.request(app_1.default)
+            .post('/TMS/elearning/addElearningTestLink')
+            .auth(token, { type: 'bearer' })
+            .field({
+            test_id: 16
+        })
+            //  .attach('testfile','./resources/test/20220208093848_monitor.zip')
+            .end((err, res) => {
+            expect(res).to.have.status(response_codes_1.default.BAD_REQUEST);
+            done();
+        });
+    });
+    it('Testing Wrong Params', (done) => {
+        chai_1.default.request(app_1.default)
+            .post('/TMS/elearning/addElearningTestLink')
+            .auth(token, { type: 'bearer' })
+            .field({
+            testid: 16
+        })
+            .attach('testfile1', './resources/test/20220208093848_monitor.zip')
+            .end((err, res) => {
+            expect(res).to.have.status(response_codes_1.default.BAD_REQUEST);
+            done();
+        });
+    });
+    it('Testing Empty File', (done) => {
+        chai_1.default.request(app_1.default)
+            .post('/TMS/elearning/addElearningTestLink')
+            .auth(token, { type: 'bearer' })
+            .field({
+            test_id: 16
+        })
+            .attach('testfile', '')
+            .end((err, res) => {
+            expect(res).to.have.status(response_codes_1.default.BAD_REQUEST);
+            done();
+        });
+    });
+});

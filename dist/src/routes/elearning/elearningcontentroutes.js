@@ -37,6 +37,8 @@ const elearningContent_controller_1 = __importDefault(require("../../app/elearni
 const auth_1 = __importDefault(require("../../middleware/auth"));
 const response_codes_1 = __importDefault(require("../../strings/response-codes"));
 const elearning_validator_1 = __importDefault(require("../../validator/root/elearning.validator"));
+// import fs from "fs";
+// import  unzip  from 'unzip';
 const Router = express.Router();
 var multer = require('multer');
 var formData = multer();
@@ -45,28 +47,22 @@ const storage = multer.diskStorage({
         cb(null, './resources/test');
     },
     filename: function (req, file, cb) {
-        cb(null, (0, moment_1.default)().format('YYYYMMDDHHmmss') + '_' + file.originalname.toLowerCase().split(' ').join('-'));
+        cb(null, (0, moment_1.default)().format('YYYYMMDDHHmmss') + '_' + file.originalname.toLowerCase().split(' ').join('_'));
     }
 });
 const fileFilter = (req, file, cb) => {
-    // if (file.mimetype === "zip") {
-    //     cb(null, true);
-    // } else {
-    //     cb(new Error("Image uploaded is not of type jpg/jpeg or png"), false);
-    // }
+    console.log("file->", file);
+    if (file.mimetype == "application/zip") {
+        cb(null, true);
+    }
+    else {
+        //   cb(null, false);
+        cb(new Error('Only .zip format allowed!'));
+    }
 };
 const upload = multer({
     storage: storage,
-    fileFilter: (req, file, cb) => {
-        console.log("file->", file);
-        if (file.mimetype == "application/zip") {
-            cb(null, true);
-        }
-        else {
-            //   cb(null, false);
-            cb(new Error('Only .zip format allowed!'));
-        }
-    }
+    fileFilter: fileFilter
 }).single('testfile');
 Router.post('/addElearningTestLink', 
 // formData.any(),
@@ -76,6 +72,7 @@ function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         upload(req, res, function (err) {
             if (err instanceof multer.MulterError) {
+                console.log("Multer error->", err);
                 // A Multer error occurred when uploading.
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
             }
@@ -85,16 +82,19 @@ function (req, res, next) {
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
             }
             else {
+                // var dirPath ="../../../resources/test/";
+                // var destPath ="./resources/test/";
+                // fs.createReadStream(dirPath).pipe(unzip.Extract({ path: destPath }));
                 console.log("Everything went fine");
                 next();
             }
         });
     });
-}, elearning_validator_1.default.checkElearning(), auth_1.default.handleValidatorError, elearningContent_controller_1.default.elearningTestLink);
-Router.post('/updateElearningTestLink', auth_1.default.verifyAuthenticateToken, 
-// ElearningContent.checkUploadElearningLinkFile
-// // upload.single('testfile'),
-function (req, res, next) {
+}, 
+// elearningValidator.checkElearning(),
+// auth.handleValidatorError,
+elearningContent_controller_1.default.elearningTestLink);
+Router.post('/updateElearningTestLink', auth_1.default.verifyAuthenticateToken, function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         upload(req, res, function (err) {
             if (err instanceof multer.MulterError) {

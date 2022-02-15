@@ -134,7 +134,7 @@ class LoginController {
                 }
             }
             catch (e) {
-                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ message: e });
+                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ message: e.message });
             }
         });
     }

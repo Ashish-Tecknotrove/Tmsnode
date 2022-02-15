@@ -22,18 +22,39 @@ Applabels.init({
     description: {
         type: sequelize_1.DataTypes.STRING
     },
-    createdBy: {
-        type: sequelize_1.DataTypes.STRING
+    created_by: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
     },
-    updatedBy: {
-        type: sequelize_1.DataTypes.STRING
+    updated_by: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
     },
-    active: {
+    deleted_by: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
+    createdAt: {
+        type: "TIMESTAMP",
+    },
+    updatedAt: {
+        type: "TIMESTAMP",
+    },
+    deletedAt: {
+        type: "TIMESTAMP"
+    },
+    IsDeleted: {
         type: sequelize_1.DataTypes.TINYINT,
-        defaultValue: 1
+        defaultValue: 0
     }
 }, {
     timestamps: true,
     sequelize: sequelize_2.default,
     tableName: "app_labels"
 });
+// Applabels.hasMany(ApplabelValue, {
+//     foreignKey: 'f_labelid'
+// })
+// ApplabelValue.belongsTo(Applabels, {
+//     foreignKey: 'f_labelid',
+//     targetKey:"id"
+// });

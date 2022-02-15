@@ -27,7 +27,6 @@ class ElearningContent {
                         test_id: req.body.test_id,
                         IsDeleted: 0
                     },
-                    logging: console.log
                 });
                 // console.log("checkExists->",checkExists);
                 if (checkExists == null) {
@@ -35,6 +34,7 @@ class ElearningContent {
                         test_id: req.body.test_id,
                         zipname: (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename
                     };
+                    console.log("obj->", req.file);
                     yield eLearningmaster_model_1.default.create(obj).then(function (data) {
                         res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.ADD, data: data });
                     }).catch(err => {
