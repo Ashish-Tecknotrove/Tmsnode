@@ -81,7 +81,7 @@ class CompanyController {
                         .json({
                         response_code: 1,
                         message: response_strings_1.default.GET,
-                        count: company_count,
+                        count: success,
                     });
                 })
                     .catch((error) => {
