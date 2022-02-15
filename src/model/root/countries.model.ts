@@ -1,50 +1,48 @@
-import { Model, DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
-import sequelizeConnection from '../../database/sequelize';
-import ApplabelValue from "./app.label.value";
 
-
-interface AppLabelsAttributes {
-    id: Number,
-    name: String,
-    description: String,
-    created_by: number
-    updated_by: number
-    deleted_by: string
-    deletedAt: string
-    createdAt: string
-    updatedAt: string
-    IsDeleted: number
+interface CountriesAttributes {
+    id: number;
+    title: string;
+    slug: string;
+    created_by: number;
+    updated_by: number;
+    deleted_by: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
+    IsDeleted: number;
 }
 
 
 
-export default class Applabels extends Model<AppLabelsAttributes>{
-    id!: Number;
-    name!: String;
-    description!: String;
+export default class Countries extends Model {
+    id!: number;
+    title!: string;
+    slug!: string;
     created_by!: number;
     updated_by!: number;
     deleted_by!: string;
-    deletedAt!: string;
     createdAt!: string;
     updatedAt!: string;
+    deletedAt!: string;
     IsDeleted!: number;
+
 }
 
 
-Applabels.init({
+Countries.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    name: {
-        type: DataTypes.STRING,
+    title: {
+        type: DataTypes.STRING(100),
         allowNull: false
     },
-    description: {
+    slug: {
         type: DataTypes.STRING
     },
     created_by: {
@@ -72,16 +70,7 @@ Applabels.init({
         defaultValue: 0
     }
 }, {
-    timestamps: true,
     sequelize: sequelizeconnection,
-    tableName: "app_labels"
+    tableName: 'countries'
 });
 
-// Applabels.hasMany(ApplabelValue, {
-//     foreignKey: 'f_labelid'
-// })
-
-    // ApplabelValue.belongsTo(Applabels, {
-    //     foreignKey: 'f_labelid',
-    //     targetKey:"id"
-    // });

@@ -12,8 +12,8 @@ class AdditionalresourcesController {
 
             res.status(responseCodes.SUCCESS).json({ response_code: 1, data: country });
         }
-        catch (err) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err });
+        catch (err:any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
         }
 
 
@@ -28,8 +28,8 @@ class AdditionalresourcesController {
 
             res.status(200).json({ response_code: 1, data: state });
         }
-        catch (err) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err });
+        catch (err:any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
         }
 
     }
@@ -43,8 +43,8 @@ class AdditionalresourcesController {
 
             res.status(200).json({ response_code: 1, data: cities });
         }
-        catch (err) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err });
+        catch (err:any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
         }
 
     }
@@ -56,8 +56,8 @@ class AdditionalresourcesController {
 
             res.status(200).json({ response_code: 1, data: languages });
         }
-        catch (err) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err });
+        catch (err:any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
         }
 
     }

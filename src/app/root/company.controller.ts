@@ -43,10 +43,10 @@ class CompanyController {
                 data: response,
               });
           })
-          .catch(function (err) {
+          .catch(function (err:any) {
             res
               .status(responseCodes.INTERNAL_SERVER_ERROR)
-              .json({ response_code: 0, message: err });
+              .json({ response_code: 0, message: err.message });
           });
       } else {
         res
@@ -56,10 +56,10 @@ class CompanyController {
             message: "company with same name already exits",
           });
       }
-    } catch (error) {
+    } catch (error:any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error });
+        .json({ response_code: 0, message: error.message });
     }
   }
 
@@ -79,15 +79,15 @@ class CompanyController {
               count: company_count,
             });
         })
-        .catch((error) => {
+        .catch((error:any) => {
           res
             .status(responseCodes.INTERNAL_SERVER_ERROR)
-            .json({ response_code: 0, message: error });
+            .json({ response_code: 0, message: error.message });
         });
-    } catch (error) {
+    } catch (error:any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error });
+        .json({ response_code: 0, message: error.message });
     }
   }
 
@@ -100,10 +100,10 @@ class CompanyController {
           id: company_id,
           IsDeleted: 0,
         }
-      }).catch((err) => {
+      }).catch((err:any) => {
         res
           .status(responseCodes.INTERNAL_SERVER_ERROR)
-          .json({ response_code: 0, message: err });
+          .json({ response_code: 0, message: err.message });
       });
 
       if (check_company_is_valid != null) {
@@ -116,10 +116,10 @@ class CompanyController {
               .status(responseCodes.SUCCESS)
               .json({ response_code: 1, message: responseStrings.UPDATED });
           })
-          .catch(function (err) {
+          .catch(function (err:any) {
             res
               .status(responseCodes.INTERNAL_SERVER_ERROR)
-              .json({ response_code: 0, message: err });
+              .json({ response_code: 0, message: err.message });
           });
       } else {
         res
@@ -130,10 +130,10 @@ class CompanyController {
               "Invalid Company please check company id or company is deleted",
           });
       }
-    } catch (error) {
+    } catch (error:any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error });
+        .json({ response_code: 0, message: error.message });
     }
   }
 
@@ -147,7 +147,7 @@ class CompanyController {
           IsDeleted: 0,
         },
         logging: console.log,
-      }).catch((err) => {
+      }).catch((err:any) => {
         res
           .status(responseCodes.INTERNAL_SERVER_ERROR)
           .json({ response_code: 0, message: err });
@@ -166,10 +166,10 @@ class CompanyController {
               .status(responseCodes.SUCCESS)
               .json({ response_code: 1, message: responseStrings.DELETE });
           })
-          .catch(function (err) {
+          .catch(function (err:any) {
             res
               .status(responseCodes.INTERNAL_SERVER_ERROR)
-              .json({ response_code: 0, message: err });
+              .json({ response_code: 0, message: err.message });
           });
       } else {
         res
@@ -180,10 +180,10 @@ class CompanyController {
               "Invalid Company please check company id or company is deleted",
           });
       }
-    } catch (error) {
+    } catch (error:any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error });
+        .json({ response_code: 0, message: error.message });
     }
   }
 
@@ -225,16 +225,16 @@ class CompanyController {
               .json({ response_code: 0, message: "no data found" });
           }
         })
-        .catch((err) => {
+        .catch((err:any) => {
           console.log(err);
           res
             .status(responseCodes.INTERNAL_SERVER_ERROR)
-            .json({ response_code: 0, message: err });
+            .json({ response_code: 0, message: err.message });
         });
-    } catch (error) {
+    } catch (error:any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error });
+        .json({ response_code: 0, message: error.message });
     }
   }
 
@@ -305,10 +305,10 @@ class CompanyController {
             .json({ response_code: 0, message: responseStrings.NOT });
         }
       })
-    } catch (err) {
+    } catch (err:any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: err });
+        .json({ response_code: 0, message: err.message });
     }
   }
 
@@ -330,15 +330,15 @@ class CompanyController {
               data: data,
             });
         })
-        .catch(function (err) {
+        .catch(function (err:any) {
           res
             .status(responseCodes.INTERNAL_SERVER_ERROR)
-            .json({ response_code: 0, message: err });
+            .json({ response_code: 0, message: err.message });
         });
-    } catch (error) {
+    } catch (error:any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error });
+        .json({ response_code: 0, message: error.message });
     }
   }
 
@@ -389,19 +389,19 @@ class CompanyController {
               CompanyUser.update(
                 { ...updateId },
                 { where: { id: userdata["id"] } }
-              ).catch((err) => {
-                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ message: err });
+              ).catch((err:any) => {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ message: err.message });
               });
 
               res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.ADD });
               responseCodes;
             })
-            .catch(function (err) {
-              res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+            .catch(function (err:any) {
+              res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             });
         })
-        .catch(function (err) {
-          res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+        .catch(function (err:any) {
+          res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
         });
       }
       else
@@ -410,8 +410,8 @@ class CompanyController {
       }
 
      
-    } catch (error) {
-      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+    } catch (error:any) {
+      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
     }
   }
 
@@ -425,10 +425,10 @@ class CompanyController {
           id: user_id,
           IsDeleted: 0,
         }
-      }).catch((err) => {
+      }).catch((err:any) => {
         res
           .status(responseCodes.INTERNAL_SERVER_ERROR)
-          .json({ response_code: 0, message: err });
+          .json({ response_code: 0, message: err.message });
       });
 
       if (check_company_user_is_valid != null) {
@@ -453,17 +453,17 @@ class CompanyController {
               res
               .status(responseCodes.SUCCESS)
               .json({ response_code: 1, message: responseStrings.UPDATED });
-            }).catch(err=>{
+            }).catch((err:any)=>{
               res
               .status(responseCodes.INTERNAL_SERVER_ERROR)
-              .json({ response_code: 1, message: responseStrings.DATABASE_ERROR });
+              .json({ response_code: 1, message: err.message });
             });
            
           })
-          .catch(function (err) {
+          .catch(function (err:any) {
             res
               .status(responseCodes.INTERNAL_SERVER_ERROR)
-              .json({ response_code: 0, message: err });
+              .json({ response_code: 0, message: err.message });
           });
       } else {
         res
@@ -474,10 +474,10 @@ class CompanyController {
               "Invalid Company User  please check user id or user is deleted",
           });
       }
-    } catch (error) {
+    } catch (error:any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error });
+        .json({ response_code: 0, message: error.message });
     }
   }
 
@@ -497,8 +497,8 @@ class CompanyController {
           canlogin: 1,
           IsDeleted: 0,
         },
-      }).catch((err) => {
-        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+      }).catch((err:any) => {
+        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
       });
 
       if (company_user_data) {
@@ -513,8 +513,8 @@ class CompanyController {
         res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "no data found" });
       }
     }
-    catch (error) {
-      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+    catch (error:any) {
+      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
     }
 
   }
@@ -553,14 +553,14 @@ class CompanyController {
               response_code: 1,
               message: responseStrings.DELETE,
             });
-          }).catch(function(err){
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+          }).catch(function(err:any){
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
           });
          
          
         })
-        .catch(function (err) {
-          res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+        .catch(function (err:any) {
+          res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
         });
       }
       else
@@ -573,8 +573,8 @@ class CompanyController {
 
       
     }
-    catch (error) {
-      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error });
+    catch (error:any) {
+      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
     }
 
   }

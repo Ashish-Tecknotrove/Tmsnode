@@ -33,9 +33,9 @@ class AppLabelValueController
             
             return res.status(200).json({"response_code":1,"message":"Data Fetched Successfully...",data:joinData});
         }
-        catch(e)
+        catch(e:any)
         {
-            return res.status(500).json({"response_code":0,"message":e,data:[]});
+            return res.status(500).json({"response_code":0,"message":e.message,data:[]});
         }
     }
 

@@ -2,7 +2,6 @@ import express, { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
 import moment from "moment";
 import sequelize from "sequelize";
-import { where } from "sequelize/types";
 import ElearningMaster from "../../model/elearning/eLearningmaster.model";
 import CurriculumParentCategoryTest from "../../model/root/curriculum_parent_category_test.model";
 import responseCodes from "../../strings/response-codes";
@@ -20,7 +19,6 @@ class ElearningContent {
                     test_id: req.body.test_id,
                     IsDeleted: 0
                 },
-                logging: console.log
             });
 
             // console.log("checkExists->",checkExists);
@@ -30,6 +28,7 @@ class ElearningContent {
                     test_id: req.body.test_id,
                     zipname: req.file?.filename
                 };
+                console.log("obj->",req.file);
 
                 await ElearningMaster.create(obj).then(function (data) {
                     res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.ADD, data: data });

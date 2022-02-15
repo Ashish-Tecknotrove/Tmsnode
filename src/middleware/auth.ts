@@ -14,11 +14,11 @@ class Middleware{
 
     handleValidatorError(req:Request , res:Response,next:NextFunction)
     {
-        const error = validationResult(req);
-		if (!error.isEmpty()) {
-			return res.status(ResponseCodes.BAD_REQUEST).json(error.array()[0]);
-		}
-		next();
+            const error = validationResult(req);
+            if (!error.isEmpty()) {
+                return res.status(ResponseCodes.BAD_REQUEST).json(error.array()[0]);
+            }
+            next();
     }
 
 

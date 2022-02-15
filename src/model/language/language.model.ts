@@ -60,3 +60,4 @@ ApplabelValue.belongsTo(Languages,{
     foreignKey:"f_languageid",
     targetKey:"id"
 });
+

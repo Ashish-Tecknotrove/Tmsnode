@@ -23,16 +23,16 @@ class SubscriptionController {
                 }
             }).then((result) => {
                 res.status(responseCodes.SUCCESS).json({ response_code: 1, count: result });
-            }).catch(err => {
+            }).catch((err:any) => {
 
-                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             });
 
 
-        } catch (e) {
+        } catch (e:any) {
             return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 1,
-                message: e,
+                message: e.message,
                 data: "",
             });
         }
@@ -49,9 +49,9 @@ class SubscriptionController {
                     status: "1"
                 },
                 // logging: console.log
-            }).catch(err => {
+            }).catch((err:any) => {
 
-                res.status(responseCodes.SUCCESS).json({ response_code: 0, message: responseStrings.EXISTS });
+                res.status(responseCodes.SUCCESS).json({ response_code: 0, message: err.message });
                 
             });
 
@@ -83,17 +83,17 @@ class SubscriptionController {
                 await Subscription.create({ ...subscriptionData }).then(function (data) {
                     res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.ADD });
 
-                }).catch(function (err) {
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                }).catch(function (err:any) {
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                 });
             }
             else {
                 res.status(responseCodes.CREATED).json({ response_code: 0, message: responseStrings.EXISTS });
             }
-        } catch (e) {
+        } catch (e:any) {
             return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 1,
-                message: e,
+                message: e.message,
                 data: "",
             });
 
@@ -113,8 +113,8 @@ class SubscriptionController {
                     IsDeleted: 0
                 },
                 // logging: console.log
-            }).catch(err => {
-                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+            }).catch((err:any) => {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             });
 
             if (check_subscription_is_valid != null) {
@@ -141,17 +141,17 @@ class SubscriptionController {
                     then(function (response) {
                         res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.UPDATED });
 
-                    }).catch(err => {
-                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    }).catch((err:any) => {
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                     });
             }
             else {
                 res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Invalid Subscription please check subscription id or subscription is deleted" });
             }
-        } catch (e) {
+        } catch (e:any) {
             return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 1,
-                message: e,
+                message: e.message,
                 data: "",
             });
 
@@ -202,14 +202,14 @@ class SubscriptionController {
                     res.status(responseCodes.SUCCESS).json({ response_code: 0, message: responseStrings.NOT, data: [] });
 
                 }
-            }).catch(err => {
+            }).catch((err:any) => {
                 console.log(err);
-                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             });
 
         }
-        catch (err) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+        catch (err:any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
         }
 
     }
@@ -225,8 +225,8 @@ class SubscriptionController {
                     IsDeleted: 0
                 },
                 // logging: console.log
-            }).catch(err => {
-                res.status(responseCodes.SUCCESS).json({ response_code: 0, message: responseStrings.NOT });
+            }).catch((err:any) => {
+                res.status(responseCodes.SUCCESS).json({ response_code: 0, message: err.message });
             });
 
             if (check_subscription_is_valid != null) {
@@ -240,15 +240,15 @@ class SubscriptionController {
                     then(function (response) {
                         res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.DELETE });
 
-                    }).catch(err => {
-                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    }).catch((err:any) => {
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                     });
             }
             else {
                 res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Invalid Subscription please check subscription or subscription already deleted" });
             }
-        } catch (err) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+        } catch (err:any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
         }
 
 

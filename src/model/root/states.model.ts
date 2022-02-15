@@ -1,51 +1,60 @@
-import { Model, DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
-import sequelizeConnection from '../../database/sequelize';
-import ApplabelValue from "./app.label.value";
 
-
-interface AppLabelsAttributes {
-    id: Number,
-    name: String,
-    description: String,
-    created_by: number
-    updated_by: number
-    deleted_by: string
-    deletedAt: string
-    createdAt: string
-    updatedAt: string
-    IsDeleted: number
+interface StatesAttributes {
+    id: number;
+    title: string;
+    slug: string;
+    state_code: string;
+    country_id: number;
+    created_by: number;
+    updated_by: number;
+    deleted_by: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
+    IsDeleted: number;
 }
 
 
 
-export default class Applabels extends Model<AppLabelsAttributes>{
-    id!: Number;
-    name!: String;
-    description!: String;
+export default class States extends Model {
+    id!: number;
+    title!: string;
+    slug!: string;
+    state_code!: string;
+    country_id!: number;
     created_by!: number;
     updated_by!: number;
     deleted_by!: string;
-    deletedAt!: string;
     createdAt!: string;
     updatedAt!: string;
+    deletedAt!: string;
     IsDeleted!: number;
+
 }
 
 
-Applabels.init({
+States.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    name: {
-        type: DataTypes.STRING,
+    title: {
+        type: DataTypes.STRING(100),
         allowNull: false
     },
-    description: {
+    slug: {
         type: DataTypes.STRING
+    },
+    state_code: {
+        type: DataTypes.STRING(100),
+        allowNull: false
+    },
+    country_id: {
+        type: DataTypes.INTEGER
     },
     created_by: {
         type: DataTypes.INTEGER,
@@ -72,16 +81,7 @@ Applabels.init({
         defaultValue: 0
     }
 }, {
-    timestamps: true,
     sequelize: sequelizeconnection,
-    tableName: "app_labels"
+    tableName: 'states'
 });
 
-// Applabels.hasMany(ApplabelValue, {
-//     foreignKey: 'f_labelid'
-// })
-
-    // ApplabelValue.belongsTo(Applabels, {
-    //     foreignKey: 'f_labelid',
-    //     targetKey:"id"
-    // });
