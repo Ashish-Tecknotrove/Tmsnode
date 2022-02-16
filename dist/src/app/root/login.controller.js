@@ -49,7 +49,7 @@ class LoginController {
                 else {
                     var user_type = userdata['user_type'];
                     //TODO Authentication Token----------
-                    var payload = { username: userdata['name'] };
+                    var payload = { username: userdata['email'] };
                     let authentication_token = yield auth_1.default.generateAuth(payload);
                     //TODO Authentication  Token----------
                     if (userdata['is_admin'] == 1) {
