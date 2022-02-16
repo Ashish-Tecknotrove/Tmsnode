@@ -26,10 +26,6 @@ Users.init({
             key: 'id'
         }
     },
-    name: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
-    },
     email: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
@@ -40,9 +36,6 @@ Users.init({
     },
     mobile_no: {
         type: sequelize_1.DataTypes.STRING
-    },
-    department: {
-        type: sequelize_1.DataTypes.INTEGER
     },
     email_verified_at: {
         type: sequelize_1.DataTypes.STRING
@@ -66,9 +59,6 @@ Users.init({
             key: 'id'
         }
     },
-    product_purchased: {
-        type: sequelize_1.DataTypes.STRING
-    },
     activation_date: {
         type: sequelize_1.DataTypes.DATE
     },
@@ -87,17 +77,11 @@ Users.init({
         type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 1
     },
-    is_user_active: {
-        type: sequelize_1.DataTypes.TINYINT
+    createdAt: {
+        type: "TIMESTAMP",
     },
-    disable_user: {
-        type: sequelize_1.DataTypes.TINYINT
-    },
-    trainee_license_limit: {
-        type: sequelize_1.DataTypes.STRING
-    },
-    sequence_test: {
-        type: sequelize_1.DataTypes.STRING
+    updatedAt: {
+        type: "TIMESTAMP",
     },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -109,12 +93,6 @@ Users.init({
     },
     deleted_by: {
         type: sequelize_1.DataTypes.INTEGER
-    },
-    createdAt: {
-        type: "TIMESTAMP",
-    },
-    updatedAt: {
-        type: "TIMESTAMP",
     },
     deletedAt: {
         type: "TIMESTAMP"
