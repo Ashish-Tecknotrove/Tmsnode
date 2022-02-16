@@ -16,7 +16,8 @@ class Middleware{
     {
             const error = validationResult(req);
             if (!error.isEmpty()) {
-                return res.status(ResponseCodes.BAD_REQUEST).json(error.array()[0]);
+                 const errorTxt=error.array()[0];
+                return res.status(ResponseCodes.BAD_REQUEST).json({response_code:0,message:errorTxt['param']+" "+errorTxt['msg']});
             }
             next();
     }
