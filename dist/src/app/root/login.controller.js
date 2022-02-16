@@ -138,7 +138,7 @@ class LoginController {
                                     return res.status(response_codes_1.default.SUCCESS).json({
                                         response_code: 1,
                                         token: authentication_token,
-                                        user_type: "Trainer",
+                                        user_type: 2,
                                         message: 'user login successfully...',
                                         data: data
                                     });
