@@ -169,6 +169,11 @@ Company.hasMany(CompanyUser,{
     foreignKey:'company_id'
 });
 
+CompanyUser.belongsTo(Company,{
+  foreignKey:"company_id",
+  targetKey:"id"
+});
+
 Company.hasMany(Subscription,{
     // as:"subscriptions",
     foreignKey:'company_id'

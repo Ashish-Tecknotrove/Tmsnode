@@ -15,8 +15,9 @@ class Middleware{
     handleValidatorError(req:Request , res:Response,next:NextFunction)
     {
             const error = validationResult(req);
-            if (!error.isEmpty()) {
-                 const errorTxt=error.array()[0];
+            if (!error.isEmpty()) 
+            {
+                const errorTxt=error.array()[0];
                 return res.status(ResponseCodes.BAD_REQUEST).json({response_code:0,message:errorTxt['param']+" "+errorTxt['msg']});
             }
             next();
@@ -45,7 +46,7 @@ class Middleware{
                 
                 if (err)
                 {
-                    return res.status(ResponseCodes.UNAUTHORIZED).json({error:ResponseStrings.tokenExpired});
+                    return res.status(ResponseCodes.UNAUTHORIZED).json({response_code:0,message:ResponseStrings.tokenExpired});
                 }
                 else{
                     next();

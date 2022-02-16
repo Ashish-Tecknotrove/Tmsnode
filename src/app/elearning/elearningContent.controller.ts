@@ -33,15 +33,15 @@ class ElearningContent {
                 await ElearningMaster.create(obj).then(function (data) {
                     res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.ADD, data: data });
                 }).catch(err => {
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                 });
             } else {
-                res.status(responseCodes.SUCCESS).json({ response_code: 0, message: responseStrings.EXISTS });
+                res.status(responseCodes.CREATED).json({ response_code: 0, message: responseStrings.EXISTS });
             }
 
         }
-        catch (err) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+        catch (err:any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
         }
 
 
@@ -110,6 +110,7 @@ class ElearningContent {
                     IsDeleted: 0
                 }
             }).then(async (result) => {
+
                 await ElearningMaster.update(
                     {
                         zipname: req.file?.filename

@@ -66,6 +66,9 @@ CompanyUser.init({
           key:'id'
         }
       },
+      email:{
+        type: DataType.STRING(100),
+      },
       name: {
         type: DataType.STRING(100),
         allowNull: false

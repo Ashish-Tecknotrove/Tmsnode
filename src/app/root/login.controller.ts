@@ -10,6 +10,7 @@ import {sign, verify} from "jsonwebtoken";
 import dotenv from 'dotenv';
 import ResponseStrings from "../../strings/response-strings";
 import ResponseCodes from "../../strings/response-codes";
+import CompanyUser from "../../model/root/compayuser.model";
 
 dotenv.config();
 
@@ -37,7 +38,7 @@ class LoginController {
             });
 
             if (userdata === null) {
-                return res.status(ResponseCodes.UNAUTHORIZED).json({response_code: 0, message: 'Invalid username or password', data: ''})
+                return res.status(ResponseCodes.UNAUTHORIZED).json({response_code: 0, message: 'invalid username or password', data: ''})
             }
             else {
 
@@ -132,7 +133,47 @@ class LoginController {
                     }
                     else if (user_type == '2')//Company User
                     {
-                       
+                       var company_data=await CompanyUser.findOne({
+                        include: [
+                            {model: Users},
+                            {model: Company}
+                        ],
+                        where:{
+                            canlogin:1,
+                            login_table_id: userdata['id'],
+                            IsDeleted:0
+                        }
+                       }).then(data=>{
+
+                        if(data != null)
+                        {
+                            return res.status(ResponseCodes.SUCCESS).json(
+                                {
+                                    response_code: 1,
+                                    token: authentication_token,
+                                    user_type: "Trainer",
+                                    message: 'user login successfully...',
+                                    data: data
+                                });
+                        }
+                        else
+                        {
+                            return res.status(ResponseCodes.SUCCESS).json(
+                                {
+                                    response_code: 0,
+                                    message: 'invalid username or password'
+                                });
+                        }
+                        
+
+                       }).catch(err=>{
+
+                        return res.status(ResponseCodes.INTERNAL_SERVER_ERROR).json(
+                            {
+                                response_code: 0,
+                                message: err.message
+                            });
+                       });
                     }
                     else {
                         return res.status(ResponseCodes.UNAUTHORIZED).json(

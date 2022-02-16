@@ -157,8 +157,8 @@ class CurriculumController {
         });
     } catch (err:any) {
       res
-        .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 1, message: err.message });
+      .status(responseCodes.INTERNAL_SERVER_ERROR)
+      .json({ response_code: 1, message: err.message });
     }
   }
 

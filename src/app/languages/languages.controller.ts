@@ -7,7 +7,6 @@ import responseCodes from "../../strings/response-codes";
 import Applabels from "../../model/language/app.label";
 import responseStrings from '../../strings/response-strings';
 import ApplabelValue from '../../model/language/app.label.value';
-import { Observable } from 'rxjs';
 
 class LanguageController {
     async create(req: Request, res: Response) {
