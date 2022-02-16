@@ -52,7 +52,7 @@ app.use(express.static(__dirname));
 
 app.get('/',(req,res)=>{
 
-    res.status(200).json({message:"Welcome To TMS"});
+    res.status(200).json({message:"Welcome To TMS Application"});
 });
 
 export default app;
