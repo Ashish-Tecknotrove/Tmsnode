@@ -92,10 +92,6 @@ Users.init({
             key: 'id'
         }
     },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -106,9 +102,6 @@ Users.init({
     },
     mobile_no: {
         type: DataTypes.STRING
-    },
-    department: {
-        type: DataTypes.INTEGER
     },
     email_verified_at: {
         type: DataTypes.STRING
@@ -132,9 +125,6 @@ Users.init({
             key: 'id'
         }
     },
-    product_purchased: {
-        type: DataTypes.STRING
-    },
     activation_date: {
         type: DataTypes.DATE
     },
@@ -153,17 +143,11 @@ Users.init({
         type: DataTypes.TINYINT,
         defaultValue: 1
     },
-    is_user_active: {
-        type: DataTypes.TINYINT
+    createdAt: {
+        type: "TIMESTAMP",
     },
-    disable_user: {
-        type: DataTypes.TINYINT
-    },
-    trainee_license_limit: {
-        type: DataTypes.STRING
-    },
-    sequence_test: {
-        type: DataTypes.STRING
+    updatedAt: {
+        type: "TIMESTAMP",
     },
     created_by: {
         type: DataTypes.INTEGER,
@@ -175,12 +159,6 @@ Users.init({
     },
     deleted_by: {
         type: DataTypes.INTEGER
-    },
-    createdAt: {
-        type: "TIMESTAMP",
-    },
-    updatedAt: {
-        type: "TIMESTAMP",
     },
     deletedAt: {
         type: "TIMESTAMP"
