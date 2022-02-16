@@ -151,7 +151,7 @@ class LoginController {
                                 {
                                     response_code: 1,
                                     token: authentication_token,
-                                    user_type: "Trainer",
+                                    user_type: 2,
                                     message: 'user login successfully...',
                                     data: data
                                 });
