@@ -21,6 +21,7 @@ const users_model_1 = __importDefault(require("../../model/root/users.model"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const response_strings_1 = __importDefault(require("../../strings/response-strings"));
 const response_codes_1 = __importDefault(require("../../strings/response-codes"));
+const compayuser_model_1 = __importDefault(require("../../model/root/compayuser.model"));
 dotenv_1.default.config();
 class LoginController {
     //UserLogin
@@ -43,7 +44,7 @@ class LoginController {
                     // logging:console.log
                 });
                 if (userdata === null) {
-                    return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: 'Invalid username or password', data: '' });
+                    return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: 'invalid username or password', data: '' });
                 }
                 else {
                     var user_type = userdata['user_type'];
@@ -122,6 +123,38 @@ class LoginController {
                         }
                         else if (user_type == '2') //Company User
                          {
+                            var company_data = yield compayuser_model_1.default.findOne({
+                                include: [
+                                    { model: users_model_1.default },
+                                    { model: company_model_1.default }
+                                ],
+                                where: {
+                                    canlogin: 1,
+                                    login_table_id: userdata['id'],
+                                    IsDeleted: 0
+                                }
+                            }).then(data => {
+                                if (data != null) {
+                                    return res.status(response_codes_1.default.SUCCESS).json({
+                                        response_code: 1,
+                                        token: authentication_token,
+                                        user_type: "Trainer",
+                                        message: 'user login successfully...',
+                                        data: data
+                                    });
+                                }
+                                else {
+                                    return res.status(response_codes_1.default.SUCCESS).json({
+                                        response_code: 0,
+                                        message: 'invalid username or password'
+                                    });
+                                }
+                            }).catch(err => {
+                                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: err.message
+                                });
+                            });
                         }
                         else {
                             return res.status(response_codes_1.default.UNAUTHORIZED).json({

@@ -31,6 +31,9 @@ CompanyUser.init({
             key: 'id'
         }
     },
+    email: {
+        type: sequelize_typescript_1.DataType.STRING(100),
+    },
     name: {
         type: sequelize_typescript_1.DataType.STRING(100),
         allowNull: false

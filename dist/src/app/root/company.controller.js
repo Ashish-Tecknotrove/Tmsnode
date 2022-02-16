@@ -41,7 +41,7 @@ class CompanyController {
                             .status(response_codes_1.default.SUCCESS)
                             .json({
                             response_code: 1,
-                            message: response_strings_1.default.ADD,
+                            message: "company register successfully...",
                             data: response,
                         });
                     })
@@ -223,7 +223,7 @@ class CompanyController {
                     else {
                         res
                             .status(response_codes_1.default.SUCCESS)
-                            .json({ response_code: 0, message: "no data found" });
+                            .json({ response_code: 0, message: "No data available" });
                     }
                 })
                     .catch((err) => {
@@ -303,7 +303,7 @@ class CompanyController {
                     else {
                         res
                             .status(response_codes_1.default.SUCCESS)
-                            .json({ response_code: 0, message: response_strings_1.default.NOT });
+                            .json({ response_code: 0, message: "No data available" });
                     }
                 });
             }
@@ -325,7 +325,7 @@ class CompanyController {
                         .status(response_codes_1.default.SUCCESS)
                         .json({
                         response_code: 1,
-                        message: "company user added",
+                        message: "company user added successfully...",
                         data: data,
                     });
                 })
@@ -349,6 +349,7 @@ class CompanyController {
                 const company_contact = {
                     company_id: req.body.company_id,
                     name: req.body.name,
+                    email: req.body.email,
                     department: req.body.department,
                     mobile_no: req.body.mobile_no,
                     canlogin: 1,
@@ -356,14 +357,19 @@ class CompanyController {
                     updated_by: "",
                     createdAt: response_strings_1.default.currentTime
                 };
-                const checkUserExist = yield compayuser_model_1.default.findAll({
+                const checkemailExist = yield compayuser_model_1.default.findAll({
                     where: {
-                        name: req.body.name,
-                        company_id: req.body.company_id,
+                        email: req.body.email,
                         IsDeleted: 0
                     }
                 });
-                if (checkUserExist.length == 0) {
+                const checkemailExist_in_user_table = yield users_model_1.default.findAll({
+                    where: {
+                        email: req.body.email,
+                        IsDeleted: 0
+                    }
+                });
+                if (checkemailExist.length == 0 && checkemailExist_in_user_table.length == 0) {
                     yield compayuser_model_1.default.create(Object.assign({}, company_contact))
                         .then((userdata) => {
                         //Add login in User table
@@ -398,7 +404,7 @@ class CompanyController {
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Contact with same name already exist" });
+                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Email with same name already exist" });
                 }
             }
             catch (error) {

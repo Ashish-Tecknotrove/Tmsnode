@@ -22,7 +22,8 @@ class Middleware {
     handleValidatorError(req, res, next) {
         const error = (0, express_validator_1.validationResult)(req);
         if (!error.isEmpty()) {
-            return res.status(response_codes_1.default.BAD_REQUEST).json(error.array()[0]);
+            const errorTxt = error.array()[0];
+            return res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: errorTxt['param'] + " " + errorTxt['msg'] });
         }
         next();
     }
@@ -41,7 +42,7 @@ class Middleware {
                     return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: response_strings_1.default.tokenExpired });
                 yield (0, jsonwebtoken_1.verify)(token, process.env.jwt_secreate, (err, user) => {
                     if (err) {
-                        return res.status(response_codes_1.default.UNAUTHORIZED).json({ error: response_strings_1.default.tokenExpired });
+                        return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: response_strings_1.default.tokenExpired });
                     }
                     else {
                         next();

@@ -38,15 +38,15 @@ class ElearningContent {
                     yield eLearningmaster_model_1.default.create(obj).then(function (data) {
                         res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.ADD, data: data });
                     }).catch(err => {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.EXISTS });
+                    res.status(response_codes_1.default.CREATED).json({ response_code: 0, message: response_strings_1.default.EXISTS });
                 }
             }
             catch (err) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             }
         });
     }

@@ -115,6 +115,10 @@ Company.init({
 Company.hasMany(compayuser_model_1.default, {
     foreignKey: 'company_id'
 });
+compayuser_model_1.default.belongsTo(Company, {
+    foreignKey: "company_id",
+    targetKey: "id"
+});
 Company.hasMany(subscription_model_1.default, {
     // as:"subscriptions",
     foreignKey: 'company_id'

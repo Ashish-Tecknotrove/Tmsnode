@@ -32,7 +32,8 @@ Users.init({
     },
     email: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     aadhar_no: {
         type: sequelize_1.DataTypes.STRING
