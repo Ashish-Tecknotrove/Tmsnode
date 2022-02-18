@@ -25,6 +25,7 @@ class CompanyController {
       const checkName = await Company.findOne({
         where: {
           company_name: company_name,
+          IsDeleted:0
         },
       });
 
