@@ -30,6 +30,7 @@ class CompanyController {
                 const checkName = yield company_model_1.default.findOne({
                     where: {
                         company_name: company_name,
+                         IsDeleted:0
                     },
                 });
                 if (checkName == null) {
