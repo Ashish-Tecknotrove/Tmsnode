@@ -148,16 +148,13 @@ Trainee.init({
         type: DataTypes.INTEGER,
     },
     first_name: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     middle_name: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     last_name: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     email: {
         type: DataTypes.STRING,
@@ -168,40 +165,32 @@ Trainee.init({
         allowNull: false
     },
     alternate_contact_no: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     aadhar_no: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     gender: {
         type: DataTypes.STRING,
         allowNull: false
     },
     education: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     address: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     city: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     marrital_status: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     age: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     date_of_birth: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     company_id: {
         type: DataTypes.INTEGER,
@@ -212,8 +201,7 @@ Trainee.init({
         }
     },
     subscription_id: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     service_type: {
         type: DataTypes.STRING,
@@ -352,7 +340,6 @@ Trainee.init({
         defaultValue:0
     }
 }, {
-    timestamps: true,
     sequelize: sequelizeconnection,
     tableName: 'trainees'
 });

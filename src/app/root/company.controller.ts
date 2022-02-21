@@ -1,7 +1,5 @@
 import { Model } from 'sequelize';
 import { Request, Response } from "express";
-import { body } from "express-validator";
-import { where } from "sequelize/types";
 import Company from "../../model/root/company.model";
 import CompanyUser from "../../model/root/compayuser.model";
 import Curriculum from "../../model/root/curriculum.model";
@@ -9,11 +7,11 @@ import Subscription from "../../model/root/subscription.model";
 import Users from "../../model/root/users.model";
 import responseCodes from "../../strings/response-codes";
 import responseStrings from "../../strings/response-strings";
-import CurriculumParentCategory from '../../model/root/curriculum_parent_category.model';
-import moment from 'moment';
 import Countries from '../../model/resources/countries.model';
 import States from '../../model/resources/states.model';
 import Cities from '../../model/resources/cities.model';
+import TraineeCustomizeFormModel from '../../model/root/traineeFormCustomize.model';
+import TraineeFormMasterModel from '../../model/root/traineeFormMaster.model';
 
 
 class CompanyController {
@@ -578,6 +576,58 @@ class CompanyController {
     catch (error: any) {
       res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
     }
+
+  }
+
+  async get_trainee_customize_form(req: Request, res: Response)
+  {
+    var company_id=req.body.company_id;
+
+    await TraineeCustomizeFormModel.findAll({
+      include:{
+        required:true,
+        model:TraineeFormMasterModel,
+        attributes:['id','form_label','form_field'],
+        where:{
+          isDeleted:0
+        },
+      },
+      attributes:['id','isValidate'],
+      where:{
+        company_id:company_id,
+        isDeleted:0
+      },
+      //logging:console.log
+    }).then(result=>
+    {
+      if(result.length != 0)
+      {
+        const initialValue = {};
+
+        let fromLabel=result.reduce((obj: any, item: { [x: string]: any; }) => 
+        {
+
+          let ObjData={
+            id:item['id'],
+            isValidate:item['isValidate'],
+            form_id:item['TraineeFormMasterModel']['form_field']
+          };
+
+          return {
+            ...obj,
+            [item['TraineeFormMasterModel']['form_label']]:ObjData,
+        };
+        }, initialValue);
+        res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "Form Loaing...",form:fromLabel });
+      }
+      else
+      {
+        res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "No Customize form Found" });
+      }
+    }).catch(err=>
+    {
+      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+    });
 
   }
 

@@ -11,6 +11,9 @@ import dotenv from 'dotenv';
 import ResponseStrings from "../../strings/response-strings";
 import ResponseCodes from "../../strings/response-codes";
 import CompanyUser from "../../model/root/compayuser.model";
+import MasterPanel from "../../model/root/masterpanel.model";
+import Mastermenu from "../../model/root/mastermenu.model";
+import { Model } from "sequelize/types";
 
 dotenv.config();
 
@@ -46,7 +49,7 @@ class LoginController {
 
 
                 //TODO Authentication Token----------
-                var payload = {username: userdata['name']};
+                var payload = {username: userdata['email']};
 
                 let authentication_token = await auth.generateAuth(payload);
                 //TODO Authentication  Token----------
@@ -133,16 +136,33 @@ class LoginController {
                     }
                     else if (user_type == '2')//Company User
                     {
+                       
                        var company_data=await CompanyUser.findOne({
                         include: [
                             {model: Users},
-                            {model: Company}
+                            {model: Company,
+                                include:[
+                                    {
+                                        model:MasterPanel,
+                                        required:false,
+                                        include:[
+                                            {
+                                                model:Mastermenu,
+                                                separate: true,
+                                                order:[['sequence','ASC']]
+                                                //:{IsDeleted:0}
+                                            }
+                                        ]
+                                    }
+                                ]                      
+                            },
                         ],
                         where:{
                             canlogin:1,
                             login_table_id: userdata['id'],
                             IsDeleted:0
-                        }
+                        },
+                        //logging:console.log
                        }).then(data=>{
 
                         if(data != null)
@@ -201,3 +221,6 @@ class LoginController {
 
 
 export default new LoginController();
+
+
+

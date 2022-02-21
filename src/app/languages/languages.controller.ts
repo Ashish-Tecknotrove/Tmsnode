@@ -8,6 +8,7 @@ import Applabels from "../../model/language/app.label";
 import responseStrings from '../../strings/response-strings';
 import ApplabelValue from '../../model/language/app.label.value';
 
+
 class LanguageController {
     async create(req: Request, res: Response) {
         const id = uuidv4();
@@ -38,7 +39,7 @@ class LanguageController {
                         .then((result) => {
                             return res
                                 .status(responseCodes.SUCCESS)
-                                .json({ response_code: 0, message: responseStrings.ADD, data: result });
+                                .json({ response_code: 1, message: responseStrings.ADD, data: result });
                         }).catch((err_: any) => {
                             return res
                                 .status(responseCodes.INTERNAL_SERVER_ERROR)
@@ -79,17 +80,17 @@ class LanguageController {
 
 
             await Applabels.findAll({
-                include: [{
-                    model: ApplabelValue,
-                    where: {
-                        IsDeleted: 0
-                    },
-                    required: false
-                }],
+                // include: [{
+                //     model: ApplabelValue,
+                //     where: {
+                //         IsDeleted: 0
+                //     },
+                //     required: false
+                // }],
                 where: whereObj
             }).then(async (result) => {
                 return res.status(responseCodes.SUCCESS)
-                    .json({ response_code: 0, message: responseStrings.GET, data: result });
+                    .json({ response_code: 1, message: responseStrings.GET, data: result });
             }).catch((err: any) => {
                 return res
                     .status(responseCodes.INTERNAL_SERVER_ERROR)
@@ -335,7 +336,7 @@ class LanguageController {
 
                     let updateObj = {
                         IsDeleted: 1,
-                        deleted_by: req.body.updated_by,
+                        deleted_by: req.body.deleted_by,
                         deletedAt: responseStrings.currentTime
                     }
 

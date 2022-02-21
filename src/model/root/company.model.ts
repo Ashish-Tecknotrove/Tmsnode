@@ -5,6 +5,7 @@ import Countries from "../resources/countries.model";
 import States from "../resources/states.model";
 import CompanyUser from "./compayuser.model";
 import Curriculum from "./curriculum.model";
+import MasterPanel from "./masterpanel.model";
 import Subscription from "./subscription.model";
 
 
@@ -29,7 +30,8 @@ interface CompanyAttributes {
     calender_type: string
     created_by: number
     updated_by: number
-	deletedAt:string
+    deleted_by: number
+    deletedAt:string
     createdAt: string
     updatedAt: string
 	IsDeleted:number
@@ -39,6 +41,7 @@ export default class Company extends Model {
 
     declare id: number
     company_name!: string
+    panel_id!:Number;
     company_type!: string
     gst!: string
     picture!: string
@@ -57,6 +60,7 @@ export default class Company extends Model {
     calender_type!: string
     created_by!: number
     updated_by!: number
+    deleted_by!: number
     deletedAt!:string
     createdAt!:string
     updatedAt!:string
@@ -74,6 +78,14 @@ Company.init({
         type: DataTypes.STRING(100),
         allowNull: false,
         unique: true
+    },
+    panel_id: {
+        type: DataTypes.INTEGER,
+        references:{
+            model:MasterPanel,
+            key:'id'
+        },
+        allowNull:false
     },
     company_type: {
         type: DataTypes.STRING(20),
@@ -144,6 +156,9 @@ Company.init({
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    deleted_by: {
+        type: DataTypes.INTEGER
+    },
     createdAt: {
         type: "TIMESTAMP",
     },
@@ -200,6 +215,9 @@ Company.belongsTo(Cities,{
     foreignKey:'city_id'
 });
 
+Company.belongsTo(MasterPanel,{
+    foreignKey:'panel_id'
+})
 // Company.belongsTo("cities",{
 
 // });

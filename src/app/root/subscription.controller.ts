@@ -31,7 +31,7 @@ class SubscriptionController {
 
         } catch (e:any) {
             return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
-                response_code: 1,
+                response_code: 0,
                 message: e.message,
                 data: "",
             });

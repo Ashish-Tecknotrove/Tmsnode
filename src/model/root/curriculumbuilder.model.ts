@@ -11,6 +11,9 @@ interface CurriculumBuilderAttribute {
     vehicle_id: number;
     curriculum_parent_category_id: number;
     curriculum_parent_category_test_id: number;
+    passing_marks: number;
+    total_marks: number;
+    attempts: number;
     created_by: number
     updated_by: number
 	deleted_by:string
@@ -28,6 +31,9 @@ export default class CurriculumBuilder extends Model {
     vehicle_id!: number;
     curriculum_parent_category_id!: number;
     curriculum_parent_category_test_id!: number;
+    passing_marks!: number;
+    total_marks!: number;
+    attempts!: number;
     created_by!: number
     updated_by!: number
 	deleted_by!:string
@@ -70,6 +76,15 @@ CurriculumBuilder.init({
                 key: "id"
             }
         },
+        passing_marks: {
+            type: DataTypes.INTEGER,
+        },
+        total_marks: {
+            type: DataTypes.INTEGER,
+        },
+        attempts: {
+            type: DataTypes.INTEGER,
+        },
         created_by: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -101,3 +116,16 @@ CurriculumBuilder.init({
         tableName: 'curriculum_builder'
     }
 )
+
+
+CurriculumBuilder.belongsTo(CurriculumParentCategory, {
+    foreignKey: "curriculum_parent_category_id"
+})
+
+CurriculumBuilder.belongsTo(CurriculumParentCategoryTest, {
+    foreignKey: "curriculum_parent_category_test_id"
+})
+
+CurriculumBuilder.belongsTo(Curriculum, {
+    foreignKey: "curriculum_id"
+})
