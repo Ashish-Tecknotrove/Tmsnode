@@ -8,7 +8,9 @@ import subscriptionroutes from "./src/routes/root/subscriptionroutes";
 import elearningroutes from "./src/routes/elearning/elearningcontentroutes";
 import Languages from "./src/model/language/language.model";
 import LanguageRoutes from "./src/routes/language/language.routes";
+import TraineeRoutes from './src/routes/root/traineeroutes';
 import morgan from "morgan";
+import trainerRoutes from "./src/routes/root/trainerroutes";
 
 process.env.TZ = "Asia/Calcutta";
 const nDate = new Date().toLocaleString('en-US', {
@@ -42,8 +44,9 @@ app.use("/TMS",curriculumroutes);
 app.use("/TMS",companyroutes);
 app.use("/TMS/subscription",subscriptionroutes);
 app.use("/TMS/elearning",elearningroutes);
-// app.use("/api/v1/",LanguageRoutes)
-
+app.use("/TMS",LanguageRoutes)
+app.use("/TMS",TraineeRoutes)
+app.use("/TMS/companyadmin",trainerRoutes);
 
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));
@@ -52,7 +55,7 @@ app.use(express.static(__dirname));
 
 app.get('/',(req,res)=>{
 
-    res.status(200).json({message:"Welcome To TMS Application"});
+    res.status(200).json({message:"Welcome To TMS"});
 });
 
 export default app;
