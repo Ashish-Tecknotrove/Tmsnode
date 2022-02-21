@@ -42,6 +42,15 @@ CurriculumBuilder.init({
             key: "id"
         }
     },
+    passing_marks: {
+        type: sequelize_1.DataTypes.INTEGER,
+    },
+    total_marks: {
+        type: sequelize_1.DataTypes.INTEGER,
+    },
+    attempts: {
+        type: sequelize_1.DataTypes.INTEGER,
+    },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
@@ -70,4 +79,13 @@ CurriculumBuilder.init({
     timestamps: true,
     sequelize: sequelize_2.default,
     tableName: 'curriculum_builder'
+});
+CurriculumBuilder.belongsTo(curriculum_parent_category_model_1.default, {
+    foreignKey: "curriculum_parent_category_id"
+});
+CurriculumBuilder.belongsTo(curriculum_parent_category_test_model_1.default, {
+    foreignKey: "curriculum_parent_category_test_id"
+});
+CurriculumBuilder.belongsTo(curriculum_model_1.default, {
+    foreignKey: "curriculum_id"
 });

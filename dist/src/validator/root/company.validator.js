@@ -80,5 +80,10 @@ class CompanyValidator {
             (0, express_validator_1.body)('deleted_by').notEmpty().withMessage('parameter is missing')
         ];
     }
+    getTraineeCustomFormValidator() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing')
+        ];
+    }
 }
 exports.default = new CompanyValidator();

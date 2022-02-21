@@ -39,7 +39,7 @@ class SubscriptionController {
             }
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
-                    response_code: 1,
+                    response_code: 0,
                     message: e.message,
                     data: "",
                 });

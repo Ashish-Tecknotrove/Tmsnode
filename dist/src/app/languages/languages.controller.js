@@ -47,7 +47,7 @@ class LanguageController {
                             .then((result) => {
                             return res
                                 .status(response_codes_1.default.SUCCESS)
-                                .json({ response_code: 0, message: response_strings_1.default.ADD, data: result });
+                                .json({ response_code: 1, message: response_strings_1.default.ADD, data: result });
                         }).catch((err_) => {
                             return res
                                 .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
@@ -88,17 +88,17 @@ class LanguageController {
                     };
                 }
                 yield app_label_1.default.findAll({
-                    include: [{
-                            model: app_label_value_1.default,
-                            where: {
-                                IsDeleted: 0
-                            },
-                            required: false
-                        }],
+                    // include: [{
+                    //     model: ApplabelValue,
+                    //     where: {
+                    //         IsDeleted: 0
+                    //     },
+                    //     required: false
+                    // }],
                     where: whereObj
                 }).then((result) => __awaiter(this, void 0, void 0, function* () {
                     return res.status(response_codes_1.default.SUCCESS)
-                        .json({ response_code: 0, message: response_strings_1.default.GET, data: result });
+                        .json({ response_code: 1, message: response_strings_1.default.GET, data: result });
                 })).catch((err) => {
                     return res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
@@ -345,7 +345,7 @@ class LanguageController {
                     if (result_.length != 0) {
                         let updateObj = {
                             IsDeleted: 1,
-                            deleted_by: req.body.updated_by,
+                            deleted_by: req.body.deleted_by,
                             deletedAt: response_strings_1.default.currentTime
                         };
                         yield app_label_value_1.default.update(updateObj, {

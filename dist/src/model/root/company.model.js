@@ -10,6 +10,7 @@ const countries_model_1 = __importDefault(require("../resources/countries.model"
 const states_model_1 = __importDefault(require("../resources/states.model"));
 const compayuser_model_1 = __importDefault(require("./compayuser.model"));
 const curriculum_model_1 = __importDefault(require("./curriculum.model"));
+const masterpanel_model_1 = __importDefault(require("./masterpanel.model"));
 const subscription_model_1 = __importDefault(require("./subscription.model"));
 class Company extends sequelize_1.Model {
 }
@@ -25,6 +26,14 @@ Company.init({
         type: sequelize_1.DataTypes.STRING(100),
         allowNull: false,
         unique: true
+    },
+    panel_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: masterpanel_model_1.default,
+            key: 'id'
+        },
+        allowNull: false
     },
     company_type: {
         type: sequelize_1.DataTypes.STRING(20),
@@ -94,6 +103,9 @@ Company.init({
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
+    deleted_by: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
     createdAt: {
         type: "TIMESTAMP",
     },
@@ -138,6 +150,9 @@ Company.belongsTo(states_model_1.default, {
 });
 Company.belongsTo(cities_model_1.default, {
     foreignKey: 'city_id'
+});
+Company.belongsTo(masterpanel_model_1.default, {
+    foreignKey: 'panel_id'
 });
 // Company.belongsTo("cities",{
 // });

@@ -39,7 +39,7 @@ class CurriculumValidator {
             (0, express_validator_1.body)('test_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('prefix').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('title').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('language_id').notEmpty().withMessage('parameter is missing'),
+            // body('language_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
         ];
     }

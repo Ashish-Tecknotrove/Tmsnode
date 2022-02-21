@@ -33,16 +33,13 @@ Trainee.init({
         type: sequelize_1.DataTypes.INTEGER,
     },
     first_name: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     middle_name: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     last_name: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     email: {
         type: sequelize_1.DataTypes.STRING,
@@ -53,40 +50,32 @@ Trainee.init({
         allowNull: false
     },
     alternate_contact_no: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     aadhar_no: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     gender: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
     education: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     address: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     city: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     marrital_status: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     age: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     date_of_birth: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     company_id: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -97,8 +86,7 @@ Trainee.init({
         }
     },
     subscription_id: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        type: sequelize_1.DataTypes.STRING
     },
     service_type: {
         type: sequelize_1.DataTypes.STRING,
@@ -237,7 +225,6 @@ Trainee.init({
         defaultValue: 0
     }
 }, {
-    timestamps: true,
     sequelize: sequelize_2.default,
     tableName: 'trainees'
 });

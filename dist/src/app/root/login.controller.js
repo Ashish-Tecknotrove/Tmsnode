@@ -22,6 +22,8 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const response_strings_1 = __importDefault(require("../../strings/response-strings"));
 const response_codes_1 = __importDefault(require("../../strings/response-codes"));
 const compayuser_model_1 = __importDefault(require("../../model/root/compayuser.model"));
+const masterpanel_model_1 = __importDefault(require("../../model/root/masterpanel.model"));
+const mastermenu_model_1 = __importDefault(require("../../model/root/mastermenu.model"));
 dotenv_1.default.config();
 class LoginController {
     //UserLogin
@@ -126,20 +128,36 @@ class LoginController {
                             var company_data = yield compayuser_model_1.default.findOne({
                                 include: [
                                     { model: users_model_1.default },
-                                    { model: company_model_1.default }
+                                    { model: company_model_1.default,
+                                        include: [
+                                            {
+                                                model: masterpanel_model_1.default,
+                                                required: false,
+                                                include: [
+                                                    {
+                                                        model: mastermenu_model_1.default,
+                                                        separate: true,
+                                                        order: [['sequence', 'ASC']]
+                                                        //:{IsDeleted:0}
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
                                 ],
                                 where: {
                                     canlogin: 1,
                                     login_table_id: userdata['id'],
                                     IsDeleted: 0
-                                }
+                                },
+                                //logging:console.log
                             }).then(data => {
                                 if (data != null) {
                                     return res.status(response_codes_1.default.SUCCESS).json({
                                         response_code: 1,
                                         token: authentication_token,
                                         user_type: 2,
-                                        message: 'user login successfully....',
+                                        message: 'user login successfully...',
                                         data: data
                                     });
                                 }

@@ -22,6 +22,8 @@ const response_strings_1 = __importDefault(require("../../strings/response-strin
 const countries_model_1 = __importDefault(require("../../model/resources/countries.model"));
 const states_model_1 = __importDefault(require("../../model/resources/states.model"));
 const cities_model_1 = __importDefault(require("../../model/resources/cities.model"));
+const traineeFormCustomize_model_1 = __importDefault(require("../../model/root/traineeFormCustomize.model"));
+const traineeFormMaster_model_1 = __importDefault(require("../../model/root/traineeFormMaster.model"));
 class CompanyController {
     registerCompany(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -30,7 +32,7 @@ class CompanyController {
                 const checkName = yield company_model_1.default.findOne({
                     where: {
                         company_name: company_name,
-                         IsDeleted:0
+                        IsDeleted: 0
                     },
                 });
                 if (checkName == null) {
@@ -552,6 +554,45 @@ class CompanyController {
             catch (error) {
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
             }
+        });
+    }
+    get_trainee_customize_form(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            var company_id = req.body.company_id;
+            yield traineeFormCustomize_model_1.default.findAll({
+                include: {
+                    required: true,
+                    model: traineeFormMaster_model_1.default,
+                    attributes: ['id', 'form_label', 'form_field'],
+                    where: {
+                        isDeleted: 0
+                    },
+                },
+                attributes: ['id', 'isValidate'],
+                where: {
+                    company_id: company_id,
+                    isDeleted: 0
+                },
+                //logging:console.log
+            }).then(result => {
+                if (result.length != 0) {
+                    const initialValue = {};
+                    let fromLabel = result.reduce((obj, item) => {
+                        let ObjData = {
+                            id: item['id'],
+                            isValidate: item['isValidate'],
+                            form_id: item['TraineeFormMasterModel']['form_field']
+                        };
+                        return Object.assign(Object.assign({}, obj), { [item['TraineeFormMasterModel']['form_label']]: ObjData });
+                    }, initialValue);
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: "Form Loaing...", form: fromLabel });
+                }
+                else {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: "No Customize form Found" });
+                }
+            }).catch(err => {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+            });
         });
     }
 }
