@@ -1,15 +1,15 @@
 {
   "name": "tmsversion2",
   "version": "1.0.0",
-  "description": "TMS Project Verion 3.0",
+  "description": "TMS Project Verion 2.0",
   "main": "app.ts",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "tsc --build && node dist/app.js",
     "dev": "nodemon app.ts",
-    "test": "mocha -r ts-node/register test/**/**.ts --exit"
+    "test": "mocha -r ts-node/register test/**/elearningMaster.test.ts --timeout 10000 --exit "
   },
   "author": "tecknotrove systems",
   "license": "ISC",
@@ -43,6 +43,7 @@
     "config": "^3.3.7",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "csv-parse": "^5.0.4",
     "db-migrate-mysql": "^2.2.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
