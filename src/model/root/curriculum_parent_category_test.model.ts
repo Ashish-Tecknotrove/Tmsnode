@@ -112,7 +112,7 @@ CurriculumParentCategoryTest.init({
 
 //TODO ASSOCATION Technology Category
 CurriculumParentCategoryTest.belongsTo(TechnologyCategory,{
-    foreignKey:'parent_id'
+    foreignKey:'technology_type_id'
 })
 
 //TODO ASSOCATION LANGUAGE

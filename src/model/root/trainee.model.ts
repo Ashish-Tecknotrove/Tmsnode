@@ -2,6 +2,8 @@ import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Languages from "../language/language.model";
 import Company from "./company.model";
+import CompanyDepartment from "./company_department.model";
+import SubCompany from "./subcompany.model";
 import Users from "./users.model";
 
 
@@ -9,6 +11,8 @@ import Users from "./users.model";
 interface TraineeAttributes {
     id: number;
     RegNo: string;
+    sub_company_id:number;
+    department_id:number;
     login_table_id: number;
     staff_id: number;
     first_name: string;
@@ -69,6 +73,8 @@ interface TraineeAttributes {
 export default class Trainee extends Model {
     id!: number;
     RegNo!: string;
+    sub_company_id!:number;
+    department_id!:number;
     login_table_id!: number;
     staff_id!: number;
     first_name!: string;
@@ -134,11 +140,35 @@ Trainee.init({
     },
     RegNo: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
+    },
+    company_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references:{
+            model:Company,
+            key:"id"
+        }
+    },
+    sub_company_id:
+    {
+        type:DataTypes.INTEGER,
+        references:{
+            model:SubCompany,
+            key:"id"
+        }
+    },
+    department_id:
+    {
+        type:DataTypes.INTEGER,
+        references:{
+            model:CompanyDepartment,
+            key:"id"
+        }
     },
     login_table_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references:{
             model:Users,
             key:'id'
@@ -158,11 +188,11 @@ Trainee.init({
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     contact: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     alternate_contact_no: {
         type: DataTypes.STRING
@@ -172,7 +202,7 @@ Trainee.init({
     },
     gender: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     education: {
         type: DataTypes.STRING
@@ -192,136 +222,128 @@ Trainee.init({
     date_of_birth: {
         type: DataTypes.STRING
     },
-    company_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references:{
-            model:Company,
-            key:"id"
-        }
-    },
     subscription_id: {
         type: DataTypes.STRING
     },
     service_type: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     adp_number: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     vehicle_type: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     designation: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     department: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     course: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     fees: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     receipt_number: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     mode_of_payment: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     cheque_dd_number: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     bank_name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     trainer_id: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     status: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     active_status: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     activation_date: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     expiry_date: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     driver_photo: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     license_no: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     license_issue_date: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     license_validity: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     license_image: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     experience_in_years: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     certificate_copy: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     validity_of_certificate: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     certificate_number: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     dg_trainer: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     transporter_name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     training_schedule_date: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     created_by: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     updated_by: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     deleted_by: {
         type: DataTypes.INTEGER
@@ -334,6 +356,10 @@ Trainee.init({
     },
     deletedAt: {
         type: "TIMESTAMP"
+    },
+    IsBlock:{
+        type:DataTypes.TINYINT,
+        defaultValue:0
     },
     IsDeleted:{
         type:DataTypes.TINYINT,
@@ -355,3 +381,12 @@ Trainee.belongsTo(Users,{
 Trainee.belongsTo(Company,{
     foreignKey:'company_id'
 })
+
+
+SubCompany.hasMany(Trainee,{
+    foreignKey:"sub_company_id"
+  })
+
+  CompanyDepartment.hasMany(Trainee,{
+    foreignKey: "department_id",
+  })

@@ -144,7 +144,7 @@ class CurriculumController {
         },
       }).then((data) => {
         res.status(responseCodes.SUCCESS).json({
-          response_code: 0,
+          response_code: 1,
           message: responseStrings.GET,
           data: data,
         });
@@ -158,7 +158,7 @@ class CurriculumController {
     } catch (err:any) {
       res
       .status(responseCodes.INTERNAL_SERVER_ERROR)
-      .json({ response_code: 1, message: err.message });
+      .json({ response_code: 0, message: err.message });
     }
   }
 

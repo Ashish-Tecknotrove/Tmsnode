@@ -148,7 +148,6 @@ Subscription.init({
         defaultValue:0
     }
 }, {
-    timestamps: true,
     sequelize: sequelizeconnection,
     tableName: 'subscriptions'
 });
