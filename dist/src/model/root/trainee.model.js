@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const company_model_1 = __importDefault(require("./company.model"));
+const company_department_model_1 = __importDefault(require("./company_department.model"));
+const subcompany_model_1 = __importDefault(require("./subcompany.model"));
 const users_model_1 = __importDefault(require("./users.model"));
 class Trainee extends sequelize_1.Model {
 }
@@ -19,11 +21,33 @@ Trainee.init({
     },
     RegNo: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
+    },
+    company_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: company_model_1.default,
+            key: "id"
+        }
+    },
+    sub_company_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: subcompany_model_1.default,
+            key: "id"
+        }
+    },
+    department_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: company_department_model_1.default,
+            key: "id"
+        }
     },
     login_table_id: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
             model: users_model_1.default,
             key: 'id'
@@ -43,11 +67,11 @@ Trainee.init({
     },
     email: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     contact: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     alternate_contact_no: {
         type: sequelize_1.DataTypes.STRING
@@ -57,7 +81,7 @@ Trainee.init({
     },
     gender: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     education: {
         type: sequelize_1.DataTypes.STRING
@@ -77,136 +101,128 @@ Trainee.init({
     date_of_birth: {
         type: sequelize_1.DataTypes.STRING
     },
-    company_id: {
-        type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: company_model_1.default,
-            key: "id"
-        }
-    },
     subscription_id: {
         type: sequelize_1.DataTypes.STRING
     },
     service_type: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     adp_number: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     vehicle_type: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     designation: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     department: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     course: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     fees: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     receipt_number: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     mode_of_payment: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     cheque_dd_number: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     bank_name: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     trainer_id: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     status: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     active_status: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     activation_date: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     expiry_date: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     driver_photo: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     license_no: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     license_issue_date: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     license_validity: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     license_image: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     experience_in_years: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     certificate_copy: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     validity_of_certificate: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     certificate_number: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     dg_trainer: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     transporter_name: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     training_schedule_date: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     updated_by: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     deleted_by: {
         type: sequelize_1.DataTypes.INTEGER
@@ -219,6 +235,10 @@ Trainee.init({
     },
     deletedAt: {
         type: "TIMESTAMP"
+    },
+    IsBlock: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
     },
     IsDeleted: {
         type: sequelize_1.DataTypes.TINYINT,
@@ -235,4 +255,10 @@ Trainee.belongsTo(users_model_1.default, {
 //TODO Association with Company
 Trainee.belongsTo(company_model_1.default, {
     foreignKey: 'company_id'
+});
+subcompany_model_1.default.hasMany(Trainee, {
+    foreignKey: "sub_company_id"
+});
+company_department_model_1.default.hasMany(Trainee, {
+    foreignKey: "department_id",
 });

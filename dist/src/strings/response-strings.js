@@ -13,6 +13,7 @@ class ResponseStrings {
         this.GET = "Data Fetched Successfully";
         this.NOT = "Data not found!";
         this.EXISTS = "Data already exists!";
+        this.SUBMIT = "Submit Successfully!";
         // ! ERROR Reponse
         this.SERVER_ERROR = "Internal Server Error Please Try Again Later";
         this.REQUEST_ERROR = "Invalid Request";

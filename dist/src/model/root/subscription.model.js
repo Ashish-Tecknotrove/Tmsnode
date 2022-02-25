@@ -100,7 +100,6 @@ Subscription.init({
         defaultValue: 0
     }
 }, {
-    timestamps: true,
     sequelize: sequelize_2.default,
     tableName: 'subscriptions'
 });

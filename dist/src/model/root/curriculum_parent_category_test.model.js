@@ -81,7 +81,7 @@ CurriculumParentCategoryTest.init({
 // })
 //TODO ASSOCATION Technology Category
 CurriculumParentCategoryTest.belongsTo(technology_model_1.default, {
-    foreignKey: 'parent_id'
+    foreignKey: 'technology_type_id'
 });
 //TODO ASSOCATION LANGUAGE
 CurriculumParentCategoryTest.belongsTo(language_model_1.default, {
