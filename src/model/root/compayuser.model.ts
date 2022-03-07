@@ -31,7 +31,7 @@ export default class  CompanyUser extends Model
     company_id!: number;
     login_table_id!:number;
     name!: string;
-    department!: string;
+    designation!: string;
     mobile_no!: string;
     canlogin!:number;
     created_by!: number
@@ -73,7 +73,7 @@ CompanyUser.init({
         type: DataType.STRING(100),
         allowNull: false
       },
-      department: {
+      designation: {
         type: DataType.STRING(100),
         allowNull: false
       },

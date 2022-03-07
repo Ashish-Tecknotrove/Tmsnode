@@ -1,7 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Company from "./company.model";
+import CurriculumBuilder from "./curriculumbuilder.model";
 import Subscription from "./subscription.model";
+import TraineeCurriculum from "./trainee_curriculum.model";
 
 
 interface CurriculumAttributes{
@@ -85,10 +87,25 @@ Curriculum.init({
 })
 
 
+// Curriculum.hasMany(CurriculumBuilder,{
+//     foreignKey:"curriculum_id",
+//     //as:"UsedSubscription"
+// })
+
+// CurriculumBuilder.belongsTo(Curriculum, {
+//     foreignKey: "curriculum_id"
+// })
+
+//
+// Curriculum.hasMany(TraineeCurriculum,{
+//     foreignKey:"curriculum_id",
+//     as:""
+// })
+
 // Curriculum.belongsTo(Company,{
 //     foreignKey:"company_id"
 // })
 
-// Curriculum.hasMany(Subscription,{
+// Curriculum.belongsTo(Subscription,{
 //     foreignKey:'curriculum_id'
 // })

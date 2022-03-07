@@ -30,34 +30,57 @@ class CompanyDepartmentController {
             }
          }else if(req.body.sub_company_id){
             update = {
-               department_id: req.body.sub_company_id,
+               sub_company_id: req.body.sub_company_id,
                updated_by:req.body.updated_by,
                updatedAt:responseStrings.currentTime,
             }
          }
 
-         await Trainer.update({...update},{
+         await Trainer.findOne({
             where:{
-               id:req.body.trainer_id
+               id:req.body.trainer_id,
+               IsDeleted:0
             }
-         }).then((data)=>{
-            res.status(responseCodes.SUCCESS).json({
-               response_code: 1,
-               message: responseStrings.SUBMIT
-            });
+         }).then(async(data:any)=>{
+            if(data!=null){
+
+               await Trainer.update({...update},{
+                  where:{
+                     id:req.body.trainer_id
+                  }
+               }).then((data)=>{
+                  res.status(responseCodes.SUCCESS).json({
+                     response_code: 1,
+                     message: "Trainer assigned successfully."
+                  });
+               }).catch((err:any)=>{
+                  return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                     response_code: 0,
+                     message: "Oops! "+ err.message,
+                     data: "",
+                  });
+               })
+            }else{
+               return res.status(responseCodes.BAD_REQUEST).json({
+                  response_code: 0,
+                  message: "Oops! An invalid trainer ID was entered, or this trainer was already deleted",
+                  data: "",
+               });
+            }
          }).catch((err:any)=>{
             return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                response_code: 0,
-               message: err.message,
+               message: "Oops! "+err.message,
                data: "",
-            });   
+            });
          })
+
 
 
       } catch (e: any) {
          return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
             response_code: 0,
-            message: e.message,
+            message: "Oops! "+e.message,
             data: "",
          });
       }
@@ -125,23 +148,23 @@ class CompanyDepartmentController {
                     }
                     CompanyDepartment.update({...updateData},{where:{id:cdData['id']}}).then(succ=>{
 
-                        res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Department Assign Successfully Login Created..." });            
+                        res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Added department successfully, and login created" });            
 
                     }).catch(err=>{
-                        res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message:err.message});            
+                        res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message:"Opps! "+err.message});            
 
                     })
 
 
                    }).catch(err=>{
 
-                       res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message:err.message});            
+                       res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message:"Opps! "+err.message});            
                    })
 
 
                }).catch(err=>{
    
-                   res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });            
+                   res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Opps! "+err.message });            
    
                });
 
@@ -149,14 +172,14 @@ class CompanyDepartmentController {
 
             return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                response_code: 0,
-               message: err.message,
+               message: "Opps! "+err.message,
                data: "",
             });
            })
         }
         else
         {
-         res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Department Name or Email Already Exist" });            
+         res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Name or email of department already exists, please use another one" });            
 
         }
 
@@ -165,7 +188,7 @@ class CompanyDepartmentController {
       {
          return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
             response_code: 0,
-            message: err.message,
+            message: "Opps! "+err.message,
             data: "",
          });
       }
@@ -195,22 +218,79 @@ class CompanyDepartmentController {
 
             if(data.length !=0)
             {
-               res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.GET,data:data});            
+               res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "data have been fetched successfully",data:data});            
             }
             else
             {
-               res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "No Data Found"});            
+               res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "No data were found, please add the department"});            
             }
 
          }).catch(err=>{
-            res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: err.message });            
+            res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Oops! "+ err.message });            
 
          });
       }
       catch(err:any)
       {
-         res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: err.message });            
+         res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Oops! "+err.message });            
 
+      }
+   }
+
+   async getCompanyDepartment(req:Request,res:Response)
+   {
+      try
+      {
+         var where={};
+         if(req.body.sub_company_id)
+         {
+            where={
+               sub_company_id:req.body.sub_company_id,
+               IsDeleted: 0,
+               IsBlock:0,
+               company_id: req.body.company_id
+            };
+         }
+         else
+         {
+            where={
+               IsDeleted: 0,
+               IsBlock:0,
+               company_id: req.body.company_id
+            };
+         }
+
+         await CompanyDepartment.findAll({
+            include:[{
+               model:MasterDepartment,
+               required:true,
+               where:{IsDeleted:0}
+            }],
+            where:where
+         }).then(data=>{
+
+            if(data.length != 0)
+            {
+               res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "data have been fetched successfully.",data:data });            
+
+            }
+            else
+            {
+               res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "No data were found, please add the department",data:data });            
+
+            }
+
+         }).catch(err=>{
+
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! "+err.message });            
+
+         });
+
+
+      }
+      catch(err:any)
+      {
+         res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! "+err.message });            
       }
    }
 

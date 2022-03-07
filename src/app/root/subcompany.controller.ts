@@ -63,21 +63,21 @@ class SubCompanyController
                         SubCompany.update({ ...updateId }, { where: { id: subcompnaydata['id'] } }).
                             then(success => {
 
-                                res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Branch Register successfully..." });
+                                res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Branch registered successfully..." });
 
                             }).catch(err => {
-                                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ message: err.message });
+                                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ message:  "Oops! "+ err.message });
                             });
 
 
                     }).catch(err => {
 
-                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
 
                     });
 
                 }).catch(err=>{
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });            
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });            
                 })
 
             }
@@ -109,25 +109,25 @@ class SubCompanyController
             //                 res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Branch Exist login created successfully..." });
 
             //             }).catch(err => {
-            //                 res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ message: err.message });
+            //                 res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ message:  "Oops! "+ err.message });
             //             });
 
 
             //     }).catch(err => {
 
-            //         res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+            //         res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
 
             //     });
             // }
             else
             {
-                res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Email Id or Branch Name Already exist" });            
+                res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Name or email of branch already exists, please use another one" });            
 
             }
         }
         catch(err:any)
         {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });            
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });            
         }
     }
 
@@ -150,20 +150,20 @@ class SubCompanyController
                 }
                 else
                 {
-                    res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "No Branch Found please Add one to view..." });            
+                    res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "No data were found, please add the Branch" });            
 
                 }
 
             }).catch(err=>{
 
-                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });            
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });            
 
             });
 
         }
         catch(err:any)
         {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });            
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });            
 
         }
     }
@@ -209,29 +209,30 @@ class SubCompanyController
                 }
 
             ],
+            //logging:console.log,
             where:{company_id:req.body.company_id,IsDeleted:0}
             }).then(resData=>{
 
                 if(resData.length != 0)
                 {
-                    res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.GET,data:resData});
+                    res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "data have been fetched successfully",data:resData});
                 }
                 else
                 {
-                    res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "No Branch Found Please Create One"});
+                    res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "No data were found, please add the Branch"});
 
                 }
 
 
             },err=>{
-                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
 
             })
 
         }
         catch(err:any)
         {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
         }
     }
 
@@ -283,35 +284,35 @@ class SubCompanyController
                         }
                         CompanyDepartment.update({...updateData},{where:{id:cData['id']}}).then(succ=>{
 
-                            res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Department Assign Successfully Login Created..." });            
+                            res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Department assigned successfully and Login created." });            
 
                         }).catch(err=>{
-                            res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message:err.message});            
+                            res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Oops! "+ err.message});            
 
                         })
 
                     }).catch(err=>{
 
-                        res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message:err.message});            
+                        res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Oops! "+ err.message});            
                     })
 
 
                 }).catch(err=>{
     
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });            
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });            
     
                 });
             }
             else
             {
-                res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Email Id or Department Already Exist..." });            
+                res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Oops! Email already exists or department has alloted to this branch" });            
 
             }
             
         }
         catch(err:any)
         {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });            
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });            
         }
     }
 
@@ -339,23 +340,23 @@ class SubCompanyController
     
                 await Trainer.update({...update},{where:{id:trainer_id}}).then(success=>{
 
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Trainer Assigned Successfully..." });            
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Trainer assigned successfully..." });            
 
                 }).catch(err=>{
     
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });            
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });            
     
                 });
             }
             else
             {
-                res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Invalid Sub Company" });            
+                res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Oops! An invalid Branch ID was entered, or this Branch was already deleted" });            
 
             }
         }
         catch(err:any)
         {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });            
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });            
 
         }
     }

@@ -12,6 +12,9 @@ import States from '../../model/resources/states.model';
 import Cities from '../../model/resources/cities.model';
 import TraineeCustomizeFormModel from '../../model/root/traineeFormCustomize.model';
 import TraineeFormMasterModel from '../../model/root/traineeFormMaster.model';
+import { Op } from 'sequelize';
+import moment from 'moment';
+import MasterPanel from '../../model/root/masterpanel.model';
 
 
 class CompanyController {
@@ -32,33 +35,64 @@ class CompanyController {
         req.body.updated_by = "";
         req.body.createdAt = responseStrings.currentTime
 
+        req.body.enrollment_id="COM_";
+
         await Company.create({ ...req.body })
-          .then(function (response) {
+          .then(async function (response) {
+
+            //! UPDATE COMPANY ENROLLMENT ID
+            var updateData={
+              enrollment_id:"COMP_"+response['id']
+            }
+            Company.update({...updateData},{where:{id:response['id']}}).catch(err=>{
+              console.log(err);
+            });
+            //! UPDATE COMPANY ENROLLMENT ID
+
+            //* Add trainee form field to this company/
+            var company_id=response['id'];
+
+            const master_form_fileds = await TraineeFormMasterModel.findAll({where:{IsDeleted:0}});
+
+            for(let i=0;i<master_form_fileds.length;i++)
+            {
+              var formarray={
+                company_id:company_id,
+                form_master_id:master_form_fileds[i]['id'],
+                created_by:req.body.created_by,
+                isValidate:0
+              }
+               await TraineeCustomizeFormModel.create({...formarray}).catch(err=>{
+                 console.log( "Oops! "+ err.message);
+               });
+            }
+
+             //* Add trainee form field to this company ----END/
             res
               .status(responseCodes.SUCCESS)
               .json({
                 response_code: 1,
-                message: "company register successfully...",
+                message: "The company have been successfully registered.",
                 data: response,
               });
           })
           .catch(function (err: any) {
             res
               .status(responseCodes.INTERNAL_SERVER_ERROR)
-              .json({ response_code: 0, message: err.message });
+              .json({ response_code: 0, message:  "Oops! "+ err.message });
           });
       } else {
         res
           .status(responseCodes.CREATED)
           .json({
             response_code: 0,
-            message: "company with same name already exits",
+            message: "Another user with this company name already exists. Please use another name",
           });
       }
     } catch (error: any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error.message });
+        .json({ response_code: 0, message:  "Oops! "+ error.message });
     }
   }
 
@@ -67,6 +101,7 @@ class CompanyController {
       var company_count = await Company.count({
         where: {
           IsDeleted: 0,
+          company_type:0
         },
       })
         .then((success) => {
@@ -81,12 +116,12 @@ class CompanyController {
         .catch((error: any) => {
           res
             .status(responseCodes.INTERNAL_SERVER_ERROR)
-            .json({ response_code: 0, message: error.message });
+            .json({ response_code: 0, message:  "Oops! "+error.message });
         });
     } catch (error: any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error.message });
+        .json({ response_code: 0, message:  "Oops! "+error.message });
     }
   }
 
@@ -102,7 +137,7 @@ class CompanyController {
       }).catch((err: any) => {
         res
           .status(responseCodes.INTERNAL_SERVER_ERROR)
-          .json({ response_code: 0, message: err.message });
+          .json({ response_code: 0, message:  "Oops! "+ err.message });
       });
 
       if (check_company_is_valid != null) {
@@ -113,12 +148,12 @@ class CompanyController {
           .then(function (data) {
             res
               .status(responseCodes.SUCCESS)
-              .json({ response_code: 1, message: responseStrings.UPDATED });
+              .json({ response_code: 1, message: "Company updated successfully" });
           })
           .catch(function (err: any) {
             res
               .status(responseCodes.INTERNAL_SERVER_ERROR)
-              .json({ response_code: 0, message: err.message });
+              .json({ response_code: 0, message:  "Oops! "+ err.message });
           });
       } else {
         res
@@ -126,17 +161,18 @@ class CompanyController {
           .json({
             response_code: 0,
             message:
-              "Invalid Company please check company id or company is deleted",
+              "Oops! An invalid company ID was entered, or this company was already deleted",
           });
       }
     } catch (error: any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error.message });
+        .json({ response_code: 0, message:  "Oops! "+ error.message });
     }
   }
 
-  async deleteCompany(req: Request, res: Response) {
+  async deleteCompany(req: Request, res: Response) 
+  {
     try {
       let company_id = req.body.company_id;
 
@@ -145,11 +181,11 @@ class CompanyController {
           id: company_id,
           IsDeleted: 0,
         },
-        logging: console.log,
+       // logging: console.log,
       }).catch((err: any) => {
         res
           .status(responseCodes.INTERNAL_SERVER_ERROR)
-          .json({ response_code: 0, message: err });
+          .json({ response_code: 0, message: "Oops! "+err.message });
       });
 
       if (check_company_is_valid != null) {
@@ -159,30 +195,60 @@ class CompanyController {
           deleted_by: req.body.deleted_by,
         };
 
-        await Company.update({ ...updateData }, { where: { id: company_id } })
+        //Check Subscription Expired
+        var currentDate = responseStrings.currentDate;
+        await Subscription.findAll({
+          where:{
+          expiry_date: { [Op.gte]: currentDate },
+          IsDeleted: 0,
+          company_id: company_id
+          }
+        }).then(data=>
+        {
+          if(data.length == 0)
+          {
+            Company.update({ ...updateData }, { where: { id: company_id } })
           .then(function (data) {
             res
               .status(responseCodes.SUCCESS)
-              .json({ response_code: 1, message: responseStrings.DELETE });
+              .json({ response_code: 1, message: "The Company have been deleted successfully." });
           })
           .catch(function (err: any) {
             res
               .status(responseCodes.INTERNAL_SERVER_ERROR)
-              .json({ response_code: 0, message: err.message });
+              .json({ response_code: 0, message:  data.length });
           });
+          }
+          else
+          {
+            res
+              .status(responseCodes.BAD_REQUEST)
+              .json({ response_code: 0, message:  "Oops! you cannot delete this company because it have an active Subscription please Deactivate the Subscription anf try again" });
+          }
+        },err=>{
+          res
+          .status(responseCodes.BAD_REQUEST)
+          .json({
+            response_code: 0,
+            message:
+              "Oops!"+ err
+          });
+        });
+
+        
       } else {
         res
           .status(responseCodes.BAD_REQUEST)
           .json({
             response_code: 0,
             message:
-              "Invalid Company please check company id or company is deleted",
+              "Oops! An invalid company ID was entered, or this company was already deleted",
           });
       }
     } catch (error: any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error.message });
+        .json({ response_code: 0, message:  "Oops! "+ error.message });
     }
   }
 
@@ -195,44 +261,56 @@ class CompanyController {
       //TODOD Get Company By
       if (req.body.company_id) {
         company_id = req.body.company_id;
-        where_condition = { id: company_id, IsDeleted: 0 };
+        where_condition = { id: company_id, IsDeleted: 0,company_type:0 };
         include_condition = {};
       }
       //TODO Get All Company
       else {
-        where_condition = { IsDeleted: 0 };
+        where_condition = { IsDeleted: 0,company_type:0 };
       }
 
       const getCompany = await Company.findAll(
         {
+          include:[{
+            model:MasterPanel,
+            where:{IsDeleted:0}
+          }],
           where: where_condition,
           order: [["id", "DESC"]],
         })
-        .then((data) => {
+        .then((data:any) => {
           if (data.length != 0) {
+
+            for(var i=0;i<data.length;i++)
+            {
+              data[i]['logo']= new URL(req.protocol + '://' + req.get('host'))+ "resources/company_logo/"+ data[i]['picture'];
+            }
+            //let logo =
+
             res
               .status(responseCodes.SUCCESS)
               .json({
                 response_code: 1,
+                //logo:logo,
                 message: responseStrings.GET,
                 data: data,
               });
           } else {
             res
               .status(responseCodes.SUCCESS)
-              .json({ response_code: 0, message: "No data available" });
+              .json({ response_code: 0, message: "No data were found." });
           }
         })
         .catch((err: any) => {
           console.log(err);
           res
             .status(responseCodes.INTERNAL_SERVER_ERROR)
-            .json({ response_code: 0, message: err.message });
+            .json({ response_code: 0, message:  "Oops! "+ err.message });
         });
     } catch (error: any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error.message });
+        .json({ response_code: 0, message:  "Oops! "+ error.message });
     }
   }
 
@@ -244,7 +322,7 @@ class CompanyController {
         include: [
           {
             model: CompanyUser,
-            attributes: ['id', 'name', 'department', 'mobile_no', 'canlogin'],
+            attributes: ['id', 'name', 'designation', 'mobile_no', 'canlogin'],
             where: {
               IsDeleted: 0
             },
@@ -267,6 +345,10 @@ class CompanyController {
             required: false
           },
           {
+            model:MasterPanel,
+            attributes:['panel']
+          },
+          {
             model: Countries,
             attributes: ['title', 'slug'],
             required: false
@@ -282,31 +364,34 @@ class CompanyController {
             required: false
           }
         ],
-        logging: console.log,
+        //logging: console.log,
         where: {
           id: req.body.company_id,
           IsDeleted: 0
         }
-      }).then((result) => {
+      }).then((result:any) => {
 
         if (result != null) {
+
+          let logo = new URL(req.protocol + '://' + req.get('host'))+ "resources/company_logo/"+ result['picture'];
           res
             .status(responseCodes.SUCCESS)
             .json({
               response_code: 1,
+              logo:logo,
               message: responseStrings.GET,
               data: result,
             });
         } else {
           res
             .status(responseCodes.SUCCESS)
-            .json({ response_code: 0, message: "No data available" });
+            .json({ response_code: 0, message: "No data were found." });
         }
       })
     } catch (err: any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: err.message });
+        .json({ response_code: 0, message:  "Oops! "+ err.message });
     }
   }
 
@@ -324,36 +409,28 @@ class CompanyController {
             .status(responseCodes.SUCCESS)
             .json({
               response_code: 1,
-              message: "company user added successfully...",
+              message: "company user added successfully.",
               data: data,
             });
         })
         .catch(function (err: any) {
           res
             .status(responseCodes.INTERNAL_SERVER_ERROR)
-            .json({ response_code: 0, message: err.message });
+            .json({ response_code: 0, message:  "Oops! "+ err.message });
         });
     } catch (error: any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error.message });
+        .json({ response_code: 0, message:  "Oops! "+ error.message });
     }
   }
 
   async add_company_login(req: Request, res: Response) {
     try {
-      //Table Fields for Company Contact
-      const company_contact = {
-        company_id: req.body.company_id,
-        name: req.body.name,
-        email:req.body.email,
-        department: req.body.department,
-        mobile_no: req.body.mobile_no,
-        canlogin: 1,
-        created_by: req.body.created_by,
-        updated_by: "",
-        createdAt: responseStrings.currentTime
-      };
+      //Table Fields for Company Contac
+        req.body.canlogin= 1;
+        req.body.updated_by= "";
+        req.body.createdAt= responseStrings.currentTime;
 
       const checkemailExist = await CompanyUser.findAll({
         where: {
@@ -372,7 +449,7 @@ class CompanyController {
       if (checkemailExist.length == 0 && checkemailExist_in_user_table.length == 0) 
       {
 
-        await CompanyUser.create({ ...company_contact })
+        await CompanyUser.create({ ...req.body })
           .then((userdata) => {
             //Add login in User table
             const userLoginData = {
@@ -396,27 +473,27 @@ class CompanyController {
                   { ...updateId },
                   { where: { id: userdata["id"] } }
                 ).catch((err: any) => {
-                  res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ message: err.message });
+                  res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ message:  "Oops! "+ err.message });
                 });
 
-                res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.ADD });
+                res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Added company user successfully, and login created" });
                 responseCodes;
               })
               .catch(function (err: any) {
-                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
               });
           })
           .catch(function (err: any) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
           });
       }
       else {
-        res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Email with same name already exist" });
+        res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: "Oops! Another user with this email already exists" });
       }
 
 
     } catch (error: any) {
-      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
+      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ error.message });
     }
   }
 
@@ -432,7 +509,7 @@ class CompanyController {
       }).catch((err: any) => {
         res
           .status(responseCodes.INTERNAL_SERVER_ERROR)
-          .json({ response_code: 0, message: err.message });
+          .json({ response_code: 0, message:  "Oops! "+ err.message });
       });
 
       if (check_company_user_is_valid != null) {
@@ -448,7 +525,7 @@ class CompanyController {
               email: req.body.email,
               mobile_no: req.body.mobile_no,
               password: req.body.password,
-              department: req.body.department,
+              designation: req.body.designation,
               updated_by: req.body.updated_by,
               updatedAt: responseStrings.currentTime
             };
@@ -456,18 +533,18 @@ class CompanyController {
             Users.update(user_table_update, { where: { id: user_login_id } }).then(function (data) {
               res
                 .status(responseCodes.SUCCESS)
-                .json({ response_code: 1, message: responseStrings.UPDATED });
+                .json({ response_code: 1, message: "Company user updated successfully." });
             }).catch((err: any) => {
               res
                 .status(responseCodes.INTERNAL_SERVER_ERROR)
-                .json({ response_code: 1, message: err.message });
+                .json({ response_code: 0, message:  "Oops! "+ err.message });
             });
 
           })
           .catch(function (err: any) {
             res
               .status(responseCodes.INTERNAL_SERVER_ERROR)
-              .json({ response_code: 0, message: err.message });
+              .json({ response_code: 0, message:  "Oops! "+ err.message });
           });
       } else {
         res
@@ -475,13 +552,13 @@ class CompanyController {
           .json({
             response_code: 0,
             message:
-              "Invalid Company User  please check user id or user is deleted",
+              "Oops! An invalid company user ID was entered, or this user was already deleted",
           });
       }
     } catch (error: any) {
       return res
         .status(responseCodes.INTERNAL_SERVER_ERROR)
-        .json({ response_code: 0, message: error.message });
+        .json({ response_code: 0, message:  "Oops! "+ error.message });
     }
   }
 
@@ -502,23 +579,23 @@ class CompanyController {
           IsDeleted: 0,
         },
       }).catch((err: any) => {
-        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
       });
 
       if (company_user_data) {
         res
           .status(responseCodes.SUCCESS)
           .json({
-            response_code: 0,
-            message: "company user fetched successfully...",
+            response_code: 1,
+            message: "data have been fetched successfully.",
             data: company_user_data,
           });
       } else {
-        res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "no data found" });
+        res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "No data were found." });
       }
     }
     catch (error: any) {
-      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
+      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ error.message });
     }
 
   }
@@ -552,20 +629,20 @@ class CompanyController {
               res.status(responseCodes.SUCCESS)
                 .json({
                   response_code: 1,
-                  message: responseStrings.DELETE,
+                  message: "Company user deleted successfully.",
                 });
             }).catch(function (err: any) {
-              res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+              res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
             });
 
 
           })
           .catch(function (err: any) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
           });
       }
       else {
-        res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "User Id is not valid" });
+        res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "Oops! An invalid company user ID was entered, or this user was already deleted" });
 
       }
 
@@ -574,7 +651,7 @@ class CompanyController {
 
     }
     catch (error: any) {
-      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: error.message });
+      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ error.message });
     }
 
   }
@@ -618,7 +695,7 @@ class CompanyController {
             [item['TraineeFormMasterModel']['form_label']]:ObjData,
         };
         }, initialValue);
-        res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "Form Loaing...",form:fromLabel });
+        res.status(responseCodes.SUCCESS).json({ response_code: 0, message: "Form Loading...",form:fromLabel });
       }
       else
       {
@@ -626,7 +703,7 @@ class CompanyController {
       }
     }).catch(err=>
     {
-      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+      res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
     });
 
   }

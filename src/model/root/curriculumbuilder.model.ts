@@ -3,6 +3,8 @@ import sequelizeconnection from "../../database/sequelize";
 import Curriculum from "./curriculum.model";
 import CurriculumParentCategory from "./curriculum_parent_category.model";
 import CurriculumParentCategoryTest from "./curriculum_parent_category_test.model";
+import Subscription from "./subscription.model";
+import TraineeRemarks from "./trainee_remark.model";
 
 
 interface CurriculumBuilderAttribute {
@@ -126,6 +128,25 @@ CurriculumBuilder.belongsTo(CurriculumParentCategoryTest, {
     foreignKey: "curriculum_parent_category_test_id"
 })
 
+
+
+CurriculumBuilder.hasOne(Subscription,{
+    foreignKey:"curriculum_id"
+})
+
+Curriculum.hasMany(CurriculumBuilder,{
+    foreignKey:"curriculum_id",
+    //as:"UsedSubscription"
+})
+
 CurriculumBuilder.belongsTo(Curriculum, {
     foreignKey: "curriculum_id"
+})
+
+CurriculumBuilder.hasOne(Subscription, {
+    foreignKey: "curriculum_id"
+})
+
+CurriculumBuilder.hasOne(TraineeRemarks, {
+    foreignKey: "curriculum_builder_id"
 })

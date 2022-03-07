@@ -107,11 +107,11 @@ Subscription.init({
         allowNull: false
     },
     activation_date: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING(100),
         allowNull: false
     },
     expiry_date: {
-        type: DataTypes.DATE,
+        type: DataTypes.STRING(100),
     },
     payment_note: {
         type: DataTypes.STRING(50),

@@ -14,6 +14,9 @@ import CompanyUser from "../../model/root/compayuser.model";
 import MasterPanel from "../../model/root/masterpanel.model";
 import Mastermenu from "../../model/root/mastermenu.model";
 import { Model } from "sequelize/types";
+import { Op } from "sequelize";
+import Subscription from "../../model/root/subscription.model";
+import responseStrings from "../../strings/response-strings";
 
 dotenv.config();
 
@@ -40,8 +43,9 @@ class LoginController {
                 // logging:console.log
             });
 
-            if (userdata === null) {
-                return res.status(ResponseCodes.UNAUTHORIZED).json({response_code: 0, message: 'invalid username or password', data: ''})
+            if (userdata === null) 
+            {
+                return res.status(ResponseCodes.UNAUTHORIZED).json({response_code: 0, message: "Oops! We didn't recognize you . please enter valid username and password", data: ''})
             }
             else {
 
@@ -64,7 +68,7 @@ class LoginController {
                             token: authentication_token,
                             user: "Super Admin",
                             user_type:user_type,
-                            message: 'user login successfully...',
+                            message: "Welcome! user logged in successfully.",
                             data: userdata
                         });
                 }
@@ -100,39 +104,108 @@ class LoginController {
                                 });
                         }
                     }
-                    else if (user_type == '4') {
-                        var trainer_data = await Trainer.findOne({
-                            include: [
-                                {model: Users},
-                                {model: Company}
+                    else if (user_type == '4') 
+                    {
+                        await Trainee.findOne({
+                            include:[
+                                {model:Users},
+                                {model:Company}
                             ],
-                            where: {
-                                login_table_id: userdata['id']
+                            where:{
+                                login_table_id: userdata['id'],
+                                IsDeleted:0,
+                                IsBlock:0
                             }
-                        });
-
-                        if (trainer_data != null) {
-                            return res.status(ResponseCodes.SUCCESS).json(
+                        }).then((traineeData:any)=>
+                        {
+                            if(traineeData.length != 0)
                                 {
-                                    response_code: 1,
-                                    token: authentication_token,
-                                    user_type: "Trainer",
-                                    message: 'user login successfully...',
-                                    data: trainer_data
-                                });
-                        }
-                        else {
-                            return res.status(ResponseCodes.UNAUTHORIZED).json(
+                                    const filePath = new URL(req.protocol + '://' + req.get('host') + "/resources/company_logo/"+traineeData['Company']['picture']);
+                                    return res.status(ResponseCodes.SUCCESS).json(
+                                        {
+                                            response_code: 1,
+                                            token: authentication_token,
+                                            logo:filePath,
+                                            user_type: 4,
+                                            message: 'Welcome! user logged in successfully.',
+                                            data: traineeData
+                                        });
+                                }
+                                else
+                                {
+                                    return res.status(ResponseCodes.BAD_REQUEST).json(
+                                        {
+                                            response_code: 0,
+                                            message: "Oops! sorry you cannot login please contact with your administrator."
+                                        });
+                                }
+                        }).catch(err=>{
+
+                        });
+                    }
+                    else if (user_type == '3')//Company Trainer
+                    {
+                        var trainerData=await Trainer.findOne({
+                            include:[
+                                {model:Users},
+                                {model:Company}
+                            ],
+                            where:{
+                                login_table_id: userdata['id'],
+                                IsDeleted:0,
+                                IsBlock:0
+                            }
+                        }).then((trainerData:any)=>
+                        {
+                            //!Check SUBSCRIPTION IS ACTIVE OR NOT
+                            Subscription.findAll({
+                                where: {
+                                  expiry_date: { [Op.gte]: responseStrings.currentDate },
+                                  activation_date: { [Op.lte]: responseStrings.currentDate },
+                                  IsDeleted: 0,
+                                  company_id: trainerData['company_id'],
+                                },
+                              }).then(subData=>{
+
+                                if(subData.length != 0)
+                                {
+                                    const filePath = new URL(req.protocol + '://' + req.get('host') + "/resources/company_logo/"+trainerData['Company']['picture']);
+                                    return res.status(ResponseCodes.SUCCESS).json(
+                                        {
+                                            response_code: 1,
+                                            token: authentication_token,
+                                            logo:filePath,
+                                            user_type: 3,
+                                            message: 'Welcome! user logged in successfully.',
+                                            data: trainerData
+                                        });
+                                }
+                                else
+                                {
+                                    return res.status(ResponseCodes.BAD_REQUEST).json(
+                                        {
+                                            response_code: 0,
+                                            message: "Oops! sorry you cannot login please contact with your administrator."
+                                        });
+                                }
+
+                              }).catch(err=>
+                            {
+                                return res.status(ResponseCodes.INTERNAL_SERVER_ERROR).json(
+                                    {
+                                        response_code: 0,
+                                        message: err.message
+                                    });
+                              })
+
+                        }).catch(err=>{
+
+                            return res.status(ResponseCodes.INTERNAL_SERVER_ERROR).json(
                                 {
                                     response_code: 0,
-                                    message: 'Trainer Not Found',
-                                    data: ''
+                                    message: err.message
                                 });
-                        }
-                    }
-                    else if (user_type == '3')//Company User
-                    {
-
+                        });
                     }
                     else if (user_type == '2')//Company User
                     {
@@ -163,16 +236,18 @@ class LoginController {
                             IsDeleted:0
                         },
                         //logging:console.log
-                       }).then(data=>{
+                       }).then((data:any)=>{
 
                         if(data != null)
                         {
+                            const filePath = new URL(req.protocol + '://' + req.get('host') + "/resources/company_logo/"+data['Company']['picture']);
                             return res.status(ResponseCodes.SUCCESS).json(
                                 {
                                     response_code: 1,
                                     token: authentication_token,
+                                    logo:filePath,
                                     user_type: 2,
-                                    message: 'user login successfully...',
+                                    message: 'Welcome! user logged in successfully.',
                                     data: data
                                 });
                         }
@@ -181,7 +256,7 @@ class LoginController {
                             return res.status(ResponseCodes.SUCCESS).json(
                                 {
                                     response_code: 0,
-                                    message: 'invalid username or password'
+                                    message: "Oops! We didn't recognize you . please enter valid username and password"
                                 });
                         }
                         
@@ -199,7 +274,7 @@ class LoginController {
                         return res.status(ResponseCodes.UNAUTHORIZED).json(
                             {
                                 response_code: 0,
-                                message: 'Trainee Not Found',
+                                message: "Oops! no data found please enter valid username and password",
                                 data: ''
                             });
                     }

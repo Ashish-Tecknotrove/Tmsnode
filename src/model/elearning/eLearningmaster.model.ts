@@ -21,6 +21,7 @@ export default class ElearningMaster extends Model
     declare id: number;
     test_id!: number;
     zipname!: string;
+    folderName!:number;
     link!: string;
     created_by!: string;
     updated_by!: string;
@@ -46,6 +47,9 @@ ElearningMaster.init({
       },
       zipname: {
         type: DataTypes.STRING
+      },
+      folderName:{
+        type:DataTypes.STRING
       },
       link: {
         type: DataTypes.STRING,

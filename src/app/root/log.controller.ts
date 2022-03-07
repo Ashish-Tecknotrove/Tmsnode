@@ -1,4 +1,4 @@
-import Log from "./log.model";
+import Log from "../../model/root/log.model";
 
 class LogController{
 

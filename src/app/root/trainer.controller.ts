@@ -1,5 +1,5 @@
-import { check } from 'express-validator';
-import e, { Request, Response } from "express";
+import {check} from 'express-validator';
+import e, {Request, Response} from "express";
 import Company from "../../model/root/company.model";
 import Curriculum from "../../model/root/curriculum.model";
 import CurriculumBuilder from "../../model/root/curriculumbuilder.model";
@@ -10,8 +10,41 @@ import Trainer from "../../model/root/trainer.model";
 import Users from "../../model/root/users.model";
 import responseCodes from "../../strings/response-codes";
 import responseStrings from "../../strings/response-strings";
+import TechnologyCategory from "../../model/root/technology.model";
+import Subscription from "../../model/root/subscription.model";
+import sequelize_1 from "sequelize";
+import ResponseStrings from "../../strings/response-strings";
+import Assign_trainee_to_trainer from "../../model/root/assign_trainee_to_trainer.model";
+import Trainee from "../../model/root/trainee.model";
+import TraineeCurriculum from "../../model/root/trainee_curriculum.model";
+import TraineeRemarks from "../../model/root/trainee_remark.model";
 
 class TrainerController {
+
+    async getTrainerCount(req: Request, res: Response)
+    {
+        try {
+            await Trainer.count({
+                where: {
+                    company_id: req.body.company_id,
+                    IsDeleted: 0
+                },
+
+            }).then(data => {
+                res.status(responseCodes.SUCCESS).json({
+                    response_code: 1,
+                    message: "Trainer count fetched successfully...",
+                    count: data
+                });
+
+            }).catch(err => {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+            });
+        } catch (err: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+        }
+
+    }
 
     async registerTrainer(req: Request, res: Response) {
 
@@ -35,7 +68,7 @@ class TrainerController {
 
             //?get Trainer and User both of exists
             if (trainer.length != 0 && user.length != 0) {
-                res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: responseStrings.EXISTS });
+                res.status(responseCodes.BAD_REQUEST).json({response_code: 0, message: responseStrings.EXISTS});
             }
 
             //?get Trainer exist and User not exist
@@ -52,27 +85,32 @@ class TrainerController {
                     createdAt: responseStrings.currentTime,
                     updated_by: ''
                 }
-                await Users.create({ ...login }).then(async (UserData) => {
+                await Users.create({...login}).then(async (UserData) => {
                     const updateTrainer = {
                         login_table_id: UserData.id
                     }
 
                     //? update Trainer Loginid in trainer
-                    await Trainer.update({ ...updateTrainer }, {
+                    await Trainer.update({...updateTrainer}, {
                         where: {
                             id: trainer[0].id
                         }
                     }).then((updateData) => {
-                        res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.ADD, trainer: trainer, UserData: UserData });
+                        res.status(responseCodes.SUCCESS).json({
+                            response_code: 1,
+                            message: "The Trainer have been registered successfully.",
+                            trainer: trainer,
+                            UserData: UserData
+                        });
                     }).catch((err: any) => {
-                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
                     })
                 })
             }
 
             //?get duplicate email in User but can't get trainer 
             else if (trainer.length == 0 && user.length != 0) {
-                res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: responseStrings.EXISTS });
+                res.status(responseCodes.BAD_REQUEST).json({response_code: 0, message: "Email of user already exists, please use another one"});
             }
 
             //?  Trainer and User both of not exists
@@ -81,7 +119,7 @@ class TrainerController {
                 req.body.updated_by = '';
 
                 //? Trainer Create
-                await Trainer.create({ ...req.body }).then(async (data) => {
+                await Trainer.create({...req.body}).then(async (data) => {
                     const login = {
                         company_id: data.company_id,
                         email: data.email,
@@ -94,23 +132,31 @@ class TrainerController {
                     }
 
                     //? User Create
-                    await Users.create({ ...login }).then(async (UserData) => {
+                    await Users.create({...login}).then(async (UserData) => {
                         const updateTrainer = {
                             login_table_id: UserData.id
                         }
                         //? update Trainer Loginid in trainer
-                        await Trainer.update({ ...updateTrainer }, {
+                        await Trainer.update({...updateTrainer}, {
                             where: {
                                 id: data.id
                             }
                         }).then((updateData) => {
-                            res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.ADD, trainer: data, UserData: UserData });
+                            res.status(responseCodes.SUCCESS).json({
+                                response_code: 1,
+                                message: "The Trainer have been registered successfully.",
+                                trainer: data,
+                                UserData: UserData
+                            });
                         }).catch((err: any) => {
-                            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! "+err.message
+                            });
                         })
                     })
                 }).catch(function (err: any) {
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
                 });
             }
 
@@ -167,8 +213,7 @@ class TrainerController {
                             sub_company_id: req.body.sub_company_id
                         }
                     }
-                    else
-                    {
+                    else {
                         updateTrainer = {
                             name: req.body.name,
                             password: req.body.password,
@@ -180,7 +225,7 @@ class TrainerController {
 
 
                     //? UPDATE TRAINER
-                    await Trainer.update({ ...updateTrainer }, {
+                    await Trainer.update({...updateTrainer}, {
                         where: {
                             id: req.body.trainer_id
                         }
@@ -191,36 +236,42 @@ class TrainerController {
                             updatedAt: responseStrings.currentTime
                         };
                         //? UPDATE USER
-                        await Users.update({ ...updateUser }, {
+                        await Users.update({...updateUser}, {
                             where: {
                                 id: result.login_table_id
                             }
                         }).then((updateRes) => {
-                            res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.UPDATED });
+                            res.status(responseCodes.SUCCESS).json({
+                                response_code: 1,
+                                message: "The Trainer have been updated successfully."
+                            });
                         }).catch((err: any) => {
-                            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! "+err.message
+                            });
                         })
 
                     }).catch((err: any) => {
-                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
                     })
 
                 }
                 //? TRAINER NOT EXIST
                 else {
-                    res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: responseStrings.NOT });
+                    res.status(responseCodes.BAD_REQUEST).json({response_code: 0, message: "Oops! An invalid trainer ID was entered, or this trainer was already deleted"});
                 }
             }).catch((err: any) => {
                 res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: err.message,
+                    message: "Oops! "+err.message,
                     data: "",
                 });
             })
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,
-                message: err.message,
+                message: "Oops! "+err.message,
                 data: "",
             });
 
@@ -272,11 +323,11 @@ class TrainerController {
                 }],
                 where: where,
             }).then((result) => {
-                res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.GET, data: result });
+                res.status(responseCodes.SUCCESS).json({response_code: 1, message: responseStrings.GET, data: result});
             }).catch((err: any) => {
                 res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: err.message,
+                    message: "Oops! "+err.message,
                     data: "",
                 });
             })
@@ -284,7 +335,7 @@ class TrainerController {
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,
-                message: err.message,
+                message: "Oops! "+err.message,
                 data: "",
             });
         }
@@ -309,7 +360,7 @@ class TrainerController {
                     }
 
                     //? DELETE TRAINER
-                    await Trainer.update({ ...updateTrainer }, {
+                    await Trainer.update({...updateTrainer}, {
                         where: {
                             id: req.body.trainer_id
                         }
@@ -320,136 +371,280 @@ class TrainerController {
                             deletedAt: responseStrings.currentTime
                         };
                         //? DELETE USER ALSO
-                        await Users.update({ ...updateUser }, {
+                        await Users.update({...updateUser}, {
                             where: {
                                 id: result.login_table_id
                             }
                         }).then((updateRes) => {
-                            res.status(responseCodes.SUCCESS).json({ response_code: 1, message: responseStrings.DELETE });
+                            res.status(responseCodes.SUCCESS).json({response_code: 1, message: "The Trainer have been deleted."});
                         }).catch((err: any) => {
-                            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! "+err.message
+                            });
                         })
 
                     }).catch((err: any) => {
-                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
                     })
 
                 }
                 //? TRAINER NOT EXIST
                 else {
-                    res.status(responseCodes.BAD_REQUEST).json({ response_code: 0, message: responseStrings.NOT });
+                    res.status(responseCodes.BAD_REQUEST).json({response_code: 0, message: responseStrings.NOT});
                 }
             }).catch((err: any) => {
                 res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: err.message,
+                    message: "Oops! "+err.message,
                     data: "",
                 });
             })
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,
-                message: err.message
+                message: "Oops! "+err.message
             });
         }
     }
 
-    async getTestMarksAttemptByTechnology(req: Request, res: Response) {
+    async assign_trainee_to_trainer(req: Request, res: Response) {
         try {
-            console.log(req.body.company_id);
+
+            if (req.body.trainees_id.length > 0) {
+                let traineeData = JSON.parse(req.body.trainees_id);
+                for (let i = 0; i < traineeData.length; i++) {
+                    let insertData = {
+                        trainer_id: req.body.trainer_id,
+                        trainee_id: traineeData[i]['trainee_id'],
+                        created_by: req.body.created_by,
+                        createdAt: responseStrings.currentTime
+                    };
+
+
+                    await Assign_trainee_to_trainer.create(insertData)
+                        .then(async (result: any) => {
+                            let updateData = {
+                                trainer_id: req.body.trainer_id,
+                                updated_by: req.body.created_by,
+                                updatedAt: responseStrings.currentTime
+                            }
+                            await Trainee.update({...updateData}, {
+                                where: {
+                                    id: traineeData[i]['trainee_id']
+                                }
+                            }).then((updateResult: any) => {
+                                if ((traineeData.length - 1) == i) {
+                                    res.status(responseCodes.SUCCESS).json({
+                                        response_code: 1,
+                                        message: "The Trainee have been assign successfully.",
+                                    })
+                                }
+                            }).catch((err: any) => {
+                                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: "Oops! "+err.message
+                                })
+                            })
+                        }).catch((err: any) => {
+                            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! "+err.message
+                            })
+                        })
+
+                }
+
+            } else {
+                res.status(responseCodes.BAD_REQUEST).json({
+                    response_code: 0,
+                    message: "Oops! please select atleast one trainee to assign"
+                })
+            }
+
+
+        } catch (err: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                response_code: 0,
+                message: "Oops! "+err.message
+            })
+        }
+    }
+
+    async unassignTrainer(req: Request, res: Response) {
+        try {
+            let updateAssign = {
+                IsDeleted: 1,
+                updatedAt: responseStrings.currentTime,
+                updated_by: req.body.updated_by
+            }
+            await Assign_trainee_to_trainer.update({...updateAssign}, {
+                where: {
+                    id: req.body.assignTrainer_id,
+                    IsDeleted: 0
+                }
+            }).then(async (result: any) => {
+                let updateTrainee = {
+                    trainer_id: null,
+                    updatedAt: responseStrings.currentTime,
+                    updated_by: req.body.updated_by
+                }
+                await Trainee.update({...updateTrainee}, {
+                    where: {
+                        id: req.body.trainee_id,
+                        IsDeleted: 0
+                    }
+                }).then((result: any) => {
+                    res.status(responseCodes.SUCCESS).json({
+                        response_code: 1,
+                        message: "The Trainee have been unassigned successfully.",
+                    })
+                }).catch((err: any) => {
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! "+err.message
+                    })
+                })
+            }).catch((err: any) => {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! "+err.message
+                })
+            })
+        } catch (err: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                response_code: 0,
+                message: "Oops! "+err.message
+            })
+        }
+    }
+
+    async getTraineeRemarks(req: Request, res: Response) {
+        try {
             await CurriculumBuilder.findAll({
                 include: [{
-                    model: Curriculum,
+                    model: TraineeRemarks,
+                    required: false,
                     where: {
                         IsDeleted: 0,
-                        company_id: req.body.company_id
+                        trainee_id: req.body.trainee_id
                     },
-                    attributes: ['id', 'company_id', 'name'],
-                    required: true
+                    attributes: ['id', 'trainee_id', 'trainer_id', 'curriculum_id', 'curriculum_builder_id', 'remarks']
                 }, {
-                    //     model: CurriculumParentCategory,
-                    //     where: {
-                    //         IsDeleted: 0,
-                    //         technology_type_id: req.body.technology_type_id
-                    //     },
-                    //     attributes: ['id', 'title', 'technology_type_id'],
-                    //     required:false
-                    // },{
                     model: CurriculumParentCategoryTest,
                     where: {
                         IsDeleted: 0,
-                        technology_type_id: req.body.technology_type_id
+                        language_id: req.body.language_id,
+                        technology_type_id:req.body.technology_id
                     },
-                    attributes: ['id', 'prefix', 'title'],
-                    required: true
+                    attributes: ['id', 'prefix', 'title', 'parent_id', 'technology_type_id', 'language_id']
                 }],
                 where: {
                     IsDeleted: 0,
                     curriculum_id: req.body.curriculum_id
                 },
-                attributes: ['id', 'curriculum_id', 'curriculum_parent_category_id', 'curriculum_parent_category_test_id', 'passing_marks', 'total_marks', 'attempts']
+                attributes: ['id', 'curriculum_id', 'vehicle_id', 'curriculum_parent_category_id', 'curriculum_parent_category_test_id', 'passing_marks', 'total_marks', 'attempts']
             }).then((result) => {
                 res.status(responseCodes.SUCCESS).json({
-                    response_code: 0,
+                    response_code: 1,
+                    message: "Get Trainee Remarks Fetching successfully.",
                     data: result
+                });
+            }).catch((err: any) => {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message
                 })
             })
-                .catch((err: any) => {
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
-                        response_code: 0,
-                        message: err.message
-                    })
-                })
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,
-                message: err.message
+                message: "Oops! " + err.message
             })
         }
     }
 
-    
-
-    async submitTestMarksAttemptByTechnology(req: Request, res: Response) {
+    async addTraineeRemarks(req: Request, res: Response) {
         try {
-
-            let data = req.body.data;
-            let datalength = data.length;
-
-            for (let i = 0; i < datalength; i++) {
-
-
-                let updateMarksAttempt = {
-                    passing_marks: data[i]['passing_marks'],
-                    total_marks: data[i]['total_marks'],
-                    attempts: data[i]['attempts'],
-                    updated_by: req.body.updated_by,
-                    updatedAt: responseStrings.currentTime
+            await TraineeRemarks.findAll({
+                where:{
+                    IsDeleted:0,
+                    trainee_id:req.body.trainee_id,
+                    curriculum_builder_id:req.body.curriculum_builder_id
+                }
+            }).then(async (result:any)=>{
+                if(result.length==0){
+                    req.body.createdAt=responseStrings.currentTime;
+                    req.body.updated_by = '';
+                    await TraineeRemarks.create({...req.body}).then((addResult:any)=>{
+                        res.status(responseCodes.SUCCESS).json({
+                            response_code: 1,
+                            message: "The Trainer Remark have been submit successfully.",
+                            data: addResult,
+                        });
+                    }).catch(function (err: any) {
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
+                    }).catch((err: any) => {
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        })
+                    });
+                }else {
+                    res.status(responseCodes.BAD_REQUEST).json({
+                        response_code: 0,
+                        message: "Oops! Remark Already Submitted."
+                    })
                 }
 
-                await CurriculumBuilder.update({ ...updateMarksAttempt }, {
-                    where: {
-                        id: data[i]['id']
-                    }
-                }).then((result) => {
-                    if (datalength - 1 == i) {
-                        res.status(responseCodes.SUCCESS).json({
-                            response_code: 0,
-                            message: responseStrings.UPDATED
-                        })
-                    }
-                }).catch((err: any) => {
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
-                        response_code: 0,
-                        message: err.message
-                    })
+            }).catch((err: any) => {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message
                 })
-            }
-
+            })
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,
-                message: err.message
+                message: "Oops! " + err.message
+            })
+        }
+    }
+
+    async updateTraineeRemarks(req: Request, res: Response) {
+        try {
+            let updateBody = {
+                remarks: req.body.remarks,
+                updated_by: req.body.updated_by,
+                updatedAt: responseStrings.currentTime
+            }
+            await TraineeRemarks.update({...updateBody}, {
+                where: {
+                    id: req.body.trainee_remark_id
+                }
+            }).then((result: any) => {
+                res.status(responseCodes.SUCCESS).json({
+                    response_code: 1,
+                    message: "The Trainer Remark have been update successfully."
+                });
+            }).catch(function (err: any) {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message
+                });
+            }).catch((err:any)=>{
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message
+                })
+            })
+        } catch (err: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                response_code: 0,
+                message: "Oops! " + err.message
             })
         }
     }

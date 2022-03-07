@@ -12,7 +12,7 @@ import Subscription from "./subscription.model";
 interface CompanyAttributes {
     id: number
     company_name: string
-    company_type: string
+    company_type: number
     gst: string
     picture: string
     simulator_count: number
@@ -23,7 +23,7 @@ interface CompanyAttributes {
     country_id: number
     contact_person_count: string
     trainee_unique_login: string
-    adp_decider: string
+    company_unique_id: string
     api_decider: string
     registration_type: string
     day_no: number;
@@ -41,8 +41,9 @@ export default class Company extends Model {
 
     declare id: number
     company_name!: string
-    panel_id!:Number;
-    company_type!: string
+    enrollment_id!:string
+    panel_id!:number;
+    company_type!: number
     gst!: string
     picture!: string
     simulator_count!: number
@@ -53,7 +54,7 @@ export default class Company extends Model {
     country_id!: number
     contact_person_count!: string
     trainee_unique_login!: string
-    adp_decider!: string
+    company_unique_id!: string
     api_decider!: string
     registration_type!: string
     day_no!: number;
@@ -79,6 +80,10 @@ Company.init({
         allowNull: false,
         unique: true
     },
+    enrollment_id:{
+        type:DataTypes.STRING(100),
+        allowNull: false,
+    },
     panel_id: {
         type: DataTypes.INTEGER,
         references:{
@@ -88,7 +93,8 @@ Company.init({
         allowNull:false
     },
     company_type: {
-        type: DataTypes.STRING(20),
+        type: DataTypes.TINYINT,
+        defaultValue:0,
         allowNull: true
     },
     gst: {
@@ -133,8 +139,8 @@ Company.init({
         allowNull: false,
 
     },
-    adp_decider: {
-        type: DataTypes.INTEGER,
+    company_unique_id: {
+        type: DataTypes.STRING,
     },
     api_decider: {
         type: DataTypes.STRING,

@@ -16,7 +16,7 @@ class MasterDepartmentController {
                name: req.body.name,
                company_id:req.body.company_id
             },
-            logging: console.log
+            // logging: console.log
          }).then(async (result) => {
 
             //?  MASTER DEPARTMENT NOT EXIST
@@ -28,30 +28,30 @@ class MasterDepartmentController {
                await MasterDepartment.create({ ...req.body }).then(async (data) => {
                   res.status(responseCodes.SUCCESS).json({
                      response_code: 1,
-                     message: responseStrings.ADD,
+                     message: "Department added successfully.",
                      data: data
                   });
                }).catch(function (err: any) {
-                  res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                  res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
                });
             } else {
                //?  MASTER DEPARTMENT EXIST
                return res.status(responseCodes.BAD_REQUEST).json({
                   response_code: 0,
-                  message: responseStrings.EXISTS
+                  message: "Oops! Name of department already exists, please use another one"
                });
             }
 
          }).catch((err: any) => {
             return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                response_code: 0,
-               message: err.message
+               message:  "Oops! "+ err.message
             });
          })
       } catch (e: any) {
          return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
             response_code: 0,
-            message: e.message,
+            message:  "Oops! "+ e.message,
             data: "",
          });
       }
@@ -64,13 +64,14 @@ class MasterDepartmentController {
          await MasterDepartment.findOne({
             where: {
                IsDeleted: 0,
-               id: req.body.masterdepartment_id
+               company_id: req.body.company_id,
+               name: req.body.name
             },
-            logging: console.log
+            // logging: console.log
          }).then(async (result) => {
 
-            //?  MASTER DEPARTMENT EXIST
-            if (result) {
+            //?  MASTER DEPARTMENT NOT EXIST
+            if (result==null) {
                req.body.updatedAt = responseStrings.currentTime;
 
                let updateObj = {
@@ -88,29 +89,29 @@ class MasterDepartmentController {
                }).then(async (data) => {
                   res.status(responseCodes.SUCCESS).json({
                      response_code: 1,
-                     message: responseStrings.UPDATED
+                     message: "Department Updated Successfully."
                   });
                }).catch(function (err: any) {
-                  res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                  res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
                });
             } else {
-               //?  MASTER DEPARTMENT NOT EXIST
+               //?  MASTER DEPARTMENT EXIST
                return res.status(responseCodes.BAD_REQUEST).json({
                   response_code: 0,
-                  message: responseStrings.NOT
+                  message: "Oops! An invalid department ID was entered, or this department was already deleted"
                });
             }
 
          }).catch((err: any) => {
             return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                response_code: 0,
-               message: err.message
+               message:  "Oops! "+ err.message
             });
          })
       } catch (e: any) {
          return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
             response_code: 0,
-            message: e.message,
+            message:  "Oops! "+ e.message,
             data: "",
          });
       }
@@ -125,7 +126,7 @@ class MasterDepartmentController {
                IsDeleted: 0,
                id: req.body.masterdepartment_id
             },
-            logging: console.log
+            // logging: console.log
          }).then(async (result) => {
 
             //?  MASTER DEPARTMENT EXIST
@@ -145,29 +146,29 @@ class MasterDepartmentController {
                }).then(async (data) => {
                   res.status(responseCodes.SUCCESS).json({
                      response_code: 1,
-                     message: responseStrings.DELETE
+                     message: "Department Deleted Successfully."
                   });
                }).catch(function (err: any) {
-                  res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                  res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message:  "Oops! "+ err.message });
                });
             } else {
                //?  MASTER DEPARTMENT NOT EXIST
                return res.status(responseCodes.BAD_REQUEST).json({
                   response_code: 0,
-                  message: responseStrings.NOT
+                  message: "Oops! An invalid department ID was entered, or this department was already deleted"
                });
             }
 
          }).catch((err: any) => {
             return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                response_code: 0,
-               message: err.message
+               message:  "Oops! "+ err.message
             });
          })
       } catch (e: any) {
          return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
             response_code: 0,
-            message: e.message,
+            message:  "Oops! "+ e.message,
             data: "",
          });
       }
@@ -178,11 +179,8 @@ class MasterDepartmentController {
 
          //? CHECK MASTER DEPARTMENT
          await MasterDepartment.findAll({
-            where: {
-               IsDeleted: 0,
-               company_id: req.body.company_id
-            },
-            logging: console.log
+            where:{company_id:req.body.company_id,IsDeleted:0},
+            //logging: console.log
          }).then(async (result) => {
 
             //?  MASTER DEPARTMENT EXIST
@@ -190,27 +188,27 @@ class MasterDepartmentController {
 
                res.status(responseCodes.SUCCESS).json({
                   response_code: 1,
-                  message: responseStrings.GET,
+                  message: "data have been fetched successfully",
                   data:result
                });
             } else {
                //?  MASTER DEPARTMENT NOT EXIST
-               return res.status(responseCodes.BAD_REQUEST).json({
+               return res.status(responseCodes.SUCCESS).json({
                   response_code: 0,
-                  message: responseStrings.NOT
+                  message: "No data were found"
                });
             }
 
          }).catch((err: any) => {
             return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                response_code: 0,
-               message: err.message
+               message:  "Oops! "+ err.message
             });
          })
       } catch (e: any) {
          return res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
             response_code: 0,
-            message: e.message,
+            message:  "Oops! "+ e.message,
             data: "",
          });
       }

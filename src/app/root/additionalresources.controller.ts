@@ -7,13 +7,13 @@ import responseCodes from "../../strings/response-codes";
 class AdditionalresourcesController {
     async getCountry(req: Request, res: Response) {
         try {
-            var country = await sequelizeconnection.query("Select * from countries",
+            var country = await sequelizeconnection.query("Select * from countries ORDER BY title ASC",
                 { type: sequelize.QueryTypes.SELECT });
 
             res.status(responseCodes.SUCCESS).json({ response_code: 1, data: country });
         }
         catch (err:any) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
         }
 
 
@@ -23,13 +23,13 @@ class AdditionalresourcesController {
         try {
             var country_id = req.body.country_id
             console.log(country_id);
-            var state = await sequelizeconnection.query(`Select * from states where country_id=${country_id}`,
+            var state = await sequelizeconnection.query(`Select * from states where country_id=${country_id} ORDER BY title ASC ` ,
                 { type: sequelize.QueryTypes.SELECT });
 
             res.status(200).json({ response_code: 1, data: state });
         }
         catch (err:any) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
         }
 
     }
@@ -38,13 +38,13 @@ class AdditionalresourcesController {
         try {
             var stateid = req.body.state_id
 
-            var cities = await sequelizeconnection.query(`Select * from cities where state_id=${stateid}`,
+            var cities = await sequelizeconnection.query(`Select * from cities where state_id=${stateid} ORDER BY title ASC `,
                 { type: sequelize.QueryTypes.SELECT });
 
             res.status(200).json({ response_code: 1, data: cities });
         }
         catch (err:any) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
         }
 
     }
@@ -57,7 +57,7 @@ class AdditionalresourcesController {
             res.status(200).json({ response_code: 1, data: languages });
         }
         catch (err:any) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
         }
 
     }
