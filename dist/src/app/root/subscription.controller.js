@@ -19,6 +19,8 @@ const curriculum_model_1 = __importDefault(require("../../model/root/curriculum.
 const subscription_model_1 = __importDefault(require("../../model/root/subscription.model"));
 const response_codes_1 = __importDefault(require("../../strings/response-codes"));
 const response_strings_1 = __importDefault(require("../../strings/response-strings"));
+const trainee_model_1 = __importDefault(require("../../model/root/trainee.model"));
+const trainee_curriculum_model_1 = __importDefault(require("../../model/root/trainee_curriculum.model"));
 class SubscriptionController {
     total_subscription(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -34,7 +36,7 @@ class SubscriptionController {
                 }).then((result) => {
                     res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, count: result });
                 }).catch((err) => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
                 });
             }
             catch (e) {
@@ -53,11 +55,12 @@ class SubscriptionController {
                     where: {
                         curriculum_id: req.body.curriculum_id,
                         company_id: req.body.company_id,
-                        status: "1"
+                        status: "1",
+                        IsDeleted: 0
                     },
                     // logging: console.log
                 }).catch((err) => {
-                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: err.message });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
                 });
                 if (checkSubscriptionExist == null) {
                     var actication_date = req.body.activation_date;
@@ -81,13 +84,13 @@ class SubscriptionController {
                         updated_by: "",
                     };
                     yield subscription_model_1.default.create(Object.assign({}, subscriptionData)).then(function (data) {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.ADD });
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "New subscription have been created successfully." });
                     }).catch(function (err) {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.CREATED).json({ response_code: 0, message: response_strings_1.default.EXISTS });
+                    res.status(response_codes_1.default.CREATED).json({ response_code: 0, message: "Oops! Subscription already created for this curriculum" });
                 }
             }
             catch (e) {
@@ -110,7 +113,7 @@ class SubscriptionController {
                     },
                     // logging: console.log
                 }).catch((err) => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
                 });
                 if (check_subscription_is_valid != null) {
                     var actication_date = req.body.activation_date;
@@ -131,13 +134,13 @@ class SubscriptionController {
                     };
                     yield subscription_model_1.default.update(Object.assign({}, subscriptionData), { where: { id: subscription_id } }).
                         then(function (response) {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.UPDATED });
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "Subscription have been updated." });
                     }).catch((err) => {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Invalid Subscription please check subscription id or subscription is deleted" });
+                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Oops! An invalid subscription ID was entered, or this subscription was already deleted" });
                 }
             }
             catch (e) {
@@ -176,18 +179,78 @@ class SubscriptionController {
                     // logging: console.log
                 }).then((result) => {
                     if (result.length != 0) {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.GET, data: result });
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "data have been fetched successfully", data: result });
                     }
                     else {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.NOT, data: [] });
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: "No data were found", data: [] });
                     }
                 }).catch((err) => {
                     console.log(err);
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
                 });
             }
             catch (err) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+            }
+        });
+    }
+    getSubscriptionByCompany(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const subscriptionData = yield subscription_model_1.default.findAll({
+                    include: [
+                        {
+                            model: curriculum_model_1.default,
+                            required: false,
+                            attributes: ['id', 'company_id', 'name']
+                        }
+                    ],
+                    where: {
+                        company_id: req.body.company_id,
+                        IsDeleted: 0,
+                        expiry_date: {
+                            [sequelize_1.Op.gt]: (0, moment_1.default)(new Date()).format("YYYY-MM-DD")
+                        }
+                    },
+                    attributes: ['id', 'curriculum_id', 'company_id', 'technology_type', 'day_no', 'calender_type', 'licence_no', 'licenceType', 'payment_type', 'activation_date', 'expiry_date']
+                    // logging: console.log
+                }).then((result) => __awaiter(this, void 0, void 0, function* () {
+                    if (result.length != 0) {
+                        for (let i = 0; i < result.length; i++) {
+                            yield trainee_model_1.default.count({
+                                include: [
+                                    {
+                                        model: trainee_curriculum_model_1.default,
+                                        where: {
+                                            IsDeleted: 0,
+                                            curriculum_id: result[i]['curriculum_id']
+                                        }
+                                    }
+                                ]
+                            }).then(count => {
+                                // console.log(data);
+                                result[i]['dataValues']['userSubscription'] = count;
+                                result[i]['dataValues']['pendingSubscription'] = result[i]['licence_no'] - count;
+                            }).catch(err => {
+                                console.log(err.message);
+                            });
+                        }
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 1,
+                            message: "data have been fetched successfully",
+                            data: result
+                        });
+                    }
+                    else {
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: "No data were found", data: [] });
+                    }
+                })).catch((err) => {
+                    console.log(err);
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                });
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
             }
         });
     }
@@ -202,7 +265,7 @@ class SubscriptionController {
                     },
                     // logging: console.log
                 }).catch((err) => {
-                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: err.message });
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: "Oops! " + err.message });
                 });
                 if (check_subscription_is_valid != null) {
                     var subscriptionData = {
@@ -212,17 +275,17 @@ class SubscriptionController {
                     };
                     yield subscription_model_1.default.update(Object.assign({}, subscriptionData), { where: { id: subscription_id } }).
                         then(function (response) {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.DELETE });
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "Subscription deleted." });
                     }).catch((err) => {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Invalid Subscription please check subscription or subscription already deleted" });
+                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Oops! An invalid subscription ID was entered, or this subscription was already deleted" });
                 }
             }
             catch (err) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
             }
         });
     }

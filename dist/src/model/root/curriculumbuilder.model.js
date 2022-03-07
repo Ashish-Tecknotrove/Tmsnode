@@ -8,6 +8,8 @@ const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const curriculum_model_1 = __importDefault(require("./curriculum.model"));
 const curriculum_parent_category_model_1 = __importDefault(require("./curriculum_parent_category.model"));
 const curriculum_parent_category_test_model_1 = __importDefault(require("./curriculum_parent_category_test.model"));
+const subscription_model_1 = __importDefault(require("./subscription.model"));
+const trainee_remark_model_1 = __importDefault(require("./trainee_remark.model"));
 class CurriculumBuilder extends sequelize_1.Model {
 }
 exports.default = CurriculumBuilder;
@@ -86,6 +88,19 @@ CurriculumBuilder.belongsTo(curriculum_parent_category_model_1.default, {
 CurriculumBuilder.belongsTo(curriculum_parent_category_test_model_1.default, {
     foreignKey: "curriculum_parent_category_test_id"
 });
+CurriculumBuilder.hasOne(subscription_model_1.default, {
+    foreignKey: "curriculum_id"
+});
+curriculum_model_1.default.hasMany(CurriculumBuilder, {
+    foreignKey: "curriculum_id",
+    //as:"UsedSubscription"
+});
 CurriculumBuilder.belongsTo(curriculum_model_1.default, {
     foreignKey: "curriculum_id"
+});
+CurriculumBuilder.hasOne(subscription_model_1.default, {
+    foreignKey: "curriculum_id"
+});
+CurriculumBuilder.hasOne(trainee_remark_model_1.default, {
+    foreignKey: "curriculum_builder_id"
 });

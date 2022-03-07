@@ -18,6 +18,7 @@ const trainerroutes_1 = __importDefault(require("./src/routes/root/trainerroutes
 const subcompanyroutes_1 = __importDefault(require("./src/routes/root/subcompanyroutes"));
 const master_departmentroutes_1 = __importDefault(require("./src/routes/root/master_departmentroutes"));
 const company_departmentroutes_1 = __importDefault(require("./src/routes/root/company_departmentroutes"));
+const elearning_traineeroutes_1 = __importDefault(require("./src/routes/elearning/elearning.traineeroutes"));
 process.env.TZ = "Asia/Calcutta";
 const nDate = new Date().toLocaleString('en-US', {
     timeZone: 'Asia/Calcutta'
@@ -48,7 +49,8 @@ app.use("/TMS", traineeroutes_1.default);
 app.use("/TMS/companyadmin", trainerroutes_1.default);
 app.use("/TMS/department", master_departmentroutes_1.default);
 app.use("/TMS/department", company_departmentroutes_1.default);
-app.use("/TMS/subcompany", subcompanyroutes_1.default);
+app.use("/TMS/subcompany", subcompanyroutes_1.default),
+    app.use("/TMS/trainee/elearning", elearning_traineeroutes_1.default);
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, morgan_1.default)('dev'));
 app.use(express_1.default.static(__dirname));

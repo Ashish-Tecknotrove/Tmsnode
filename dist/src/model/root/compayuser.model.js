@@ -38,7 +38,7 @@ CompanyUser.init({
         type: sequelize_typescript_1.DataType.STRING(100),
         allowNull: false
     },
-    department: {
+    designation: {
         type: sequelize_typescript_1.DataType.STRING(100),
         allowNull: false
     },

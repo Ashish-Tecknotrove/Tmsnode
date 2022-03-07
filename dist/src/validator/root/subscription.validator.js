@@ -32,5 +32,10 @@ class SubscriptionValidator {
             // body('deletedAt').notEmpty().withMessage('parameter is missing')
         ];
     }
+    getSubscriptionByCompany() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
 }
 exports.default = new SubscriptionValidator();

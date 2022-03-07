@@ -44,14 +44,14 @@ var multer = require('multer');
 var formData = multer();
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './resources/test');
+        cb(null, './resources/coursezip');
     },
     filename: function (req, file, cb) {
         cb(null, (0, moment_1.default)().format('YYYYMMDDHHmmss') + '_' + file.originalname.toLowerCase().split(' ').join('_'));
     }
 });
 const fileFilter = (req, file, cb) => {
-    console.log("file->", file);
+    //console.log("file->", file);
     if (file.mimetype == "application/zip" || file.mimetype == 'application/x-zip-compressed') {
         cb(null, true);
     }
@@ -115,4 +115,5 @@ Router.post('/updateElearningTestLink', auth_1.default.verifyAuthenticateToken, 
 }, elearning_validator_1.default.checkElearningId(), auth_1.default.handleValidatorError, elearningContent_controller_1.default.updateElearnigTestLink);
 Router.post('/getElearningTestLink', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.getElearning(), auth_1.default.handleValidatorError, elearningContent_controller_1.default.getElearnigTestLink);
 Router.post('/deleteElearningTestLink', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.checkElearningId(), auth_1.default.handleValidatorError, elearningContent_controller_1.default.deleteElearningTestLink);
+Router.post('/getElearningCurriculumModuleReport', formData.any(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.getElearningCurriculumModuleReport(), auth_1.default.handleValidatorError, elearningContent_controller_1.default.getElearningCurriculumModuleReport);
 exports.default = Router;

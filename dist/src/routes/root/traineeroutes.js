@@ -40,11 +40,11 @@ const formData = multer();
 const Router = express.Router();
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './resources/csv');
+        cb(null, "./resources/csv");
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
-    }
+    },
 });
 const fileFilter = (req, file, cb) => {
     if (file.mimetype === "image/jpg" ||
@@ -57,13 +57,20 @@ const fileFilter = (req, file, cb) => {
     }
 };
 const upload = multer({ storage: storage });
-Router.post('/bulk', upload.single('file'), //FormData With File
+Router.post("/bulk", upload.single("file"), //FormData With File
 (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     next();
 }), trainee_controller_1.default.bulkInsertTrainee);
-Router.post('/registerTrainee', formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.registerTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.registerNewTrainee);
-Router.post('/updateTrainee', formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.updateTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.updateTraineeDetails);
-Router.post('/deleteTrainee', formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.deleteTraineevalidate(), auth_1.default.handleValidatorError, trainee_controller_1.default.deleteTrainee);
-Router.post('/block_unblock_Trainee', formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.blockTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.blockTrainee);
-Router.post('/getTrainee', formData.any(), auth_1.default.verifyAuthenticateToken, trainee_controller_1.default.getTrainee);
+Router.post("/getTraineeCount", formData.any(), trainee_controller_1.default.getTraineeCount);
+Router.post("/registerTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.registerTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.registerNewTrainee);
+Router.post("/updateTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.updateTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.updateTraineeDetails);
+Router.post("/deleteTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.deleteTraineevalidate(), auth_1.default.handleValidatorError, trainee_controller_1.default.deleteTrainee);
+Router.post("/block_unblock_Trainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.blockTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.blockTrainee);
+Router.post("/getTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_controller_1.default.getTrainee);
+Router.post("/getUnassignedTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_controller_1.default.getUnassignedTrainee);
+Router.post("/getAssignTraineeOfTrainer", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.getAssignTraineeOfTrainer(), auth_1.default.handleValidatorError, trainee_controller_1.default.getAssignTraineeOfTrainer);
+Router.post("/getAssignTraineeToTrainer", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.getAssignTraineeOfTrainer(), auth_1.default.handleValidatorError, trainee_controller_1.default.getAssignTraineeToTrainer);
+Router.post("/getAssignTraineeCurriculum", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.getAssignTraineeCurriculum(), auth_1.default.handleValidatorError, trainee_controller_1.default.getAssignTraineeCurriculum);
+//TODO TRAINEE DASHBOARD
+Router.post("/getTechnologiesAllotedToTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.getAssignTraineeCurriculumValidator(), auth_1.default.handleValidatorError, trainee_controller_1.default.getTechnologiesAllotedToTrainee);
 exports.default = Router;

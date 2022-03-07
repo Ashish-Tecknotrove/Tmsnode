@@ -29,10 +29,14 @@ const trainer_validator_1 = __importDefault(require("../../validator/root/traine
 const Router = express.Router();
 var multer = require('multer');
 var formData = multer();
+Router.post('/getTraineeCount', formData.any(), trainer_controller_1.default.getTrainerCount);
 Router.post('/registerTrainer', formData.none(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.registerTrainer(), auth_1.default.handleValidatorError, trainer_controller_1.default.registerTrainer);
 Router.post('/updateTrainer', formData.none(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.updateTrainer(), auth_1.default.handleValidatorError, trainer_controller_1.default.updateTrainer);
 Router.post('/getTrainers', formData.none(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.getTrainersByCompany(), auth_1.default.handleValidatorError, trainer_controller_1.default.getTrainers);
 Router.post('/deleteTrainer', formData.none(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.deleteTrainer(), auth_1.default.handleValidatorError, trainer_controller_1.default.deleteTrainer);
-Router.post('/getTestMarksAttemptByTechnology', formData.any(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.getTestMarksAttemptByTechnology(), auth_1.default.handleValidatorError, trainer_controller_1.default.getTestMarksAttemptByTechnology);
-Router.post('/submitTestMarksAttemptByTechnology', auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.submitTestMarksAttemptByTechnology(), auth_1.default.handleValidatorError, trainer_controller_1.default.submitTestMarksAttemptByTechnology);
+Router.post('/assign_trainee_to_trainer', formData.any(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.assign_trainee_to_trainer(), auth_1.default.handleValidatorError, trainer_controller_1.default.assign_trainee_to_trainer);
+Router.post('/unassignTrainer', formData.any(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.unassignTrainer(), auth_1.default.handleValidatorError, trainer_controller_1.default.unassignTrainer);
+Router.post('/getTraineeRemarks', formData.any(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.getTraineeRemarks(), auth_1.default.handleValidatorError, trainer_controller_1.default.getTraineeRemarks);
+Router.post('/addTraineeRemarks', formData.any(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.addTraineeRemarks(), auth_1.default.handleValidatorError, trainer_controller_1.default.addTraineeRemarks);
+Router.post('/updateTraineeRemarks', formData.any(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.updateTraineeRemarks(), auth_1.default.handleValidatorError, trainer_controller_1.default.updateTraineeRemarks);
 exports.default = Router;

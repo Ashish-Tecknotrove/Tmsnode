@@ -11,6 +11,11 @@ import LanguageRoutes from "./src/routes/language/language.routes";
 import TraineeRoutes from './src/routes/root/traineeroutes';
 import morgan from "morgan";
 import trainerRoutes from "./src/routes/root/trainerroutes";
+import subcompany from "./src/routes/root/subcompanyroutes";
+
+import master_departmentRoutes from "./src/routes/root/master_departmentroutes";
+import CompanyDepartment from "./src/routes/root/company_departmentroutes";
+import ElearningTraineeRoutes from "./src/routes/elearning/elearning.traineeroutes";
 
 process.env.TZ = "Asia/Calcutta";
 const nDate = new Date().toLocaleString('en-US', {
@@ -18,7 +23,7 @@ const nDate = new Date().toLocaleString('en-US', {
     });
 
     console.log(nDate); 
-   //multer 
+    
 var multer = require('multer');
 var formData = multer();
 var cors = require('cors');
@@ -47,6 +52,11 @@ app.use("/TMS/elearning",elearningroutes);
 app.use("/TMS",LanguageRoutes)
 app.use("/TMS",TraineeRoutes)
 app.use("/TMS/companyadmin",trainerRoutes);
+app.use("/TMS/department",master_departmentRoutes);
+app.use("/TMS/department",CompanyDepartment);
+app.use("/TMS/subcompany",subcompany),
+
+app.use("/TMS/trainee/elearning",ElearningTraineeRoutes)
 
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));

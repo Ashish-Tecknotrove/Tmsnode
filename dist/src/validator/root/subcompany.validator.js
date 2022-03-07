@@ -8,7 +8,7 @@ class SubCompanyValidator {
             (0, express_validator_1.body)('name').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('designation').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('contact_no').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('email').notEmpty().withMessage('parameter is missing').isEmail().withMessage('invalid email formate'),
+            (0, express_validator_1.body)('email').notEmpty().withMessage('parameter is missing').isEmail().withMessage(' is not in a valid format'),
             (0, express_validator_1.body)('password').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing')
         ];
@@ -25,7 +25,7 @@ class SubCompanyValidator {
             (0, express_validator_1.body)('name').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('designation').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('contact_no').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('email').notEmpty().withMessage('parameter is missing').isEmail().withMessage('invalid email formate'),
+            (0, express_validator_1.body)('email').notEmpty().withMessage('parameter is missing').isEmail().withMessage(' is not in a valid format'),
             (0, express_validator_1.body)('password').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing')
         ];

@@ -24,6 +24,9 @@ const response_codes_1 = __importDefault(require("../../strings/response-codes")
 const compayuser_model_1 = __importDefault(require("../../model/root/compayuser.model"));
 const masterpanel_model_1 = __importDefault(require("../../model/root/masterpanel.model"));
 const mastermenu_model_1 = __importDefault(require("../../model/root/mastermenu.model"));
+const sequelize_1 = require("sequelize");
+const subscription_model_1 = __importDefault(require("../../model/root/subscription.model"));
+const response_strings_2 = __importDefault(require("../../strings/response-strings"));
 dotenv_1.default.config();
 class LoginController {
     //UserLogin
@@ -46,7 +49,7 @@ class LoginController {
                     // logging:console.log
                 });
                 if (userdata === null) {
-                    return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: 'invalid username or password', data: '' });
+                    return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: "Oops! We didn't recognize you . please enter valid username and password", data: '' });
                 }
                 else {
                     var user_type = userdata['user_type'];
@@ -60,7 +63,7 @@ class LoginController {
                             token: authentication_token,
                             user: "Super Admin",
                             user_type: user_type,
-                            message: 'user login successfully...',
+                            message: "Welcome! user logged in successfully.",
                             data: userdata
                         });
                     }
@@ -94,34 +97,88 @@ class LoginController {
                             }
                         }
                         else if (user_type == '4') {
-                            var trainer_data = yield trainer_model_1.default.findOne({
+                            yield trainee_model_1.default.findOne({
                                 include: [
                                     { model: users_model_1.default },
                                     { model: company_model_1.default }
                                 ],
                                 where: {
-                                    login_table_id: userdata['id']
+                                    login_table_id: userdata['id'],
+                                    IsDeleted: 0,
+                                    IsBlock: 0
                                 }
+                            }).then((traineeData) => {
+                                if (traineeData.length != 0) {
+                                    const filePath = new URL(req.protocol + '://' + req.get('host') + "/resources/company_logo/" + traineeData['Company']['picture']);
+                                    return res.status(response_codes_1.default.SUCCESS).json({
+                                        response_code: 1,
+                                        token: authentication_token,
+                                        logo: filePath,
+                                        user_type: 4,
+                                        message: 'Welcome! user logged in successfully.',
+                                        data: traineeData
+                                    });
+                                }
+                                else {
+                                    return res.status(response_codes_1.default.BAD_REQUEST).json({
+                                        response_code: 0,
+                                        message: "Oops! sorry you cannot login please contact with your administrator."
+                                    });
+                                }
+                            }).catch(err => {
                             });
-                            if (trainer_data != null) {
-                                return res.status(response_codes_1.default.SUCCESS).json({
-                                    response_code: 1,
-                                    token: authentication_token,
-                                    user_type: "Trainer",
-                                    message: 'user login successfully...',
-                                    data: trainer_data
-                                });
-                            }
-                            else {
-                                return res.status(response_codes_1.default.UNAUTHORIZED).json({
-                                    response_code: 0,
-                                    message: 'Trainer Not Found',
-                                    data: ''
-                                });
-                            }
                         }
-                        else if (user_type == '3') //Company User
+                        else if (user_type == '3') //Company Trainer
                          {
+                            var trainerData = yield trainer_model_1.default.findOne({
+                                include: [
+                                    { model: users_model_1.default },
+                                    { model: company_model_1.default }
+                                ],
+                                where: {
+                                    login_table_id: userdata['id'],
+                                    IsDeleted: 0,
+                                    IsBlock: 0
+                                }
+                            }).then((trainerData) => {
+                                //!Check SUBSCRIPTION IS ACTIVE OR NOT
+                                subscription_model_1.default.findAll({
+                                    where: {
+                                        expiry_date: { [sequelize_1.Op.gte]: response_strings_2.default.currentDate },
+                                        activation_date: { [sequelize_1.Op.lte]: response_strings_2.default.currentDate },
+                                        IsDeleted: 0,
+                                        company_id: trainerData['company_id'],
+                                    },
+                                }).then(subData => {
+                                    if (subData.length != 0) {
+                                        const filePath = new URL(req.protocol + '://' + req.get('host') + "/resources/company_logo/" + trainerData['Company']['picture']);
+                                        return res.status(response_codes_1.default.SUCCESS).json({
+                                            response_code: 1,
+                                            token: authentication_token,
+                                            logo: filePath,
+                                            user_type: 3,
+                                            message: 'Welcome! user logged in successfully.',
+                                            data: trainerData
+                                        });
+                                    }
+                                    else {
+                                        return res.status(response_codes_1.default.BAD_REQUEST).json({
+                                            response_code: 0,
+                                            message: "Oops! sorry you cannot login please contact with your administrator."
+                                        });
+                                    }
+                                }).catch(err => {
+                                    return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                        response_code: 0,
+                                        message: err.message
+                                    });
+                                });
+                            }).catch(err => {
+                                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: err.message
+                                });
+                            });
                         }
                         else if (user_type == '2') //Company User
                          {
@@ -151,20 +208,22 @@ class LoginController {
                                     IsDeleted: 0
                                 },
                                 //logging:console.log
-                            }).then(data => {
+                            }).then((data) => {
                                 if (data != null) {
+                                    const filePath = new URL(req.protocol + '://' + req.get('host') + "/resources/company_logo/" + data['Company']['picture']);
                                     return res.status(response_codes_1.default.SUCCESS).json({
                                         response_code: 1,
                                         token: authentication_token,
+                                        logo: filePath,
                                         user_type: 2,
-                                        message: 'user login successfully...',
+                                        message: 'Welcome! user logged in successfully.',
                                         data: data
                                     });
                                 }
                                 else {
                                     return res.status(response_codes_1.default.SUCCESS).json({
                                         response_code: 0,
-                                        message: 'invalid username or password'
+                                        message: "Oops! We didn't recognize you . please enter valid username and password"
                                     });
                                 }
                             }).catch(err => {
@@ -177,7 +236,7 @@ class LoginController {
                         else {
                             return res.status(response_codes_1.default.UNAUTHORIZED).json({
                                 response_code: 0,
-                                message: 'Trainee Not Found',
+                                message: "Oops! no data found please enter valid username and password",
                                 data: ''
                             });
                         }

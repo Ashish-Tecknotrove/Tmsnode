@@ -27,11 +27,12 @@ const company_department_controller_1 = __importDefault(require("../../app/root/
 const auth_1 = __importDefault(require("../../middleware/auth"));
 const company_department_validator_1 = __importDefault(require("../../validator/root/company_department.validator"));
 const Router = express.Router();
-var multer = require('multer');
+var multer = require("multer");
 var formData = multer();
-Router.post('/assignTrainersToDepartment_SubCompany', formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.assignTrainersToDepartment_SubCompany(), auth_1.default.handleValidatorError, company_department_controller_1.default.assignTrainersToDepartment_SubCompany);
-Router.post('/addDepartment', formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.addDepartmentValidator(), auth_1.default.handleValidatorError, company_department_controller_1.default.addDepartment);
-Router.post('/getDepartmentDetails', formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.getDepartment(), auth_1.default.handleValidatorError, company_department_controller_1.default.departmentDetails);
+Router.post("/assignTrainersToDepartment_SubCompany", formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.assignTrainersToDepartment_SubCompany(), auth_1.default.handleValidatorError, company_department_controller_1.default.assignTrainersToDepartment_SubCompany);
+Router.post("/addDepartment", formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.addDepartmentValidator(), auth_1.default.handleValidatorError, company_department_controller_1.default.addDepartment);
+Router.post("/getDepartmentDetails", formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.getDepartment(), auth_1.default.handleValidatorError, company_department_controller_1.default.departmentDetails);
+Router.post("/getCompanyDepartment", formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.getDepartment(), auth_1.default.handleValidatorError, company_department_controller_1.default.getCompanyDepartment);
 /*
 Router.post('/updateMasterDepartment',
     formData.none(),

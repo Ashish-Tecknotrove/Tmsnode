@@ -19,11 +19,11 @@ class AdditionalresourcesController {
     getCountry(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                var country = yield sequelize_1.default.query("Select * from countries", { type: sequelize_2.default.QueryTypes.SELECT });
+                var country = yield sequelize_1.default.query("Select * from countries ORDER BY title ASC", { type: sequelize_2.default.QueryTypes.SELECT });
                 res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, data: country });
             }
             catch (err) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             }
         });
     }
@@ -32,11 +32,11 @@ class AdditionalresourcesController {
             try {
                 var country_id = req.body.country_id;
                 console.log(country_id);
-                var state = yield sequelize_1.default.query(`Select * from states where country_id=${country_id}`, { type: sequelize_2.default.QueryTypes.SELECT });
+                var state = yield sequelize_1.default.query(`Select * from states where country_id=${country_id} ORDER BY title ASC `, { type: sequelize_2.default.QueryTypes.SELECT });
                 res.status(200).json({ response_code: 1, data: state });
             }
             catch (err) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             }
         });
     }
@@ -44,11 +44,11 @@ class AdditionalresourcesController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 var stateid = req.body.state_id;
-                var cities = yield sequelize_1.default.query(`Select * from cities where state_id=${stateid}`, { type: sequelize_2.default.QueryTypes.SELECT });
+                var cities = yield sequelize_1.default.query(`Select * from cities where state_id=${stateid} ORDER BY title ASC `, { type: sequelize_2.default.QueryTypes.SELECT });
                 res.status(200).json({ response_code: 1, data: cities });
             }
             catch (err) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             }
         });
     }
@@ -59,7 +59,7 @@ class AdditionalresourcesController {
                 res.status(200).json({ response_code: 1, data: languages });
             }
             catch (err) {
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: err.message });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             }
         });
     }

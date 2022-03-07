@@ -62,5 +62,23 @@ class CurriculumValidator {
             (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing')
         ];
     }
+    getCurriculumWithSubscriptionCheck() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+    getTestMarksAttemptByTechnology() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
+            // body('technology_type_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('curriculum_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+    submitTestMarksAttemptByTechnology() {
+        return [
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('data').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
 }
 exports.default = new CurriculumValidator();

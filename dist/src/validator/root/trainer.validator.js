@@ -6,7 +6,7 @@ class TrainerValidator {
         return [
             (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('name').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('email').notEmpty().withMessage('parameter is missing').isEmail().withMessage('Valid Email'),
+            (0, express_validator_1.body)('email').notEmpty().withMessage('parameter is missing').isEmail().withMessage(' is not in a valid format'),
             (0, express_validator_1.body)('password').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('trainer_expertise').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing')
@@ -32,17 +32,44 @@ class TrainerValidator {
             (0, express_validator_1.body)('deleted_by').notEmpty().withMessage('parameter is missing'),
         ];
     }
-    getTestMarksAttemptByTechnology() {
+    assign_trainee_to_trainer() {
         return [
-            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('technology_type_id').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('curriculum_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('trainer_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('trainees_id').notEmpty().withMessage('parameter is missing'),
         ];
     }
-    submitTestMarksAttemptByTechnology() {
+    unassignTrainer() {
         return [
+            (0, express_validator_1.body)('assignTrainer_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('trainer_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('trainee_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('data').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+    getTraineeRemarks() {
+        return [
+            (0, express_validator_1.body)('trainee_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('curriculum_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('language_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('technology_id').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+    addTraineeRemarks() {
+        return [
+            (0, express_validator_1.body)('trainee_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('trainer_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('curriculum_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('curriculum_builder_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('remarks').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+    updateTraineeRemarks() {
+        return [
+            (0, express_validator_1.body)('trainee_remark_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('remarks').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing')
         ];
     }
 }

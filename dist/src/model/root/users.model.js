@@ -75,7 +75,11 @@ Users.init({
     },
     portal_language: {
         type: sequelize_1.DataTypes.TINYINT,
-        defaultValue: 1
+        defaultValue: 1,
+        references: {
+            model: "Languages",
+            key: 'id'
+        },
     },
     createdAt: {
         type: "TIMESTAMP",
@@ -109,7 +113,15 @@ Users.init({
 //TODO Association with Language
 Users.belongsTo(language_model_1.default, {
     foreignKey: "language",
+    as: "TraineeLanguage"
+});
+Users.belongsTo(language_model_1.default, {
+    foreignKey: "language",
     as: ""
+});
+Users.belongsTo(language_model_1.default, {
+    foreignKey: "portal_language",
+    as: "portalLanguage"
 });
 Users.belongsTo(company_model_1.default, {
     foreignKey: "company_id",

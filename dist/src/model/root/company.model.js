@@ -27,6 +27,10 @@ Company.init({
         allowNull: false,
         unique: true
     },
+    enrollment_id: {
+        type: sequelize_1.DataTypes.STRING(100),
+        allowNull: false,
+    },
     panel_id: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
@@ -36,7 +40,8 @@ Company.init({
         allowNull: false
     },
     company_type: {
-        type: sequelize_1.DataTypes.STRING(20),
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0,
         allowNull: true
     },
     gst: {
@@ -80,8 +85,8 @@ Company.init({
         defaultValue: 'email',
         allowNull: false,
     },
-    adp_decider: {
-        type: sequelize_1.DataTypes.INTEGER,
+    company_unique_id: {
+        type: sequelize_1.DataTypes.STRING,
     },
     api_decider: {
         type: sequelize_1.DataTypes.STRING,

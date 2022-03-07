@@ -38,4 +38,8 @@ router.post('/delete_curriculum_parent_category_test', formData.none(), auth_1.d
 router.post('/update_curriculum_parent_category_test', formData.none(), auth_1.default.verifyAuthenticateToken, curriculum_validator_1.default.updateParentCategoryTest(), auth_1.default.handleValidatorError, curriculum_controller_1.default.updateCurriculumParentCategoryTest);
 router.post('/getCompanyCurriculum', formData.none(), auth_1.default.verifyAuthenticateToken, curriculum_validator_1.default.getComapnyCurriculamValidId(), auth_1.default.handleValidatorError, curriculum_controller_1.default.getCompanyCurriculum);
 router.post('/buildCurriculum', formData.none(), auth_1.default.verifyAuthenticateToken, curriculum_validator_1.default.buildCurriculumParameter(), auth_1.default.handleValidatorError, curriculum_controller_1.default.buildCurriculum);
+//!TODO GET CURRICULUM WITH SUBSCRIPTION CHECK
+router.post('/getCurriculumWithSubscriptionCheck', formData.none(), auth_1.default.verifyAuthenticateToken, curriculum_validator_1.default.getCurriculumWithSubscriptionCheck(), auth_1.default.handleValidatorError, curriculum_controller_1.default.getCurriculum_with_subscription_check);
+router.post('/getTestMarksAttemptByTechnology', formData.any(), auth_1.default.verifyAuthenticateToken, curriculum_validator_1.default.getTestMarksAttemptByTechnology(), auth_1.default.handleValidatorError, curriculum_controller_1.default.getTestMarksAttemptByTechnology);
+router.post('/submitTestMarksAttemptByTechnology', auth_1.default.verifyAuthenticateToken, curriculum_validator_1.default.submitTestMarksAttemptByTechnology(), auth_1.default.handleValidatorError, curriculum_controller_1.default.submitTestMarksAttemptByTechnology);
 exports.default = router;

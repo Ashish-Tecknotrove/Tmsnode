@@ -49,10 +49,10 @@ class CompanyValidator {
         return [
             (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('name').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('department').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('designation').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('mobile_no').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('email').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('email').isEmail().withMessage('invalid email'),
+            (0, express_validator_1.body)('email').isEmail().withMessage(' is not in a valid format'),
             (0, express_validator_1.body)('password').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('created_by').notEmpty().withMessage('parameter is missing'),
         ];
@@ -66,7 +66,7 @@ class CompanyValidator {
         return [
             (0, express_validator_1.body)('user_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('name').notEmpty().withMessage('parameter is missing'),
-            (0, express_validator_1.body)('department').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('designation').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('mobile_no').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('email').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('email').isEmail().withMessage('invalid email'),

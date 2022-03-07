@@ -35,4 +35,5 @@ Router.post('/updateSubscription', formData.none(), auth_1.default.verifyAuthent
 Router.post('/deleteSubscription', formData.none(), auth_1.default.verifyAuthenticateToken, subscription_validator_1.default.deleteSubscriptionParameter(), auth_1.default.handleValidatorError, subscription_controller_1.default.deleteSubscription);
 Router.get('/subscriptionCount', subscription_controller_1.default.total_subscription);
 Router.post('/getSubscription', formData.none(), auth_1.default.verifyAuthenticateToken, subscription_controller_1.default.getSubscription);
+Router.post('/getSubscriptionByCompany', formData.none(), auth_1.default.verifyAuthenticateToken, subscription_validator_1.default.getSubscriptionByCompany(), auth_1.default.handleValidatorError, subscription_controller_1.default.getSubscriptionByCompany);
 exports.default = Router;

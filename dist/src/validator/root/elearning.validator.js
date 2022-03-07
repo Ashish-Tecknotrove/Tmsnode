@@ -21,5 +21,23 @@ class ElearningValidator {
             // body('testfile').notEmpty().withMessage('parameter is missing'),
         ];
     }
+    getElearningCurriculumModuleReport() {
+        return [
+            (0, express_validator_1.body)('curriculum_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('trainer_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+    //! VAlidator for Elearning Trainee Test
+    getElearning_Test_trainee_dashboard() {
+        return [
+            (0, express_validator_1.body)('trainee_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+    test_detail_info() {
+        return [
+            (0, express_validator_1.body)('trainee_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('test_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
 }
 exports.default = new ElearningValidator();

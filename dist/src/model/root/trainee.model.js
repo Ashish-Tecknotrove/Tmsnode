@@ -8,6 +8,7 @@ const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const company_model_1 = __importDefault(require("./company.model"));
 const company_department_model_1 = __importDefault(require("./company_department.model"));
 const subcompany_model_1 = __importDefault(require("./subcompany.model"));
+const trainee_curriculum_model_1 = __importDefault(require("./trainee_curriculum.model"));
 const users_model_1 = __importDefault(require("./users.model"));
 class Trainee extends sequelize_1.Model {
 }
@@ -17,215 +18,215 @@ Trainee.init({
         type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
     },
     RegNo: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     company_id: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: company_model_1.default,
-            key: "id"
-        }
+            key: "id",
+        },
     },
     sub_company_id: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: subcompany_model_1.default,
-            key: "id"
-        }
+            key: "id",
+        },
     },
     department_id: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: company_department_model_1.default,
-            key: "id"
-        }
+            key: "id",
+        },
     },
     login_table_id: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: true,
         references: {
             model: users_model_1.default,
-            key: 'id'
-        }
+            key: "id",
+        },
     },
     staff_id: {
         type: sequelize_1.DataTypes.INTEGER,
     },
     first_name: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     middle_name: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     last_name: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     email: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     contact: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     alternate_contact_no: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     aadhar_no: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     gender: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     education: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     address: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     city: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     marrital_status: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     age: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     date_of_birth: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     subscription_id: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.STRING,
     },
     service_type: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
-    adp_number: {
+    company_unique_id: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     vehicle_type: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     designation: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     department: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     course: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     fees: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     receipt_number: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     mode_of_payment: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     cheque_dd_number: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     bank_name: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     trainer_id: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     status: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     active_status: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     activation_date: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     expiry_date: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     driver_photo: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     license_no: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     license_issue_date: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     license_validity: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     license_image: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     experience_in_years: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     certificate_copy: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     validity_of_certificate: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     certificate_number: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     dg_trainer: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     transporter_name: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     training_schedule_date: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
     },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
     },
     updated_by: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
     },
     deleted_by: {
-        type: sequelize_1.DataTypes.INTEGER
+        type: sequelize_1.DataTypes.INTEGER,
     },
     createdAt: {
         type: "TIMESTAMP",
@@ -234,30 +235,39 @@ Trainee.init({
         type: "TIMESTAMP",
     },
     deletedAt: {
-        type: "TIMESTAMP"
+        type: "TIMESTAMP",
     },
     IsBlock: {
         type: sequelize_1.DataTypes.TINYINT,
-        defaultValue: 0
+        defaultValue: 0,
     },
     IsDeleted: {
         type: sequelize_1.DataTypes.TINYINT,
-        defaultValue: 0
-    }
+        defaultValue: 0,
+    },
 }, {
     sequelize: sequelize_2.default,
-    tableName: 'trainees'
+    tableName: "trainees",
 });
 //TODO Association with Users
 Trainee.belongsTo(users_model_1.default, {
-    foreignKey: 'login_table_id'
+    foreignKey: "login_table_id",
 });
 //TODO Association with Company
 Trainee.belongsTo(company_model_1.default, {
-    foreignKey: 'company_id'
+    foreignKey: "company_id",
+});
+Trainee.belongsTo(subcompany_model_1.default, {
+    foreignKey: 'sub_company_id'
+});
+Trainee.hasMany(trainee_curriculum_model_1.default, {
+    foreignKey: "trainee_id",
 });
 subcompany_model_1.default.hasMany(Trainee, {
     foreignKey: "sub_company_id"
+});
+Trainee.belongsTo(company_department_model_1.default, {
+    foreignKey: "department_id"
 });
 company_department_model_1.default.hasMany(Trainee, {
     foreignKey: "department_id",

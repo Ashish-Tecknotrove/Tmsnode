@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const log_model_1 = __importDefault(require("./log.model"));
+const log_model_1 = __importDefault(require("../../model/root/log.model"));
 class LogController {
     createLog(id, message) {
         var logdata = {

@@ -26,7 +26,7 @@ class MasterDepartmentController {
                         name: req.body.name,
                         company_id: req.body.company_id
                     },
-                    logging: console.log
+                    // logging: console.log
                 }).then((result) => __awaiter(this, void 0, void 0, function* () {
                     //?  MASTER DEPARTMENT NOT EXIST
                     if (result.length == 0) {
@@ -36,31 +36,31 @@ class MasterDepartmentController {
                         yield master_department_model_1.default.create(Object.assign({}, req.body)).then((data) => __awaiter(this, void 0, void 0, function* () {
                             res.status(response_codes_1.default.SUCCESS).json({
                                 response_code: 1,
-                                message: response_strings_1.default.ADD,
+                                message: "Department added successfully.",
                                 data: data
                             });
                         })).catch(function (err) {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
                         });
                     }
                     else {
                         //?  MASTER DEPARTMENT EXIST
                         return res.status(response_codes_1.default.BAD_REQUEST).json({
                             response_code: 0,
-                            message: response_strings_1.default.EXISTS
+                            message: "Oops! Name of department already exists, please use another one"
                         });
                     }
                 })).catch((err) => {
                     return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                         response_code: 0,
-                        message: err.message
+                        message: "Oops! " + err.message
                     });
                 });
             }
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: e.message,
+                    message: "Oops! " + e.message,
                     data: "",
                 });
             }
@@ -73,12 +73,13 @@ class MasterDepartmentController {
                 yield master_department_model_1.default.findOne({
                     where: {
                         IsDeleted: 0,
-                        id: req.body.masterdepartment_id
+                        company_id: req.body.company_id,
+                        name: req.body.name
                     },
-                    logging: console.log
+                    // logging: console.log
                 }).then((result) => __awaiter(this, void 0, void 0, function* () {
-                    //?  MASTER DEPARTMENT EXIST
-                    if (result) {
+                    //?  MASTER DEPARTMENT NOT EXIST
+                    if (result == null) {
                         req.body.updatedAt = response_strings_1.default.currentTime;
                         let updateObj = {
                             name: req.body.name,
@@ -94,30 +95,30 @@ class MasterDepartmentController {
                         }).then((data) => __awaiter(this, void 0, void 0, function* () {
                             res.status(response_codes_1.default.SUCCESS).json({
                                 response_code: 1,
-                                message: response_strings_1.default.UPDATED
+                                message: "Department Updated Successfully."
                             });
                         })).catch(function (err) {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
                         });
                     }
                     else {
-                        //?  MASTER DEPARTMENT NOT EXIST
+                        //?  MASTER DEPARTMENT EXIST
                         return res.status(response_codes_1.default.BAD_REQUEST).json({
                             response_code: 0,
-                            message: response_strings_1.default.NOT
+                            message: "Oops! An invalid department ID was entered, or this department was already deleted"
                         });
                     }
                 })).catch((err) => {
                     return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                         response_code: 0,
-                        message: err.message
+                        message: "Oops! " + err.message
                     });
                 });
             }
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: e.message,
+                    message: "Oops! " + e.message,
                     data: "",
                 });
             }
@@ -132,7 +133,7 @@ class MasterDepartmentController {
                         IsDeleted: 0,
                         id: req.body.masterdepartment_id
                     },
-                    logging: console.log
+                    // logging: console.log
                 }).then((result) => __awaiter(this, void 0, void 0, function* () {
                     //?  MASTER DEPARTMENT EXIST
                     if (result) {
@@ -149,30 +150,30 @@ class MasterDepartmentController {
                         }).then((data) => __awaiter(this, void 0, void 0, function* () {
                             res.status(response_codes_1.default.SUCCESS).json({
                                 response_code: 1,
-                                message: response_strings_1.default.DELETE
+                                message: "Department Deleted Successfully."
                             });
                         })).catch(function (err) {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
                         });
                     }
                     else {
                         //?  MASTER DEPARTMENT NOT EXIST
                         return res.status(response_codes_1.default.BAD_REQUEST).json({
                             response_code: 0,
-                            message: response_strings_1.default.NOT
+                            message: "Oops! An invalid department ID was entered, or this department was already deleted"
                         });
                     }
                 })).catch((err) => {
                     return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                         response_code: 0,
-                        message: err.message
+                        message: "Oops! " + err.message
                     });
                 });
             }
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: e.message,
+                    message: "Oops! " + e.message,
                     data: "",
                 });
             }
@@ -183,38 +184,35 @@ class MasterDepartmentController {
             try {
                 //? CHECK MASTER DEPARTMENT
                 yield master_department_model_1.default.findAll({
-                    where: {
-                        IsDeleted: 0,
-                        company_id: req.body.company_id
-                    },
-                    logging: console.log
+                    where: { company_id: req.body.company_id, IsDeleted: 0 },
+                    //logging: console.log
                 }).then((result) => __awaiter(this, void 0, void 0, function* () {
                     //?  MASTER DEPARTMENT EXIST
                     if (result) {
                         res.status(response_codes_1.default.SUCCESS).json({
                             response_code: 1,
-                            message: response_strings_1.default.GET,
+                            message: "data have been fetched successfully",
                             data: result
                         });
                     }
                     else {
                         //?  MASTER DEPARTMENT NOT EXIST
-                        return res.status(response_codes_1.default.BAD_REQUEST).json({
+                        return res.status(response_codes_1.default.SUCCESS).json({
                             response_code: 0,
-                            message: response_strings_1.default.NOT
+                            message: "No data were found"
                         });
                     }
                 })).catch((err) => {
                     return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                         response_code: 0,
-                        message: err.message
+                        message: "Oops! " + err.message
                     });
                 });
             }
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: e.message,
+                    message: "Oops! " + e.message,
                     data: "",
                 });
             }

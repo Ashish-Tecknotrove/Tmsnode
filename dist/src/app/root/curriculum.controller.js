@@ -23,6 +23,7 @@ const response_codes_1 = __importDefault(require("../../strings/response-codes")
 const language_model_1 = __importDefault(require("../../model/language/language.model"));
 const moment_1 = __importDefault(require("moment"));
 const response_strings_1 = __importDefault(require("../../strings/response-strings"));
+const subscription_model_1 = __importDefault(require("../../model/root/subscription.model"));
 //! Last Upated Ashish Rhatwal 9 feb 4:43 PM
 class CurriculumController {
     create_curriculum_parent_category(req, res) {
@@ -41,31 +42,32 @@ class CurriculumController {
                             .then(function (data) {
                             res.status(response_codes_1.default.SUCCESS).json({
                                 response_code: 1,
-                                message: response_strings_1.default.ADD,
+                                message: "Category added successfully.",
                                 data: data,
                             });
                         })
                             .catch(function (err) {
                             res
                                 .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                                .json({ response_code: 0, message: err.message });
+                                .json({ response_code: 0, message: "Oops! " + err.message });
                         });
                     }
                     else {
                         res
-                            .status(response_codes_1.default.CREATED)
-                            .json({ response_code: 0, message: response_strings_1.default.EXISTS });
+                            .status(response_codes_1.default.BAD_REQUEST)
+                            .json({ response_code: 0, message: "Oops! Name of category already exists, please use another name" });
                     }
-                })).catch((err) => {
+                }))
+                    .catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err.message });
+                        .json({ response_code: 0, message: "Oops! " + err.message });
                 });
             }
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error.message });
+                    .json({ response_code: 0, message: "Oops! " + error.message });
             }
         });
     }
@@ -76,37 +78,39 @@ class CurriculumController {
                 req.body.updated_by = "";
                 yield curriculum_parent_category_test_model_1.default.findOne({
                     where: { title: req.body.title },
-                }).then((data) => __awaiter(this, void 0, void 0, function* () {
+                })
+                    .then((data) => __awaiter(this, void 0, void 0, function* () {
                     if (data == null) {
                         yield curriculum_parent_category_test_model_1.default.create(Object.assign({}, req.body))
                             .then(function (data) {
                             res.status(response_codes_1.default.SUCCESS).json({
                                 response_code: 1,
-                                message: response_strings_1.default.ADD,
+                                message: "Test added successfully.",
                                 data: data,
                             });
                         })
                             .catch(function (err) {
                             res
                                 .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                                .json({ response_code: 0, message: err.message });
+                                .json({ response_code: 0, message: "Oops! " + err.message });
                         });
                     }
                     else {
                         res
                             .status(response_codes_1.default.CREATED)
-                            .json({ response_code: 0, message: response_strings_1.default.EXISTS });
+                            .json({ response_code: 0, message: "Oops! Name of test already exists, please use another name" });
                     }
-                })).catch((err) => {
+                }))
+                    .catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err.message });
+                        .json({ response_code: 0, message: "Oops! " + err.message });
                 });
             }
             catch (error) {
                 return res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: error.message });
+                    .json({ response_code: 0, message: "Oops! " + error.message });
             }
         });
     }
@@ -117,20 +121,20 @@ class CurriculumController {
                 if (getTechnology != null) {
                     return res.status(response_codes_1.default.SUCCESS).json({
                         response_code: 1,
-                        message: response_strings_1.default.GET,
+                        message: "data have been fetched successfully",
                         data: getTechnology,
                     });
                 }
                 else {
                     return res
                         .status(response_codes_1.default.SUCCESS)
-                        .json({ response_code: 0, message: response_strings_1.default.NOT, data: "" });
+                        .json({ response_code: 0, message: "No data were found", data: "" });
                 }
             }
             catch (e) {
-                return res.status(response_codes_1.default.SUCCESS).json({
-                    response_code: 1,
-                    message: e.message,
+                return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + e.message,
                     data: "",
                 });
             }
@@ -144,10 +148,11 @@ class CurriculumController {
                         company_id: req.body.company_id,
                         IsDeleted: 0
                     },
-                }).then((data) => {
+                })
+                    .then((data) => {
                     res.status(response_codes_1.default.SUCCESS).json({
                         response_code: 1,
-                        message: response_strings_1.default.GET,
+                        message: "data have been fetched successfully",
                         data: data,
                     });
                 })
@@ -155,13 +160,13 @@ class CurriculumController {
                     console.log("err1->", err);
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err.message });
+                        .json({ response_code: 0, message: "Oops! " + err.message });
                 });
             }
             catch (err) {
                 res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: err.message });
+                    .json({ response_code: 0, message: "Oops! " + err.message });
             }
         });
     }
@@ -187,12 +192,16 @@ class CurriculumController {
                 if (getCurriculum.length == 0) {
                     return res
                         .status(response_codes_1.default.SUCCESS)
-                        .json({ response_code: 0, message: response_strings_1.default.NOT, data: getCurriculum });
+                        .json({
+                        response_code: 0,
+                        message: "No data were found",
+                        data: getCurriculum,
+                    });
                 }
                 else {
                     return res.status(response_codes_1.default.SUCCESS).json({
                         response_code: 1,
-                        message: response_strings_1.default.GET,
+                        message: "data have been fetched successfully",
                         data: getCurriculum,
                     });
                 }
@@ -200,7 +209,7 @@ class CurriculumController {
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: e.message,
+                    message: "Oops! " + e.message,
                     data: "",
                 });
             }
@@ -234,20 +243,20 @@ class CurriculumController {
                 if (getTest != null) {
                     return res.status(response_codes_1.default.SUCCESS).json({
                         response_code: 1,
-                        message: response_strings_1.default.GET,
+                        message: "data have been fetched successfully",
                         data: getTest,
                     });
                 }
                 else {
                     return res
                         .status(response_codes_1.default.SUCCESS)
-                        .json({ response_code: 0, message: response_strings_1.default.NOT, data: "" });
+                        .json({ response_code: 0, message: "No data were found", data: "" });
                 }
             }
             catch (e) {
                 return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
-                    response_code: 1,
-                    message: e.message,
+                    response_code: 0,
+                    message: "Oops! " + e.message,
                     data: "",
                 });
             }
@@ -266,7 +275,7 @@ class CurriculumController {
                 }).catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err.message });
+                        .json({ response_code: 0, message: "Oops! " + err.message });
                 });
                 const updateData = {
                     IsDeleted: 1,
@@ -281,24 +290,24 @@ class CurriculumController {
                         .then(function (data) {
                         res
                             .status(response_codes_1.default.SUCCESS)
-                            .json({ response_code: 1, message: response_strings_1.default.DELETE });
+                            .json({ response_code: 1, message: "Test deleted successfully." });
                     })
                         .catch(function (err) {
                         res
                             .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                            .json({ response_code: 0, message: err.message });
+                            .json({ response_code: 0, message: "Oops! " + err.message });
                     });
                 }
                 else {
                     res
                         .status(response_codes_1.default.SUCCESS)
-                        .json({ response_code: 0, message: response_strings_1.default.NOT });
+                        .json({ response_code: 0, message: "Oops! An invalid ID was entered, or this test was already deleted" });
                 }
             }
             catch (e) {
                 res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 1, message: e.message });
+                    .json({ response_code: 0, message: "Oops! " + e.message });
             }
         });
     }
@@ -315,13 +324,13 @@ class CurriculumController {
                 }).catch((err) => {
                     res
                         .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                        .json({ response_code: 0, message: err.message });
+                        .json({ response_code: 0, message: "Oops! " + err.message });
                 });
                 const updateData = {
                     prefix: req.body.prefix,
                     title: req.body.title,
                     updated_by: req.body.updated_by,
-                    updatedAt: response_strings_1.default.currentTime
+                    updatedAt: response_strings_1.default.currentTime,
                 };
                 if (check_company_is_valid != null) {
                     yield curriculum_parent_category_test_model_1.default.update(updateData, {
@@ -330,24 +339,24 @@ class CurriculumController {
                         .then(function (data) {
                         res
                             .status(response_codes_1.default.SUCCESS)
-                            .json({ response_code: 1, message: response_strings_1.default.UPDATED });
+                            .json({ response_code: 1, message: "Test updated successfully." });
                     })
                         .catch(function (err) {
                         res
                             .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                            .json({ response_code: 0, message: err.message });
+                            .json({ response_code: 0, message: "Oops! " + err.message });
                     });
                 }
                 else {
                     res
                         .status(response_codes_1.default.SUCCESS)
-                        .json({ response_code: 0, message: response_strings_1.default.NOT });
+                        .json({ response_code: 0, message: "No data were found" });
                 }
             }
             catch (e) {
                 res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 1, message: e.message });
+                    .json({ response_code: 0, message: "Oops! " + e.message });
             }
         });
     }
@@ -359,8 +368,8 @@ class CurriculumController {
                     company_id: req.body.company_id,
                     name: req.body.name,
                     created_by: req.body.created_by,
-                    updated_by: '',
-                    createdAt: response_strings_1.default.currentTime
+                    updated_by: "",
+                    createdAt: response_strings_1.default.currentTime,
                 };
                 //Check Curriculum Already Exist
                 var check_curriculum_exist = yield curriculum_model_1.default.findOne({
@@ -399,7 +408,7 @@ class CurriculumController {
                                     res.status(response_codes_1.default.SUCCESS).json({
                                         response_code: 1,
                                         curriculum_id: data["id"],
-                                        message: response_strings_1.default.ADD,
+                                        message: "Curriculum build successfully. Please add subscription to use the curriculum.",
                                     });
                                 }
                             })
@@ -407,7 +416,7 @@ class CurriculumController {
                                 console.log(err);
                                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                                     response_code: 0,
-                                    message: err.message,
+                                    message: "Oops! " + err.message,
                                 });
                             });
                         }
@@ -415,7 +424,7 @@ class CurriculumController {
                         .catch(function (err) {
                         res
                             .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                            .json({ response_code: 0, message: err.message });
+                            .json({ response_code: 0, message: "Oops! " + err.message });
                     });
                 }
                 else {
@@ -427,7 +436,202 @@ class CurriculumController {
             catch (err) {
                 res
                     .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
-                    .json({ response_code: 0, message: err.message });
+                    .json({ response_code: 0, message: "Oops! " + err.message });
+            }
+        });
+    }
+    //!TODO GET CURRICULUM WITH SUBSCRIPTION CHECK
+    //! This Function using in Company Panle to Load Curriculum With Technologies
+    getCurriculum_with_subscription_check(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                var currentDate = response_strings_1.default.currentDate;
+                yield subscription_model_1.default.findAll({
+                    include: {
+                        model: curriculum_model_1.default,
+                        required: true,
+                        where: {
+                            IsDeleted: 0,
+                        },
+                    },
+                    attributes: ['id', 'curriculum_id', 'expiry_date'],
+                    where: {
+                        expiry_date: { [sequelize_1.Op.gte]: currentDate },
+                        activation_date: { [sequelize_1.Op.lte]: currentDate },
+                        IsDeleted: 0,
+                        company_id: req.body.company_id,
+                    },
+                })
+                    .then((data) => __awaiter(this, void 0, void 0, function* () {
+                    if (data.length != 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            yield curriculumbuilder_model_1.default.findAll({
+                                include: [{
+                                        attributes: ['technology_type_id'],
+                                        model: curriculum_parent_category_test_model_1.default,
+                                        where: {
+                                            IsDeleted: 0
+                                        },
+                                        include: [{
+                                                attributes: ['name'],
+                                                model: technology_model_1.default,
+                                                where: {
+                                                    IsDeleted: 0
+                                                },
+                                            }]
+                                    }],
+                                attributes: ['CurriculumParentCategoryTest.technology_type_id',
+                                    'CurriculumParentCategoryTest->TechnologyCategory.name'],
+                                where: {
+                                    curriculum_id: data[i]['Curriculum']['id']
+                                },
+                                group: ['CurriculumParentCategoryTest.technology_type_id'],
+                                // logging:console.log
+                            }).then((techData) => {
+                                //console.log(techData);
+                                data[i]['dataValues']['technologies'] = techData;
+                            }, err => {
+                                res
+                                    .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
+                                    .json({ response_code: 0, message: "Oops! " + err.message });
+                            });
+                        }
+                        res
+                            .status(response_codes_1.default.SUCCESS)
+                            .json({
+                            response_code: 1,
+                            message: "Curriculum Fetched Successfully...",
+                            data: data,
+                        });
+                    }
+                    else {
+                        res
+                            .status(response_codes_1.default.SUCCESS)
+                            .json({
+                            response_code: 0,
+                            message: "Oops! Curriculum not found or Please check your subscription is valid",
+                        });
+                    }
+                }))
+                    .catch((err) => {
+                    res
+                        .status(response_codes_1.default.INTERNAL_SERVER_ERROR)
+                        .json({ response_code: 0, message: "Oops! " + err.message });
+                });
+            }
+            catch (err) { }
+        });
+    }
+    getTestMarksAttemptByTechnology(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                console.log(req.body.company_id);
+                yield curriculumbuilder_model_1.default.findAll({
+                    include: [
+                        {
+                            model: curriculum_model_1.default,
+                            where: {
+                                IsDeleted: 0,
+                                company_id: req.body.company_id,
+                            },
+                            attributes: ["id", "company_id", "name"],
+                            required: true,
+                        },
+                        {
+                            model: curriculum_parent_category_test_model_1.default,
+                            include: [
+                                {
+                                    model: technology_model_1.default,
+                                    where: {
+                                        IsDeleted: 0,
+                                    },
+                                    attributes: ["id", "name"],
+                                    required: false,
+                                },
+                            ],
+                            where: {
+                                IsDeleted: 0,
+                                // technology_type_id: req.body.technology_type_id
+                            },
+                            attributes: ["id", "prefix", "title"],
+                            required: true,
+                        },
+                    ],
+                    where: {
+                        IsDeleted: 0,
+                        curriculum_id: req.body.curriculum_id,
+                    },
+                    attributes: [
+                        "id",
+                        "curriculum_id",
+                        "curriculum_parent_category_id",
+                        "curriculum_parent_category_test_id",
+                        "passing_marks",
+                        "total_marks",
+                        "attempts",
+                    ],
+                })
+                    .then((result) => {
+                    res.status(response_codes_1.default.SUCCESS).json({
+                        response_code: 1,
+                        message: "Data fetched successfully.",
+                        data: result,
+                    });
+                })
+                    .catch((err) => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message,
+                    });
+                });
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message,
+                });
+            }
+        });
+    }
+    submitTestMarksAttemptByTechnology(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let data = req.body.data;
+                let datalength = data.length;
+                for (let i = 0; i < datalength; i++) {
+                    let updateMarksAttempt = {
+                        passing_marks: data[i]["passing_marks"],
+                        total_marks: data[i]["total_marks"],
+                        attempts: data[i]["attempts"],
+                        updated_by: req.body.updated_by,
+                        updatedAt: response_strings_1.default.currentTime,
+                    };
+                    yield curriculumbuilder_model_1.default.update(Object.assign({}, updateMarksAttempt), {
+                        where: {
+                            id: data[i]["id"],
+                        },
+                    })
+                        .then((result) => {
+                        if (datalength - 1 == i) {
+                            res.status(response_codes_1.default.SUCCESS).json({
+                                response_code: 1,
+                                message: "Curriculum Attempt And Marks updated successfully...",
+                            });
+                        }
+                    })
+                        .catch((err) => {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message,
+                        });
+                    });
+                }
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message,
+                });
             }
         });
     }

@@ -26,6 +26,9 @@ ElearningMaster.init({
     zipname: {
         type: sequelize_2.DataTypes.STRING
     },
+    folderName: {
+        type: sequelize_2.DataTypes.STRING
+    },
     link: {
         type: sequelize_2.DataTypes.STRING,
     },

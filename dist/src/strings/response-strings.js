@@ -21,6 +21,9 @@ class ResponseStrings {
         this.tokenExpired = "Session Expired! Please Login again..";
         this.tokenValid = "access token is valid";
         this.currentTime = (0, moment_1.default)().format('YYYY-MM-DD HH:mm:ss');
+        this.currentDate = (0, moment_1.default)().format('YYYY-MM-DD');
+        this.imageFilePath = "";
+        // elearningTestFilePath=new URL(Request.protocol + '://' + req.get('host'))+ "resources/company_logo/";
         this.UserTypeSuperAdmin = 1;
         this.UserTypeCompanyLogin = 2;
         this.UserTypeTrainer = 3;

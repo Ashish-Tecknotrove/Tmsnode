@@ -5,43 +5,52 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
-const company_model_1 = __importDefault(require("./company.model"));
-const traineeFormMaster_model_1 = __importDefault(require("./traineeFormMaster.model"));
-class TraineeCustomizeFormModel extends sequelize_1.Model {
+const curriculum_model_1 = __importDefault(require("./curriculum.model"));
+const technology_model_1 = __importDefault(require("./technology.model"));
+class TraineeCurriculum extends sequelize_1.Model {
 }
-exports.default = TraineeCustomizeFormModel;
-TraineeCustomizeFormModel.init({
+exports.default = TraineeCurriculum;
+TraineeCurriculum.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
-    company_id: {
+    trainee_id: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
-            model: company_model_1.default,
+            model: 'trainees',
             key: 'id'
         }
     },
-    form_master_id: {
+    trainee_user_id: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
-            model: traineeFormMaster_model_1.default,
+            model: 'users',
             key: 'id'
         }
     },
-    isValidate: {
-        type: sequelize_1.DataTypes.ENUM,
-        values: ['0', '1'],
-        defaultValue: 0
+    curriculum_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: 'curriculum',
+            key: 'id'
+        }
+    },
+    technology_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: technology_model_1.default,
+            key: 'id'
+        }
     },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     updated_by: {
-        type: sequelize_1.DataTypes.INTEGER
+        type: sequelize_1.DataTypes.INTEGER,
         //allowNull: false
     },
     deleted_by: {
@@ -56,14 +65,21 @@ TraineeCustomizeFormModel.init({
     deletedAt: {
         type: "TIMESTAMP"
     },
+    IsBlock: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
+    },
     IsDeleted: {
         type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 0
     }
 }, {
     sequelize: sequelize_2.default,
-    tableName: 'trainee_custom_form'
+    tableName: 'trainee_curriculum'
 });
-TraineeCustomizeFormModel.belongsTo(traineeFormMaster_model_1.default, {
-    foreignKey: 'form_master_id'
+TraineeCurriculum.belongsTo(curriculum_model_1.default, {
+    foreignKey: 'curriculum_id'
+});
+TraineeCurriculum.belongsTo(technology_model_1.default, {
+    foreignKey: 'technology_id'
 });

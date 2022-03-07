@@ -59,11 +59,11 @@ Subscription.init({
         allowNull: false
     },
     activation_date: {
-        type: sequelize_1.DataTypes.DATE,
+        type: sequelize_1.DataTypes.STRING(100),
         allowNull: false
     },
     expiry_date: {
-        type: sequelize_1.DataTypes.DATE,
+        type: sequelize_1.DataTypes.STRING(100),
     },
     payment_note: {
         type: sequelize_1.DataTypes.STRING(50),
