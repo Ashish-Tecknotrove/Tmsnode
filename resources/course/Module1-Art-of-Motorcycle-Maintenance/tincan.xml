@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://6m2f803TJdr_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">Module:1 Art of Motorcycle Maintenance</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6k6D2gcPqg4" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Module:1 Art of Motorcycle Maintenance</name>
+			<description lang="und">Module:1 Art of Motorcycle Maintenance</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5l1fxbqS97k" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6FHgFpAEqZQ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Knowledge Test Set - 2</name>
+			<description lang="und">Knowledge Test Set - 2</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5Va0JzqLP4L" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5Va0JzqLP4L/6F2TE836T31" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Can anything go wrong in your bike when the petrol tank is full?</name>
+			<description lang="und">Can anything go wrong in your bike when the petrol tank is full?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6ffPsL0WvN5</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5cQh5vLilH7</id>
+					<description lang="und">Bike can come to halt when the tank gets empty.</description>
+				</component>
+				<component>
+					<id>choice_6ffPsL0WvN5</id>
+					<description lang="und">Yes, vehicle doesn't run on petrol alone but, TCLOCS should be in working condition to ensure bike's fitness.</description>
+				</component>
+				<component>
+					<id>choice_6TdL1RqUIgX</id>
+					<description lang="und">No nothing can go wrong as long as fuel tank is full  and tyres are in working condition, rest can  be  managed.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5amxQdaHxzA" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5amxQdaHxzA/6ZyIPA8pOGM" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What could go wrong if water is splashed over a heated engine?</name>
+			<description lang="und">What could go wrong if water is splashed over a heated engine?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6HVJaiXoAtM</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6HVJaiXoAtM</id>
+					<description lang="und">Engine will stop working, get cracked, worn out, overhead gasket might leak.</description>
+				</component>
+				<component>
+					<id>choice_5cMo3uo7uMh</id>
+					<description lang="und">Engine will get cooled off.</description>
+				</component>
+				<component>
+					<id>choice_6dM7etHiuOq</id>
+					<description lang="und">None of the above</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5ZLn47LeYj5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5ZLn47LeYj5/6jR6oynoZ3x" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What could go wrong if you do not do a pre-check each time?</name>
+			<description lang="und">What could go wrong if you do not do a pre-check each time?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5Yw0nRax8uB</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5Yw0nRax8uB</id>
+					<description lang="und">I will be risking life on road because of vehicle breakdown due to tyre burst, brake failure or electrical failure.</description>
+				</component>
+				<component>
+					<id>choice_5XjTyOXRHiV</id>
+					<description lang="und">I will be stressed while riding on road. </description>
+				</component>
+				<component>
+					<id>choice_6WMmU4paFyC</id>
+					<description lang="und">I will be cursing one's own fate for the unforeseen disturbance.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/653psSp8b1e" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/653psSp8b1e/6BmaIvhU9ax" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What happens if bike is in worse condition?</name>
+			<description lang="und">What happens if bike is in worse condition?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6UKT284N5pG</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6UKT284N5pG</id>
+					<description lang="und">The engine and the other parts of bike will wear-out early, which can risky and life threatening on road.</description>
+				</component>
+				<component>
+					<id>choice_6dN2u2j78qk</id>
+					<description lang="und">I shall ride the bike carefully and pray that I reach home safely.</description>
+				</component>
+				<component>
+					<id>choice_6GGAd2MqQJm</id>
+					<description lang="und">The bike may breakdown on road causing unexpected delay and trouble.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6k7Y8MYikwG" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6k7Y8MYikwG/5f95NQYK45w" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What happens if bike is not road worthy?</name>
+			<description lang="und">What happens if bike is not road worthy?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_69MBVHsEmd3</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_69MBVHsEmd3</id>
+					<description lang="und">Not reaching on time to the destination or may lead to potential risk to one's own life.</description>
+				</component>
+				<component>
+					<id>choice_5oRn5yek6ow</id>
+					<description lang="und">Frustration/anger on oneself for a stressful journey.</description>
+				</component>
+				<component>
+					<id>choice_5beD8MYWFzW</id>
+					<description lang="und">Displeasure on other road users for not understanding my concern.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5VEdYrYBrsu" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5VEdYrYBrsu/6NElWwi65SD" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What if I do not carry the tool kit in bike?</name>
+			<description lang="und">What if I do not carry the tool kit in bike?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5gK0k7sv3QO</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5gK0k7sv3QO</id>
+					<description lang="und">Breakdowns can happen anytime. Availability of tools shall help rectify the defect and reach to the nearest garage.</description>
+				</component>
+				<component>
+					<id>choice_6rfVUmlMypR</id>
+					<description lang="und">Myth - If bike is maintained well, breakdowns do not happen?</description>
+				</component>
+				<component>
+					<id>choice_6IFxepHfPDS</id>
+					<description lang="und">We can borrow tools in an emergency from the passerby.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5xuSKwSRYXE" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5xuSKwSRYXE/67ELoOObf7x" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What if I do not follow User's manual?</name>
+			<description lang="und">What if I do not follow User's manual?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6SijWH9EQD3</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6SijWH9EQD3</id>
+					<description lang="und">I might miss-out free servicing and also the information on servicing schedule planned for smooth running and longer life of my bike.</description>
+				</component>
+				<component>
+					<id>choice_6ZdrN8AVbqh</id>
+					<description lang="und">If timely servicing is not carried out as per the schedule (service manual) then you may have to pay heavily for any parts replacements and major breakdowns.</description>
+				</component>
+				<component>
+					<id>choice_6q1dwucdOEw</id>
+					<description lang="und">Act on faith of god</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6OR6KsA1dW2" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6OR6KsA1dW2/5rdjvjpiyzc" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What if the bike is partially damaged, should this stop me from riding?</name>
+			<description lang="und">What if the bike is partially damaged, should this stop me from riding?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5qutOHjQ8xy</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5qutOHjQ8xy</id>
+					<description lang="und">It can cause more damage to the bike leading to breakdown or inconvenience in the journey.</description>
+				</component>
+				<component>
+					<id>choice_6KPYjGXbG8g</id>
+					<description lang="und">No - as long as the bike is in running condition.</description>
+				</component>
+				<component>
+					<id>choice_6MqLWqUwW5S</id>
+					<description lang="und">Take a chance till it comes to grinding halt.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/63kyAkxElqf" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/63kyAkxElqf/5gakun84rle" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What if you fail to check the tyre pressure when it is actually required?</name>
+			<description lang="und">What if you fail to check the tyre pressure when it is actually required?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_62mqJW8meuF</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5jRUa9Al3rC</id>
+					<description lang="und">Due to over inflation possibility of tyre burst,  losing bike control which can lead to wobbling, unsteadiness or skid.</description>
+				</component>
+				<component>
+					<id>choice_6Uub15MMrOh</id>
+					<description lang="und">Due to under inflation possibilities of bike getting dragged (pulled) at one side and or nails, sharp stones penetration etc.</description>
+				</component>
+				<component>
+					<id>choice_62mqJW8meuF</id>
+					<description lang="und">All of the above.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6Lp8i6gKnau" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6Lp8i6gKnau/5caRMEHOQWT" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What one needs to do if your bike needs immediate replacement of tyres?</name>
+			<description lang="und">What one needs to do if your bike needs immediate replacement of tyres?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6GShhhciZgC</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5bWriGehuQo</id>
+					<description lang="und">I must not take risk of riding the bike with bad tyres, until tyres are replaced. </description>
+				</component>
+				<component>
+					<id>choice_6GShhhciZgC</id>
+					<description lang="und">I should replace it immediately. </description>
+				</component>
+				<component>
+					<id>choice_6APRT0q2Ssu</id>
+					<description lang="und">I should replace it as advised by the manual or mechanic advice.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6SoCLVcHuYM" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">QUIZ RESULTS</name>
+			<description lang="und">QUIZ RESULTS</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5V2n9NLwfP5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Congratulations!</name>
+			<description lang="und">Congratulations!</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5r5iSQe03Z9" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6KxEboBJGa2" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6Acg5810Gjc" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/6e7GymVhq3m" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/63dTaWEdNvV" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5fADtHafFXB" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5n84BHzdJLM" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://6m2f803TJdr_course_id/5yldkccGX0S" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+	</activities>
+</tincan>
