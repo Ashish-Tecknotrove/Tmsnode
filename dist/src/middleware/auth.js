@@ -29,7 +29,7 @@ class Middleware {
     }
     generateAuth(payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            return (0, jsonwebtoken_1.sign)(payload, process.env.jwt_secreate, { expiresIn: 172800 });
+            return (0, jsonwebtoken_1.sign)(payload, process.env.jwt_secreate, { expiresIn: 43200 });
             // return sign(payload,process.env.jwt_secreate as string,{expiresIn:160*160});
         });
     }
@@ -39,10 +39,10 @@ class Middleware {
                 const authheader = req.header('authorization');
                 const token = authheader && authheader.split(" ")[1];
                 if (token == null)
-                    return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: response_strings_1.default.tokenExpired });
+                    return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: "Oops! we cannot process the request without authentication token" });
                 yield (0, jsonwebtoken_1.verify)(token, process.env.jwt_secreate, (err, user) => {
                     if (err) {
-                        return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: response_strings_1.default.tokenExpired });
+                        return res.status(response_codes_1.default.UNAUTHORIZED).json({ response_code: 0, message: err.message });
                     }
                     else {
                         next();

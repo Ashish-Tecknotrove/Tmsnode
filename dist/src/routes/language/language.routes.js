@@ -27,5 +27,5 @@ LanguageRoutes.post('/getAppLabelValue', formData.any(), auth_1.default.verifyAu
 // languagevalidator.chechGetAppLabelValue(),
 // auth.handleValidatorError,
 languages_controller_1.default.getAppLabelValue);
-LanguageRoutes.post('/getMappingswithLanguage', languages_controller_1.default.getMappingswithLanguage);
+LanguageRoutes.post('/getMappingswithLanguage', formData.any(), auth_1.default.verifyAuthenticateToken, languages_controller_1.default.getMappingswithLanguage);
 exports.default = LanguageRoutes;

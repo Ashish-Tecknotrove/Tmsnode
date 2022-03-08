@@ -385,13 +385,14 @@ class LanguageController {
     getMappingswithLanguage(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                var language_id = req.body.language_id;
                 let applabels = yield app_label_1.default.findAll({
                     include: [{
                             model: app_label_value_1.default,
                             attributes: ['name', 'f_languageid'],
                             where: {
-                                IsDeleted: 0,
-                                // f_languageid: Id
+                                f_languageid: language_id,
+                                IsDeleted: 0
                             },
                             required: false
                         }],
@@ -402,13 +403,14 @@ class LanguageController {
                 });
                 yield language_model_1.default.findAll({
                     where: {
+                        id: language_id,
                         IsDeleted: 0
                     },
                     attributes: ['id', 'name']
                 }).then((result) => {
                     const initialValue = {};
                     let labelData = result.reduce((obj, item) => {
-                        console.log(item['id']);
+                        //console.log(item['id']);
                         let applabelsobj = applabels.filter(function (currentElement) {
                             if (currentElement.ApplabelValue) {
                                 return currentElement.ApplabelValue.f_languageid == item['id'] || currentElement.ApplabelValue == null;
@@ -421,7 +423,7 @@ class LanguageController {
                         const applabelsObjStruc = applabelsobj.reduce((obj2, item2) => {
                             return Object.assign(Object.assign({}, obj2), { [item2['name']]: (item2.ApplabelValue) ? item2.ApplabelValue.name : "" });
                         }, initialValue2);
-                        return Object.assign(Object.assign({}, obj), { [item['name']]: applabelsObjStruc });
+                        return Object.assign(Object.assign({}, obj), { ["language"]: applabelsObjStruc });
                     }, initialValue);
                     return res.status(response_codes_1.default.SUCCESS)
                         .json({ response_code: 0, message: response_strings_1.default.GET, data: labelData });

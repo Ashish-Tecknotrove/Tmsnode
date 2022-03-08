@@ -24,6 +24,7 @@ const elearning_training_session_model_1 = __importDefault(require("../../model/
 const response_strings_1 = __importDefault(require("../../strings/response-strings"));
 const trainee_model_1 = __importDefault(require("../../model/root/trainee.model"));
 const elearning_trainee_scrom_data_model_1 = __importDefault(require("../../model/root/elearning_trainee_scrom_data.model"));
+const sequelize_2 = __importDefault(require("sequelize"));
 //TODO THIS FILE CREATED TOTALLY FOR TRAINEE DASHBOARD API FOR ELEARNING 
 class ElearningTraineeTest {
     //TODO THIS FUNCTION USED TO LOAD THE ELEARNING DATA
@@ -49,7 +50,8 @@ class ElearningTraineeTest {
                                                     order: [['id', 'DESC']],
                                                     where: { trainee_id: req.body.trainee_id }
                                                 }
-                                            ]
+                                            ],
+                                            where: sequelize_2.default.where(sequelize_2.default.col('TraineeCurriculum.language_id'), sequelize_2.default.col('Curriculum->CurriculumBuilders->CurriculumParentCategoryTest.language_id')),
                                         }],
                                     where: {
                                         [sequelize_1.Op.or]: [
@@ -69,7 +71,8 @@ class ElearningTraineeTest {
                         IsBlock: 0,
                         technology_id: 1,
                         trainee_id: trainee_id
-                    }
+                    },
+                    //logging:console.log
                 }).then((elearningData) => __awaiter(this, void 0, void 0, function* () {
                     if (elearningData.length != 0) {
                         var trainee_email;

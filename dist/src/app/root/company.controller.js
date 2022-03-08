@@ -102,6 +102,11 @@ class CompanyController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 var company_count = yield company_model_1.default.count({
+                    include: [{
+                            model: masterpanel_model_1.default,
+                            //required:false,
+                            where: { IsDeleted: 0 }
+                        }],
                     where: {
                         IsDeleted: 0,
                         company_type: 0
@@ -265,6 +270,7 @@ class CompanyController {
                 const getCompany = yield company_model_1.default.findAll({
                     include: [{
                             model: masterpanel_model_1.default,
+                            //required:false,
                             where: { IsDeleted: 0 }
                         }],
                     where: where_condition,

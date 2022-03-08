@@ -7,6 +7,7 @@ const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const curriculum_model_1 = __importDefault(require("./curriculum.model"));
 const technology_model_1 = __importDefault(require("./technology.model"));
+const language_model_1 = __importDefault(require("../language/language.model"));
 class TraineeCurriculum extends sequelize_1.Model {
 }
 exports.default = TraineeCurriculum;
@@ -28,6 +29,13 @@ TraineeCurriculum.init({
         type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: 'users',
+            key: 'id'
+        }
+    },
+    language_id: {
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: 'languages',
             key: 'id'
         }
     },
@@ -82,4 +90,7 @@ TraineeCurriculum.belongsTo(curriculum_model_1.default, {
 });
 TraineeCurriculum.belongsTo(technology_model_1.default, {
     foreignKey: 'technology_id'
+});
+TraineeCurriculum.belongsTo(language_model_1.default, {
+    foreignKey: "language_id"
 });
