@@ -18,6 +18,8 @@ import { Op } from "sequelize";
 import CurriculumBuilder from "../../model/root/curriculumbuilder.model";
 import CurriculumParentCategoryTest from "../../model/root/curriculum_parent_category_test.model";
 import TechnologyCategory from "../../model/root/technology.model";
+import sequelize from "sequelize";
+import Subscription from "../../model/root/subscription.model";
 
 class TraineeController {
 
@@ -52,9 +54,56 @@ class TraineeController {
 
             var curriculum_id_json=JSON.parse(req.body.curriculum_id);
 
+            var curriculum_count=curriculum_id_json.length;
+            var license_number_valid=0;
+            for(let i=0;i<curriculum_id_json.length;i++)
+            {
+                var curriculum=curriculum_id_json[i]['curriculum_id']
+                var company_id=req.body.company_id;
 
+                await Trainee.count({
+                    include:[{
+                        model:TraineeCurriculum,
+                        where:{
+                            trainee_id:sequelize.col("Trainee.id"),
+                            curriculum_id:curriculum
+                        },
+                    }],
+                    where:{company_id:company_id},
+                    group:["TraineeCurriculums.trainee_id","TraineeCurriculums.curriculum_id"],
+                    //logging:console.log
+                }).then(async (Totalcount:any)=>
+                {
+                    var count=Totalcount.length;
+                    //console.log(count.length);
+                    await Subscription.findOne({
+                        where:{
+                            curriculum_id:curriculum
+                        }
+                    }).then((sub:any)=>
+                    {
+                        if(sub["licence_no"] <= count)
+                        {
+                            license_number_valid++;
+                        }
 
-            //!TODO Check Trainee Exist In Trainee Table
+                    }).catch(err=>{
+
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+                    });
+                    
+                }).catch(err=>
+                {
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+
+                });
+            }
+
+            if(license_number_valid == 0)
+            {
+                 //!TODO Check Trainee Exist In Trainee Table
+
+                  //!TODO Check Trainee Exist In Trainee Table
             let check_trainee_exits = await Trainee.findAll({
                 where:
                     {
@@ -85,6 +134,7 @@ class TraineeController {
                             password: req.body.password,
                             user_type: 4,
                             language: req.body.language,
+                            portal_language:req.body.language,
                             createdAt: responseStrings.currentTime,
                             updated_by: "",
                             updatedAt: '',
@@ -107,6 +157,7 @@ class TraineeController {
                                 trainee_user_id:userData['id'],
                                 curriculum_id:curriculum_id_json[i]['curriculum_id'],
                                 technology_id:curriculum_id_json[i]['technology_id'],
+                                language_id:req.body.language_id,
                                 created_by:req.body.created_by,
                                 createdAt:responseStrings.currentTime
                             }
@@ -114,7 +165,8 @@ class TraineeController {
                             await TraineeCurriculum.create({...data}).then(data=>
                             {
                                 console.log("done");
-                            }).catch(err=>{
+                            }).catch(err=>
+                            {
                                 console.log("Oops! "+err.message);
                             });
                         }
@@ -192,6 +244,20 @@ class TraineeController {
                     message: "Oops! Email of trainee already exists, please use another one"
                 });
             }
+            }
+            else
+            {
+                if(curriculum_id_json.length > 1)
+                {
+                    res.status(responseCodes.BAD_REQUEST).json({response_code: 0, message: "Ooops! One or both of your selected subscription has been max out their limit"});
+                }   
+                else
+                {
+                    res.status(responseCodes.BAD_REQUEST).json({response_code: 0, message: "Ooops! Your selected subscription has been max out their limit"});
+                }
+                
+            }
+
 
 
         } catch (err: any) {
@@ -704,6 +770,8 @@ class TraineeController {
                 .json({ response_code: 0, message:  "Oops! "+ err.message });
             }
     }
+
+
 }
 
 export default new TraineeController();

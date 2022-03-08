@@ -27,7 +27,7 @@ class Middleware{
     async generateAuth(payload:any)
     {
        
-        return sign(payload,process.env.jwt_secreate as string,{expiresIn:172800});
+        return sign(payload,process.env.jwt_secreate as string,{expiresIn:43200});
         // return sign(payload,process.env.jwt_secreate as string,{expiresIn:160*160});
     
         
@@ -40,13 +40,13 @@ class Middleware{
             const authheader = req.header('authorization');
             const token = authheader && authheader.split(" ")[1];
 
-            if(token == null) return res.status(ResponseCodes.UNAUTHORIZED).json({response_code:0,message:ResponseStrings.tokenExpired});
+            if(token == null) return res.status(ResponseCodes.UNAUTHORIZED).json({response_code:0,message:"Oops! we cannot process the request without authentication token"});
 
             await verify(token,process.env.jwt_secreate as string, (err , user)=>{
                 
                 if (err)
                 {
-                    return res.status(ResponseCodes.UNAUTHORIZED).json({response_code:0,message:ResponseStrings.tokenExpired});
+                    return res.status(ResponseCodes.UNAUTHORIZED).json({response_code:0,message:err.message});
                 }
                 else{
                     next();

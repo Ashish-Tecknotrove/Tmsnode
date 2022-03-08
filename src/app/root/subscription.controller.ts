@@ -191,6 +191,7 @@ class SubscriptionController {
             ],
                 
                 where: whereCondition,
+                order:[["id","DESC"]]
                // logging: console.log
 
             }).then((result) => 

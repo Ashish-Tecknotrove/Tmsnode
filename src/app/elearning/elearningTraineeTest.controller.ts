@@ -6,12 +6,13 @@ import responseCodes from "../../strings/response-codes";
 import express, { NextFunction, Request, Response } from "express";
 import CurriculumBuilder from "../../model/root/curriculumbuilder.model";
 import ElearningResult from "../../model/elearning/eLearningresult.model";
-import { Op } from "sequelize";
+import { Op, Sequelize } from "sequelize";
 import ElearningTrainingSession from "../../model/root/elearning_training_session.model";
 import responseStrings from "../../strings/response-strings";
 import Trainee from "../../model/root/trainee.model";
 import ElearningTraineeScromData from "../../model/root/elearning_trainee_scrom_data.model";
 import { AnyAaaaRecord } from "dns";
+import sequelize from "sequelize";
 
 //TODO THIS FILE CREATED TOTALLY FOR TRAINEE DASHBOARD API FOR ELEARNING 
 class ElearningTraineeTest
@@ -40,8 +41,10 @@ class ElearningTraineeTest
                                         limit:1,
                                         order:[['id','DESC']],
                                         where:{trainee_id:req.body.trainee_id}
-                                     }]
+                                     }],
+                                     where:sequelize.where(sequelize.col('TraineeCurriculum.language_id'), sequelize.col('Curriculum->CurriculumBuilders->CurriculumParentCategoryTest.language_id')),
                                     }],
+                                    
                             where:{
                                 [Op.or]:
                                 [
@@ -56,12 +59,15 @@ class ElearningTraineeTest
                         
                     }
                 ],
-                where:{
+                where:
+                {
                     IsDeleted:0,
                     IsBlock:0,
                     technology_id:1,
                     trainee_id:trainee_id
-                }
+
+                },
+                 //logging:console.log
             }).then(async (elearningData:any)=>
             {
                 if(elearningData.length !=0)
@@ -565,6 +571,7 @@ class ElearningTraineeTest
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code:0,message:"Oops! "+err});
         }
     }
+
 
 }
 

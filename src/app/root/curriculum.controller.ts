@@ -130,6 +130,7 @@ class CurriculumController {
           company_id: req.body.company_id,
           IsDeleted: 0
         },
+        order:[["id","DESC"]]
       })
         .then((data) => {
           res.status(responseCodes.SUCCESS).json({
@@ -167,6 +168,7 @@ class CurriculumController {
           },
           IsDeleted: 0
         },
+        order:[["id","desc"]]
         // logging: console.log
       });
 
@@ -220,6 +222,7 @@ class CurriculumController {
           parent_id: parent_id,
           IsDeleted: 0,
         },
+        order:[["id","desc"]]
       });
 
       if (getTest != null) {

@@ -375,16 +375,15 @@ class LanguageController {
 
     async getMappingswithLanguage(req: Request, res: Response) {
 
-
-
         try {
+            var language_id=req.body.language_id;
             let applabels = await Applabels.findAll({
                 include: [{
                     model: ApplabelValue,
                     attributes: ['name', 'f_languageid'],
                     where: {
-                        IsDeleted: 0,
-                        // f_languageid: Id
+                        f_languageid:language_id,
+                        IsDeleted: 0
                     },
                     required: false
                 }],
@@ -396,6 +395,7 @@ class LanguageController {
 
             await Languages.findAll({
                 where: {
+                    id:language_id,
                     IsDeleted: 0
                 },
                 attributes: ['id', 'name']
@@ -403,7 +403,7 @@ class LanguageController {
                 const initialValue = {};
 
                 let labelData = result.reduce((obj: any, item: { [x: string]: any; }) => {
-                    console.log(item['id']);
+                    //console.log(item['id']);
 
                     let applabelsobj = applabels.filter(function (currentElement:any) {
                         if(currentElement.ApplabelValue){
@@ -426,7 +426,7 @@ class LanguageController {
 
                     return {
                         ...obj,
-                        [item['name']]: applabelsObjStruc,
+                        ["language"]: applabelsObjStruc,
                     };
                 }, initialValue);
 

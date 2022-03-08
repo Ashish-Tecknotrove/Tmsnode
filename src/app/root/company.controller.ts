@@ -99,6 +99,11 @@ class CompanyController {
   async total_companies(req: Request, res: Response) {
     try {
       var company_count = await Company.count({
+        include:[{
+          model:MasterPanel,
+          //required:false,
+          where:{IsDeleted:0}
+        }],
         where: {
           IsDeleted: 0,
           company_type:0
@@ -273,6 +278,7 @@ class CompanyController {
         {
           include:[{
             model:MasterPanel,
+            //required:false,
             where:{IsDeleted:0}
           }],
           where: where_condition,
