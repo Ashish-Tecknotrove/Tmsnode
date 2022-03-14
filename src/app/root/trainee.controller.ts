@@ -35,7 +35,7 @@ class TraineeController {
             }).then(data => {
                 res.status(responseCodes.SUCCESS).json({
                     response_code: 1,
-                    message: "Trainee count fetched successfully...",
+                    message: "Trainee count fetched successfully.",
                     count: data
                 });
 
@@ -338,7 +338,8 @@ class TraineeController {
                         data: success
                     });
                 } else {
-                    res.status(responseCodes.SUCCESS).json({response_code: 0, message: 'No trainee were found.'});
+                    res.status(responseCodes.SUCCESS).json({response_code: 0, 
+                        message: 'No trainee were found.',data:success});
 
                 }
 
@@ -497,7 +498,7 @@ class TraineeController {
                         updatedAt: responseStrings.currentTime,
                         IsBlock: 0
                     };
-                    message = "Trainee Unblocked Successfully...";
+                    message = "Trainee Unblocked Successfully.";
                 }
 
                 if (trainee_exist[0]['IsBlock'] == "0") {
@@ -569,7 +570,7 @@ class TraineeController {
 
                     res.status(responseCodes.SUCCESS).json({
                         response_code: 1,
-                        message: 'Trainee Get Successfully...',
+                        message: 'Trainee Get Successfully.',
                         data: success
                     });
                 } else {
@@ -749,7 +750,7 @@ class TraineeController {
                   {
                     res
                     .status(responseCodes.SUCCESS)
-                    .json({ response_code: 0, message:  "Technologies Loaded",data:techData});
+                    .json({ response_code: 1, message:  "Technologies Loaded",data:techData});
 
                   }
                   else

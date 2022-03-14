@@ -26,6 +26,7 @@ export default class Curriculum extends Model
     declare id: number;
     company_id!: number;
     name!: string;
+    sequence!:number;
     created_by!: number
     updated_by!: number
 	deleted_by!:string
@@ -54,6 +55,10 @@ Curriculum.init({
     },
     name:{
         type:DataTypes.STRING(100),
+    },
+    sequence:{
+        type:DataTypes.TINYINT,
+        defaultValue:"1"
     },
     created_by: {
         type: DataTypes.INTEGER,

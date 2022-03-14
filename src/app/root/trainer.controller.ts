@@ -33,7 +33,7 @@ class TrainerController {
             }).then(data => {
                 res.status(responseCodes.SUCCESS).json({
                     response_code: 1,
-                    message: "Trainer count fetched successfully...",
+                    message: "Trainer count fetched successfully.",
                     count: data
                 });
 
@@ -413,7 +413,8 @@ class TrainerController {
 
             if (req.body.trainees_id.length > 0) {
                 let traineeData = JSON.parse(req.body.trainees_id);
-                for (let i = 0; i < traineeData.length; i++) {
+                for (let i = 0; i < traineeData.length; i++) 
+                {
                     let insertData = {
                         trainer_id: req.body.trainer_id,
                         trainee_id: traineeData[i]['trainee_id'],
@@ -421,31 +422,42 @@ class TrainerController {
                         createdAt: responseStrings.currentTime
                     };
 
-
+                    
                     await Assign_trainee_to_trainer.create(insertData)
                         .then(async (result: any) => {
-                            let updateData = {
-                                trainer_id: req.body.trainer_id,
-                                updated_by: req.body.created_by,
-                                updatedAt: responseStrings.currentTime
-                            }
-                            await Trainee.update({...updateData}, {
-                                where: {
-                                    id: traineeData[i]['trainee_id']
+
+                            await Trainer.findOne({where:{id:req.body.trainer_id}}).then(async(data:any)=>
+                            {
+                                let updateData = {
+                                    trainer_id: req.body.trainer_id,
+                                    sub_company_id:data["sub_company_id"],
+                                    department_id:data["department_id"],
+                                    updated_by: req.body.created_by,
+                                    updatedAt: responseStrings.currentTime
                                 }
-                            }).then((updateResult: any) => {
-                                if ((traineeData.length - 1) == i) {
-                                    res.status(responseCodes.SUCCESS).json({
-                                        response_code: 1,
-                                        message: "The Trainee have been assign successfully.",
+
+                                await Trainee.update({...updateData}, {
+                                    where: {
+                                        id: traineeData[i]['trainee_id']
+                                    }
+                                }).then((updateResult: any) => {
+                                    if ((traineeData.length - 1) == i) {
+                                        res.status(responseCodes.SUCCESS).json({
+                                            response_code: 1,
+                                            message: "The Trainee have been assign successfully.",
+                                        })
+                                    }
+                                }).catch((err: any) => {
+                                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                                        response_code: 0,
+                                        message: "Oops! "+err.message
                                     })
-                                }
-                            }).catch((err: any) => {
-                                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
-                                    response_code: 0,
-                                    message: "Oops! "+err.message
                                 })
-                            })
+
+                            }).catch(err=>{
+
+                            });
+                            
                         }).catch((err: any) => {
                             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                                 response_code: 0,
