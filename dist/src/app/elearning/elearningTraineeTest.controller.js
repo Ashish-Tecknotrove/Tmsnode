@@ -54,6 +54,7 @@ class ElearningTraineeTest {
                                             where: sequelize_2.default.where(sequelize_2.default.col('TraineeCurriculum.language_id'), sequelize_2.default.col('Curriculum->CurriculumBuilders->CurriculumParentCategoryTest.language_id')),
                                         }],
                                     where: {
+                                        //technology_type_id:1,
                                         [sequelize_1.Op.or]: [
                                             { attempts: { [sequelize_1.Op.not]: 'null' } },
                                             { attempts: { [sequelize_1.Op.not]: '' } },
@@ -69,6 +70,7 @@ class ElearningTraineeTest {
                     where: {
                         IsDeleted: 0,
                         IsBlock: 0,
+                        // language_id:sequelize.col("Curriculum->CurriculumBuilders->CurriculumParentCategoryTest.language_id"),
                         technology_id: 1,
                         trainee_id: trainee_id
                     },
@@ -89,6 +91,52 @@ class ElearningTraineeTest {
                                         "?actor=%7B%22mbox%22%3A%22mailto%3a" + trainee_email + "%22%2C%22" +
                                         "name%22%3A%22Super%22%2C%22objectType%22%3A%22Agent%22%7D&auth=Basic%20Og%3D%3D&test_id=" + master['test_id'] +
                                         "&endpoint=http%3A%2F%2F" + req.get('host') + "%2FTMS" + "%2Ftrainee" + "%2Felearning" + "%2FstoreElearningResult";
+                                //?This IS Remainig Attempt
+                                var remaining = 0;
+                                if (j_array[j]['CurriculumParentCategoryTest']['ElearningResults'].length != 0) {
+                                    remaining = j_array[j]['attempts'] - j_array[j]['CurriculumParentCategoryTest']['ElearningResults'][0]['attempt_no'];
+                                    j_array[j]['dataValues']['remaining_attempt'] = remaining;
+                                    j_array[j]['dataValues']['lastscore'] = j_array[j]['CurriculumParentCategoryTest']['ElearningResults'][0]['score'];
+                                    j_array[j]['dataValues']['lastExamStatus'] = j_array[j]['CurriculumParentCategoryTest']['ElearningResults'][0]['status'];
+                                    j_array[j]['dataValues']['lastExamPercentage'] = j_array[j]['CurriculumParentCategoryTest']['ElearningResults'][0]['score'] / j_array[j]['total_marks'] * 100;
+                                }
+                                else {
+                                    j_array[j]['dataValues']['remaining_attempt'] = j_array[j]['attempts'];
+                                    j_array[j]['dataValues']['lastscore'] = '-';
+                                    j_array[j]['dataValues']['lastExamStatus'] = false;
+                                    j_array[j]['dataValues']['lastExamPercentage'] = false;
+                                }
+                                //?? SEQUENCING PATTERN
+                                if (elearningData[i]['Curriculum']['sequence'] == 1) {
+                                    //! Meaning Check of first element 
+                                    if (j_array[j]['CurriculumParentCategoryTest']['ElearningResults'].length != 0) {
+                                        var exam_status = j_array[j]['CurriculumParentCategoryTest']['ElearningResults'][0]['status'];
+                                        if (j == 0) {
+                                            if (exam_status != "passed" && remaining >= 0) {
+                                                j_array[j]['dataValues']['startTest'] = 1;
+                                            }
+                                            else {
+                                                j_array[j]['dataValues']['startTest'] = 0;
+                                            }
+                                        }
+                                        else {
+                                            var last_index_status = j_array[j - 1]['CurriculumParentCategoryTest']['ElearningResults'][0]['status'];
+                                            var last_index_remaining = j_array[j]['attempts'] - j_array[j]['CurriculumParentCategoryTest']['ElearningResults'][0]['attempt_no'];
+                                            if (last_index_status == "passed") {
+                                                j_array[j]['dataValues']['startTest'] = 1;
+                                            }
+                                            else {
+                                                j_array[j]['dataValues']['startTest'] = 0;
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        j_array[j]['dataValues']['startTest'] = 1;
+                                    }
+                                }
+                                else {
+                                    j_array[j]['dataValues']['startTest'] = 1;
+                                }
                             }
                         }
                         res.status(response_codes_1.default.SUCCESS).json({ response_code: 1,
@@ -96,7 +144,7 @@ class ElearningTraineeTest {
                     }
                     else {
                         res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0,
-                            message: "All Data fetched", data: "Oops! no data found" });
+                            message: "Oops! no test found or test have not been allotted to you", data: "Oops! no data found" });
                     }
                 })).catch(err => {
                     res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });

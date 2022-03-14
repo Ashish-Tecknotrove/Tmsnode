@@ -29,7 +29,7 @@ const trainer_validator_1 = __importDefault(require("../../validator/root/traine
 const Router = express.Router();
 var multer = require('multer');
 var formData = multer();
-Router.post('/getTraineeCount', formData.any(), trainer_controller_1.default.getTrainerCount);
+Router.post('/getTrainerCount', formData.any(), trainer_controller_1.default.getTrainerCount);
 Router.post('/registerTrainer', formData.none(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.registerTrainer(), auth_1.default.handleValidatorError, trainer_controller_1.default.registerTrainer);
 Router.post('/updateTrainer', formData.none(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.updateTrainer(), auth_1.default.handleValidatorError, trainer_controller_1.default.updateTrainer);
 Router.post('/getTrainers', formData.none(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.getTrainersByCompany(), auth_1.default.handleValidatorError, trainer_controller_1.default.getTrainers);

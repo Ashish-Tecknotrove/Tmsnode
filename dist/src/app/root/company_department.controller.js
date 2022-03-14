@@ -100,7 +100,7 @@ class CompanyDepartmentController {
                 var master_data = {
                     company_id: req.body.company_id,
                     name: req.body.department_name,
-                    description: req.body.description,
+                    descripition: req.body.description,
                     created_by: req.body.created_by,
                     createdAt: response_strings_1.default.currentTime
                 };
@@ -122,7 +122,7 @@ class CompanyDepartmentController {
                         var companyData = {
                             company_id: req.body.company_id,
                             department_id: msdata['id'],
-                            username: req.body.username,
+                            name: req.body.username,
                             designation: req.body.designation,
                             contactNumber: req.body.contactNumber,
                             email: req.body.email,

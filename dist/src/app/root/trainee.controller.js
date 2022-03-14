@@ -39,7 +39,7 @@ class TraineeController {
                 }).then(data => {
                     res.status(response_codes_1.default.SUCCESS).json({
                         response_code: 1,
-                        message: "Trainee count fetched successfully...",
+                        message: "Trainee count fetched successfully.",
                         count: data
                     });
                 }).catch(err => {
@@ -286,7 +286,8 @@ class TraineeController {
                         });
                     }
                     else {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: 'No trainee were found.' });
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0,
+                            message: 'No trainee were found.', data: success });
                     }
                 }).catch(err => {
                     res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
@@ -428,7 +429,7 @@ class TraineeController {
                             updatedAt: response_strings_1.default.currentTime,
                             IsBlock: 0
                         };
-                        message = "Trainee Unblocked Successfully...";
+                        message = "Trainee Unblocked Successfully.";
                     }
                     if (trainee_exist[0]['IsBlock'] == "0") {
                         block_trainee_data = {
@@ -492,7 +493,7 @@ class TraineeController {
                     if (success.length != 0) {
                         res.status(response_codes_1.default.SUCCESS).json({
                             response_code: 1,
-                            message: 'Trainee Get Successfully...',
+                            message: 'Trainee Get Successfully.',
                             data: success
                         });
                     }
@@ -668,7 +669,7 @@ class TraineeController {
                     if (techData.length != 0) {
                         res
                             .status(response_codes_1.default.SUCCESS)
-                            .json({ response_code: 0, message: "Technologies Loaded", data: techData });
+                            .json({ response_code: 1, message: "Technologies Loaded", data: techData });
                     }
                     else {
                         res

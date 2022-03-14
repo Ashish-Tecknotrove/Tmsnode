@@ -33,7 +33,7 @@ class TrainerController {
                 }).then(data => {
                     res.status(response_codes_1.default.SUCCESS).json({
                         response_code: 1,
-                        message: "Trainer count fetched successfully...",
+                        message: "Trainer count fetched successfully.",
                         count: data
                     });
                 }).catch(err => {
@@ -405,27 +405,32 @@ class TrainerController {
                         };
                         yield assign_trainee_to_trainer_model_1.default.create(insertData)
                             .then((result) => __awaiter(this, void 0, void 0, function* () {
-                            let updateData = {
-                                trainer_id: req.body.trainer_id,
-                                updated_by: req.body.created_by,
-                                updatedAt: response_strings_1.default.currentTime
-                            };
-                            yield trainee_model_1.default.update(Object.assign({}, updateData), {
-                                where: {
-                                    id: traineeData[i]['trainee_id']
-                                }
-                            }).then((updateResult) => {
-                                if ((traineeData.length - 1) == i) {
-                                    res.status(response_codes_1.default.SUCCESS).json({
-                                        response_code: 1,
-                                        message: "The Trainee have been assign successfully.",
+                            yield trainer_model_1.default.findOne({ where: { id: req.body.trainer_id } }).then((data) => __awaiter(this, void 0, void 0, function* () {
+                                let updateData = {
+                                    trainer_id: req.body.trainer_id,
+                                    sub_company_id: data["sub_company_id"],
+                                    department_id: data["department_id"],
+                                    updated_by: req.body.created_by,
+                                    updatedAt: response_strings_1.default.currentTime
+                                };
+                                yield trainee_model_1.default.update(Object.assign({}, updateData), {
+                                    where: {
+                                        id: traineeData[i]['trainee_id']
+                                    }
+                                }).then((updateResult) => {
+                                    if ((traineeData.length - 1) == i) {
+                                        res.status(response_codes_1.default.SUCCESS).json({
+                                            response_code: 1,
+                                            message: "The Trainee have been assign successfully.",
+                                        });
+                                    }
+                                }).catch((err) => {
+                                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                        response_code: 0,
+                                        message: "Oops! " + err.message
                                     });
-                                }
-                            }).catch((err) => {
-                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
-                                    response_code: 0,
-                                    message: "Oops! " + err.message
                                 });
+                            })).catch(err => {
                             });
                         })).catch((err) => {
                             res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({

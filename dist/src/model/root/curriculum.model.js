@@ -26,6 +26,10 @@ Curriculum.init({
     name: {
         type: sequelize_1.DataTypes.STRING(100),
     },
+    sequence: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: "1"
+    },
     created_by: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
