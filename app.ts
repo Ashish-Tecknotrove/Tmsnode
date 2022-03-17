@@ -16,6 +16,7 @@ import subcompany from "./src/routes/root/subcompanyroutes";
 import master_departmentRoutes from "./src/routes/root/master_departmentroutes";
 import CompanyDepartment from "./src/routes/root/company_departmentroutes";
 import ElearningTraineeRoutes from "./src/routes/elearning/elearning.traineeroutes";
+import simulatorRoutes from "./src/routes/root/simulatorRoutes";
 
 process.env.TZ = "Asia/Calcutta";
 const nDate = new Date().toLocaleString('en-US', {
@@ -57,7 +58,7 @@ app.use("/TMS/department",CompanyDepartment);
 app.use("/TMS/subcompany",subcompany),
 
 app.use("/TMS/trainee/elearning",ElearningTraineeRoutes)
-
+app.use("/TMS/simulator",simulatorRoutes)
 app.use(express.urlencoded({extended: true}));
 app.use(morgan('dev'));
 
