@@ -154,3 +154,6 @@ CompanyDepartment.hasMany(Trainer,{
     foreignKey: "department_id",
 })
 
+Trainer.belongsTo(CompanyDepartment,{
+  foreignKey: "department_id",
+})

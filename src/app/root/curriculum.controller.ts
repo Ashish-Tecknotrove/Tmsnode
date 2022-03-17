@@ -57,7 +57,7 @@ class CurriculumController {
         .json({ response_code: 0, message:  "Oops! "+ error.message });
     }
   }
-
+  
   async create_curriculum_parent_category_test(req: Request, res: Response) {
     try {
       req.body.createdAt = responseStrings.currentTime;

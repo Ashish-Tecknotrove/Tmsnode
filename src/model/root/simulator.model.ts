@@ -5,24 +5,25 @@ import Trainee from "./trainee.model";
 import Trainer from "./trainer.model";
 import Users from "./users.model";
 
-interface SubcompanyAttribute {}
 
-export default class SubCompany extends Model {
+
+export default class Simulator extends Model {
   id!: number;
   company_id!: number;
   name!: number;
   description!: number;
-  contact_no!: number;
+  trainer_id!: number;
   created_by!: number;
   updated_by!: number;
   deleted_by!: string;
   deletedAt!: string;
   createdAt!: string;
   updatedAt!: string;
+  IsBlock!:number
   IsDeleted!: number;
 }
 
-SubCompany.init(
+Simulator.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -38,24 +39,18 @@ SubCompany.init(
         key: "id",
       },
     },
-    login_table_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "users",
-        key: "id",
-      },
+    trainer_id: {
+        type: DataTypes.INTEGER,
+        references:{
+            model:Trainer,
+            key:"id"
+        }
     },
     name: {
       type: DataTypes.STRING,
-      unique: true,
+      //unique: true,
     },
     description: {
-      type: DataTypes.STRING,
-    },
-    designation: {
-      type: DataTypes.STRING,
-    },
-    contact_no: {
       type: DataTypes.STRING,
     },
     created_by: {
@@ -88,23 +83,14 @@ SubCompany.init(
   },
   {
     sequelize: sequelizeconnection,
-    tableName: "sub_company",
+    tableName: "simulator",
   }
 );
 
-SubCompany.belongsTo(Users, {
-  foreignKey: "login_table_id",
+Simulator.belongsTo(Trainer,{
+    foreignKey:'trainer_id'
+})
+
+Trainer.hasMany(Simulator,{
+    foreignKey:"trainer_id"
 });
-
-
-SubCompany.hasMany(Trainer,{
-  foreignKey: "sub_company_id",
-})
-
-Trainer.belongsTo(SubCompany,{
-  foreignKey: "sub_company_id",
-})
-
-
-
-

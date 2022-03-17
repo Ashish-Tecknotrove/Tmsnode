@@ -267,7 +267,7 @@ Trainee.init(
       allowNull: true,
     },
     trainer_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     status: {

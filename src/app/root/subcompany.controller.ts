@@ -180,9 +180,9 @@ class SubCompanyController
                     model:CompanyDepartment,
                     include:[
                         {
-                            model:MasterDepartment
+                            model:MasterDepartment,
                         },
-                        {
+                    {
                         model:Trainer,
                         required:false,
                         where:{IsDeleted:0}

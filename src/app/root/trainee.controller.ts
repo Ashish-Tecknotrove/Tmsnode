@@ -21,6 +21,8 @@ import TechnologyCategory from "../../model/root/technology.model";
 import sequelize from "sequelize";
 import Subscription from "../../model/root/subscription.model";
 
+const readXlsxFile = require("read-excel-file/node");
+
 class TraineeController {
 
 
@@ -362,21 +364,33 @@ class TraineeController {
         try {
             const csv_file = req.file?.filename;
 
-            console.log(csv_file);
-            // const header = ['first_name', 'last_name'];
+            const course_json=req.body.curriculum;
+            const langauge_id=req.body.language_id;
 
-            // parse(csv_file!, {
-            //     delimiter: ',',
-            //     columns: header,
-            // }, (error, result) => {
-            //     if (error) {
-            //         console.error(error);
-            //     }
 
-            //     console.log("Result", result);
-            // });
 
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 1, message: csv_file});
+            var path="./resources/csv/"+ csv_file;
+            console.log(course_json);
+
+            readXlsxFile(path).then((rows:any) => {
+                // skip header
+                rows.shift();
+                let trainees =Array();
+                rows.forEach((row:any) => {
+                  let trainee = {
+                    id: row[0],
+                    title: row[1],
+                    description: row[2],
+                    published: row[3],
+                  };
+                  trainees.push(trainee);
+                });
+
+                
+            });
+
+
+            res.status(responseCodes.SUCCESS).json({response_code: 1, message: csv_file});
 
 
         } catch (err: any) {
@@ -488,11 +502,12 @@ class TraineeController {
                 }
             });
 
-            //** If trainee Exist*/
+            //** If trainee Exist */
             if (trainee_exist.length != 0) {
                 let block_trainee_data = {}
                 let message = '';
                 if (trainee_exist[0]['IsBlock'] == "1") {
+                    
                     block_trainee_data = {
                         updated_by: req.body.updated_by,
                         updatedAt: responseStrings.currentTime,
@@ -540,8 +555,7 @@ class TraineeController {
             }
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
-        }
-        ;
+        };
     }
 
     async getUnassignedTrainee(req: Request, res: Response) {
@@ -562,7 +576,7 @@ class TraineeController {
                     // IsBlock:0,
                     IsDeleted: 0,
                     IsBlock:0,
-                    [Op.or]:[{trainer_id: null},{trainer_id : ''}]
+                    trainer_id: 0
                     
                 }}).then((success:any) => {
 

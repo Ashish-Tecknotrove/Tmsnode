@@ -18,6 +18,8 @@ import Assign_trainee_to_trainer from "../../model/root/assign_trainee_to_traine
 import Trainee from "../../model/root/trainee.model";
 import TraineeCurriculum from "../../model/root/trainee_curriculum.model";
 import TraineeRemarks from "../../model/root/trainee_remark.model";
+import CompanyDepartment from '../../model/root/company_department.model';
+import MasterDepartment from '../../model/root/master_department.model';
 
 class TrainerController {
 
@@ -313,15 +315,39 @@ class TrainerController {
 
             //? GET ALL TRAINER BY PANELS
             await Trainer.findAll({
-                include: [{
+                include: [
+                {
                     model: Users,
                     where: {
                         IsDeleted: 0,
                         company_id: req.body.company_id
                     },
                     required: false
-                }],
+                },
+                {
+                    model: SubCompany,
+                    where: {
+                        IsDeleted: 0,
+                        IsBlock: 0
+                    },
+                    required:false
+                },
+                {
+                    model: CompanyDepartment,
+                    include:[{
+                        model:MasterDepartment
+                    }],
+                    where: {
+                        IsDeleted: 0,
+                        IsBlock: 0
+                    },
+                    required:false
+                },
+
+            
+            ],
                 where: where,
+                order:[['id','DESC']]
             }).then((result) => {
                 res.status(responseCodes.SUCCESS).json({response_code: 1, message: responseStrings.GET, data: result});
             }).catch((err: any) => {
@@ -406,6 +432,74 @@ class TrainerController {
                 message: "Oops! "+err.message
             });
         }
+    }
+
+    async blockTrainer(req: Request, res: Response) {
+        try {
+            //** Check Trainee Id Exist */
+            const trainer_id = req.body.trainer_id;
+
+            const trainer_exist = await Trainer.findAll({
+                where: {
+                    id: trainer_id,
+                    IsDeleted: 0
+                }
+            });
+
+            //** If trainee Exist */
+            if (trainer_exist.length != 0) {
+                let block_trainer_data = {}
+                let message = '';
+                if (trainer_exist[0]['IsBlock'] == 1) {
+                    
+                    block_trainer_data = {
+                        updated_by: req.body.updated_by,
+                        updatedAt: responseStrings.currentTime,
+                        IsBlock: 0
+                    };
+                    message = "Trainer Unblocked Successfully.";
+                }
+
+                if (trainer_exist[0]['IsBlock'] == 0) {
+                    block_trainer_data = {
+                        updated_by: req.body.updated_by,
+                        updatedAt: responseStrings.currentTime,
+                        IsBlock: 1
+                    };
+                    message = "The Trainer have been blocked.";
+                }
+
+                //* Updated Trainee Table
+                await Trainer.update({...block_trainer_data}, {where: {id: trainer_id}}).then(success => {
+                    const block_user_data = {
+                        deleted_by: req.body.deleted_by,
+                        deletedAt: responseStrings.currentTime,
+                        IsBlock: 1
+                    };
+
+                    //** update User Table*/
+                    Users.update({...block_user_data}, {where: {id: trainer_exist[0]['login_table_id']}}).then(succ => {
+
+                        res.status(responseCodes.SUCCESS).json({response_code: 1, message: message});
+
+                    }).catch(err => {
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+
+                    });
+
+                }).catch(err => {
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+
+                });
+            } else {
+                res.status(responseCodes.BAD_REQUEST).json({
+                    response_code: 0,
+                    message: "Oops! An invalid trainee ID was entered, or this trainee was already deleted"
+                });
+            }
+        } catch (err: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+        };
     }
 
     async assign_trainee_to_trainer(req: Request, res: Response) {

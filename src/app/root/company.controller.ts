@@ -15,6 +15,16 @@ import TraineeFormMasterModel from '../../model/root/traineeFormMaster.model';
 import { Op } from 'sequelize';
 import moment from 'moment';
 import MasterPanel from '../../model/root/masterpanel.model';
+import Trainee from "../../model/root/trainee.model";
+import TraineeCurriculum from "../../model/root/trainee_curriculum.model";
+import where = require("sequelize");
+import SubCompany from '../../model/root/subcompany.model';
+import CompanyDepartment from '../../model/root/company_department.model';
+import MasterDepartment from '../../model/root/master_department.model';
+import Trainer from '../../model/root/trainer.model';
+import CurriculumBuilder from '../../model/root/curriculumbuilder.model';
+import ElearningResult from '../../model/elearning/eLearningresult.model';
+import sequelize = require('sequelize');
 
 
 class CompanyController {
@@ -713,6 +723,407 @@ class CompanyController {
     });
 
   }
+
+
+    async get_company_card1_data(req: Request, res: Response) {
+        try {
+
+            const TraineesData = await Trainee.findAll({
+                where: {
+                    company_id: req.body.company_id,
+                    IsDeleted: 0,
+                    IsBlock: 0
+                }
+            });
+
+            let currentMonth = moment().format("YYYY-MM");
+            let currentMonthText = moment().format("MMMM");
+            let currentYearText = moment().format("YYYY");
+
+            if (TraineesData.length != 0) {
+
+                let TraineeCurrentMonth = TraineesData.filter((element) => {
+
+
+                    var elementMonth = moment(element['createdAt'], "YYYY-MM-DD").format("YYYY-MM");
+
+                    if (currentMonth == elementMonth) {
+                        return element
+                    }
+                })
+
+                res.status(responseCodes.SUCCESS).json({
+                    response_code: 1,
+                    message: responseStrings.GET,
+                    currentYearText: currentYearText,
+                    currentMonthText: currentMonthText,
+                    currentMonthTraineesCount: TraineeCurrentMonth.length,
+                    allTraineesCount: TraineesData.length
+                });
+
+            }
+            else {
+                res.status(responseCodes.SUCCESS).json({
+                    response_code: 0,
+                    message: "Oops! An invalid company ID was entered, or Trainees not register yet."
+                });
+
+            }
+        } catch (error: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + error.message });
+        }
+    }
+
+    async get_company_card2_data(req: Request, res: Response) {
+        try {
+
+            let where = {};
+
+            if (req.body.trainer_id) {
+                where = {
+                    IsDeleted: 0,
+                    company_id: req.body.company_id,
+                    trainer_id: req.body.trainer_id
+                }
+            } else {
+                where = {
+                    company_id: req.body.company_id,
+                    IsDeleted: 0
+                }
+            }
+
+            const TraineesData = await Trainee.findAll({
+                include: [
+                    {
+                        model: TraineeCurriculum,
+                    where: {
+                        IsDeleted: 0
+                    }
+                }
+                ],
+                where: where
+            });
+
+            if (TraineesData.length != 0) {
+
+                //Get Block Trainees Filter
+                let BlockTrainees = TraineesData.filter((element) => {
+                    if (element['IsBlock'] == "1") {
+                        return element
+                    }
+                });
+
+                //Get Unblock Trainees Filter
+                let UnBlockTrainees:any = TraineesData.filter((element) => {
+                    if (element['IsBlock'] == "0") {
+                        return element
+                    }
+                });
+
+
+                let YetToStart = 0;
+                let Completed = 0;
+                let InProgress = 0;
+
+
+                for (let i = 0; i < UnBlockTrainees.length; i++) {
+
+                    let TraineeCurriculums = UnBlockTrainees[i]['dataValues']['TraineeCurriculums'];
+                    let TotalCurriculum = TraineeCurriculums.length;
+                    let CurriculumNotAttempt = 0;
+                    let CurriculumAttempt = 0;
+                    let CurriculumPass = 0;
+
+                    for (let j = 0; j < TraineeCurriculums.length; j++) {
+
+                        await CurriculumBuilder.findAll({
+                        where: {
+                                curriculum_id: TraineeCurriculums[j]['dataValues']['curriculum_id'],
+                                IsDeleted: 0
+                            }
+                        }).then(async (CurriculumBuilderData: any) => {
+
+                            let TotalTest = CurriculumBuilderData.length;
+                            let ElearningResultTestNotAttempt = 0;
+                            let ElearningResultTestAttempt = 0;
+                            let ElearningResultTestPassed = 0;
+                            let ElearningResultTestFailed = 0;
+
+
+                            for (let k = 0; k < CurriculumBuilderData.length; k++) {
+                                await ElearningResult.findOne({
+                                    attributes: [[sequelize.fn('max', sequelize.col('id')), 'id']],
+                                    where: {
+                                        curriculum_test_id: CurriculumBuilderData[k]['dataValues']['curriculum_parent_category_test_id'],
+                                        trainee_id: UnBlockTrainees[i]['dataValues']['id'],
+                            IsDeleted: 0
+                        },
+                                    // logging:console.log
+                                }).then((ElearningResultData: any) => {
+
+                                    // if (ElearningResultData == null) {
+                                    if (ElearningResultData['id'] == null) {
+                                        ElearningResultTestNotAttempt += 1;
+                                    } else {
+                                        if (ElearningResultData['status'] == 'passed') {
+                                            ElearningResultTestPassed += 1;
+                                        } else if (ElearningResultData['status'] == 'failed') {
+                                            ElearningResultTestFailed += 1;
+                                        }
+
+                                        ElearningResultTestAttempt += 1;
+                                    }
+
+                                    CurriculumBuilderData[k]['dataValues']['ElearningResult'] = ElearningResultData;
+
+                                    TraineeCurriculums[j]['dataValues']['TotalTest'] = TotalTest;
+                                    TraineeCurriculums[j]['dataValues']['CurriculumBuilder'] = CurriculumBuilderData;
+                                })
+                            }
+
+
+                            if (ElearningResultTestNotAttempt == TotalTest) {
+                                TraineeCurriculums[j]['dataValues']['AllCurriculumsTestNotAttempt'] = true;
+                                CurriculumNotAttempt += 1;
+                            }
+
+                            if (ElearningResultTestPassed == TotalTest) {
+                                TraineeCurriculums[j]['dataValues']['AllCurriculumsTestPassed'] = true;
+                                CurriculumPass += 1;
+                            }
+
+                            if (ElearningResultTestAttempt > 0 && ElearningResultTestAttempt <= TotalTest && ElearningResultTestPassed != TotalTest) {
+                                TraineeCurriculums[j]['dataValues']['AllCurriculumsTestAttempt'] = true;
+                                CurriculumAttempt += 1;
+                            }
+
+
+                    });
+
+
+                    }
+
+                    UnBlockTrainees[i]['dataValues']['TotalCurriculum'] = TotalCurriculum;
+                    if (CurriculumNotAttempt == TotalCurriculum) {
+                        UnBlockTrainees[i]['dataValues']['AllCurriculumNotAttempt'] = true;
+                        YetToStart += 1;
+                }
+
+                    if (CurriculumPass == TotalCurriculum) {
+                        UnBlockTrainees[i]['dataValues']['AllCurriculumsPassed'] = true;
+                        Completed += 1;
+                    }
+
+                    // console.log("CurriculumAttempt->",CurriculumAttempt);
+                    if (CurriculumAttempt == TotalCurriculum) {
+                        UnBlockTrainees[i]['dataValues']['AllCurriculumAttempt'] = true;
+                        InProgress += 1;
+                    }
+
+
+                }
+
+                // console.log("UnBlockTrainees->",UnBlockTrainees)
+
+                let SuccessRatio = (Completed / UnBlockTrainees.length) * 100;
+
+
+                res.status(responseCodes.SUCCESS).json({
+                    response_code: 1,
+                    message: responseStrings.GET,
+                    TotalTraineesRegister: UnBlockTrainees.length,
+                    TotalBlockTrainees: BlockTrainees.length,
+                    YetToStart: YetToStart,
+                    Completed: Completed,
+                    InProgress: InProgress,
+                    SuccessRatio: Math.round(SuccessRatio)
+                    // TotalTraineesData: UnBlockTrainees,
+                });
+
+            }
+            else {
+                res.status(responseCodes.SUCCESS).json({
+                    response_code: 0,
+                    message: "Oops! An invalid company ID was entered, or Trainees not register or assign yet."
+                });
+
+            }
+        } catch (error: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + error.message });
+        }
+    }
+
+    async get_company_card3_data(req: Request, res: Response) {
+        try {
+            let company_id = req.body.company_id;
+            let panel_id = req.body.panel_id;
+
+            let seriesData = Array();
+            let xAxisData = Array();
+
+            let TraineesData: any = await Trainee.findAll({
+                where: {
+                    company_id: req.body.company_id,
+                    IsDeleted: 0
+                }
+            });
+
+
+            if (panel_id == 3) {
+                const BranchData: any = await SubCompany.findAll({
+                    where: {
+                        company_id: company_id,
+                        IsDeleted: 0
+                    }
+                });
+
+                if (BranchData.length != 0) {
+                    for (let i = 0; i < BranchData.length; i++) {
+                        xAxisData[i] = BranchData[i]['name'];
+
+
+                        let branchTrainees: any = TraineesData.filter((element: any) => {
+                            if (element['sub_company_id'] == BranchData[i]['id']) {
+                                return element
+                            }
+                        });
+
+                        seriesData[i] = branchTrainees.length;
+                    }
+                } else {
+                    res.status(responseCodes.SUCCESS).json({
+                        response_code: 0,
+                        message: responseStrings.NOT
+                    });
+                }
+            } 
+            else if (panel_id == 2) {
+                const DepartmentData: any = await CompanyDepartment.findAll({
+                    include: [
+                        {
+                            model: MasterDepartment,
+                            where: {
+                                IsDeleted: 0,
+                                company_id: company_id
+                            }
+                        }
+                    ],
+                    where: {
+                        company_id: company_id,
+                        IsDeleted: 0
+                    }
+                });
+
+                if (DepartmentData.length != 0) {
+                    for (let i = 0; i < DepartmentData.length; i++) {
+                        xAxisData[i] = DepartmentData[i]['MasterDepartment']['name'];
+
+                        let departmentTrainees: any = TraineesData.filter((element: any) => {
+                            if (element['department_id'] == DepartmentData[i]['id']) {
+                                return element
+                            }
+                        });
+
+                        seriesData[i] = departmentTrainees.length;
+                    }
+                } else {
+                    res.status(responseCodes.SUCCESS).json({
+                        response_code: 0,
+                        message: responseStrings.NOT
+                    });
+                }
+            } else if (panel_id == 1) 
+            {
+                const TrainerData: any = await Trainer.findAll({
+                    where: {
+                        company_id: company_id,
+                        IsDeleted: 0
+                    }
+                });
+
+                if (TrainerData.length != 0) {
+                    for (let i = 0; i < TrainerData.length; i++) {
+                        xAxisData[i] = TrainerData[i]['name'];
+
+                        let trainerTrainees: any = TraineesData.filter((element: any) => {
+                            if (element['trainer_id'] == TrainerData[i]['id']) {
+                                return element
+                            }
+                        });
+
+                        seriesData[i] = trainerTrainees.length;
+                    }
+                } else {
+                    res.status(responseCodes.SUCCESS).json({
+                        response_code: 0,
+                        message: responseStrings.NOT
+                    });
+                }
+
+            } else {
+                res.status(responseCodes.SUCCESS).json({
+                    response_code: 0,
+                    message: responseStrings.NOT
+                });
+            }
+
+
+
+            let options = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                    },
+                },
+                grid: {
+                    right: '5%',
+                },
+
+                xAxis: [
+                    {
+                        type: 'category',
+                        axisTick: {
+                            alignWithLabel: true,
+                        },
+                        // prettier-ignore
+                        data: xAxisData,
+                    },
+                ],
+                yAxis: [
+                    {
+                        type: 'value',
+                        name: 'count',
+                        min: 0,
+                        max: TraineesData.length,
+                        position: 'left',
+                        axisLine: {
+                            show: true,
+                        },
+                    },
+                ],
+                series: [
+                    {
+                        type: 'bar',
+                        barMaxWidth: 50,
+                        // showBackground: true,
+                        data: seriesData,
+                    },
+                ],
+            };
+
+            res.status(responseCodes.SUCCESS).json({
+                response_code: 1,
+                message: responseStrings.GET,
+                echartOption: options
+            });
+
+
+        } catch (error: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + error.message });
+        }
+
+    }
 
 }
 
