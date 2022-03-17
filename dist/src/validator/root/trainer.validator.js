@@ -72,5 +72,11 @@ class TrainerValidator {
             (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing')
         ];
     }
+    block_unblock_trainer() {
+        return [
+            (0, express_validator_1.body)('trainer_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing')
+        ];
+    }
 }
 exports.default = new TrainerValidator();

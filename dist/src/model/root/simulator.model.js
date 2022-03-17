@@ -6,11 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const trainer_model_1 = __importDefault(require("./trainer.model"));
-const users_model_1 = __importDefault(require("./users.model"));
-class SubCompany extends sequelize_1.Model {
+class Simulator extends sequelize_1.Model {
 }
-exports.default = SubCompany;
-SubCompany.init({
+exports.default = Simulator;
+Simulator.init({
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
@@ -25,24 +24,18 @@ SubCompany.init({
             key: "id",
         },
     },
-    login_table_id: {
+    trainer_id: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {
-            model: "users",
-            key: "id",
-        },
+            model: trainer_model_1.default,
+            key: "id"
+        }
     },
     name: {
         type: sequelize_1.DataTypes.STRING,
-        unique: true,
+        //unique: true,
     },
     description: {
-        type: sequelize_1.DataTypes.STRING,
-    },
-    designation: {
-        type: sequelize_1.DataTypes.STRING,
-    },
-    contact_no: {
         type: sequelize_1.DataTypes.STRING,
     },
     created_by: {
@@ -74,14 +67,11 @@ SubCompany.init({
     },
 }, {
     sequelize: sequelize_2.default,
-    tableName: "sub_company",
+    tableName: "simulator",
 });
-SubCompany.belongsTo(users_model_1.default, {
-    foreignKey: "login_table_id",
+Simulator.belongsTo(trainer_model_1.default, {
+    foreignKey: 'trainer_id'
 });
-SubCompany.hasMany(trainer_model_1.default, {
-    foreignKey: "sub_company_id",
-});
-trainer_model_1.default.belongsTo(SubCompany, {
-    foreignKey: "sub_company_id",
+trainer_model_1.default.hasMany(Simulator, {
+    foreignKey: "trainer_id"
 });

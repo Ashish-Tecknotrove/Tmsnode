@@ -49,5 +49,8 @@ class TraineeValidator {
             //body('language_id').notEmpty().withMessage('parameter is missing')
         ];
     }
+    bulkimportTraineevalidate() {
+        return [];
+    }
 }
 exports.default = new TraineeValidator();

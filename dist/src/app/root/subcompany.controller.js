@@ -144,7 +144,7 @@ class SubCompanyController {
                             model: company_department_model_1.default,
                             include: [
                                 {
-                                    model: master_department_model_1.default
+                                    model: master_department_model_1.default,
                                 },
                                 {
                                     model: trainer_model_1.default,

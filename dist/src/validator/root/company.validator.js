@@ -85,5 +85,22 @@ class CompanyValidator {
             (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing')
         ];
     }
+    get_company_card1_data() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+    get_company_card2_data_by_trainer() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('trainer_id').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+    get_company_card3_data() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('panel_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
 }
 exports.default = new CompanyValidator();

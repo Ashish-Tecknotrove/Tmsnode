@@ -86,4 +86,9 @@ Router.post('/deleteCompanyUser', formData.any(), auth_1.default.verifyAuthentic
 Router.post('/getCompanyDetailsById', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.getcompanyPerson(), auth_1.default.handleValidatorError, company_controller_1.default.get_company_details_by_id);
 // -----------------Trainee Customize Form
 Router.post('/getTraineeCustomForm', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.getTraineeCustomFormValidator(), auth_1.default.handleValidatorError, company_controller_1.default.get_trainee_customize_form);
+//----------Dashboard Cards
+Router.post('/get_company_card1_data', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.get_company_card1_data(), auth_1.default.handleValidatorError, company_controller_1.default.get_company_card1_data);
+Router.post('/get_company_card2_data', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.get_company_card1_data(), auth_1.default.handleValidatorError, company_controller_1.default.get_company_card2_data);
+Router.post('/get_company_card2_data_by_trainer', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.get_company_card2_data_by_trainer(), auth_1.default.handleValidatorError, company_controller_1.default.get_company_card2_data);
+Router.post('/get_company_card3_data', formData.any(), auth_1.default.verifyAuthenticateToken, company_validator_1.default.get_company_card3_data(), auth_1.default.handleValidatorError, company_controller_1.default.get_company_card3_data);
 exports.default = Router;

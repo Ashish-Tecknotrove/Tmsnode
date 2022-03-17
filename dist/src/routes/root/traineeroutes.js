@@ -35,6 +35,8 @@ const express = __importStar(require("express"));
 const trainee_controller_1 = __importDefault(require("../../app/root/trainee.controller"));
 const auth_1 = __importDefault(require("../../middleware/auth"));
 const trainee_validator_1 = __importDefault(require("../../validator/root/trainee.validator"));
+const response_codes_1 = __importDefault(require("../../strings/response-codes"));
+const moment_1 = __importDefault(require("moment"));
 const multer = require("multer");
 const formData = multer();
 const Router = express.Router();
@@ -43,23 +45,36 @@ const storage = multer.diskStorage({
         cb(null, "./resources/csv");
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname);
+        cb(null, (0, moment_1.default)().format('YYYYMMDDHHmmss') + '_' + file.originalname.toLowerCase().split(' ').join('_'));
     },
 });
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype === "image/jpg" ||
-        file.mimetype === "image/jpeg" ||
-        file.mimetype === "image/png") {
+    if (file.mimetype.includes("excel") ||
+        file.mimetype.includes("spreadsheetml")) {
         cb(null, true);
     }
     else {
-        cb(new Error("Image uploaded is not of type jpg/jpeg or png"), false);
+        cb(new Error("Oops! you can only upload excel file."), false);
     }
 };
-const upload = multer({ storage: storage });
-Router.post("/bulk", upload.single("file"), //FormData With File
-(req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    next();
+const upload = multer({ storage: storage, fileFilter: fileFilter }).single("file");
+Router.post("/bulk", auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.bulkimportTraineevalidate(), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    upload(req, res, function (err) {
+        if (err instanceof multer.MulterError) {
+            //console.log("Multer error->", err);
+            // A Multer error occurred when uploading.
+            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+        }
+        else if (err) {
+            // An unknown error occurred when uploading.
+            console.log("unknown error->", err);
+            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+        }
+        else {
+            console.log("Everything went fine");
+            next();
+        }
+    });
 }), trainee_controller_1.default.bulkInsertTrainee);
 Router.post("/getTraineeCount", formData.any(), trainee_controller_1.default.getTraineeCount);
 Router.post("/registerTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.registerTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.registerNewTrainee);

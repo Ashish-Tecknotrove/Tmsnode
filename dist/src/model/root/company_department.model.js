@@ -109,3 +109,6 @@ subcompany_model_1.default.hasMany(CompanyDepartment, {
 CompanyDepartment.hasMany(trainer_model_1.default, {
     foreignKey: "department_id",
 });
+trainer_model_1.default.belongsTo(CompanyDepartment, {
+    foreignKey: "department_id",
+});

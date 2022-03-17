@@ -23,10 +23,10 @@ const master_department_model_1 = __importDefault(require("../../model/root/mast
 const subcompany_model_1 = __importDefault(require("../../model/root/subcompany.model"));
 const trainee_curriculum_model_1 = __importDefault(require("../../model/root/trainee_curriculum.model"));
 const curriculum_model_1 = __importDefault(require("../../model/root/curriculum.model"));
-const sequelize_1 = require("sequelize");
 const technology_model_1 = __importDefault(require("../../model/root/technology.model"));
-const sequelize_2 = __importDefault(require("sequelize"));
+const sequelize_1 = __importDefault(require("sequelize"));
 const subscription_model_1 = __importDefault(require("../../model/root/subscription.model"));
+const readXlsxFile = require("read-excel-file/node");
 class TraineeController {
     getTraineeCount(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -64,7 +64,7 @@ class TraineeController {
                         include: [{
                                 model: trainee_curriculum_model_1.default,
                                 where: {
-                                    trainee_id: sequelize_2.default.col("Trainee.id"),
+                                    trainee_id: sequelize_1.default.col("Trainee.id"),
                                     curriculum_id: curriculum
                                 },
                             }],
@@ -305,18 +305,25 @@ class TraineeController {
             // console.log(req.file?.filename);
             try {
                 const csv_file = (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename;
-                console.log(csv_file);
-                // const header = ['first_name', 'last_name'];
-                // parse(csv_file!, {
-                //     delimiter: ',',
-                //     columns: header,
-                // }, (error, result) => {
-                //     if (error) {
-                //         console.error(error);
-                //     }
-                //     console.log("Result", result);
-                // });
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 1, message: csv_file });
+                const course_json = req.body.curriculum;
+                const langauge_id = req.body.language_id;
+                var path = "./resources/csv/" + csv_file;
+                console.log(course_json);
+                readXlsxFile(path).then((rows) => {
+                    // skip header
+                    rows.shift();
+                    let trainees = Array();
+                    rows.forEach((row) => {
+                        let trainee = {
+                            id: row[0],
+                            title: row[1],
+                            description: row[2],
+                            published: row[3],
+                        };
+                        trainees.push(trainee);
+                    });
+                });
+                res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: csv_file });
             }
             catch (err) {
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
@@ -419,7 +426,7 @@ class TraineeController {
                         IsDeleted: 0
                     }
                 });
-                //** If trainee Exist*/
+                //** If trainee Exist */
                 if (trainee_exist.length != 0) {
                     let block_trainee_data = {};
                     let message = '';
@@ -487,7 +494,7 @@ class TraineeController {
                         // IsBlock:0,
                         IsDeleted: 0,
                         IsBlock: 0,
-                        [sequelize_1.Op.or]: [{ trainer_id: null }, { trainer_id: '' }]
+                        trainer_id: 0
                     }
                 }).then((success) => {
                     if (success.length != 0) {
