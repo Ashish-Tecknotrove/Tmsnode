@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://60wTeWc78fk_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">Module 1- Donning N95</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/65DgUPThbTC" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Module 1- Donning N95</name>
+			<description lang="und">Module 1- Donning N95</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6HfFIynJQHl" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Module 1- Donning N95</name>
+			<description lang="und">Module 1- Donning N95</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/65BStKquecK" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6ULivnOU6H0" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6PwqjPo9eiX" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6Q0p0afFV3x" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/61avgqDDge3" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6O2qVknh5tt" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5ZAKs4UZcwg" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5p9v3BkC7rz" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6Lip5p65npa" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5Uztli0bTNj" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5pIohCjZnoW" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6Nzqn7R5zn5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5pMwlJXeWZv" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6WIZF9lKXvT" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5n0dOAgyoIy" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6QlqKnCOEVp" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6YWaY1bHRez" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/63x7GMWLi7N" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6Y2qdfmvC24" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6PwptPp5rXl" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5m1leuVRl94" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5cXT8SYM2kK" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5cXT8SYM2kK/5j0aLc1JBIm" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+			<interactionType>matching</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>statement_6oSwxERxUSU[.]choice_68Yk6NNin2K</correctResponsePattern>
+				<correctResponsePattern>statement_6V8UFJ8Rfgg[.]choice_60zeqUOw0hm</correctResponsePattern>
+			</correctResponsePatterns>
+			<source>
+				<component>
+					<id>statement_6oSwxERxUSU</id>
+					<description lang="und">Rectangle 1</description>
+				</component>
+				<component>
+					<id>statement_6V8UFJ8Rfgg</id>
+					<description lang="und">Rectangle 2</description>
+				</component>
+			</source>
+			<target>
+				<component>
+					<id>choice_68Yk6NNin2K</id>
+					<description lang="und">Picture 1 - 7.jpg</description>
+				</component>
+				<component>
+					<id>choice_60zeqUOw0hm</id>
+					<description lang="und">Text Box 2 - Step 5:  Hold the container directly in front of your face and align it to the bridge of your nose.</description>
+				</component>
+				<component>
+					<id>choice_5cZGR2RjPix</id>
+					<description lang="und">Text Box 4 - Step 8: Disinfect your gloves, before adjusting your mask.</description>
+				</component>
+				<component>
+					<id>choice_5xWeaXtdllB</id>
+					<description lang="und">Text Box 5 - Step 9: Disinfect the container from inside out.</description>
+				</component>
+				<component>
+					<id>choice_6WcV8oEHyaH</id>
+					<description lang="und">Picture 2 - 3.jpg</description>
+				</component>
+				<component>
+					<id>choice_5fTGwMpN5o9</id>
+					<description lang="und">Picture 3 - 12(1).jpg</description>
+				</component>
+			</target>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5knsKfbn61Q" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5laZBiaCxi5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5laZBiaCxi5/6LWbSjLjZ8E" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+			<interactionType>matching</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>statement_6iKDnG0Kyqq[.]choice_5tnQ8Ui3SJc</correctResponsePattern>
+				<correctResponsePattern>statement_5qMAOzZCHJP[.]choice_6m1SEHprK3T</correctResponsePattern>
+			</correctResponsePatterns>
+			<source>
+				<component>
+					<id>statement_6iKDnG0Kyqq</id>
+					<description lang="und">Rectangle 1</description>
+				</component>
+				<component>
+					<id>statement_5qMAOzZCHJP</id>
+					<description lang="und">Rectangle 2</description>
+				</component>
+			</source>
+			<target>
+				<component>
+					<id>choice_5tnQ8Ui3SJc</id>
+					<description lang="und">Picture 3 - 3.jpg</description>
+				</component>
+				<component>
+					<id>choice_6m1SEHprK3T</id>
+					<description lang="und">Text Box 4 - Step 9: Disinfect the container from inside out.</description>
+				</component>
+				<component>
+					<id>choice_63ITzkPeOcA</id>
+					<description lang="und">Picture 2 - 7.jpg</description>
+				</component>
+				<component>
+					<id>choice_5kiAMrqMfUk</id>
+					<description lang="und">Picture 4 - 12(1).jpg</description>
+				</component>
+				<component>
+					<id>choice_6q6d0EGGFBw</id>
+					<description lang="und">Text Box 2 - Step 5:  Hold the container directly in front of your face and align it to the bridge of your nose.</description>
+				</component>
+				<component>
+					<id>choice_6q5iiN0l4Hy</id>
+					<description lang="und">Text Box 3 - Step 8: Disinfect your gloves, before adjusting your mask.</description>
+				</component>
+			</target>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5pW8CVegVfY" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5eUmlCtpT9j" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5eUmlCtpT9j/5YmzyVLxWgq" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+			<interactionType>matching</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>statement_6F7ihgU8IM1[.]choice_5x2lEPVfmOP</correctResponsePattern>
+				<correctResponsePattern>statement_6RRUvvrTKUa[.]choice_6o93r8Xw5LX</correctResponsePattern>
+			</correctResponsePatterns>
+			<source>
+				<component>
+					<id>statement_6F7ihgU8IM1</id>
+					<description lang="und">Rectangle 1</description>
+				</component>
+				<component>
+					<id>statement_6RRUvvrTKUa</id>
+					<description lang="und">Rectangle 2</description>
+				</component>
+			</source>
+			<target>
+				<component>
+					<id>choice_5x2lEPVfmOP</id>
+					<description lang="und">Picture 4 - 12(1).jpg</description>
+				</component>
+				<component>
+					<id>choice_6o93r8Xw5LX</id>
+					<description lang="und">Text Box 3 - Step 8: Disinfect your gloves, before adjusting your mask.</description>
+				</component>
+				<component>
+					<id>choice_6eLNRiOa3Dx</id>
+					<description lang="und">Picture 3 - 3.jpg</description>
+				</component>
+				<component>
+					<id>choice_6BhRtrozZvL</id>
+					<description lang="und">Picture 2 - 7.jpg</description>
+				</component>
+				<component>
+					<id>choice_5g0DYYS1JqA</id>
+					<description lang="und">Text Box 2 - Step 5:  Hold the container directly in front of your face and align it to the bridge of your nose.</description>
+				</component>
+				<component>
+					<id>choice_6PcBBxTmdZ3</id>
+					<description lang="und">Text Box 4 - Step 9: Disinfect the container from inside out.</description>
+				</component>
+			</target>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5fjx0zZeucW" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Results Slide</name>
+			<description lang="und">Results Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6YA8M5X2teM" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6cL5LsL0Lp8" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Which step is the most important step of donning N95?</name>
+			<description lang="und">Which step is the most important step of donning N95?</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6cL5LsL0Lp8/680Ec6CfaJP" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which step is the most important step of donning N95?</name>
+			<description lang="und">Which step is the most important step of donning N95?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6dF9h9d5tZH</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_61XAH3iPeF9</id>
+					<description lang="und">    Don Gloves</description>
+				</component>
+				<component>
+					<id>choice_6G2iaz4Csjm</id>
+					<description lang="und">    Sanitize your hands</description>
+				</component>
+				<component>
+					<id>choice_6JVIDPpxEac</id>
+					<description lang="und">    Disinfect the gloves before adjusting your mask</description>
+				</component>
+				<component>
+					<id>choice_6dF9h9d5tZH</id>
+					<description lang="und">    All of the above</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6cdKx5hjfrn" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">QUESTION 4</name>
+			<description lang="und">QUESTION 4</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6cdKx5hjfrn/6PduyaOScAw" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Your mask should completely  cover: </name>
+			<description lang="und">Your mask should completely  cover: </description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6JbNm3d0W0I</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5osUMZyL8UX</id>
+					<description lang="und">     Mouth</description>
+				</component>
+				<component>
+					<id>choice_6ZZeQC2pl1d</id>
+					<description lang="und">    Chin</description>
+				</component>
+				<component>
+					<id>choice_5ZQlIAsHqgD</id>
+					<description lang="und">    Nose</description>
+				</component>
+				<component>
+					<id>choice_6JbNm3d0W0I</id>
+					<description lang="und">    All of the above</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5skbVnnNcQn" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">What should be done before adjusting your fit of N95?</name>
+			<description lang="und">What should be done before adjusting your fit of N95?</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/5skbVnnNcQn/5iw04PY92hU" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What should be done before adjusting your fit of N95?</name>
+			<description lang="und">What should be done before adjusting your fit of N95?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6ELIlfZWn2P</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6GlvbH0R1VY</id>
+					<description lang="und">    Disinfect the container</description>
+				</component>
+				<component>
+					<id>choice_6ELIlfZWn2P</id>
+					<description lang="und">    Place the container on the paper towel and disinfect gloves</description>
+				</component>
+				<component>
+					<id>choice_5bopGqgxC4r</id>
+					<description lang="und">    Remove your gloves and sanitize your hands</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6LRM7KFkSNB" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Sanitizing hands is not important if one wears gloves. </name>
+			<description lang="und">Sanitizing hands is not important if one wears gloves. </description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6LRM7KFkSNB/5eoUGpxcHKp" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Sanitizing hands is not important if one wears gloves. </name>
+			<description lang="und">Sanitizing hands is not important if one wears gloves. </description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5j68aAWYVrY</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5oqY7SfPbZd</id>
+					<description lang="und">    True</description>
+				</component>
+				<component>
+					<id>choice_5j68aAWYVrY</id>
+					<description lang="und">    False</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6EI9ovloF0U" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Use of makeup or lipstick under N95 can damage the mask. So its not advised.</name>
+			<description lang="und">Use of makeup or lipstick under N95 can damage the mask. So its not advised.</description>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6EI9ovloF0U/5mJmpo6wX2O" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Use of makeup or lipstick under N95 can damage the mask. So its not advised.</name>
+			<description lang="und">Use of makeup or lipstick under N95 can damage the mask. So its not advised.</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6aeOMvbzU6o</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6aeOMvbzU6o</id>
+					<description lang="und">    True</description>
+				</component>
+				<component>
+					<id>choice_6o3hFLS0weP</id>
+					<description lang="und">    False</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://60wTeWc78fk_course_id/6IvPQlv7UK4" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Results Slide</name>
+			<description lang="und">Results Slide</description>
+		</activity>
+	</activities>
+</tincan>
