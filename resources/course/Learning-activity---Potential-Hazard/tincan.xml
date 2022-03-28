@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://5arJ1AwUhDg_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">Learning activity - Potential Hazard</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6k6D2gcPqg4" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Learning activity - Potential Hazard</name>
+			<description lang="und">Learning activity - Potential Hazard</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6A08FZx5sbv" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Learning activity - Potential Hazard</name>
+			<description lang="und">Learning activity - Potential Hazard</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5y5mQIULvlj" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Learning activity - Potential Hazard</name>
+			<description lang="und">Learning activity - Potential Hazard</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5l1fxbqS97k" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5jItr2yslyp" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6hFGvDX9rRg" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5V1WJ1SnX96" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module Objectives</name>
+			<description lang="und">Module Objectives</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5vqziR22bTa" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction to Hazard perception and its technique</name>
+			<description lang="und">Introduction to Hazard perception and its technique</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6FHgFpAEqZQ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hazard Perception</name>
+			<description lang="und">Hazard Perception</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5YhnCFOZLQ7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5YhnCFOZLQ7/6bHtkYMzMzF" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">How frequently should you scan the mirror while riding?</name>
+			<description lang="und">How frequently should you scan the mirror while riding?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5XYacGUBAHc</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6eZl7XY1Qr5</id>
+					<description lang="und">Scanning is not required while riding.</description>
+				</component>
+				<component>
+					<id>choice_5spoDap8xwd</id>
+					<description lang="und">Scan only when needed like at an intersection.</description>
+				</component>
+				<component>
+					<id>choice_5XYacGUBAHc</id>
+					<description lang="und">Scan every 10-15 seconds.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5tCT4PnV9FW" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5tCT4PnV9FW/6A2Db2jNfo7" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">How should you ride the motorcycle around areas like hospitals, schools, cinema hall, malls?</name>
+			<description lang="und">How should you ride the motorcycle around areas like hospitals, schools, cinema hall, malls?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_69arRdM6rRM</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6J2XVIBazFP</id>
+					<description lang="und">Ride normally, like I always do.</description>
+				</component>
+				<component>
+					<id>choice_69arRdM6rRM</id>
+					<description lang="und">Ride carefully, constantly scan and look out for pedestrians on road.</description>
+				</component>
+				<component>
+					<id>choice_6NxzsXLL8oD</id>
+					<description lang="und">Honk frequently, so that the pedestrians on road move out and make themselves safe around me.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/63D2OWC0nUo" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/63D2OWC0nUo/5gr7CkgyQdq" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">How should you strengthen the 'Prediction' capability from the SPDA routine?</name>
+			<description lang="und">How should you strengthen the 'Prediction' capability from the SPDA routine?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6G4UlFjGaug</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6G4UlFjGaug</id>
+					<description lang="und">By being attentive while riding on road to avoid any kind of risk.</description>
+				</component>
+				<component>
+					<id>choice_5nLZzWuHuNj</id>
+					<description lang="und">By simply following the rules of the road.</description>
+				</component>
+				<component>
+					<id>choice_6ABBrdW2Kd3</id>
+					<description lang="und">Avoid the risks by reducing the time spent on the road &amp; take the fastest route to the destination</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6ZA8oaz58uy" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6ZA8oaz58uy/6WkofjH408k" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">If the indicators of the bike are not working, you will</name>
+			<description lang="und">If the indicators of the bike are not working, you will</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6poUEzMEu2D</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6UQrKgZ9lOP</id>
+					<description lang="und">Ignore it and repair the indicators when time permits.</description>
+				</component>
+				<component>
+					<id>choice_6poUEzMEu2D</id>
+					<description lang="und">Get it repaired immediately, before my next journey.</description>
+				</component>
+				<component>
+					<id>choice_6F1Vg3iyWPa</id>
+					<description lang="und">Avoid riding the bike at night until I repair the indicators.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6202qLXYyL7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6202qLXYyL7/68wL0Vg5XJN" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What are your responsibilities as rider?</name>
+			<description lang="und">What are your responsibilities as rider?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6Di66ODKPTH</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_686dBXefgq7</id>
+					<description lang="und">Taking care of my bike and myself on road.</description>
+				</component>
+				<component>
+					<id>choice_6Di66ODKPTH</id>
+					<description lang="und">Taking care of my bike, myself and other road users.</description>
+				</component>
+				<component>
+					<id>choice_689ElqzQ9lo</id>
+					<description lang="und">No responsibility as such.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6Bvpf6APOaf" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6Bvpf6APOaf/5uq4S4FvaEN" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What does orange/yellow signal means, that appears before red signal?</name>
+			<description lang="und">What does orange/yellow signal means, that appears before red signal?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5iJRLIu5Kn0</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_63W5uYwdekU</id>
+					<description lang="und">To ride faster and cross the signal before it turns red.</description>
+				</component>
+				<component>
+					<id>choice_68kjKrKw8Jx</id>
+					<description lang="und">To slow down and cross the signal only if junction is clear.</description>
+				</component>
+				<component>
+					<id>choice_5iJRLIu5Kn0</id>
+					<description lang="und">To reduce the speed and prepare to stop the bike.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6CXyaIR0d3Z" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6CXyaIR0d3Z/6Ms8xLp3Ye2" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What should you plan for before you begin your journey?</name>
+			<description lang="und">What should you plan for before you begin your journey?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6Oyb4bTbdVK</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6aK5dKmrFzi</id>
+					<description lang="und">Plan the route so that I reach the destination in shortest possible time.</description>
+				</component>
+				<component>
+					<id>choice_6nHWi7ZBM6S</id>
+					<description lang="und">Plan to ensure that I have enough time in hand to reach the destination.</description>
+				</component>
+				<component>
+					<id>choice_6Oyb4bTbdVK</id>
+					<description lang="und">Mentally visualize the journey with challenges/concerns that I may face on road and plan accordingly.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5WDGEi5RM5u" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5WDGEi5RM5u/5iabYaHvhZ9" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What would you do in case there is very low or no visibility on road?</name>
+			<description lang="und">What would you do in case there is very low or no visibility on road?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6VFRqCJ67JH</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6ESqToCk2Rd</id>
+					<description lang="und">Ride the bike slowly and carefully.</description>
+				</component>
+				<component>
+					<id>choice_6f6Qy1hwcfT</id>
+					<description lang="und">Ride the bike based on the judgment of the other road users.</description>
+				</component>
+				<component>
+					<id>choice_6VFRqCJ67JH</id>
+					<description lang="und">Avoid riding the bike until the visibility improves.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5k6lYVX66Nu" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5k6lYVX66Nu/6pswDiEm4Td" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">While riding, how do you scan the road?</name>
+			<description lang="und">While riding, how do you scan the road?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6OzZelWQjc1</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6OzZelWQjc1</id>
+					<description lang="und">Scan the road ahead and the sides and rear of the bike.</description>
+				</component>
+				<component>
+					<id>choice_67318owxRqh</id>
+					<description lang="und">Scan the road ahead.</description>
+				</component>
+				<component>
+					<id>choice_5vLvnQgaOk4</id>
+					<description lang="und">Scan the road to look for available gaps to move ahead.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6VjMreGDy34" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6VjMreGDy34/6rjqfmOL31j" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">While riding, what will you do if a dog chases your bike ?</name>
+			<description lang="und">While riding, what will you do if a dog chases your bike ?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6m3u2p5y4fH</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_67uIFhwgXZ0</id>
+					<description lang="und">Panic and speed up the bike.</description>
+				</component>
+				<component>
+					<id>choice_6m3u2p5y4fH</id>
+					<description lang="und">Be calm and ride as usual.</description>
+				</component>
+				<component>
+					<id>choice_5wnb4dntO8c</id>
+					<description lang="und">Stop the bike and wait for the dog to leave.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6SoCLVcHuYM" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">QUIZ RESULTS</name>
+			<description lang="und">QUIZ RESULTS</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5V2n9NLwfP5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Congratulations!</name>
+			<description lang="und">Congratulations!</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/65Ci21pSLUc" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Spotting potential hazards (virtual road)</name>
+			<description lang="und">Spotting potential hazards (virtual road)</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5nM19h8B8hL" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Spotting potential hazards (virtual road)</name>
+			<description lang="und">Spotting potential hazards (virtual road)</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6HwfgJ5wa8M" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und"> Hint : “Traffic lights as a potential hazard”</name>
+			<description lang="und"> Hint : “Traffic lights as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6HwfgJ5wa8M/6i6uqWHXAPV" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und"> Hint : “Traffic lights as a potential hazard”</name>
+			<description lang="und"> Hint : “Traffic lights as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6XGxxAHgPsY</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6XGxxAHgPsY</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5Xc9Uv7q9Lq" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und"> Hint: “Driver adjusting radio as a potential hazard”</name>
+			<description lang="und"> Hint: “Driver adjusting radio as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5Xc9Uv7q9Lq/6ERqSykQ45G" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und"> Hint: “Driver adjusting radio as a potential hazard”</name>
+			<description lang="und"> Hint: “Driver adjusting radio as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5x8fxp5C7TW</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5x8fxp5C7TW</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/61tctIPcDQn" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und"> Hint: “Driver talking on phone as a potential hazard”</name>
+			<description lang="und"> Hint: “Driver talking on phone as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/61tctIPcDQn/6q9j70aAtfL" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und"> Hint: “Driver talking on phone as a potential hazard”</name>
+			<description lang="und"> Hint: “Driver talking on phone as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5Y5RKGHEdXv</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5Y5RKGHEdXv</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6IDyzHpaeG7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hint: “Truck carrying iron rod as a potential hazard”</name>
+			<description lang="und">Hint: “Truck carrying iron rod as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6IDyzHpaeG7/5cG8PiiT9To" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hint: “Truck carrying iron rod as a potential hazard”</name>
+			<description lang="und">Hint: “Truck carrying iron rod as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5iUjVU6wjdh</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5iUjVU6wjdh</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5ZCvlnJA2eI" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hint: “Cars without side mirror as a potential hazard”</name>
+			<description lang="und">Hint: “Cars without side mirror as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5ZCvlnJA2eI/6oNSBUTNJ2p" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hint: “Cars without side mirror as a potential hazard”</name>
+			<description lang="und">Hint: “Cars without side mirror as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6Ez6REcosqU</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6Ez6REcosqU</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6HLfaMAvU1q" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und"> Hint: ”Truck without side mirror as a potential hazard”</name>
+			<description lang="und"> Hint: ”Truck without side mirror as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6HLfaMAvU1q/5uj15hSUXLq" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und"> Hint: ”Truck without side mirror as a potential hazard”</name>
+			<description lang="und"> Hint: ”Truck without side mirror as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6J2XWaOmijY</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6J2XWaOmijY</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6q8Cf01I0CW" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hint: ”Pedestrian talking on phone as a potential hazard”</name>
+			<description lang="und">Hint: ”Pedestrian talking on phone as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6q8Cf01I0CW/5X60OmFuoUP" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hint: ”Pedestrian talking on phone as a potential hazard”</name>
+			<description lang="und">Hint: ”Pedestrian talking on phone as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5chXqXyVoJc</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5chXqXyVoJc</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5eBBxNWZeya" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hint: ”Motorcyclist as a potential hazard”</name>
+			<description lang="und">Hint: ”Motorcyclist as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5eBBxNWZeya/6Q7LYTQJXJl" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hint: ”Motorcyclist as a potential hazard”</name>
+			<description lang="und">Hint: ”Motorcyclist as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5dEOvDX9S6z</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5dEOvDX9S6z</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6hxfWta6Ya0" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und"> Hint: “Pedestrian listening music as a potential hazard”</name>
+			<description lang="und"> Hint: “Pedestrian listening music as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6hxfWta6Ya0/6AIHl79MMfB" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und"> Hint: “Pedestrian listening music as a potential hazard”</name>
+			<description lang="und"> Hint: “Pedestrian listening music as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6fiPAxQ6f18</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6fiPAxQ6f18</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6SbtLDgAff2" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hint: “Auto-rickshaw as a potential hazard”</name>
+			<description lang="und">Hint: “Auto-rickshaw as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6SbtLDgAff2/5j8BvWU4ytT" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hint: “Auto-rickshaw as a potential hazard”</name>
+			<description lang="und">Hint: “Auto-rickshaw as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6T2O5RKdpBB</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6T2O5RKdpBB</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5qfVVN3qzNz" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Spotting potential hazards (virtual road)</name>
+			<description lang="und">Spotting potential hazards (virtual road)</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6ZgEKclV3aD" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Spotting potential hazards (Actual road)</name>
+			<description lang="und">Spotting potential hazards (Actual road)</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6DKHang940w" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Spotting potential hazards (Actual road)</name>
+			<description lang="und">Spotting potential hazards (Actual road)</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6r6IH7g5uZQ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und"> Hint : “Animals as a potential Hazard ”</name>
+			<description lang="und"> Hint : “Animals as a potential Hazard ”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6r6IH7g5uZQ/6OQqPrMMGlS" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und"> Hint : “Animals as a potential Hazard ”</name>
+			<description lang="und"> Hint : “Animals as a potential Hazard ”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5zbwPhvsboF</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5zbwPhvsboF</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5mKhyJYR0EX" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und"> Hint: “Work under progress as a potential hazard ”</name>
+			<description lang="und"> Hint: “Work under progress as a potential hazard ”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5mKhyJYR0EX/5w6PIawL7cm" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und"> Hint: “Work under progress as a potential hazard ”</name>
+			<description lang="und"> Hint: “Work under progress as a potential hazard ”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_667zkNzCK0T</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_667zkNzCK0T</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/68cq2Vs8PKB" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und"> Hint: “Vehicle not parked correctly as a potential hazard”</name>
+			<description lang="und"> Hint: “Vehicle not parked correctly as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/68cq2Vs8PKB/60RS7660gfY" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und"> Hint: “Vehicle not parked correctly as a potential hazard”</name>
+			<description lang="und"> Hint: “Vehicle not parked correctly as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6PPoPEAlWrh</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6PPoPEAlWrh</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6rK0W0oIwRI" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hint: “Passenger as a potential hazard”</name>
+			<description lang="und">Hint: “Passenger as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6rK0W0oIwRI/63481Hypbo9" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hint: “Passenger as a potential hazard”</name>
+			<description lang="und">Hint: “Passenger as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6pZITJsjr1I</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6pZITJsjr1I</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6iuaVYz5T5K" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hint: “Stickers and design on car as a potential hazards ”</name>
+			<description lang="und">Hint: “Stickers and design on car as a potential hazards ”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6iuaVYz5T5K/6DGxOLIzpLD" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hint: “Stickers and design on car as a potential hazards ”</name>
+			<description lang="und">Hint: “Stickers and design on car as a potential hazards ”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6m9nlEzS6fQ</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6m9nlEzS6fQ</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5jKOb8OBv40" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und"> Hint: ”Reckless driver as potential hazards”</name>
+			<description lang="und"> Hint: ”Reckless driver as potential hazards”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5jKOb8OBv40/6ZK2KvBqHdE" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und"> Hint: ”Reckless driver as potential hazards”</name>
+			<description lang="und"> Hint: ”Reckless driver as potential hazards”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6MAKf7vii6l</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6MAKf7vii6l</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6JaZwLZGHAJ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hint: ”Emergency vehicle as a potential hazards”</name>
+			<description lang="und">Hint: ”Emergency vehicle as a potential hazards”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6JaZwLZGHAJ/6SqnOUrS41K" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hint: ”Emergency vehicle as a potential hazards”</name>
+			<description lang="und">Hint: ”Emergency vehicle as a potential hazards”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_60Je5ma2L6W</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_60Je5ma2L6W</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6kIlntlxwAO" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hint: ”Triple riders as a potential hazards”</name>
+			<description lang="und">Hint: ”Triple riders as a potential hazards”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/6kIlntlxwAO/5ZfFZ2IWg6x" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hint: ”Triple riders as a potential hazards”</name>
+			<description lang="und">Hint: ”Triple riders as a potential hazards”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6coZtXmKgH4</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6coZtXmKgH4</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5rxRG0ztYoO" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und"> Hint: “Senior or disabled citizen as a Potential  hazard”</name>
+			<description lang="und"> Hint: “Senior or disabled citizen as a Potential  hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5rxRG0ztYoO/6EmL0YqwF5Q" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und"> Hint: “Senior or disabled citizen as a Potential  hazard”</name>
+			<description lang="und"> Hint: “Senior or disabled citizen as a Potential  hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6ibwCgzhwMX</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6ibwCgzhwMX</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/64VQnx91Q48" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Hint: “Truck carrying goods as a potential hazard”</name>
+			<description lang="und">Hint: “Truck carrying goods as a potential hazard”</description>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/64VQnx91Q48/5hQSSH6e77T" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hint: “Truck carrying goods as a potential hazard”</name>
+			<description lang="und">Hint: “Truck carrying goods as a potential hazard”</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6YwbK0zxr9x</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6YwbK0zxr9x</id>
+					<description lang="und">Rectangular Hotspot 1</description>
+				</component>
+				<component>
+					<id>choice_incorrect</id>
+					<description lang="und">Incorrect</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5arJ1AwUhDg_course_id/5luB03KQU7a" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Spotting potential hazards (virtual road)</name>
+			<description lang="und">Spotting potential hazards (virtual road)</description>
+		</activity>
+	</activities>
+</tincan>
