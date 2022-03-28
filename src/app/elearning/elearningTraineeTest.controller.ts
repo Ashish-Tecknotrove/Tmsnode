@@ -123,10 +123,10 @@ class ElearningTraineeTest {
                             else {
                                 j_array[j]['dataValues']['remaining_attempt'] = j_array[j]['attempts'];
                                 j_array[j]['dataValues']['progress_percentage'] = 0;
-                                j_array[j]['dataValues']['lastscore'] = false;
+                                j_array[j]['dataValues']['lastscore'] = "false";
                                 j_array[j]['dataValues']['lastExamStatus'] = "pending";
                                 j_array[j]['dataValues']['lastExamStatusbit'] = 5;
-                                j_array[j]['dataValues']['lastExamPercentage'] = false;
+                                j_array[j]['dataValues']['lastExamPercentage'] = "false";
 
                             }
 
