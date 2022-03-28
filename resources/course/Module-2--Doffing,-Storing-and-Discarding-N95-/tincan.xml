@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://5n2TmrBlE9f_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">Module 2- Doffing, Storing and Discarding N95 </name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5jc4D9l0zqO" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Module 2- Doffing, Storing and Discarding N95 </name>
+			<description lang="und">Module 2- Doffing, Storing and Discarding N95 </description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/63G5413OugO" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Module 2- Doffing, Storing and Discarding N95 </name>
+			<description lang="und">Module 2- Doffing, Storing and Discarding N95 </description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6R63cr3SNqz" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6UNnkZ41dh3" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Demo</name>
+			<description lang="und">Demo</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6UNnkZ41dh3/6aXbtPMgl0V" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+			<interactionType>matching</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>statement_6SDi9yDvvn2[.]choice_6PxYSHmyfgI</correctResponsePattern>
+				<correctResponsePattern>statement_6opjHg20FdP[.]choice_6UyXoEC3PcK</correctResponsePattern>
+				<correctResponsePattern>statement_5jnl16jaVNO[.]choice_5V9Co4kCd2N</correctResponsePattern>
+				<correctResponsePattern>statement_5oA6c3F3EY1[.]choice_5h67Xe2VHzy</correctResponsePattern>
+				<correctResponsePattern>statement_5cm7NjweGUw[.]choice_5y7AJba4gHo</correctResponsePattern>
+			</correctResponsePatterns>
+			<source>
+				<component>
+					<id>statement_6SDi9yDvvn2</id>
+					<description lang="und">Rectangle 4</description>
+				</component>
+				<component>
+					<id>statement_6opjHg20FdP</id>
+					<description lang="und">Rectangle 5</description>
+				</component>
+				<component>
+					<id>statement_5jnl16jaVNO</id>
+					<description lang="und">Rectangle 6</description>
+				</component>
+				<component>
+					<id>statement_5oA6c3F3EY1</id>
+					<description lang="und">Rectangle 14</description>
+				</component>
+				<component>
+					<id>statement_5cm7NjweGUw</id>
+					<description lang="und">Rectangle 15</description>
+				</component>
+			</source>
+			<target>
+				<component>
+					<id>choice_6PxYSHmyfgI</id>
+					<description lang="und">Rectangle 19 - N</description>
+				</component>
+				<component>
+					<id>choice_6UyXoEC3PcK</id>
+					<description lang="und">Rectangle 21 - I</description>
+				</component>
+				<component>
+					<id>choice_5V9Co4kCd2N</id>
+					<description lang="und">Rectangle 22 - T</description>
+				</component>
+				<component>
+					<id>choice_5h67Xe2VHzy</id>
+					<description lang="und">Rectangle 20 - H</description>
+				</component>
+				<component>
+					<id>choice_5y7AJba4gHo</id>
+					<description lang="und">Rectangle 23 - A</description>
+				</component>
+			</target>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/61JfihsQXOv" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Level 1</name>
+			<description lang="und">Level 1</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/61JfihsQXOv/6kMdauPuwFq" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+			<interactionType>matching</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>statement_6q69jrgwkfM[.]choice_611wTL00rye</correctResponsePattern>
+				<correctResponsePattern>statement_6BBDwqgBiKh[.]choice_5dTbswzS5Bx</correctResponsePattern>
+				<correctResponsePattern>statement_6kIgerAPVSc[.]choice_6Hm5wfMQUsP</correctResponsePattern>
+				<correctResponsePattern>statement_6T2QjkOyJ2b[.]choice_6aOCcBjwste</correctResponsePattern>
+				<correctResponsePattern>statement_5wD7Yl3Rc6S[.]choice_5sOC0SMHiPW</correctResponsePattern>
+			</correctResponsePatterns>
+			<source>
+				<component>
+					<id>statement_6q69jrgwkfM</id>
+					<description lang="und">Rectangle 4</description>
+				</component>
+				<component>
+					<id>statement_6BBDwqgBiKh</id>
+					<description lang="und">Rectangle 5</description>
+				</component>
+				<component>
+					<id>statement_6kIgerAPVSc</id>
+					<description lang="und">Rectangle 6</description>
+				</component>
+				<component>
+					<id>statement_6T2QjkOyJ2b</id>
+					<description lang="und">Rectangle 14</description>
+				</component>
+				<component>
+					<id>statement_5wD7Yl3Rc6S</id>
+					<description lang="und">Rectangle 15</description>
+				</component>
+			</source>
+			<target>
+				<component>
+					<id>choice_611wTL00rye</id>
+					<description lang="und">Rectangle 19 - S</description>
+				</component>
+				<component>
+					<id>choice_5dTbswzS5Bx</id>
+					<description lang="und">Rectangle 21 - I</description>
+				</component>
+				<component>
+					<id>choice_6Hm5wfMQUsP</id>
+					<description lang="und">Rectangle 22 - D</description>
+				</component>
+				<component>
+					<id>choice_6aOCcBjwste</id>
+					<description lang="und">Rectangle 20 - W</description>
+				</component>
+				<component>
+					<id>choice_5sOC0SMHiPW</id>
+					<description lang="und">Rectangle 23 - N</description>
+				</component>
+			</target>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6p2qjhMn0Ed" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Level 2</name>
+			<description lang="und">Level 2</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6p2qjhMn0Ed/6BXTEZvqGRe" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+			<interactionType>matching</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>statement_6iCSdW52gRL[.]choice_61EUFGZh6EO</correctResponsePattern>
+				<correctResponsePattern>statement_5iYDq9XWBG9[.]choice_5aW4ZGpgn8O</correctResponsePattern>
+				<correctResponsePattern>statement_6MhxxNF3Bud[.]choice_6FHCkbNuDtO</correctResponsePattern>
+				<correctResponsePattern>statement_5kcXYkQYcd7[.]choice_66aP671oG8a</correctResponsePattern>
+			</correctResponsePatterns>
+			<source>
+				<component>
+					<id>statement_6iCSdW52gRL</id>
+					<description lang="und">Rectangle 5</description>
+				</component>
+				<component>
+					<id>statement_5iYDq9XWBG9</id>
+					<description lang="und">Rectangle 6</description>
+				</component>
+				<component>
+					<id>statement_6MhxxNF3Bud</id>
+					<description lang="und">Rectangle 8</description>
+				</component>
+				<component>
+					<id>statement_5kcXYkQYcd7</id>
+					<description lang="und">Rectangle 4</description>
+				</component>
+			</source>
+			<target>
+				<component>
+					<id>choice_61EUFGZh6EO</id>
+					<description lang="und">Rectangle 12 - S</description>
+				</component>
+				<component>
+					<id>choice_5aW4ZGpgn8O</id>
+					<description lang="und">Rectangle 14 - I</description>
+				</component>
+				<component>
+					<id>choice_6FHCkbNuDtO</id>
+					<description lang="und">Rectangle 15 - D</description>
+				</component>
+				<component>
+					<id>choice_66aP671oG8a</id>
+					<description lang="und">Rectangle 13 - T</description>
+				</component>
+			</target>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6UMwYTNIHRe" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Level 2</name>
+			<description lang="und">Level 2</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6UMwYTNIHRe/6rXY3gJgHdm" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+			<interactionType>matching</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>statement_6WJewxuo2vX[.]choice_6kkJKj2t5Xe</correctResponsePattern>
+				<correctResponsePattern>statement_5i6fiEZq7O8[.]choice_5sz9di5dVeN</correctResponsePattern>
+				<correctResponsePattern>statement_5pCAvRkrQsZ[.]choice_5dYReZWuHPG</correctResponsePattern>
+				<correctResponsePattern>statement_5XAHK0Yzq87[.]choice_5l70yMGTQJx</correctResponsePattern>
+			</correctResponsePatterns>
+			<source>
+				<component>
+					<id>statement_6WJewxuo2vX</id>
+					<description lang="und">Rectangle 2</description>
+				</component>
+				<component>
+					<id>statement_5i6fiEZq7O8</id>
+					<description lang="und">Rectangle 5</description>
+				</component>
+				<component>
+					<id>statement_5pCAvRkrQsZ</id>
+					<description lang="und">Rectangle 15</description>
+				</component>
+				<component>
+					<id>statement_5XAHK0Yzq87</id>
+					<description lang="und">Rectangle 13</description>
+				</component>
+			</source>
+			<target>
+				<component>
+					<id>choice_6kkJKj2t5Xe</id>
+					<description lang="und">Rectangle 12 - E</description>
+				</component>
+				<component>
+					<id>choice_5sz9di5dVeN</id>
+					<description lang="und">Rectangle 14 - M</description>
+				</component>
+				<component>
+					<id>choice_5dYReZWuHPG</id>
+					<description lang="und">Rectangle 16 - D</description>
+				</component>
+				<component>
+					<id>choice_5l70yMGTQJx</id>
+					<description lang="und">Rectangle 17 - I</description>
+				</component>
+			</target>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6CJ0LfHnoLJ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Results Slide</name>
+			<description lang="und">Results Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5pKPHO6zIYs" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module 1</name>
+			<description lang="und">Module 1</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5qxFau6F9s1" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6i7Ok6rgkPp" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module objective</name>
+			<description lang="und">Module objective</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6jNbGA0bKq7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">doffing and storing N95 for re use</name>
+			<description lang="und">doffing and storing N95 for re use</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5nsNde32JW3" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5ruF2XjBGk2" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5wuWkgR77qt" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5WjHndO9CUw" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6nKTmftiNhb" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6S3Mz2llyiW" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6ClSz2FohwG" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/60Uz0i1857A" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6qXNJIDEbcI" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5rPUdwjxbQx" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Doffing and storing N95</name>
+			<description lang="und">Doffing and storing N95</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/678b0NNmFFO" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Doffing and storing N95</name>
+			<description lang="und">Doffing and storing N95</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6YbrEtLPRf0" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6O8lSMKi7vp" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6g48ikFxAVZ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6QEIcfuYBw2" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6CWN3kHEQOV" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6GitD33t2AU" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6dhV1pLHBiO" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6JKDiLBfhF3" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6LCTCYF7lkV" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5lNe36NPJKk" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Doffing and storing N95</name>
+			<description lang="und">Doffing and storing N95</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/62jXbXXwd7G" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Doffing and storing N95</name>
+			<description lang="und">Doffing and storing N95</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/65215WF6K6G" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Knowledge Test</name>
+			<description lang="und">Knowledge Test</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5lkDnBlM3jr" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Results Slide</name>
+			<description lang="und">Results Slide</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/5ej1HYVYzVz" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Play</name>
+			<description lang="und">Play</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/69AXwNyI7QJ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/69AXwNyI7QJ/5vgVgneL3ef" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Drag and Drop</name>
+			<description lang="und">Drag and Drop</description>
+			<interactionType>matching</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>statement_5wfYjPWCmLw[.]choice_5XBte9gFq5n</correctResponsePattern>
+				<correctResponsePattern>statement_65U1Z6qfmdS[.]choice_6gk41L7BMNU</correctResponsePattern>
+				<correctResponsePattern>statement_6aF26YxY7wr[.]choice_6AedyiATbL3</correctResponsePattern>
+				<correctResponsePattern>statement_6Fbh2ejJDzV[.]choice_5znNkNMxb2u</correctResponsePattern>
+				<correctResponsePattern>statement_5z6F5MmtYbP[.]choice_5nictrGKz70</correctResponsePattern>
+				<correctResponsePattern>statement_5tYLgNvWfqA[.]choice_5zFidoWqlVB</correctResponsePattern>
+				<correctResponsePattern>statement_6Ss8xa8FRVq[.]choice_6GZfEYviroW</correctResponsePattern>
+			</correctResponsePatterns>
+			<source>
+				<component>
+					<id>statement_5wfYjPWCmLw</id>
+					<description lang="und">Rectangle 8 - Step 7</description>
+				</component>
+				<component>
+					<id>statement_65U1Z6qfmdS</id>
+					<description lang="und">Rectangle 3 - Step 2</description>
+				</component>
+				<component>
+					<id>statement_6aF26YxY7wr</id>
+					<description lang="und">Rectangle 5 - Step 3</description>
+				</component>
+				<component>
+					<id>statement_6Fbh2ejJDzV</id>
+					<description lang="und">Rectangle 4 - Step 4</description>
+				</component>
+				<component>
+					<id>statement_5z6F5MmtYbP</id>
+					<description lang="und">Rectangle 6 - Step 5</description>
+				</component>
+				<component>
+					<id>statement_5tYLgNvWfqA</id>
+					<description lang="und">Rectangle 7 - Step 6</description>
+				</component>
+				<component>
+					<id>statement_6Ss8xa8FRVq</id>
+					<description lang="und">Rectangle 2 - Step 1</description>
+				</component>
+			</source>
+			<target>
+				<component>
+					<id>choice_5XBte9gFq5n</id>
+					<description lang="und">Picture 2 - 2(1).jpg</description>
+				</component>
+				<component>
+					<id>choice_6gk41L7BMNU</id>
+					<description lang="und">Picture 3 - 4.jpg</description>
+				</component>
+				<component>
+					<id>choice_6AedyiATbL3</id>
+					<description lang="und">Picture 4 - 6(1).jpg</description>
+				</component>
+				<component>
+					<id>choice_5znNkNMxb2u</id>
+					<description lang="und">Picture 5 - 12.jpg</description>
+				</component>
+				<component>
+					<id>choice_5nictrGKz70</id>
+					<description lang="und">Picture 6 - 13.jpg</description>
+				</component>
+				<component>
+					<id>choice_5zFidoWqlVB</id>
+					<description lang="und">Picture 7 - 10.jpg</description>
+				</component>
+				<component>
+					<id>choice_6GZfEYviroW</id>
+					<description lang="und">Picture 8 - 2(1).jpg</description>
+				</component>
+			</target>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6J8t65I2VNJ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">To remove the mask we must?</name>
+			<description lang="und">To remove the mask we must?</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6J8t65I2VNJ/67C4C2VqEW9" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">To remove the mask we must?</name>
+			<description lang="und">To remove the mask we must?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6YRWxJv9gip</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5yjWIlTOuXk</id>
+					<description lang="und">Remove the mask and store in  the container</description>
+				</component>
+				<component>
+					<id>choice_6TrbDY9g9aW</id>
+					<description lang="und">Remove the mask with the help of a  paper towel</description>
+				</component>
+				<component>
+					<id>choice_6YRWxJv9gip</id>
+					<description lang="und">Place the container on the face and remove the straps over your head.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6OeKJlhmy2X" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">How to disinfect your container?
+
+  
+</name>
+			<description lang="und">How to disinfect your container?
+
+  
+</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6OeKJlhmy2X/5i44iqaPFbb" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">How to disinfect your container?
+
+  
+</name>
+			<description lang="und">How to disinfect your container?
+
+  
+</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6pxGZKXMgEf</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_67xXS3u9Z7y</id>
+					<description lang="und">   Use a wet cloth to disinfect the container</description>
+				</component>
+				<component>
+					<id>choice_6pxGZKXMgEf</id>
+					<description lang="und">   Use germicide spray or wipe.</description>
+				</component>
+				<component>
+					<id>choice_5WZqdeDOn89</id>
+					<description lang="und">    Use the paper towel </description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/63wFRTdpPuE" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">At the end of the shift, we must 
+
+
+
+</name>
+			<description lang="und">At the end of the shift, we must 
+
+
+
+</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/63wFRTdpPuE/63XZXqoMWdK" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">At the end of the shift, we must 
+
+
+
+</name>
+			<description lang="und">At the end of the shift, we must 
+
+
+
+</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5n845fwHUPg</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5n845fwHUPg</id>
+					<description lang="und">   Discard the N95 in the designated dustbin</description>
+				</component>
+				<component>
+					<id>choice_6f8bhvHrVbA</id>
+					<description lang="und">    Store the mask in the container</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6e6Sv0mvve0" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">When should we sanitize our hands while storing N95?
+ </name>
+			<description lang="und">When should we sanitize our hands while storing N95?
+ </description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6e6Sv0mvve0/6K8jtOLqBJL" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">When should we sanitize our hands while storing N95?
+ </name>
+			<description lang="und">When should we sanitize our hands while storing N95?
+ </description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5gK4uE2NWIi</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6jDm9uMMgrF</id>
+					<description lang="und">  Before starting the procedure  of doffing N95</description>
+				</component>
+				<component>
+					<id>choice_5klrBwRxv4k</id>
+					<description lang="und">   During the end, after storing the N95</description>
+				</component>
+				<component>
+					<id>choice_5gK4uE2NWIi</id>
+					<description lang="und">  Both times</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6LQqgmrvoUA" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">What is the first step to doff or don N95?</name>
+			<description lang="und">What is the first step to doff or don N95?</description>
+		</activity>
+		<activity id="http://5n2TmrBlE9f_course_id/6LQqgmrvoUA/6MswgmTXdAz" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What is the first step to doff or don N95?</name>
+			<description lang="und">What is the first step to doff or don N95?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_66i5Q38xBqI</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5fVeCgKE2BE</id>
+					<description lang="und">Place the paper towel on the table</description>
+				</component>
+				<component>
+					<id>choice_5u8toDtba0z</id>
+					<description lang="und"> Wear gloves</description>
+				</component>
+				<component>
+					<id>choice_66i5Q38xBqI</id>
+					<description lang="und">    Sanitize your hands</description>
+				</component>
+				<component>
+					<id>choice_6ZcGx9iqweY</id>
+					<description lang="und"> Put N95 in the container</description>
+				</component>
+			</choices>
+		</activity>
+	</activities>
+</tincan>
