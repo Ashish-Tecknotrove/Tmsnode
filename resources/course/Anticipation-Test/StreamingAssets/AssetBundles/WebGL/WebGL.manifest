@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 3865977118
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: objectsbundle
+      Dependencies: {}
