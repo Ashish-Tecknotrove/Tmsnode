@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://5doVJHgt1lV_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">MODULE: 2 Importance of Safety Gears</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6k6D2gcPqg4" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">MODULE: 2 Importance of Safety Gears</name>
+			<description lang="und">MODULE: 2 Importance of Safety Gears</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5gHqS5cvnV1" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">MODULE: 2 Importance of Safety Gears</name>
+			<description lang="und">MODULE: 2 Importance of Safety Gears</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5l1fxbqS97k" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6UxM0DbGsOM" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6hFGvDX9rRg" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5V1WJ1SnX96" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module Objectives</name>
+			<description lang="und">Module Objectives</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5vI8Q2QhDi7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction to the art of motorcycle maintenance</name>
+			<description lang="und">Introduction to the art of motorcycle maintenance</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6FHgFpAEqZQ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Knowledge Test</name>
+			<description lang="und">Knowledge Test</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5Va0JzqLP4L" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5Va0JzqLP4L/6F2TE836T31" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Does any of your safety gear currently have any high visibility reflective properties?</name>
+			<description lang="und">Does any of your safety gear currently have any high visibility reflective properties?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6CiFB8c59Ec</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5cQh5vLilH7</id>
+					<description lang="und">Helmet and Jacket.</description>
+				</component>
+				<component>
+					<id>choice_6ffPsL0WvN5</id>
+					<description lang="und">I have my bike Front &amp; Tail lights glow all times.</description>
+				</component>
+				<component>
+					<id>choice_6TdL1RqUIgX</id>
+					<description lang="und"> Jackets saves you from any injury at the time of slide 
+and also reflectors on them help you be seen on road.</description>
+				</component>
+				<component>
+					<id>choice_6CiFB8c59Ec</id>
+					<description lang="und">All of the above.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5k85WAB8DjS" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5k85WAB8DjS/5nfMLCBOKUE" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Hand gloves are to be worn only during extreme cold?</name>
+			<description lang="und">Hand gloves are to be worn only during extreme cold?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6YKdJjl2mD4</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5yfCGCWl4DP</id>
+					<description lang="und">No, hand gloves protect us from sun glare heat and 
+dust as well.</description>
+				</component>
+				<component>
+					<id>choice_5qYj7b2c6Rw</id>
+					<description lang="und">Hand gloves keep us away from sweat (Palm) during 
+summer.</description>
+				</component>
+				<component>
+					<id>choice_6YKdJjl2mD4</id>
+					<description lang="und">Hand gloves will give us firm grip to control on bike steering handle.</description>
+				</component>
+				<component>
+					<id>choice_6a02MV256iU</id>
+					<description lang="und">None of the above.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5dgEzGPt7rc" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5dgEzGPt7rc/5vvHCXk88pw" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Have you made any modifications to your motorcycle to make it more visible?</name>
+			<description lang="und">Have you made any modifications to your motorcycle to make it more visible?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5YSbU8NmUki</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6OYdCgMBqVF</id>
+					<description lang="und">YES - Fitted with LED day lamps.</description>
+				</component>
+				<component>
+					<id>choice_5YSbU8NmUki</id>
+					<description lang="und">YES - Affixed reflective stickers / tapes on body and 
+wheel drum.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/60K2SKrIXDd" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/60K2SKrIXDd/5iJN8S4JXpp" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Helmet is the single most important piece of Safety Gear for 2 wheeler riders?</name>
+			<description lang="und">Helmet is the single most important piece of Safety Gear for 2 wheeler riders?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6izfhfTskDW</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6fIoywMv9sm</id>
+					<description lang="und">Not necessarily.</description>
+				</component>
+				<component>
+					<id>choice_5UlkGn979TY</id>
+					<description lang="und">Yes, of course, helmet should be properly strapped, as it protects the most important part of our body i.e. Head.</description>
+				</component>
+				<component>
+					<id>choice_6izfhfTskDW</id>
+					<description lang="und">Helmets are designed to reduce the chances of head, 
+brain, and facial injuries during a fall or crash.</description>
+				</component>
+				<component>
+					<id>choice_6U65MBm2rco</id>
+					<description lang="und">Yes, it protects our head from getting injury.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6fBa76iPD7g" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6fBa76iPD7g/65FzTrCn9SQ" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">How do I ride a geared motorcycle in India's heavy traffic?</name>
+			<description lang="und">How do I ride a geared motorcycle in India's heavy traffic?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6RkkKibi8Bc</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6RkkKibi8Bc</id>
+					<description lang="und">If you ride slow then you have to pay attention to 
+mirrors before you make any side to side moves. </description>
+				</component>
+				<component>
+					<id>choice_5XgcHeOFOuj</id>
+					<description lang="und">You must have good control on Clutch and acceleration combination along with brake (preferably front)which will get you covered for most of the time.</description>
+				</component>
+				<component>
+					<id>choice_6FXWDXgiEin</id>
+					<description lang="und">For bumper to bumper traffic You need to go very slow or in low gear or below 10 Kph.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6DSXRwvZuf6" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6DSXRwvZuf6/5Vqr5IMWD4G" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What are the reflective gear recommended for Night riders?</name>
+			<description lang="und">What are the reflective gear recommended for Night riders?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5i9qsNT97G7</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6mZjlfRZGQ6</id>
+					<description lang="und">Motorcycle helmet is the most prominent piece of 
+night gear a rider wears.</description>
+				</component>
+				<component>
+					<id>choice_6ALYsjKQLPP</id>
+					<description lang="und">Highly reflected jackets.</description>
+				</component>
+				<component>
+					<id>choice_6Ci4SfEZszs</id>
+					<description lang="und">Helmet and reflected jackets.</description>
+				</component>
+				<component>
+					<id>choice_5i9qsNT97G7</id>
+					<description lang="und">Helmet, Jacket, Vests, Pants, night eye wears (goggles), Gloves, back pack / luggage.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6j2uvHgUqGL" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6j2uvHgUqGL/5mtmhiFAlCG" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What does laws say?</name>
+			<description lang="und">What does laws say?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_64FVaVkbSaB</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_69eSjYYfCRI</id>
+					<description lang="und">Wear helmet while riding.</description>
+				</component>
+				<component>
+					<id>choice_64FVaVkbSaB</id>
+					<description lang="und">Wear all the safety gears while riding.</description>
+				</component>
+				<component>
+					<id>choice_62agqwjMsC7</id>
+					<description lang="und">Riders and Pillions must wear helmets.</description>
+				</component>
+				<component>
+					<id>choice_5WOmCAaEADI</id>
+					<description lang="und">All of the above.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5cwxItmQgRW" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5cwxItmQgRW/61dHUBeNTgM" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What is it like to wear biking gloves while riding a bike?</name>
+			<description lang="und">What is it like to wear biking gloves while riding a bike?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6WFVlQ4lXaA</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5YpnxMCVds4</id>
+					<description lang="und">Light fabric gloves are good for the grip and cleaning 
+the bike.</description>
+				</component>
+				<component>
+					<id>choice_6WFVlQ4lXaA</id>
+					<description lang="und">Leather gloves are better than any other choices for 
+their grip, protection and hardness.</description>
+				</component>
+				<component>
+					<id>choice_5eVOiNZrKIU</id>
+					<description lang="und">Gloves protect our hands against the vibrations of the bike.</description>
+				</component>
+				<component>
+					<id>choice_6cPEFHNZPKQ</id>
+					<description lang="und">It is important to properly protect your hands from skin injuries when riding a motorcycle.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5wszcjGK9ZF" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5wszcjGK9ZF/6aFnP1FDbwA" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which personal protective gear do you wear when you ride?</name>
+			<description lang="und">Which personal protective gear do you wear when you ride?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6MUPp9BU56e</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5UpposghhQR</id>
+					<description lang="und">Helmet.</description>
+				</component>
+				<component>
+					<id>choice_6MUPp9BU56e</id>
+					<description lang="und">Helmet with proper strapping and ISI marked.</description>
+				</component>
+				<component>
+					<id>choice_6ArzTJSuXUY</id>
+					<description lang="und">I don't need it as I ride with utmost care..</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5YqRS8JHBBE" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5YqRS8JHBBE/6VRgLfp2Dub" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Why do I have to wear Safety shoes while riding?</name>
+			<description lang="und">Why do I have to wear Safety shoes while riding?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6UBkXXg3eIe</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6Qv06IPxrBC</id>
+					<description lang="und">It gives You comfort.</description>
+				</component>
+				<component>
+					<id>choice_6UBkXXg3eIe</id>
+					<description lang="und">It has a protective reinforcement in the toe which 
+protects the foot from falling objects or compression or even at the time of skidding.</description>
+				</component>
+				<component>
+					<id>choice_65cVvedIvHR</id>
+					<description lang="und">To maintain Personality and image.</description>
+				</component>
+				<component>
+					<id>choice_6nPXeVGsfym</id>
+					<description lang="und">Even sandals will do for grip and firmness.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6SoCLVcHuYM" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">QUIZ RESULTS</name>
+			<description lang="und">QUIZ RESULTS</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5V2n9NLwfP5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Congratulations!</name>
+			<description lang="und">Congratulations!</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5yZ9DNxEQFp" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6oi8AHVuVH8" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5xRhyCdhde5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5xRhyCdhde5/5yO9UqtaCWM" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5ViWldhidtX</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5ViWldhidtX</id>
+					<description lang="und">Add to cart</description>
+				</component>
+				<component>
+					<id>choice_64HIvzx6rDv</id>
+					<description lang="und">Add to cart</description>
+				</component>
+				<component>
+					<id>choice_5fcuDOACVbN</id>
+					<description lang="und">Add to cart</description>
+				</component>
+				<component>
+					<id>choice_5uIdz2Tl2Vj</id>
+					<description lang="und">Add to cart</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5nWiDDQJyAZ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5nWiDDQJyAZ/6AFE8ZATRWL" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6UhqLLGxwTz</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6UhqLLGxwTz</id>
+					<description lang="und">Add to cart</description>
+				</component>
+				<component>
+					<id>choice_6pb3vB9fMn8</id>
+					<description lang="und">Add to cart</description>
+				</component>
+				<component>
+					<id>choice_6RwX317vxNZ</id>
+					<description lang="und">Add to cart</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6mTtKSNxjBX" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/6mTtKSNxjBX/6MhJVQuf9s0" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5yGnBPNdPr9</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5yGnBPNdPr9</id>
+					<description lang="und">Add to cart</description>
+				</component>
+				<component>
+					<id>choice_5gOtkI2ZZw2</id>
+					<description lang="und">Add to cart</description>
+				</component>
+				<component>
+					<id>choice_62oh1fwTSkv</id>
+					<description lang="und">Add to cart</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5esswBsis4Q" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/5esswBsis4Q/5V00vBjrtfk" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6WMCOsn76Yu</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6WMCOsn76Yu</id>
+					<description lang="und">Add to cart</description>
+				</component>
+				<component>
+					<id>choice_627Hrb3haIW</id>
+					<description lang="und">Add to cart</description>
+				</component>
+				<component>
+					<id>choice_6m42mK8T97i</id>
+					<description lang="und">Add to cart</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5doVJHgt1lV_course_id/67cKZEj5zFX" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Results Slide</name>
+			<description lang="und">Results Slide</description>
+		</activity>
+	</activities>
+</tincan>
