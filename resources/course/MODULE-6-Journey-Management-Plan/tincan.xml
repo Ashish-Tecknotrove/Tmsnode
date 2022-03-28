@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://61Occ4u25Og_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">MODULE: 6 Journey Management Plan</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6k6D2gcPqg4" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">MODULE: 6 Journey Management Plan</name>
+			<description lang="und">MODULE: 6 Journey Management Plan</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5l1fxbqS97k" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6HEsy7IWHqw" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6hFGvDX9rRg" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5V1WJ1SnX96" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module Objectives</name>
+			<description lang="und">Module Objectives</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5vI8Q2QhDi7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Importance of Journey management plan</name>
+			<description lang="und">Importance of Journey management plan</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6FHgFpAEqZQ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Knowledge Test</name>
+			<description lang="und">Knowledge Test</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5Va0JzqLP4L" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5Va0JzqLP4L/6F2TE836T31" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Before starting your journey, you must check your route . You can do this by checking.....?</name>
+			<description lang="und">Before starting your journey, you must check your route . You can do this by checking.....?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6BLL859WGCt</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5cQh5vLilH7</id>
+					<description lang="und">Weekly magazine.</description>
+				</component>
+				<component>
+					<id>choice_6ffPsL0WvN5</id>
+					<description lang="und">The Internet.</description>
+				</component>
+				<component>
+					<id>choice_6TdL1RqUIgX</id>
+					<description lang="und">The news on radio or television.</description>
+				</component>
+				<component>
+					<id>choice_6BLL859WGCt</id>
+					<description lang="und">All of the above.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5uCVE1pYkKx" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5uCVE1pYkKx/6UyNmVoufNk" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Duration of the journey should be considered to ensure....</name>
+			<description lang="und">Duration of the journey should be considered to ensure....</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6gUAOZmGHxe</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6gUAOZmGHxe</id>
+					<description lang="und">We are comfortable throughout the journey.</description>
+				</component>
+				<component>
+					<id>choice_6nlzSnoANHX</id>
+					<description lang="und">We reach faster with least amount of stress.</description>
+				</component>
+				<component>
+					<id>choice_5fUXnKQdfiZ</id>
+					<description lang="und">The least amount of fuel is used.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6Fdp4jII8JS" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6Fdp4jII8JS/6CYhdZRhOli" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">During a long route journey, how do you manage fatigue/tiredness?</name>
+			<description lang="und">During a long route journey, how do you manage fatigue/tiredness?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_61GiKk2X9qB</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6DupUp6vzRa</id>
+					<description lang="und">By reaching the destination as soon as possible 
+without breaks.</description>
+				</component>
+				<component>
+					<id>choice_61GiKk2X9qB</id>
+					<description lang="und">By taking regular breaks as planned before journey.</description>
+				</component>
+				<component>
+					<id>choice_6Ft2rrquFQW</id>
+					<description lang="und">By taking breaks wherever I find a suitable place to do so.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6YqwY6wqo3K" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6YqwY6wqo3K/62jLMssARi2" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">If you are not reaching your destination on time on a routine journey, you should....?</name>
+			<description lang="und">If you are not reaching your destination on time on a routine journey, you should....?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6mqGZxgHfxM</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6mqGZxgHfxM</id>
+					<description lang="und">Re-plan the journey considering the factors of delay.</description>
+				</component>
+				<component>
+					<id>choice_5aXNcKEDrBC</id>
+					<description lang="und">Driver faster to ensure you reach on time.</description>
+				</component>
+				<component>
+					<id>choice_5pHp4lhCRmg</id>
+					<description lang="und">Explore alternative options/routes to reach on time.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6ZBGUGbdswT" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6ZBGUGbdswT/5aoGA9VpqOf" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">If you find that you are not reaching on time with your routine route,  you should .....?</name>
+			<description lang="und">If you find that you are not reaching on time with your routine route,  you should .....?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6BYWCPiFBqI</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5nYmbKQ1HSG</id>
+					<description lang="und">Diver faster to ensure you reach on time.</description>
+				</component>
+				<component>
+					<id>choice_6nSRBsGwMRY</id>
+					<description lang="und">Take an alternative route.</description>
+				</component>
+				<component>
+					<id>choice_6BYWCPiFBqI</id>
+					<description lang="und">Your journey reconsidering all factors of a Journey 
+Management Plan (JMP).</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5kU1qmdaZdw" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5kU1qmdaZdw/5ZcbHwKKj3x" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">If you find your routine journeys are causing you stress, you should...?</name>
+			<description lang="und">If you find your routine journeys are causing you stress, you should...?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6geWIZQjZUk</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6VpqlGgV47G</id>
+					<description lang="und">Drive aggressively, to complete the journey faster.</description>
+				</component>
+				<component>
+					<id>choice_6f3lCX6sVad</id>
+					<description lang="und">Try to forget the stress and drive carefully.</description>
+				</component>
+				<component>
+					<id>choice_6geWIZQjZUk</id>
+					<description lang="und">Rethink on what is causing you stress and re-plan your journey if required.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6896DntygoN" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6896DntygoN/5oA7jFogkyK" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">When does a journey become stressful for you?</name>
+			<description lang="und">When does a journey become stressful for you?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6SaGwEI1nF9</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6DS4WSnQyYc</id>
+					<description lang="und">Every journey is stressful for me.</description>
+				</component>
+				<component>
+					<id>choice_6SaGwEI1nF9</id>
+					<description lang="und">No journey is stressful for me, as I plan each journey carefully.</description>
+				</component>
+				<component>
+					<id>choice_6X40t8W7I27</id>
+					<description lang="und">Only when I don't plan my journey well.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5aLg5YM7zr5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5aLg5YM7zr5/6QmmGPYteov" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">When leaving for a journey during monsoon, how do you ensure your motorbike is in good condition?</name>
+			<description lang="und">When leaving for a journey during monsoon, how do you ensure your motorbike is in good condition?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6g1syp1gSkP</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6i10mthOm3E</id>
+					<description lang="und">I ensure that the motorbike is washed and cleaned.</description>
+				</component>
+				<component>
+					<id>choice_5itf9qrN2OP</id>
+					<description lang="und">I check the motorbike myself to ensure it is in good 
+condition.</description>
+				</component>
+				<component>
+					<id>choice_6g1syp1gSkP</id>
+					<description lang="und">I get the motorbike checked from an authorised service center to ensure it is in good condition. </description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5WaZ1wrcgBA" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5WaZ1wrcgBA/5VUG4Nbpwbj" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">When should you plan your route in advance?</name>
+			<description lang="und">When should you plan your route in advance?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5WUmYwUKaEZ</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6pTM4GoswUv</id>
+					<description lang="und">Only for long route journeys.</description>
+				</component>
+				<component>
+					<id>choice_6o35ASAzZAj</id>
+					<description lang="und">It is not important to plan the route in advance.</description>
+				</component>
+				<component>
+					<id>choice_5WUmYwUKaEZ</id>
+					<description lang="und">Planning must be done for all types of journeys - 
+long routes and short routes.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5witDCJ6g92" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5witDCJ6g92/6LDfWsAofqt" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which type of a route should be considered for a safer journey?</name>
+			<description lang="und">Which type of a route should be considered for a safer journey?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6k3UFHZsJ7m</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6k3UFHZsJ7m</id>
+					<description lang="und">Route with least intersections, mixed traffic and 
+good road condition.</description>
+				</component>
+				<component>
+					<id>choice_6Hc9P1WX1Pk</id>
+					<description lang="und">Shortest route to the destination.</description>
+				</component>
+				<component>
+					<id>choice_5UoUt2Gw7qK</id>
+					<description lang="und">A familiar route.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6SoCLVcHuYM" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">QUIZ RESULTS</name>
+			<description lang="und">QUIZ RESULTS</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5V2n9NLwfP5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Congratulations!</name>
+			<description lang="und">Congratulations!</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6riCsVqUcE6" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6LstqW5qqLG" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6nW2nw5EA3g" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6917renoYqT" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6acqKxgIdd9" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5zMViNHxKtY" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6FVBgPxE4hC" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6USpDGqfzJN" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6lrf5IwVMQT" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5rQW4LoUZdv" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5sWXIPspx05" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5qbvNOz33Xo" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6jifCoArxzq" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/68e0AMGNMj1" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6RZtGS7Et0A" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/664aMiN6uwA" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6qhngqBUvsZ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/60XMCR71irD" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6LZ2Bl2ixeU" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6Kd2Q7lRtuh" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6LQpahN5z35" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6kiiOWHuJNS" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5yPIPIePzdp" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5j9Lnhn2eQa" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5t1jJW6ufjY" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/62fBikZIobt" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5v3nCjCTgyW" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6j6evTwO4CL" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5ijyxj8pW6Q" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5dxNnrZhbY6" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+	</activities>
+</tincan>
