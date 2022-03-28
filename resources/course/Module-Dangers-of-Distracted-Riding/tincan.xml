@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://69puGpuXmHQ_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">Module: Dangers of Distracted Riding</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6k6D2gcPqg4" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Module: Dangers of Distracted Riding</name>
+			<description lang="und">Module: Dangers of Distracted Riding</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6HDXw4LanrH" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Module: Dangers of Distracted Riding</name>
+			<description lang="und">Module: Dangers of Distracted Riding</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5l1fxbqS97k" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6WK31Daw4Jb" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6hFGvDX9rRg" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5V1WJ1SnX96" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module Objectives</name>
+			<description lang="und">Module Objectives</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5vI8Q2QhDi7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction to the art of motorcycle maintenance</name>
+			<description lang="und">Introduction to the art of motorcycle maintenance</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6FHgFpAEqZQ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Dangers of Distracted Riding</name>
+			<description lang="und">Dangers of Distracted Riding</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5Va0JzqLP4L" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5Va0JzqLP4L/6F2TE836T31" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of this is considered as distracted riding?</name>
+			<description lang="und">Which of this is considered as distracted riding?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6CiFB8c59Ec</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5cQh5vLilH7</id>
+					<description lang="und">Personal Grooming.</description>
+				</component>
+				<component>
+					<id>choice_6ffPsL0WvN5</id>
+					<description lang="und">Eating &amp; drinking.</description>
+				</component>
+				<component>
+					<id>choice_6TdL1RqUIgX</id>
+					<description lang="und">Busy conversation with pillion rider.</description>
+				</component>
+				<component>
+					<id>choice_6CiFB8c59Ec</id>
+					<description lang="und">All of the above.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5sQNC9exZzb" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5sQNC9exZzb/6CBKEfbNCNu" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of this is not considered as a distraction while riding?</name>
+			<description lang="und">Which of this is not considered as a distraction while riding?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5uIWNBVV7Is</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_67WO1h6ehow</id>
+					<description lang="und">Using navigation.</description>
+				</component>
+				<component>
+					<id>choice_6MLW2Sn7c3S</id>
+					<description lang="und">Talking on the mobile phone.</description>
+				</component>
+				<component>
+					<id>choice_5Ydfj5NuS9K</id>
+					<description lang="und">Constantly looking at the surroundings.</description>
+				</component>
+				<component>
+					<id>choice_5uIWNBVV7Is</id>
+					<description lang="und">None of the above.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6TRqobEDCvz" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6TRqobEDCvz/6f6qybsEZbo" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following statement is true?</name>
+			<description lang="und">Which of the following statement is true?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5jYUdTSGfYu</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6CZfyiee8yG</id>
+					<description lang="und">Skilled driver can multi-task while riding.</description>
+				</component>
+				<component>
+					<id>choice_6Y5tRD18Ysu</id>
+					<description lang="und">If the route is familiar then there is no need to focus on the road.</description>
+				</component>
+				<component>
+					<id>choice_5jYUdTSGfYu</id>
+					<description lang="und">Riding a bike safely needs complete attention of the  rider.</description>
+				</component>
+				<component>
+					<id>choice_68b0yRYA0XM</id>
+					<description lang="und">While riding one needs to focus only on the road condition.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6XiPp0a6POg" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6XiPp0a6POg/6gmaQsmQZzl" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following statement is true when tired or fatigued while riding?</name>
+			<description lang="und">Which of the following statement is true when tired or fatigued while riding?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6ggqUHKYRLd</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6ggqUHKYRLd</id>
+					<description lang="und">Resting or sleeping well before I start my journey will help me to avoid tiredness and fatigue while riding.</description>
+				</component>
+				<component>
+					<id>choice_6OSbwvAHeSM</id>
+					<description lang="und">Having a coffee/tea will help me get rid of tiredness 
+and fatigue.</description>
+				</component>
+				<component>
+					<id>choice_5k7BpeQ67O0</id>
+					<description lang="und">Listening to the music will help me get rid of tiredness and fatigue.</description>
+				</component>
+				<component>
+					<id>choice_6A95Rf4IORL</id>
+					<description lang="und">None of the above are true.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5Wl4VkF0wcs" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5Wl4VkF0wcs/5edxAnBq0Hf" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following will ensure that you do not get distracted while riding?</name>
+			<description lang="und">Which of the following will ensure that you do not get distracted while riding?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6Ct256Vz81J</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6Ct256Vz81J</id>
+					<description lang="und">Familiarising myself with the safest route and 
+planning the overall journey in advance.</description>
+				</component>
+				<component>
+					<id>choice_6aNrJDITtWw</id>
+					<description lang="und">Familiarising myself with the route before starting the journey.</description>
+				</component>
+				<component>
+					<id>choice_5yWRQFjg0ka</id>
+					<description lang="und">Using the navigation or map to find the route while riding as we progress the journey. </description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5wJEN5FOt4C" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5wJEN5FOt4C/6nga20nJkEA" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What are the safer option in terms of mobile phone usage while riding the bike?</name>
+			<description lang="und">What are the safer option in terms of mobile phone usage while riding the bike?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6GPIVhiDYez</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6GPIVhiDYez</id>
+					<description lang="und">Not using the mobile phone at all and keeping it in 
+switch off/airplane mode in the bag.</description>
+				</component>
+				<component>
+					<id>choice_6rWLRQAqLax</id>
+					<description lang="und">Using the Hands-free to talk.</description>
+				</component>
+				<component>
+					<id>choice_5uqnnm3QJCf</id>
+					<description lang="und">Keeping the phone on silent mode so that I can see only the messages.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5sE4qdNy3re" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5sE4qdNy3re/5yIcK2JXBds" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What do we consider as visual distraction?</name>
+			<description lang="und">What do we consider as visual distraction?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5xPXziIakXl</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5q3SLmwrNH8</id>
+					<description lang="und">Looking at posters /shootings/ procession on road.</description>
+				</component>
+				<component>
+					<id>choice_5xPXziIakXl</id>
+					<description lang="und">Taking eyes of the road for any other activity.</description>
+				</component>
+				<component>
+					<id>choice_6320ToGlhBo</id>
+					<description lang="und">Smoking while riding the bike.</description>
+				</component>
+				<component>
+					<id>choice_6lfnquQkv86</id>
+					<description lang="und">None of the above.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6hAG8XPi3jT" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6hAG8XPi3jT/6is1VFqZ2hR" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of those given below shall be considered cognitive/ mental distraction?</name>
+			<description lang="und">Which of those given below shall be considered cognitive/ mental distraction?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_612LrH5n3y1</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6TMitunJ3d9</id>
+					<description lang="und">Talking to the pillion rider while riding.</description>
+				</component>
+				<component>
+					<id>choice_6eC8gR2AFPH</id>
+					<description lang="und">Fiddling with the bag while riding.</description>
+				</component>
+				<component>
+					<id>choice_612LrH5n3y1</id>
+					<description lang="und">Thinking of any other task other than riding the bike.</description>
+				</component>
+				<component>
+					<id>choice_6Sw8qdWN6a2</id>
+					<description lang="und">It is important to properly protect your hands from 
+skin injuries when riding a motorcycle.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5WNRI7Domyj" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5WNRI7Domyj/6CmNoqtigXS" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">When will helmet be a distraction?</name>
+			<description lang="und">When will helmet be a distraction?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5xJTGCNNl0b</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6kTU1kXbcbm</id>
+					<description lang="und">When the helmet is not strapped properly.</description>
+				</component>
+				<component>
+					<id>choice_5pXWPGgvdT1</id>
+					<description lang="und">When the helmet is not of specified standards.</description>
+				</component>
+				<component>
+					<id>choice_6oX3XMXe1i0</id>
+					<description lang="und">When the helmet is without a visor.</description>
+				</component>
+				<component>
+					<id>choice_5xJTGCNNl0b</id>
+					<description lang="und">All of the above.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5eYgj0KVRru" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5eYgj0KVRru/6dPpIjE0rqj" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">When will I put myself into risk while riding the bike?</name>
+			<description lang="und">When will I put myself into risk while riding the bike?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5fD9dVvaQH4</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6YvrhVtpiZz</id>
+					<description lang="und">Only If I drink and ride, I will be risking my self.</description>
+				</component>
+				<component>
+					<id>choice_66o0xPaDSIG</id>
+					<description lang="und">Only If I ride under influence of drugs.</description>
+				</component>
+				<component>
+					<id>choice_6HPpmDTMssb</id>
+					<description lang="und">If I ride the bike over the specified speed limit.</description>
+				</component>
+				<component>
+					<id>choice_5fD9dVvaQH4</id>
+					<description lang="und">All of the above.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6SoCLVcHuYM" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">QUIZ RESULTS</name>
+			<description lang="und">QUIZ RESULTS</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5V2n9NLwfP5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Congratulations!</name>
+			<description lang="und">Congratulations!</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/60LeN6zT7VB" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5tUxJxpzA65" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6TckdR77uby" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5xYxSuUBQuc" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Results Slide</name>
+			<description lang="und">Results Slide</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5farhr5yn8U" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Situation 1</name>
+			<description lang="und">Situation 1</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5farhr5yn8U/5xY7D0s5O2L" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6fVtjEfhyK5</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_69NyjdlJnPm</id>
+					<description lang="und">Picture 1</description>
+				</component>
+				<component>
+					<id>choice_6fVtjEfhyK5</id>
+					<description lang="und">Picture 2</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5kye6PWoySU" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Situation 2</name>
+			<description lang="und">Situation 2</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5kye6PWoySU/5rOY1VCyusK" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6F5OYQP0yLA</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6EmEfECDJs7</id>
+					<description lang="und">Picture 1</description>
+				</component>
+				<component>
+					<id>choice_6F5OYQP0yLA</id>
+					<description lang="und">Picture 2</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6gM67AS4sH0" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Situation 4</name>
+			<description lang="und">Situation 4</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/6gM67AS4sH0/5e4AyHaSel3" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6GrLoj1Gd0t</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5cIzbi0n2TD</id>
+					<description lang="und">Picture 1</description>
+				</component>
+				<component>
+					<id>choice_6GrLoj1Gd0t</id>
+					<description lang="und">Picture 2</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5s1CQ0TCl1F" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Situation 3</name>
+			<description lang="und">Situation 3</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/5s1CQ0TCl1F/6a2IVufogav" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6nl4OFPLJKu</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_67B16H2HIN6</id>
+					<description lang="und">Picture 1</description>
+				</component>
+				<component>
+					<id>choice_6nl4OFPLJKu</id>
+					<description lang="und">Picture 2</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/69Vd2fqJPfs" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Situation 5</name>
+			<description lang="und">Situation 5</description>
+		</activity>
+		<activity id="http://69puGpuXmHQ_course_id/69Vd2fqJPfs/5hepZJN5pDY" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5hIxMM4pOlC</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5hIxMM4pOlC</id>
+					<description lang="und">Picture 1</description>
+				</component>
+				<component>
+					<id>choice_6X2XvBc2EUO</id>
+					<description lang="und">Picture 2</description>
+				</component>
+			</choices>
+		</activity>
+	</activities>
+</tincan>
