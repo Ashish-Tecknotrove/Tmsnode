@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://66ojeEjhi1X_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">Module 1: Importance of Chemical Security</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/5lhQJvO8KNf" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Module 1: Importance of Chemical Security</name>
+			<description lang="und">Module 1: Importance of Chemical Security</description>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/6DYRVPngdlb" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction </name>
+			<description lang="und">Introduction </description>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/6I6uzxX3c7P" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module 1: Importance of Chemical Security</name>
+			<description lang="und">Module 1: Importance of Chemical Security</description>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/6XRhxhJrr8O" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Knowledge Test</name>
+			<description lang="und">Knowledge Test</description>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/6HE0DQzCf6D" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module1: Summary</name>
+			<description lang="und">Module1: Summary</description>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/6KKRT53VTm4" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/6KKRT53VTm4/6KUVJDiZrwg" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6M3gKrkBszM</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5rp5iSGEwtU</id>
+					<description lang="und">a. Explosion happened</description>
+				</component>
+				<component>
+					<id>choice_6M3gKrkBszM</id>
+					<description lang="und">b. Highly toxic gas leaked</description>
+				</component>
+				<component>
+					<id>choice_618UJIuQOwI</id>
+					<description lang="und">c. Radioactive material leaked from power plant</description>
+				</component>
+				<component>
+					<id>choice_6hP3E2uDToN</id>
+					<description lang="und">d. Earthquake happened</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/5twJz3kYzUf" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/5twJz3kYzUf/6cffyzG8eKT" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6NnVgmxhTj2</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6W0OxXHtuJ4</id>
+					<description lang="und">a.Enemy dropped a bomb there</description>
+				</component>
+				<component>
+					<id>choice_5VK9FW3PU3r</id>
+					<description lang="und">b.Gas tank exploded</description>
+				</component>
+				<component>
+					<id>choice_6NnVgmxhTj2</id>
+					<description lang="und">c.A chemical ammonium nitrate caught fire and exploded</description>
+				</component>
+				<component>
+					<id>choice_6mDPfQBnzYi</id>
+					<description lang="und">d.Toxic gas leaked</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/6K5bRUcOdyk" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/6K5bRUcOdyk/6mtP4TSI62k" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5xjQXavxgD5</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6aACaPC2Xin</id>
+					<description lang="und">a.They can use the chemicals to kill people</description>
+				</component>
+				<component>
+					<id>choice_6phbVpoKi8y</id>
+					<description lang="und">b.They can use the chemical tocounterfeit Pharma product</description>
+				</component>
+				<component>
+					<id>choice_5rKAR9QbueR</id>
+					<description lang="und">c.They want to sell into grey market</description>
+				</component>
+				<component>
+					<id>choice_5xjQXavxgD5</id>
+					<description lang="und">d.All of above</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/6g2jHHkbyIQ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+		</activity>
+		<activity id="http://66ojeEjhi1X_course_id/6g2jHHkbyIQ/5bB7UZw90J8" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6N1dq1ueSzC</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5wW2UKKuorz</id>
+					<description lang="und">a.The chemical company</description>
+				</component>
+				<component>
+					<id>choice_6FxZdbCNPPa</id>
+					<description lang="und">b.The transport owner</description>
+				</component>
+				<component>
+					<id>choice_6aIWgUAhD7Z</id>
+					<description lang="und">c.The cargo supervisor of the truck operator</description>
+				</component>
+				<component>
+					<id>choice_6N1dq1ueSzC</id>
+					<description lang="und">d.The driver of the vehicle</description>
+				</component>
+			</choices>
+		</activity>
+	</activities>
+</tincan>
