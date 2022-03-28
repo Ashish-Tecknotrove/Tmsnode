@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://6gHExEEzqeW_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">Drivng in difficult weather- Truck</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/5sHSVXslnWt" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Drivng in difficult weather- Truck</name>
+			<description lang="und">Drivng in difficult weather- Truck</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/5tZBIzybgke" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/5t48Gi7xDvQ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6VEMz9cS6Z9" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Results Slide</name>
+			<description lang="und">Results Slide</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/5k4orHkobC4" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6n90JoBK8e7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6n90JoBK8e7/6VS2EpTorow" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6qRXJoS5lyC</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6qRXJoS5lyC</id>
+					<description lang="und">Picture 4</description>
+				</component>
+				<component>
+					<id>choice_5po53cGpgEm</id>
+					<description lang="und">Picture 5</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6dDBAmLEjGN" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6dDBAmLEjGN/6QmRPWlSnst" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5hLn9PHBYfp</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5hLn9PHBYfp</id>
+					<description lang="und">Picture 2</description>
+				</component>
+				<component>
+					<id>choice_6ATNR9dQsQp</id>
+					<description lang="und">Picture 3</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/5gNrIxGcnoJ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/5gNrIxGcnoJ/612KlerDaVI" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6lCniqpltxU</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6XMweYYDbav</id>
+					<description lang="und">Picture 3</description>
+				</component>
+				<component>
+					<id>choice_6lCniqpltxU</id>
+					<description lang="und">Picture 4</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/5XKwcJFylW1" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/5XKwcJFylW1/6r2OXBw1Y0d" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_64vzyzgYFh2</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6gP45e20sop</id>
+					<description lang="und">Picture 3</description>
+				</component>
+				<component>
+					<id>choice_64vzyzgYFh2</id>
+					<description lang="und">Picture 4</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6ZoEApDFlQH" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6ZoEApDFlQH/5rY4iuAfPpY" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5lWssVpUrhk</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5lWssVpUrhk</id>
+					<description lang="und">Picture 3</description>
+				</component>
+				<component>
+					<id>choice_6YhbwgoIiFn</id>
+					<description lang="und">Picture 4</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6cRcDdnyFIK" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6cRcDdnyFIK/6Dhv6BbEzil" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6ApN4p660Kg</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6ApN4p660Kg</id>
+					<description lang="und">Picture 1</description>
+				</component>
+				<component>
+					<id>choice_64VFsqlUsdC</id>
+					<description lang="und">Picture 2</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/60RBnaoC1F2" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/60RBnaoC1F2/65Tx76Mm6Ej" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6bgJmGPRcFu</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_68TWTVfhEsg</id>
+					<description lang="und">Picture 3</description>
+				</component>
+				<component>
+					<id>choice_6bgJmGPRcFu</id>
+					<description lang="und">Picture 4</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6YVk2OWjDo4" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+		</activity>
+		<activity id="http://6gHExEEzqeW_course_id/6YVk2OWjDo4/6HxIcCizmdo" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Pick One</name>
+			<description lang="und">Pick One</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5eFhsF8g2uV</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5eFhsF8g2uV</id>
+					<description lang="und">Picture 2</description>
+				</component>
+				<component>
+					<id>choice_68K0vtRM3eW</id>
+					<description lang="und">Picture 3</description>
+				</component>
+			</choices>
+		</activity>
+	</activities>
+</tincan>
