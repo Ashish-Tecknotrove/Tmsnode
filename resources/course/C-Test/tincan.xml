@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://67inBV6rEzg_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">C Test</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/5mmJO6GFXem" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">C Test</name>
+			<description lang="und">C Test</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6Q96kOkAcih" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6nbVNdeKi6g" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/5jwih2ASlqj" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6dfTXD9zx8z" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Which of the following statements is correct about the C#.NET code snippet given below?
+short s1 = 20;
+short s2 = 400;
+int a;
+a = s1 * s2;</name>
+			<description lang="und">Which of the following statements is correct about the C#.NET code snippet given below?
+short s1 = 20;
+short s2 = 400;
+int a;
+a = s1 * s2;</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6dfTXD9zx8z/5fgNQLmzb0k" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following statements is correct about the C#.NET code snippet given below?
+short s1 = 20;
+short s2 = 400;
+int a;
+a = s1 * s2;</name>
+			<description lang="und">Which of the following statements is correct about the C#.NET code snippet given below?
+short s1 = 20;
+short s2 = 400;
+int a;
+a = s1 * s2;</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5dFsQwyEmGK</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5dFsQwyEmGK</id>
+					<description lang="und">A value 8000 will be assigned to a </description>
+				</component>
+				<component>
+					<id>choice_5dLRi9zjpuc</id>
+					<description lang="und">A negative value will be assigned to a </description>
+				</component>
+				<component>
+					<id>choice_64EE4l8EgQe</id>
+					<description lang="und">During arithmetic if the result exceeds the high or low value of the range the value wraps around till the other side of the range. </description>
+				</component>
+				<component>
+					<id>choice_5eQSf3CAupq</id>
+					<description lang="und">An error is reported as widening conversion cannot takes place. </description>
+				</component>
+				<component>
+					<id>choice_6UWY53QokTn</id>
+					<description lang="und">An overflow error will be reported since the result of the multiplication exceeds the range of a Short Integer.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6YeSwHSmHcY" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Which of the following statements is correct about the C#.NET code snippet given below ?
+int a = 10;
+int b = 20;
+int c = 30;
+enum color : byte
+{
+	red = a,
+	green = b,
+	blue = c
+}</name>
+			<description lang="und">Which of the following statements is correct about the C#.NET code snippet given below ?
+int a = 10;
+int b = 20;
+int c = 30;
+enum color : byte
+{
+	red = a,
+	green = b,
+	blue = c
+}</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6YeSwHSmHcY/6Z5MtuDmQpt" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following statements is correct about the C#.NET code snippet given below ?
+int a = 10;
+int b = 20;
+int c = 30;
+enum color : byte
+{
+	red = a,
+	green = b,
+	blue = c
+}</name>
+			<description lang="und">Which of the following statements is correct about the C#.NET code snippet given below ?
+int a = 10;
+int b = 20;
+int c = 30;
+enum color : byte
+{
+	red = a,
+	green = b,
+	blue = c
+}</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_60tkbynZWPD</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_60tkbynZWPD</id>
+					<description lang="und">Variables cannot be assigned to enum elements </description>
+				</component>
+				<component>
+					<id>choice_69PrkHxJc8O</id>
+					<description lang="und">Variables can be assigned to any one of the enum elements</description>
+				</component>
+				<component>
+					<id>choice_6dtoIzm8eEO</id>
+					<description lang="und">Variables can be assigned only to the first enum element. </description>
+				</component>
+				<component>
+					<id>choice_63qss6uQDOh</id>
+					<description lang="und">Values assigned to enum elements must always be successive values</description>
+				</component>
+				<component>
+					<id>choice_64Tn2qDL5q8</id>
+					<description lang="und">Values assigned to enum elements must always begin with 0.  </description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/699qtsuFDQn" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Which of the followings is the correct way to overload + operator? </name>
+			<description lang="und">Which of the followings is the correct way to overload + operator? </description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/699qtsuFDQn/6oEqxfSChRs" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the followings is the correct way to overload + operator? </name>
+			<description lang="und">Which of the followings is the correct way to overload + operator? </description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5mcaJOlnO5Z</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6lCkfS3ZY1m</id>
+					<description lang="und">public sample operator + ( sample a, sample b)</description>
+				</component>
+				<component>
+					<id>choice_6GOWfTEGRNi</id>
+					<description lang="und">public abstract operator + ( sample a, sample b)</description>
+				</component>
+				<component>
+					<id>choice_6qxtTXGnl7U</id>
+					<description lang="und">public abstract sample operator + (sample a, sample b ) </description>
+				</component>
+				<component>
+					<id>choice_5mcaJOlnO5Z</id>
+					<description lang="und">public static sample operator + ( sample a, sample b )</description>
+				</component>
+				<component>
+					<id>choice_6dJtBKpaSPi</id>
+					<description lang="und">All of the above</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/654CHnjwAbC" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">The space required for structure variables is allocated on stack. </name>
+			<description lang="und">The space required for structure variables is allocated on stack. </description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/654CHnjwAbC/6kBUE1udOvZ" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">The space required for structure variables is allocated on stack. </name>
+			<description lang="und">The space required for structure variables is allocated on stack. </description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6YYdy2eTP6e</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6YYdy2eTP6e</id>
+					<description lang="und">True</description>
+				</component>
+				<component>
+					<id>choice_66Ha6TR6WBQ</id>
+					<description lang="und">False </description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/5XnVlKBrycH" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Which of the following statements is correct about the C#.NET code snippet given below ?
+namespace ConsoleApplication
+{ 
+    class Sample{ 
+        public int func()
+        {
+            return 1;
+        } 
+        public Single func()
+        { 
+            return 2.4f ;
+        } 
+    }
+ class Program{ 
+        static void Main(string[ ] args)
+        {
+            Sample s1 = new Sample(); 
+            int i;
+            i = s1.func(); 
+            Single j; 
+            j = s1.func(); 
+        } 
+    } 
+}</name>
+			<description lang="und">Which of the following statements is correct about the C#.NET code snippet given below ?
+namespace ConsoleApplication
+{ 
+    class Sample{ 
+        public int func()
+        {
+            return 1;
+        } 
+        public Single func()
+        { 
+            return 2.4f ;
+        } 
+    }
+ class Program{ 
+        static void Main(string[ ] args)
+        {
+            Sample s1 = new Sample(); 
+            int i;
+            i = s1.func(); 
+            Single j; 
+            j = s1.func(); 
+        } 
+    } 
+}</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/5XnVlKBrycH/5eTL9c4ppfD" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following statements is correct about the C#.NET code snippet given below ?
+namespace ConsoleApplication
+{ 
+    class Sample{ 
+        public int func()
+        {
+            return 1;
+        } 
+        public Single func()
+        { 
+            return 2.4f ;
+        } 
+    }
+ class Program{ 
+        static void Main(string[ ] args)
+        {
+            Sample s1 = new Sample(); 
+            int i;
+            i = s1.func(); 
+            Single j; 
+            j = s1.func(); 
+        } 
+    } 
+}</name>
+			<description lang="und">Which of the following statements is correct about the C#.NET code snippet given below ?
+namespace ConsoleApplication
+{ 
+    class Sample{ 
+        public int func()
+        {
+            return 1;
+        } 
+        public Single func()
+        { 
+            return 2.4f ;
+        } 
+    }
+ class Program{ 
+        static void Main(string[ ] args)
+        {
+            Sample s1 = new Sample(); 
+            int i;
+            i = s1.func(); 
+            Single j; 
+            j = s1.func(); 
+        } 
+    } 
+}</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5p1x436OJBK</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6hLgZ5D3lTa</id>
+					<description lang="und">func() is a valid overloaded function.</description>
+				</component>
+				<component>
+					<id>choice_5gE7gnBQwep</id>
+					<description lang="und">Overloading works only in case of subroutines and not in case of functions.</description>
+				</component>
+				<component>
+					<id>choice_5p1x436OJBK</id>
+					<description lang="und">func() cannot be considered overloaded because: return value cannot be used to distinguish between two overloaded functions</description>
+				</component>
+				<component>
+					<id>choice_5npVuZYnkM0</id>
+					<description lang="und">The call to i = s1.func() will assign 1 to i.</description>
+				</component>
+				<component>
+					<id>choice_5eppqbQi28n</id>
+					<description lang="und">The call j = s1.func() will assign 2.4 to j.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6bjHV9HMuYg" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">In a HashTable Key cannot be null, but Value can be.</name>
+			<description lang="und">In a HashTable Key cannot be null, but Value can be.</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6bjHV9HMuYg/5onPbf5iIbj" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">In a HashTable Key cannot be null, but Value can be.</name>
+			<description lang="und">In a HashTable Key cannot be null, but Value can be.</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6NfLz36tNxA</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6NfLz36tNxA</id>
+					<description lang="und">True</description>
+				</component>
+				<component>
+					<id>choice_6VFddbb88tv</id>
+					<description lang="und">False</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/67jbtQiUwM5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Which of the following is the correct output of the C#.NET code snippet en 
+given below?
+	
+int[ , , ] a = new int[ 3, 2, 3 ]; 
+Console.WriteLine(a.Length);</name>
+			<description lang="und">Which of the following is the correct output of the C#.NET code snippet en 
+given below?
+	
+int[ , , ] a = new int[ 3, 2, 3 ]; 
+Console.WriteLine(a.Length);</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/67jbtQiUwM5/61qub7AAH5n" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following is the correct output of the C#.NET code snippet en 
+given below?
+	
+int[ , , ] a = new int[ 3, 2, 3 ]; 
+Console.WriteLine(a.Length);</name>
+			<description lang="und">Which of the following is the correct output of the C#.NET code snippet en 
+given below?
+	
+int[ , , ] a = new int[ 3, 2, 3 ]; 
+Console.WriteLine(a.Length);</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5tSjTCSNE86</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_64JOTEjM5vc</id>
+					<description lang="und">20</description>
+				</component>
+				<component>
+					<id>choice_6fmkHHnrg2z</id>
+					<description lang="und">4</description>
+				</component>
+				<component>
+					<id>choice_5tSjTCSNE86</id>
+					<description lang="und">18</description>
+				</component>
+				<component>
+					<id>choice_6iNudiSudLD</id>
+					<description lang="und">10</description>
+				</component>
+				<component>
+					<id>choice_6e1j2zVSjZP</id>
+					<description lang="und">5</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6ZtICaP96Ru" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Which of the following statements are correct about static functions?
+
+1. Static functions can access only static data.
+2. Static functions cannot call instance functions.
+3. It is necessary to initialize static data.
+4. Instance functions can call static functions and access static data.
+5. this reference is passed to static functions.</name>
+			<description lang="und">Which of the following statements are correct about static functions?
+
+1. Static functions can access only static data.
+2. Static functions cannot call instance functions.
+3. It is necessary to initialize static data.
+4. Instance functions can call static functions and access static data.
+5. this reference is passed to static functions.</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6ZtICaP96Ru/5iqewYEwTpY" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following statements are correct about static functions?
+
+1. Static functions can access only static data.
+2. Static functions cannot call instance functions.
+3. It is necessary to initialize static data.
+4. Instance functions can call static functions and access static data.
+5. this reference is passed to static functions.</name>
+			<description lang="und">Which of the following statements are correct about static functions?
+
+1. Static functions can access only static data.
+2. Static functions cannot call instance functions.
+3. It is necessary to initialize static data.
+4. Instance functions can call static functions and access static data.
+5. this reference is passed to static functions.</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5WSS56DtDUh</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5WSS56DtDUh</id>
+					<description lang="und">1,2,4</description>
+				</component>
+				<component>
+					<id>choice_6LJRaGH3ADM</id>
+					<description lang="und">2,3,5</description>
+				</component>
+				<component>
+					<id>choice_6TdJlbOfSom</id>
+					<description lang="und">3,4 </description>
+				</component>
+				<component>
+					<id>choice_5fMkWRmfBLX</id>
+					<description lang="und">4,5</description>
+				</component>
+				<component>
+					<id>choice_6hMnSCNRo9K</id>
+					<description lang="und">None of these</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6NKOjZDwGJu" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Which of the following statements is correct about constructors in C#.NET?</name>
+			<description lang="und">Which of the following statements is correct about constructors in C#.NET?</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6NKOjZDwGJu/6Zi2S8d4s94" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following statements is correct about constructors in C#.NET?</name>
+			<description lang="und">Which of the following statements is correct about constructors in C#.NET?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6FG1cbuTLT5</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6irH20xHK8h</id>
+					<description lang="und">A constructor cannot be declared as private. </description>
+				</component>
+				<component>
+					<id>choice_5ZLbG2qQtFE</id>
+					<description lang="und">A constructor cannot be overloaded.</description>
+				</component>
+				<component>
+					<id>choice_6FG1cbuTLT5</id>
+					<description lang="und">A constructor can be a static constructor.</description>
+				</component>
+				<component>
+					<id>choice_64Yab6QVFDW</id>
+					<description lang="und">A constructor cannot access static data.</description>
+				</component>
+				<component>
+					<id>choice_5ebAmCNzUvP</id>
+					<description lang="und">This reference is never passed to a constructor.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/69NxlT8ZDf8" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Which of the following statements is correct? 
+</name>
+			<description lang="und">Which of the following statements is correct? 
+</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/69NxlT8ZDf8/5aHjc89spUw" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following statements is correct? 
+</name>
+			<description lang="und">Which of the following statements is correct? 
+</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_65YhvvGfzLO</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_65YhvvGfzLO</id>
+					<description lang="und">Static methods can be a virtual method. </description>
+				</component>
+				<component>
+					<id>choice_5hTTPWeTmpG</id>
+					<description lang="und">Abstract methods can be a virtual method. </description>
+				</component>
+				<component>
+					<id>choice_6qZln61kRGp</id>
+					<description lang="und">It is necessary to override a virtual method. </description>
+				</component>
+				<component>
+					<id>choice_66s9rr2u1LL</id>
+					<description lang="und">When overriding a method, the names and type signatures of the override method must be the same as the virtual method that is being overridden. </description>
+				</component>
+				<component>
+					<id>choice_69ibGtLpZwE</id>
+					<description lang="und">We can override virtual as well as non-virtual methods. </description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6M8WWh7NZvg" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6X3WZyN5kC7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Text Entry</name>
+			<description lang="und">Text Entry</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6X3WZyN5kC7/6gX6MK81pb1" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Text Entry Interaction</name>
+			<description lang="und">Text Entry Interaction</description>
+			<interactionType>fill-in</interactionType>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/5aEMNj5mBGN" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Text Entry</name>
+			<description lang="und">Text Entry</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/5aEMNj5mBGN/6dKGfeeTuX8" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Text Entry Interaction</name>
+			<description lang="und">Text Entry Interaction</description>
+			<interactionType>fill-in</interactionType>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6QjkEnrErnK" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Text Entry</name>
+			<description lang="und">Text Entry</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6QjkEnrErnK/6WZOL0YKWZV" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Text Entry Interaction</name>
+			<description lang="und">Text Entry Interaction</description>
+			<interactionType>fill-in</interactionType>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6hh0joeVPV7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Text Entry</name>
+			<description lang="und">Text Entry</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6hh0joeVPV7/6NTHsvpUb4S" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Text Entry Interaction</name>
+			<description lang="und">Text Entry Interaction</description>
+			<interactionType>fill-in</interactionType>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6Gau5qwhMlL" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Text Entry</name>
+			<description lang="und">Text Entry</description>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/6Gau5qwhMlL/6RnjNv5WTLw" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Text Entry Interaction</name>
+			<description lang="und">Text Entry Interaction</description>
+			<interactionType>fill-in</interactionType>
+		</activity>
+		<activity id="http://67inBV6rEzg_course_id/60chWlRGsy1" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Results Slide</name>
+			<description lang="und">Results Slide</description>
+		</activity>
+	</activities>
+</tincan>
