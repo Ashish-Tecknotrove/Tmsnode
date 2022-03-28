@@ -112,3 +112,6 @@ CompanyDepartment.hasMany(trainer_model_1.default, {
 trainer_model_1.default.belongsTo(CompanyDepartment, {
     foreignKey: "department_id",
 });
+CompanyDepartment.belongsTo(users_model_1.default, {
+    foreignKey: "login_table_id"
+});

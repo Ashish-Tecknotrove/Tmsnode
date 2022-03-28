@@ -52,5 +52,10 @@ class TraineeValidator {
     bulkimportTraineevalidate() {
         return [];
     }
+    traineeProfile() {
+        return [
+            (0, express_validator_1.body)('trainee_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
 }
 exports.default = new TraineeValidator();

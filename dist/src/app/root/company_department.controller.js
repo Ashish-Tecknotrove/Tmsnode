@@ -147,15 +147,27 @@ class CompanyDepartmentController {
                                     login_table_id: userdata['id']
                                 };
                                 company_department_model_1.default.update(Object.assign({}, updateData), { where: { id: cdData['id'] } }).then(succ => {
-                                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "Added department successfully, and login created" });
+                                    res.status(response_codes_1.default.SUCCESS).json({
+                                        response_code: 1,
+                                        message: "Added department successfully, and login created"
+                                    });
                                 }).catch(err => {
-                                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Opps! " + err.message });
+                                    res.status(response_codes_1.default.BAD_REQUEST).json({
+                                        response_code: 0,
+                                        message: "Opps! " + err.message
+                                    });
                                 });
                             }).catch(err => {
-                                res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Opps! " + err.message });
+                                res.status(response_codes_1.default.BAD_REQUEST).json({
+                                    response_code: 0,
+                                    message: "Opps! " + err.message
+                                });
                             });
                         }).catch(err => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Opps! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Opps! " + err.message
+                            });
                         });
                     }).catch(err => {
                         return res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
@@ -166,7 +178,10 @@ class CompanyDepartmentController {
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Name or email of department already exists, please use another one" });
+                    res.status(response_codes_1.default.BAD_REQUEST).json({
+                        response_code: 0,
+                        message: "Name or email of department already exists, please use another one"
+                    });
                 }
             }
             catch (err) {
@@ -198,10 +213,17 @@ class CompanyDepartmentController {
                     }
                 }).then(data => {
                     if (data.length != 0) {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "data have been fetched successfully", data: data });
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 1,
+                            message: "data have been fetched successfully",
+                            data: data
+                        });
                     }
                     else {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: "No data were found, please add the department" });
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 0,
+                            message: "No data were found, please add the department"
+                        });
                     }
                 }).catch(err => {
                     res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Oops! " + err.message });
@@ -240,13 +262,199 @@ class CompanyDepartmentController {
                     where: where
                 }).then(data => {
                     if (data.length != 0) {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: "data have been fetched successfully.", data: data });
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 0,
+                            message: "data have been fetched successfully.",
+                            data: data
+                        });
                     }
                     else {
-                        res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "No data were found, please add the department", data: data });
+                        res.status(response_codes_1.default.BAD_REQUEST).json({
+                            response_code: 0,
+                            message: "No data were found, please add the department",
+                            data: data
+                        });
                     }
                 }).catch(err => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
+                });
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+            }
+        });
+    }
+    getCompanyDepartmentList(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield company_department_model_1.default.findAll({
+                    include: [{
+                            model: master_department_model_1.default,
+                            required: true,
+                            where: { IsDeleted: 0 },
+                            attributes: ['id', 'company_id', 'name', 'descripition']
+                        }, {
+                            model: users_model_1.default,
+                            required: true,
+                            where: { IsDeleted: 0 },
+                            attributes: ['id', 'company_id', 'email', 'password', 'password_wordpress']
+                        }],
+                    where: {
+                        IsDeleted: 0,
+                        company_id: req.body.company_id
+                    }
+                }).then(data => {
+                    if (data.length != 0) {
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 1,
+                            message: "data have been fetched successfully.",
+                            data: data
+                        });
+                    }
+                    else {
+                        res.status(response_codes_1.default.BAD_REQUEST).json({
+                            response_code: 0,
+                            message: "No data were found, please add the department",
+                            data: data
+                        });
+                    }
+                }).catch(err => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
+                });
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+            }
+        });
+    }
+    blockUnblockCompanyDepartment(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield company_department_model_1.default.findOne({
+                    where: {
+                        id: req.body.company_department_id,
+                        IsDeleted: 0
+                    }
+                }).then((CompanyDepartmentData) => __awaiter(this, void 0, void 0, function* () {
+                    if (CompanyDepartmentData != null) {
+                        let CompanyDepartmentUpdate = {
+                            IsBlock: (CompanyDepartmentData.IsBlock == 1) ? 0 : 1,
+                            updated_by: req.body.updated_by,
+                            updatedAt: response_strings_1.default.currentTime
+                        };
+                        yield company_department_model_1.default.update(Object.assign({}, CompanyDepartmentUpdate), {
+                            where: {
+                                id: req.body.company_department_id
+                            }
+                        }).then((SubCompanyResult) => __awaiter(this, void 0, void 0, function* () {
+                            let SubCompanyUserUpdate = {
+                                IsBlock: (CompanyDepartmentData.IsBlock == 1) ? 0 : 1,
+                                updated_by: req.body.updated_by,
+                                updatedAt: response_strings_1.default.currentTime
+                            };
+                            yield users_model_1.default.update(Object.assign({}, SubCompanyUserUpdate), {
+                                where: {
+                                    id: CompanyDepartmentData.login_table_id
+                                }
+                            }).then((UsersResult) => __awaiter(this, void 0, void 0, function* () {
+                                let message = (CompanyDepartmentData.IsBlock == 1) ? "unblock" : "block";
+                                res.status(response_codes_1.default.SUCCESS).json({
+                                    response_code: 1,
+                                    message: "Department successfully " + message + "."
+                                });
+                            })).catch(err => {
+                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: "Oops! " + err.message
+                                });
+                            });
+                        })).catch(err => {
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
+                        });
+                    }
+                    else {
+                        res.status(response_codes_1.default.BAD_REQUEST).json({
+                            response_code: 0,
+                            message: "Oops! This Department was either deleted or did not exist."
+                        });
+                    }
+                })).catch(err => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
+                });
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+            }
+        });
+    }
+    editCompanyDepartment(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield company_department_model_1.default.findOne({
+                    where: {
+                        id: req.body.company_department_id,
+                        IsDeleted: 0
+                    }
+                }).then((CompanyDepartmentData) => __awaiter(this, void 0, void 0, function* () {
+                    if (CompanyDepartmentData != null) {
+                        let CompanyDepartmentUpdate = {
+                            name: req.body.username,
+                            contactNumber: req.body.contactNumber,
+                            designation: req.body.designation,
+                            updated_by: req.body.updated_by,
+                            updatedAt: response_strings_1.default.currentTime
+                        };
+                        yield company_department_model_1.default.update(Object.assign({}, CompanyDepartmentUpdate), {
+                            where: {
+                                id: req.body.company_department_id
+                            }
+                        }).then((CompanyDepartmentResult) => __awaiter(this, void 0, void 0, function* () {
+                            let MasterDepartmentUpdate = {
+                                name: req.body.name,
+                                descripition: req.body.descripition,
+                                updated_by: req.body.updated_by,
+                                updatedAt: response_strings_1.default.currentTime
+                            };
+                            yield master_department_model_1.default.update(Object.assign({}, MasterDepartmentUpdate), {
+                                where: {
+                                    id: CompanyDepartmentData.department_id
+                                }
+                            }).then((MasterDepartmentResult) => {
+                                res.status(response_codes_1.default.SUCCESS).json({
+                                    response_code: 1,
+                                    message: "Department update successfully."
+                                });
+                            });
+                        })).catch(err => {
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
+                        });
+                    }
+                    else {
+                        res.status(response_codes_1.default.BAD_REQUEST).json({
+                            response_code: 0,
+                            message: "Oops! This Branch was deleted or not exist."
+                        });
+                    }
+                })).catch(err => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
                 });
             }
             catch (err) {

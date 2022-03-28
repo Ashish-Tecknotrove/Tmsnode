@@ -32,6 +32,9 @@ ElearningMaster.init({
     link: {
         type: sequelize_2.DataTypes.STRING,
     },
+    thumbImg: {
+        type: sequelize_2.DataTypes.STRING,
+    },
     created_by: {
         type: sequelize_2.DataTypes.INTEGER
     },

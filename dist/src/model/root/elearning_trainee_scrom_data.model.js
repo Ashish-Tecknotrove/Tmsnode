@@ -15,6 +15,10 @@ ElearningTraineeScromData.init({
         primaryKey: true,
         autoIncrement: true,
     },
+    session_id: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false
+    },
     test_id: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: false

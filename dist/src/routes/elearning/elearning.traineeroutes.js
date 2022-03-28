@@ -30,10 +30,12 @@ const ElearningTraineeRoutes = express.Router();
 var multer = require('multer');
 var formData = multer();
 ElearningTraineeRoutes.post('/getElearningDataTrainee', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.getElearning_Test_trainee_dashboard(), auth_1.default.handleValidatorError, elearningTraineeTest_controller_1.default.getElearningTestData);
-ElearningTraineeRoutes.post('/start_training_session', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.getElearning_Test_trainee_dashboard(), auth_1.default.handleValidatorError, elearningTraineeTest_controller_1.default.start_training_session);
-ElearningTraineeRoutes.post('/reset_training_session', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.getElearning_Test_trainee_dashboard(), auth_1.default.handleValidatorError, elearningTraineeTest_controller_1.default.reset_training_session);
+ElearningTraineeRoutes.post('/start_training_session', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.session_validator(), auth_1.default.handleValidatorError, elearningTraineeTest_controller_1.default.start_training_session);
+ElearningTraineeRoutes.post('/reset_training_session', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.session_validator(), auth_1.default.handleValidatorError, elearningTraineeTest_controller_1.default.reset_training_session);
+ElearningTraineeRoutes.post('/close_training_session', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.getElearning_Test_trainee_dashboard(), auth_1.default.handleValidatorError, elearningTraineeTest_controller_1.default.close_training_session);
 ElearningTraineeRoutes.post('/get_trainee_test_details_info', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.test_detail_info(), auth_1.default.handleValidatorError, elearningTraineeTest_controller_1.default.get_trainee_test_details);
-//! THIS URL HANDLING THE TRAINEE ELEARNING 
+ElearningTraineeRoutes.post('/get_elearning_test_result', formData.none(), auth_1.default.verifyAuthenticateToken, elearning_validator_1.default.test_result(), auth_1.default.handleValidatorError, elearningTraineeTest_controller_1.default.get_elearning_test_result);
+//! THIS URL HANDLING THE TRAINEE ELEARNING
 ElearningTraineeRoutes.put('/storeElearningResult/statements', elearningTraineeTest_controller_1.default.store_trainee_test_data);
 ElearningTraineeRoutes.put('/storeElearningResult/activities', elearningTraineeTest_controller_1.default.handle_scrom_activities_state);
 ElearningTraineeRoutes.get('/storeElearningResult/activities/state', elearningTraineeTest_controller_1.default.handle_scrom_activities_state);

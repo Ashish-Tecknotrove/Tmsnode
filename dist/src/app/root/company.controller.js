@@ -234,7 +234,10 @@ class CompanyController {
                         else {
                             res
                                 .status(response_codes_1.default.BAD_REQUEST)
-                                .json({ response_code: 0, message: "Oops! you cannot delete this company because it have an active Subscription please Deactivate the Subscription anf try again" });
+                                .json({
+                                response_code: 0,
+                                message: "Oops! you cannot delete this company because it have an active Subscription please Deactivate the Subscription anf try again"
+                            });
                         }
                     }, err => {
                         res
@@ -471,19 +474,31 @@ class CompanyController {
                             compayuser_model_1.default.update(Object.assign({}, updateId), { where: { id: userdata["id"] } }).catch((err) => {
                                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ message: "Oops! " + err.message });
                             });
-                            res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "Added company user successfully, and login created" });
+                            res.status(response_codes_1.default.SUCCESS).json({
+                                response_code: 1,
+                                message: "Added company user successfully, and login created"
+                            });
                             response_codes_1.default;
                         })
                             .catch(function (err) {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     })
                         .catch(function (err) {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Oops! Another user with this email already exists" });
+                    res.status(response_codes_1.default.BAD_REQUEST).json({
+                        response_code: 0,
+                        message: "Oops! Another user with this email already exists"
+                    });
                 }
             }
             catch (error) {
@@ -567,7 +582,10 @@ class CompanyController {
                         IsDeleted: 0,
                     },
                 }).catch((err) => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
                 });
                 if (company_user_data) {
                     res
@@ -616,15 +634,24 @@ class CompanyController {
                                 message: "Company user deleted successfully.",
                             });
                         }).catch(function (err) {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     })
                         .catch(function (err) {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: "Oops! An invalid company user ID was entered, or this user was already deleted" });
+                    res.status(response_codes_1.default.SUCCESS).json({
+                        response_code: 0,
+                        message: "Oops! An invalid company user ID was entered, or this user was already deleted"
+                    });
                 }
             }
             catch (error) {
@@ -703,7 +730,11 @@ class CompanyController {
                 else {
                     res.status(response_codes_1.default.SUCCESS).json({
                         response_code: 0,
-                        message: "Oops! An invalid company ID was entered, or Trainees not register yet."
+                        message: "Oops! Trainees not register yet.",
+                        currentYearText: currentYearText,
+                        currentMonthText: currentMonthText,
+                        currentMonthTraineesCount: 0,
+                        allTraineesCount: 0
                     });
                 }
             }
@@ -847,8 +878,14 @@ class CompanyController {
                 }
                 else {
                     res.status(response_codes_1.default.SUCCESS).json({
-                        response_code: 0,
-                        message: "Oops! An invalid company ID was entered, or Trainees not register or assign yet."
+                        response_code: 1,
+                        message: "Oops! Trainees not register or assign yet.",
+                        TotalTraineesRegister: 0,
+                        TotalBlockTrainees: 0,
+                        YetToStart: 0,
+                        Completed: 0,
+                        InProgress: 0,
+                        SuccessRatio: 0
                     });
                 }
             }
@@ -870,142 +907,148 @@ class CompanyController {
                         IsDeleted: 0
                     }
                 });
-                if (panel_id == 3) {
-                    const BranchData = yield subcompany_model_1.default.findAll({
-                        where: {
-                            company_id: company_id,
-                            IsDeleted: 0
-                        }
-                    });
-                    if (BranchData.length != 0) {
-                        for (let i = 0; i < BranchData.length; i++) {
-                            xAxisData[i] = BranchData[i]['name'];
-                            let branchTrainees = TraineesData.filter((element) => {
-                                if (element['sub_company_id'] == BranchData[i]['id']) {
-                                    return element;
-                                }
-                            });
-                            seriesData[i] = branchTrainees.length;
-                        }
-                    }
-                    else {
-                        res.status(response_codes_1.default.SUCCESS).json({
-                            response_code: 0,
-                            message: response_strings_1.default.NOT
-                        });
-                    }
-                }
-                else if (panel_id == 2) {
-                    const DepartmentData = yield company_department_model_1.default.findAll({
-                        include: [
-                            {
-                                model: master_department_model_1.default,
-                                where: {
-                                    IsDeleted: 0,
-                                    company_id: company_id
-                                }
+                if (TraineesData.length != 0) {
+                    if (panel_id == 3) {
+                        const BranchData = yield subcompany_model_1.default.findAll({
+                            where: {
+                                company_id: company_id,
+                                IsDeleted: 0
                             }
+                        });
+                        if (BranchData.length != 0) {
+                            for (let i = 0; i < BranchData.length; i++) {
+                                xAxisData[i] = BranchData[i]['name'];
+                                let branchTrainees = TraineesData.filter((element) => {
+                                    if (element['sub_company_id'] == BranchData[i]['id']) {
+                                        return element;
+                                    }
+                                });
+                                seriesData[i] = branchTrainees.length;
+                            }
+                        }
+                        else {
+                            res.status(response_codes_1.default.SUCCESS).json({
+                                response_code: 0,
+                                message: response_strings_1.default.NOT
+                            });
+                        }
+                    }
+                    else if (panel_id == 2) {
+                        const DepartmentData = yield company_department_model_1.default.findAll({
+                            include: [
+                                {
+                                    model: master_department_model_1.default,
+                                    where: {
+                                        IsDeleted: 0,
+                                        company_id: company_id
+                                    }
+                                }
+                            ],
+                            where: {
+                                company_id: company_id,
+                                IsDeleted: 0
+                            }
+                        });
+                        if (DepartmentData.length != 0) {
+                            for (let i = 0; i < DepartmentData.length; i++) {
+                                xAxisData[i] = DepartmentData[i]['MasterDepartment']['name'];
+                                let departmentTrainees = TraineesData.filter((element) => {
+                                    if (element['department_id'] == DepartmentData[i]['id']) {
+                                        return element;
+                                    }
+                                });
+                                seriesData[i] = departmentTrainees.length;
+                            }
+                        }
+                        else {
+                            res.status(response_codes_1.default.SUCCESS).json({
+                                response_code: 0,
+                                message: response_strings_1.default.NOT
+                            });
+                        }
+                    }
+                    else {
+                        const TrainerData = yield trainer_model_1.default.findAll({
+                            where: {
+                                company_id: company_id,
+                                IsDeleted: 0
+                            }
+                        });
+                        if (TrainerData.length != 0) {
+                            for (let i = 0; i < TrainerData.length; i++) {
+                                xAxisData[i] = TrainerData[i]['name'];
+                                let trainerTrainees = TraineesData.filter((element) => {
+                                    if (element['trainer_id'] == TrainerData[i]['id']) {
+                                        return element;
+                                    }
+                                });
+                                seriesData[i] = trainerTrainees.length;
+                            }
+                        }
+                        else {
+                            res.status(response_codes_1.default.SUCCESS).json({
+                                response_code: 0,
+                                message: response_strings_1.default.NOT
+                            });
+                        }
+                    }
+                    let options = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'cross',
+                            },
+                        },
+                        grid: {
+                            right: '5%',
+                        },
+                        xAxis: [
+                            {
+                                type: 'category',
+                                axisTick: {
+                                    alignWithLabel: true,
+                                },
+                                // prettier-ignore
+                                data: xAxisData,
+                                axisLabel: {
+                                    interval: 0,
+                                    //rotate: 30 //If the label names are too long you can manage this by rotating the label.
+                                }
+                            },
                         ],
-                        where: {
-                            company_id: company_id,
-                            IsDeleted: 0
-                        }
+                        yAxis: [
+                            {
+                                type: 'value',
+                                name: 'count',
+                                min: 0,
+                                max: TraineesData.length,
+                                position: 'left',
+                                axisLine: {
+                                    show: true,
+                                },
+                            },
+                        ],
+                        series: [
+                            {
+                                type: 'bar',
+                                barMaxWidth: 50,
+                                // showBackground: true,
+                                data: seriesData,
+                            },
+                        ],
+                    };
+                    res.status(response_codes_1.default.SUCCESS).json({
+                        response_code: 1,
+                        message: response_strings_1.default.GET,
+                        echartOption: options
                     });
-                    if (DepartmentData.length != 0) {
-                        for (let i = 0; i < DepartmentData.length; i++) {
-                            xAxisData[i] = DepartmentData[i]['MasterDepartment']['name'];
-                            let departmentTrainees = TraineesData.filter((element) => {
-                                if (element['department_id'] == DepartmentData[i]['id']) {
-                                    return element;
-                                }
-                            });
-                            seriesData[i] = departmentTrainees.length;
-                        }
-                    }
-                    else {
-                        res.status(response_codes_1.default.SUCCESS).json({
-                            response_code: 0,
-                            message: response_strings_1.default.NOT
-                        });
-                    }
-                }
-                else if (panel_id == 1) {
-                    const TrainerData = yield trainer_model_1.default.findAll({
-                        where: {
-                            company_id: company_id,
-                            IsDeleted: 0
-                        }
-                    });
-                    if (TrainerData.length != 0) {
-                        for (let i = 0; i < TrainerData.length; i++) {
-                            xAxisData[i] = TrainerData[i]['name'];
-                            let trainerTrainees = TraineesData.filter((element) => {
-                                if (element['trainer_id'] == TrainerData[i]['id']) {
-                                    return element;
-                                }
-                            });
-                            seriesData[i] = trainerTrainees.length;
-                        }
-                    }
-                    else {
-                        res.status(response_codes_1.default.SUCCESS).json({
-                            response_code: 0,
-                            message: response_strings_1.default.NOT
-                        });
-                    }
                 }
                 else {
-                    res.status(response_codes_1.default.SUCCESS).json({
+                    res.status(response_codes_1.default.BAD_REQUEST).json({
                         response_code: 0,
                         message: response_strings_1.default.NOT
                     });
                 }
-                let options = {
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {
-                            type: 'cross',
-                        },
-                    },
-                    grid: {
-                        right: '5%',
-                    },
-                    xAxis: [
-                        {
-                            type: 'category',
-                            axisTick: {
-                                alignWithLabel: true,
-                            },
-                            // prettier-ignore
-                            data: xAxisData,
-                        },
-                    ],
-                    yAxis: [
-                        {
-                            type: 'value',
-                            name: 'count',
-                            min: 0,
-                            max: TraineesData.length,
-                            position: 'left',
-                            axisLine: {
-                                show: true,
-                            },
-                        },
-                    ],
-                    series: [
-                        {
-                            type: 'bar',
-                            barMaxWidth: 50,
-                            // showBackground: true,
-                            data: seriesData,
-                        },
-                    ],
-                };
-                res.status(response_codes_1.default.SUCCESS).json({
-                    response_code: 1,
-                    message: response_strings_1.default.GET,
-                    echartOption: options
-                });
             }
             catch (error) {
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + error.message });

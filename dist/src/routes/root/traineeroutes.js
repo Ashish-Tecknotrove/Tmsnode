@@ -78,6 +78,7 @@ Router.post("/bulk", auth_1.default.verifyAuthenticateToken, trainee_validator_1
 }), trainee_controller_1.default.bulkInsertTrainee);
 Router.post("/getTraineeCount", formData.any(), trainee_controller_1.default.getTraineeCount);
 Router.post("/registerTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.registerTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.registerNewTrainee);
+Router.post("/registerTrainee_loop", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.registerTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.registerNewTrainee_for_loop);
 Router.post("/updateTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.updateTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.updateTraineeDetails);
 Router.post("/deleteTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.deleteTraineevalidate(), auth_1.default.handleValidatorError, trainee_controller_1.default.deleteTrainee);
 Router.post("/block_unblock_Trainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.blockTrainee(), auth_1.default.handleValidatorError, trainee_controller_1.default.blockTrainee);
@@ -88,4 +89,5 @@ Router.post("/getAssignTraineeToTrainer", formData.any(), auth_1.default.verifyA
 Router.post("/getAssignTraineeCurriculum", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.getAssignTraineeCurriculum(), auth_1.default.handleValidatorError, trainee_controller_1.default.getAssignTraineeCurriculum);
 //TODO TRAINEE DASHBOARD
 Router.post("/getTechnologiesAllotedToTrainee", formData.any(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.getAssignTraineeCurriculumValidator(), auth_1.default.handleValidatorError, trainee_controller_1.default.getTechnologiesAllotedToTrainee);
+Router.post('/traineeProfile', formData.none(), auth_1.default.verifyAuthenticateToken, trainee_validator_1.default.traineeProfile(), auth_1.default.handleValidatorError, trainee_controller_1.default.traineeProfile);
 exports.default = Router;

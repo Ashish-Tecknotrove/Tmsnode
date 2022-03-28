@@ -25,6 +25,9 @@ CurriculumParentCategoryTest.init({
     title: {
         type: sequelize_1.DataTypes.STRING(100)
     },
+    description: {
+        type: sequelize_1.DataTypes.STRING(200)
+    },
     parent_id: {
         type: sequelize_1.DataTypes.INTEGER,
         references: {

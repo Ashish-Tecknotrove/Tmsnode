@@ -33,6 +33,12 @@ Router.post("/assignTrainersToDepartment_SubCompany", formData.none(), auth_1.de
 Router.post("/addDepartment", formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.addDepartmentValidator(), auth_1.default.handleValidatorError, company_department_controller_1.default.addDepartment);
 Router.post("/getDepartmentDetails", formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.getDepartment(), auth_1.default.handleValidatorError, company_department_controller_1.default.departmentDetails);
 Router.post("/getCompanyDepartment", formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.getDepartment(), auth_1.default.handleValidatorError, company_department_controller_1.default.getCompanyDepartment);
+//* Gold Panel
+Router.post("/getCompanyDepartmentList", formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.getDepartment(), auth_1.default.handleValidatorError, company_department_controller_1.default.getCompanyDepartmentList);
+//* Gold Panel
+Router.post("/blockUnblockCompanyDepartment", formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.blockUnblockCompanyDepartment(), auth_1.default.handleValidatorError, company_department_controller_1.default.blockUnblockCompanyDepartment);
+//* Gold Panel
+Router.post("/editCompanyDepartment", formData.none(), auth_1.default.verifyAuthenticateToken, company_department_validator_1.default.editCompanyDepartment(), auth_1.default.handleValidatorError, company_department_controller_1.default.editCompanyDepartment);
 /*
 Router.post('/updateMasterDepartment',
     formData.none(),

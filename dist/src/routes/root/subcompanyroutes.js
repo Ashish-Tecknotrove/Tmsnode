@@ -34,4 +34,7 @@ Router.post('/getSubcompany', formData.none(), auth_1.default.verifyAuthenticate
 Router.post('/getSubcompanyDetails', formData.none(), auth_1.default.verifyAuthenticateToken, subcompany_validator_1.default.getSubcompany(), auth_1.default.handleValidatorError, subcompany_controller_1.default.getSubcompany_detail_info);
 Router.post('/assignDepartment', formData.none(), auth_1.default.verifyAuthenticateToken, subcompany_validator_1.default.assignDepartmentValidator(), auth_1.default.handleValidatorError, subcompany_controller_1.default.assign_department_to_subcompany);
 Router.post('/assignTrainerToSubCompany', formData.none(), auth_1.default.verifyAuthenticateToken, subcompany_validator_1.default.assignTrainerValidator(), auth_1.default.handleValidatorError, subcompany_controller_1.default.assign_trainer_to_subcompany);
+Router.post('/getSubCompanyList', formData.none(), auth_1.default.verifyAuthenticateToken, subcompany_validator_1.default.getSubcompany(), auth_1.default.handleValidatorError, subcompany_controller_1.default.getSubCompanyList);
+Router.post('/block_unblock_subcompany', formData.none(), auth_1.default.verifyAuthenticateToken, subcompany_validator_1.default.block_unblock_subcompany(), auth_1.default.handleValidatorError, subcompany_controller_1.default.block_unblock_subcompany);
+Router.post('/edit_subcompany', formData.none(), auth_1.default.verifyAuthenticateToken, subcompany_validator_1.default.edit_subcompany(), auth_1.default.handleValidatorError, subcompany_controller_1.default.edit_subcompany);
 exports.default = Router;

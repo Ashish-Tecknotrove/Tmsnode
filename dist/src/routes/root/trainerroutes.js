@@ -40,4 +40,9 @@ Router.post('/unassignTrainer', formData.any(), auth_1.default.verifyAuthenticat
 Router.post('/getTraineeRemarks', formData.any(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.getTraineeRemarks(), auth_1.default.handleValidatorError, trainer_controller_1.default.getTraineeRemarks);
 Router.post('/addTraineeRemarks', formData.any(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.addTraineeRemarks(), auth_1.default.handleValidatorError, trainer_controller_1.default.addTraineeRemarks);
 Router.post('/updateTraineeRemarks', formData.any(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.updateTraineeRemarks(), auth_1.default.handleValidatorError, trainer_controller_1.default.updateTraineeRemarks);
+Router.post('/getTrainersForAssignDepartment', formData.none(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.getTrainersForAssignDepartment(), auth_1.default.handleValidatorError, trainer_controller_1.default.getTrainersForAssignDepartment);
+//* This for GOLD Panel
+Router.post('/checkAssignTrainersTrainee', formData.none(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.checkAssignTrainersTrainee(), auth_1.default.handleValidatorError, trainer_controller_1.default.checkAssignTrainersTrainee);
+//* This for GOLD Panel
+Router.post('/assign_department_to_trainer', formData.none(), auth_1.default.verifyAuthenticateToken, trainer_validator_1.default.assign_department_to_trainer(), auth_1.default.handleValidatorError, trainer_controller_1.default.assign_department_to_trainer);
 exports.default = Router;

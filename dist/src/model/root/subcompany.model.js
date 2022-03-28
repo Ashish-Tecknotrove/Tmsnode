@@ -36,7 +36,13 @@ SubCompany.init({
         type: sequelize_1.DataTypes.STRING,
         unique: true,
     },
+    email: {
+        type: sequelize_1.DataTypes.STRING,
+    },
     description: {
+        type: sequelize_1.DataTypes.STRING,
+    },
+    username: {
         type: sequelize_1.DataTypes.STRING,
     },
     designation: {

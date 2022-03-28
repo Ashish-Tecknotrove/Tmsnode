@@ -10,6 +10,7 @@ const company_department_model_1 = __importDefault(require("./company_department
 const subcompany_model_1 = __importDefault(require("./subcompany.model"));
 const trainee_curriculum_model_1 = __importDefault(require("./trainee_curriculum.model"));
 const users_model_1 = __importDefault(require("./users.model"));
+const trainer_model_1 = __importDefault(require("./trainer.model"));
 class Trainee extends sequelize_1.Model {
 }
 exports.default = Trainee;
@@ -152,6 +153,10 @@ Trainee.init({
     trainer_id: {
         type: sequelize_1.DataTypes.INTEGER,
         allowNull: true,
+        references: {
+            model: trainer_model_1.default,
+            key: "id",
+        },
     },
     status: {
         type: sequelize_1.DataTypes.STRING,
@@ -271,4 +276,7 @@ Trainee.belongsTo(company_department_model_1.default, {
 });
 company_department_model_1.default.hasMany(Trainee, {
     foreignKey: "department_id",
+});
+Trainee.belongsTo(trainer_model_1.default, {
+    foreignKey: "trainer_id"
 });

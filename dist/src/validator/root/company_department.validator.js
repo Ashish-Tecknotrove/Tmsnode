@@ -26,5 +26,22 @@ class CompanyDepartmentValidator {
             (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing')
         ];
     }
+    blockUnblockCompanyDepartment() {
+        return [
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('company_department_id').notEmpty().withMessage('parameter is missing')
+        ];
+    }
+    editCompanyDepartment() {
+        return [
+            (0, express_validator_1.body)('company_department_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('username').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('contactNumber').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('designation').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('name').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('descripition').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
 }
 exports.default = new CompanyDepartmentValidator();

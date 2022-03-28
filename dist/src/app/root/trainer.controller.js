@@ -40,7 +40,10 @@ class TrainerController {
                         count: data
                     });
                 }).catch(err => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
                 });
             }
             catch (err) {
@@ -99,13 +102,19 @@ class TrainerController {
                                 UserData: UserData
                             });
                         }).catch((err) => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     }));
                 }
                 //?get duplicate email in User but can't get trainer 
                 else if (trainer.length == 0 && user.length != 0) {
-                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Email of user already exists, please use another one" });
+                    res.status(response_codes_1.default.BAD_REQUEST).json({
+                        response_code: 0,
+                        message: "Email of user already exists, please use another one"
+                    });
                 }
                 //?  Trainer and User both of not exists
                 else {
@@ -148,7 +157,10 @@ class TrainerController {
                             });
                         }));
                     })).catch(function (err) {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     });
                 }
             }
@@ -242,12 +254,18 @@ class TrainerController {
                                 });
                             });
                         })).catch((err) => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     }
                     //? TRAINER NOT EXIST
                     else {
-                        res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Oops! An invalid trainer ID was entered, or this trainer was already deleted" });
+                        res.status(response_codes_1.default.BAD_REQUEST).json({
+                            response_code: 0,
+                            message: "Oops! An invalid trainer ID was entered, or this trainer was already deleted"
+                        });
                     }
                 })).catch((err) => {
                     res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
@@ -384,16 +402,43 @@ class TrainerController {
                                 where: {
                                     id: result.login_table_id
                                 }
-                            }).then((updateRes) => {
-                                res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: "The Trainer have been deleted." });
-                            }).catch((err) => {
+                            }).then((updateRes) => __awaiter(this, void 0, void 0, function* () {
+                                //Un Assigned All Trainees
+                                let unassign_all_trainee = {
+                                    trainer_id: null
+                                };
+                                yield trainee_model_1.default.update(Object.assign({}, unassign_all_trainee), { where: { trainer_id: req.body.trainer_id } }).then((unassign) => __awaiter(this, void 0, void 0, function* () {
+                                    let unassign_all_trainee2 = {
+                                        IsDeleted: 1
+                                    };
+                                    yield assign_trainee_to_trainer_model_1.default.update(Object.assign({}, unassign_all_trainee2), { where: { trainer_id: req.body.trainer_id } }).then(d => {
+                                        res.status(response_codes_1.default.SUCCESS).json({
+                                            response_code: 1,
+                                            message: "The Trainer have been deleted."
+                                        });
+                                    }).catch(err => {
+                                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                            response_code: 0,
+                                            message: "Oops! " + err.message
+                                        });
+                                    });
+                                })).catch(err => {
+                                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                        response_code: 0,
+                                        message: "Oops! " + err.message
+                                    });
+                                });
+                            })).catch((err) => {
                                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                                     response_code: 0,
                                     message: "Oops! " + err.message
                                 });
                             });
                         })).catch((err) => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     }
                     //? TRAINER NOT EXIST
@@ -458,10 +503,16 @@ class TrainerController {
                         users_model_1.default.update(Object.assign({}, block_user_data), { where: { id: trainer_exist[0]['login_table_id'] } }).then(succ => {
                             res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: message });
                         }).catch(err => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     }).catch(err => {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     });
                 }
                 else {
@@ -713,6 +764,194 @@ class TrainerController {
                         message: "Oops! " + err.message
                     });
                 }).catch((err) => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
+                });
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message
+                });
+            }
+        });
+    }
+    getTrainersForAssignDepartment(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                //? GET ALL TRAINER BY PANELS
+                yield trainer_model_1.default.findAll({
+                    include: [
+                        {
+                            model: company_department_model_1.default,
+                            attributes: ['id', 'name', 'designation', 'email'],
+                            include: [{
+                                    model: master_department_model_1.default,
+                                    attributes: ['id', 'name', 'descripition'],
+                                }],
+                            where: {
+                                IsDeleted: 0,
+                                IsBlock: 0
+                            },
+                            required: false
+                        },
+                    ],
+                    where: {
+                        IsDeleted: 0,
+                        company_id: req.body.company_id,
+                    },
+                    order: [['id', 'DESC']]
+                }).then((result) => {
+                    res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.GET, data: result });
+                }).catch((err) => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message,
+                        data: "",
+                    });
+                });
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message,
+                    data: "",
+                });
+            }
+        });
+    }
+    //* This for GOLD Panel
+    checkAssignTrainersTrainee(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield trainee_model_1.default.findAll({
+                    where: {
+                        trainer_id: req.body.trainer_id,
+                        IsDeleted: 0
+                    }
+                }).then((TraineeData) => __awaiter(this, void 0, void 0, function* () {
+                    if (TraineeData.length != 0) {
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 1,
+                            message: "This trainer is responsible for some trainees. Would you like to change their department as well?",
+                            bit: 1
+                        });
+                    }
+                    else {
+                        let updateTrainer = {
+                            department_id: req.body.company_department_id,
+                            updatedAt: response_strings_1.default.currentTime,
+                            updated_by: req.body.updated_by,
+                        };
+                        yield trainer_model_1.default.update(Object.assign({}, updateTrainer), {
+                            where: {
+                                id: req.body.trainer_id
+                            }
+                        }).then((result) => __awaiter(this, void 0, void 0, function* () {
+                            res.status(response_codes_1.default.SUCCESS).json({
+                                response_code: 1,
+                                message: "Successfully assign department to trainer.",
+                                bit: 0
+                            });
+                        })).catch((err) => {
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message,
+                            });
+                        });
+                    }
+                })).catch((err) => {
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message,
+                    });
+                });
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message,
+                });
+            }
+        });
+    }
+    //* This for GOLD Panel
+    assign_department_to_trainer(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let updateTrainer = {
+                    department_id: req.body.company_department_id,
+                    updatedAt: response_strings_1.default.currentTime,
+                    updated_by: req.body.updated_by,
+                };
+                yield trainer_model_1.default.update(Object.assign({}, updateTrainer), {
+                    where: {
+                        id: req.body.trainer_id
+                    }
+                }).then((result) => __awaiter(this, void 0, void 0, function* () {
+                    let updateTrainee;
+                    let message = "";
+                    if (req.body.bit == 1) {
+                        updateTrainee = {
+                            department_id: req.body.company_department_id,
+                            updatedAt: response_strings_1.default.currentTime,
+                            updated_by: req.body.updated_by,
+                        };
+                        message = "Successfully assign department to trainer with assigned trainee";
+                    }
+                    else {
+                        updateTrainee = {
+                            department_id: 0,
+                            trainer_id: 0,
+                            updatedAt: response_strings_1.default.currentTime,
+                            updated_by: req.body.updated_by,
+                        };
+                        message = "Successfully assign department to trainer only.";
+                    }
+                    yield trainee_model_1.default.update(Object.assign({}, updateTrainee), {
+                        where: {
+                            trainer_id: req.body.trainer_id,
+                            IsDeleted: 0
+                        }
+                    }).then((TraineeResult) => __awaiter(this, void 0, void 0, function* () {
+                        if (req.body.bit == 1) {
+                            let updateTraineeAssign = {
+                                IsBlock: 0,
+                                updatedAt: response_strings_1.default.currentTime,
+                                updated_by: req.body.updated_by
+                            };
+                            yield assign_trainee_to_trainer_model_1.default.update(Object.assign({}, updateTraineeAssign), {
+                                where: {
+                                    trainer_id: req.body.trainer_id,
+                                    IsDeleted: 0
+                                }
+                            }).then((TraineeResult) => {
+                                res.status(response_codes_1.default.SUCCESS).json({
+                                    response_code: 1,
+                                    message: message,
+                                });
+                            }).catch((err) => {
+                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: "Oops! " + err.message,
+                                });
+                            });
+                        }
+                        else {
+                            res.status(response_codes_1.default.SUCCESS).json({
+                                response_code: 1,
+                                message: message,
+                            });
+                        }
+                    })).catch((err) => {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message,
+                        });
+                    });
+                })).catch((err) => {
                     res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
                         response_code: 0,
                         message: "Oops! " + err.message

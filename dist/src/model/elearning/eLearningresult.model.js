@@ -7,6 +7,7 @@ const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const curriculum_parent_category_test_model_1 = __importDefault(require("../root/curriculum_parent_category_test.model"));
 const trainee_model_1 = __importDefault(require("../root/trainee.model"));
+const elearning_status_model_1 = __importDefault(require("./elearning_status.model"));
 class ElearningResult extends sequelize_1.Model {
 }
 exports.default = ElearningResult;
@@ -22,6 +23,14 @@ ElearningResult.init({
             model: trainee_model_1.default,
             key: "id"
         }
+    },
+    session_id: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    test_start: {
+        type: sequelize_1.DataTypes.INTEGER
     },
     curriculum_test_id: {
         type: sequelize_1.DataTypes.INTEGER,
@@ -40,7 +49,11 @@ ElearningResult.init({
         type: sequelize_1.DataTypes.INTEGER
     },
     status: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.INTEGER,
+        references: {
+            model: elearning_status_model_1.default,
+            key: 'id'
+        }
     },
     duration: {
         type: sequelize_1.DataTypes.STRING
@@ -91,4 +104,7 @@ curriculum_parent_category_test_model_1.default.hasMany(ElearningResult, {
 });
 ElearningResult.belongsTo(curriculum_parent_category_test_model_1.default, {
     foreignKey: 'curriculum_test_id'
+});
+ElearningResult.belongsTo(elearning_status_model_1.default, {
+    foreignKey: 'status'
 });

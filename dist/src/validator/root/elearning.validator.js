@@ -33,10 +33,22 @@ class ElearningValidator {
             (0, express_validator_1.body)('trainee_id').notEmpty().withMessage('parameter is missing'),
         ];
     }
+    session_validator() {
+        return [
+            (0, express_validator_1.body)('trainee_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('test_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('builder_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
     test_detail_info() {
         return [
             (0, express_validator_1.body)('trainee_id').notEmpty().withMessage('parameter is missing'),
             (0, express_validator_1.body)('test_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+    test_result() {
+        return [
+            (0, express_validator_1.body)('result_id').notEmpty().withMessage('parameter is missing')
         ];
     }
 }

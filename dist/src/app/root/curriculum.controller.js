@@ -332,6 +332,7 @@ class CurriculumController {
                 const updateData = {
                     prefix: req.body.prefix,
                     title: req.body.title,
+                    description: req.body.description,
                     updated_by: req.body.updated_by,
                     updatedAt: response_strings_1.default.currentTime,
                 };

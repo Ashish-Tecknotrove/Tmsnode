@@ -104,6 +104,10 @@ Users.init({
     IsDeleted: {
         type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 0
+    },
+    IsBlock: {
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
     }
 }, {
     timestamps: true,

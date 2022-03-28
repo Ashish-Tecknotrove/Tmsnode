@@ -1,4 +1,23 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -19,13 +38,18 @@ const response_strings_1 = __importDefault(require("../../strings/response-strin
 const assign_trainee_to_trainer_model_1 = __importDefault(require("../../model/root/assign_trainee_to_trainer.model"));
 const language_model_1 = __importDefault(require("../../model/language/language.model"));
 const company_department_model_1 = __importDefault(require("../../model/root/company_department.model"));
-const master_department_model_1 = __importDefault(require("../../model/root/master_department.model"));
 const subcompany_model_1 = __importDefault(require("../../model/root/subcompany.model"));
 const trainee_curriculum_model_1 = __importDefault(require("../../model/root/trainee_curriculum.model"));
 const curriculum_model_1 = __importDefault(require("../../model/root/curriculum.model"));
+const sequelize_1 = __importStar(require("sequelize"));
 const technology_model_1 = __importDefault(require("../../model/root/technology.model"));
-const sequelize_1 = __importDefault(require("sequelize"));
 const subscription_model_1 = __importDefault(require("../../model/root/subscription.model"));
+const company_model_1 = __importDefault(require("../../model/root/company.model"));
+const cities_model_1 = __importDefault(require("../../model/resources/cities.model"));
+const states_model_1 = __importDefault(require("../../model/resources/states.model"));
+const countries_model_1 = __importDefault(require("../../model/resources/countries.model"));
+const master_department_model_1 = __importDefault(require("../../model/root/master_department.model"));
+const trainer_model_1 = __importDefault(require("../../model/root/trainer.model"));
 const readXlsxFile = require("read-excel-file/node");
 class TraineeController {
     getTraineeCount(req, res) {
@@ -43,7 +67,10 @@ class TraineeController {
                         count: data
                     });
                 }).catch(err => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
                 });
             }
             catch (err) {
@@ -83,10 +110,16 @@ class TraineeController {
                                 license_number_valid++;
                             }
                         }).catch(err => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     })).catch(err => {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     });
                 }
                 if (license_number_valid == 0) {
@@ -134,7 +167,7 @@ class TraineeController {
                                         trainee_user_id: userData['id'],
                                         curriculum_id: curriculum_id_json[i]['curriculum_id'],
                                         technology_id: curriculum_id_json[i]['technology_id'],
-                                        language_id: req.body.language_id,
+                                        language_id: req.body.language,
                                         created_by: req.body.created_by,
                                         createdAt: response_strings_1.default.currentTime
                                     };
@@ -154,13 +187,19 @@ class TraineeController {
                                     res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ message: "Oops! " + err.message });
                                 });
                             })).catch(err => {
-                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: "Oops! " + err.message
+                                });
                             });
                         }).catch(err => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     }
-                    //TODO If Trainee exist in trainee table but login not ceated 
+                    //TODO If Trainee exist in trainee table but login not ceated
                     else if (check_trainee_exits.length != 0 && check_trainee_login_exist.length == 0) {
                         var user_login_body = {
                             company_id: req.body.company_id,
@@ -185,11 +224,17 @@ class TraineeController {
                                     message: "The Trainee have been registered successfully."
                                 });
                             }).catch(err => {
-                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: "Oops! " + err.message
+                                });
                             });
                             //res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Trainee Already Exits \n But Login Crediantial Not Found \n Login Crediantial Created" });
                         }).catch(err => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     }
                     else {
@@ -201,10 +246,16 @@ class TraineeController {
                 }
                 else {
                     if (curriculum_id_json.length > 1) {
-                        res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Ooops! One or both of your selected subscription has been max out their limit" });
+                        res.status(response_codes_1.default.BAD_REQUEST).json({
+                            response_code: 0,
+                            message: "Ooops! One or both of your selected subscription has been max out their limit"
+                        });
                     }
                     else {
-                        res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Ooops! Your selected subscription has been max out their limit" });
+                        res.status(response_codes_1.default.BAD_REQUEST).json({
+                            response_code: 0,
+                            message: "Ooops! Your selected subscription has been max out their limit"
+                        });
                     }
                 }
             }
@@ -286,11 +337,16 @@ class TraineeController {
                         });
                     }
                     else {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0,
-                            message: 'No trainee were found.', data: success });
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 0,
+                            message: 'No trainee were found.', data: success
+                        });
                     }
                 }).catch(err => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
                 });
             }
             catch (err) {
@@ -304,6 +360,7 @@ class TraineeController {
             //var course_id = req.body.course_id;
             // console.log(req.file?.filename);
             try {
+                // const csv_file = req.file?.filename;
                 const csv_file = (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename;
                 const course_json = req.body.curriculum;
                 const langauge_id = req.body.language_id;
@@ -351,11 +408,17 @@ class TraineeController {
                             message: "The Trainee have been update successfully."
                         });
                     }).catch(err => {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     });
                 }
                 else {
-                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: "Oops! An invalid trainee ID was entered, or this trainee was already deleted" });
+                    res.status(response_codes_1.default.BAD_REQUEST).json({
+                        response_code: 0,
+                        message: "Oops! An invalid trainee ID was entered, or this trainee was already deleted"
+                    });
                 }
             }
             catch (err) {
@@ -396,10 +459,16 @@ class TraineeController {
                                 message: "The Trainee have been deleted successfully."
                             });
                         }).catch(err => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     }).catch(err => {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     });
                 }
                 else {
@@ -457,10 +526,16 @@ class TraineeController {
                         users_model_1.default.update(Object.assign({}, block_user_data), { where: { id: trainee_exist[0]['login_table_id'] } }).then(succ => {
                             res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: message });
                         }).catch(err => {
-                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
                         });
                     }).catch(err => {
-                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     });
                 }
                 else {
@@ -494,8 +569,9 @@ class TraineeController {
                         // IsBlock:0,
                         IsDeleted: 0,
                         IsBlock: 0,
-                        trainer_id: 0
-                    }
+                        [sequelize_1.Op.or]: [{ trainer_id: 0 }, { trainer_id: null }]
+                    },
+                    order: [['id', 'DESC']]
                 }).then((success) => {
                     if (success.length != 0) {
                         res.status(response_codes_1.default.SUCCESS).json({
@@ -505,10 +581,13 @@ class TraineeController {
                         });
                     }
                     else {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: 'No trainee found' });
+                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: 'No trainee found', data: [] });
                     }
                 }).catch(err => {
-                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
                 });
             }
             catch (err) {
@@ -692,6 +771,306 @@ class TraineeController {
             catch (err) {
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR)
                     .json({ response_code: 0, message: "Oops! " + err.message });
+            }
+        });
+    }
+    registerNewTrainee_for_loop(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                for (let l = 87; l <= 1000; l++) {
+                    req.body.company_id = 2;
+                    req.body.email = "trainee.daimler" + l + "@gmail.com";
+                    req.body.first_name = "Trainee Daimler " + l + " Demo";
+                    req.body.password = "123";
+                    req.body.language = "1";
+                    req.body.created_by = 2;
+                    var curriculum_id_json = JSON.parse(req.body.curriculum_id);
+                    var curriculum_count = curriculum_id_json.length;
+                    var license_number_valid = 0;
+                    for (let i = 0; i < curriculum_id_json.length; i++) {
+                        var curriculum = curriculum_id_json[i]['curriculum_id'];
+                        var company_id = req.body.company_id;
+                        yield trainee_model_1.default.count({
+                            include: [{
+                                    model: trainee_curriculum_model_1.default,
+                                    where: {
+                                        trainee_id: sequelize_1.default.col("Trainee.id"),
+                                        curriculum_id: curriculum
+                                    },
+                                }],
+                            where: { company_id: company_id },
+                            group: ["TraineeCurriculums.trainee_id", "TraineeCurriculums.curriculum_id"],
+                            //logging:console.log
+                        }).then((Totalcount) => __awaiter(this, void 0, void 0, function* () {
+                            var count = Totalcount.length;
+                            //console.log(count.length);
+                            yield subscription_model_1.default.findOne({
+                                where: {
+                                    curriculum_id: curriculum
+                                }
+                            }).then((sub) => {
+                                if (sub["licence_no"] <= count) {
+                                    license_number_valid++;
+                                }
+                            }).catch(err => {
+                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: "Oops! " + err.message
+                                });
+                            });
+                        })).catch(err => {
+                            res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message
+                            });
+                        });
+                    }
+                    if (license_number_valid == 0) {
+                        //!TODO Check Trainee Exist In Trainee Table
+                        //!TODO Check Trainee Exist In Trainee Table
+                        let check_trainee_exits = yield trainee_model_1.default.findAll({
+                            where: {
+                                email: req.body.email,
+                                IsDeleted: 0
+                            }
+                        });
+                        //!TODO Check Trainee login Exist In User Table
+                        let check_trainee_login_exist = yield users_model_1.default.findAll({
+                            where: {
+                                email: req.body.email,
+                                IsDeleted: 0
+                            }
+                        });
+                        //**IF No */
+                        if (check_trainee_exits.length == 0 && check_trainee_login_exist.length == 0) {
+                            //* Create Trainee Crediantails
+                            req.body.createdAt = response_strings_1.default.currentTime;
+                            yield trainee_model_1.default.create(Object.assign({}, req.body)).then(traineeData => {
+                                var user_login_body = {
+                                    company_id: req.body.company_id,
+                                    email: req.body.email,
+                                    password: req.body.password,
+                                    user_type: 4,
+                                    language: req.body.language,
+                                    portal_language: req.body.language,
+                                    createdAt: response_strings_1.default.currentTime,
+                                    updated_by: "",
+                                    updatedAt: '',
+                                    created_by: req.body.created_by
+                                };
+                                //**On Success create User Login */
+                                users_model_1.default.create(Object.assign({}, user_login_body)).then((userData) => __awaiter(this, void 0, void 0, function* () {
+                                    const updateId = {
+                                        login_table_id: userData["id"],
+                                    };
+                                    //*ADD CURRICULUM IN CURRICULUM TABLE
+                                    for (let i = 0; i < curriculum_id_json.length; i++) {
+                                        var data = {
+                                            trainee_id: traineeData['id'],
+                                            trainee_user_id: userData['id'],
+                                            curriculum_id: curriculum_id_json[i]['curriculum_id'],
+                                            technology_id: curriculum_id_json[i]['technology_id'],
+                                            language_id: req.body.language_id,
+                                            created_by: req.body.created_by,
+                                            createdAt: response_strings_1.default.currentTime
+                                        };
+                                        yield trainee_curriculum_model_1.default.create(Object.assign({}, data)).then(data => {
+                                            console.log("Curriculum Build");
+                                        }).catch(err => {
+                                            console.log("Oops! " + err.message);
+                                        });
+                                    }
+                                    //**update the login id in Trainee Table */
+                                    trainee_model_1.default.update(Object.assign({}, updateId), { where: { id: traineeData['id'] } }).then(success => {
+                                        // res.status(responseCodes.SUCCESS).json({
+                                        //     response_code: 1,
+                                        //     message: "The Trainee have been registered successfully."
+                                        // });
+                                        console.log(l);
+                                    }).catch(err => {
+                                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ message: "Oops! " + err.message });
+                                    });
+                                })).catch(err => {
+                                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                        response_code: 0,
+                                        message: "Oops! " + err.message
+                                    });
+                                });
+                            }).catch(err => {
+                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: "Oops! " + err.message
+                                });
+                            });
+                        }
+                        //TODO If Trainee exist in trainee table but login not ceated
+                        else if (check_trainee_exits.length != 0 && check_trainee_login_exist.length == 0) {
+                            var user_login_body = {
+                                company_id: req.body.company_id,
+                                email: req.body.email,
+                                password: req.body.password,
+                                user_type: 3,
+                                language: req.body.language,
+                                created_by: req.body.created_by,
+                                updated_by: "",
+                                createdAt: response_strings_1.default.currentTime,
+                                updatedAt: "",
+                            };
+                            //**Create User Login */
+                            users_model_1.default.create(Object.assign({}, user_login_body)).then(userData => {
+                                const updateId = {
+                                    login_table_id: userData["id"],
+                                };
+                                //**update the login id in Trainee Table */
+                                trainee_model_1.default.update(Object.assign({}, updateId), { where: { id: check_trainee_exits[0]['id'] } }).then(success => {
+                                    // res.status(responseCodes.SUCCESS).json({
+                                    //     response_code: 1,
+                                    //     message: "The Trainee have been registered successfully."
+                                    // });
+                                }).catch(err => {
+                                    res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                        response_code: 0,
+                                        message: "Oops! " + err.message
+                                    });
+                                });
+                                //res.status(responseCodes.SUCCESS).json({ response_code: 1, message: "Trainee Already Exits \n But Login Crediantial Not Found \n Login Crediantial Created" });
+                            }).catch(err => {
+                                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: "Oops! " + err.message
+                                });
+                            });
+                        }
+                        else {
+                            // res.status(responseCodes.BAD_REQUEST).json({
+                            //     response_code: 0,
+                            //     message: "Oops! Email of trainee already exists, please use another one"
+                            // });
+                            console.log("Trainee Exist");
+                        }
+                    }
+                    else {
+                        if (curriculum_id_json.length > 1) {
+                            res.status(response_codes_1.default.BAD_REQUEST).json({
+                                response_code: 0,
+                                message: "Ooops! One or both of your selected subscription has been max out their limit"
+                            });
+                        }
+                        else {
+                            res.status(response_codes_1.default.BAD_REQUEST).json({
+                                response_code: 0,
+                                message: "Ooops! Your selected subscription has been max out their limit"
+                            });
+                        }
+                    }
+                }
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
+            }
+        });
+    }
+    traineeProfile(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield trainee_model_1.default.findOne({
+                    include: [
+                        {
+                            required: true,
+                            model: users_model_1.default,
+                            attributes: { exclude: ['password', 'password_wordpress'] },
+                            where: {
+                                IsDeleted: 0
+                            },
+                        },
+                        {
+                            required: true,
+                            model: company_model_1.default,
+                            include: [
+                                {
+                                    model: countries_model_1.default,
+                                    attributes: ['title', 'slug'],
+                                    required: false
+                                },
+                                {
+                                    model: states_model_1.default,
+                                    attributes: ['title', 'slug'],
+                                    required: false
+                                },
+                                {
+                                    model: cities_model_1.default,
+                                    attributes: ['title', 'slug'],
+                                    required: false
+                                }
+                            ],
+                            where: {
+                                IsDeleted: 0
+                            },
+                            attributes: ['id', 'company_name', 'enrollment_id', 'address', 'pincode', 'city_id', 'state_id', 'country_id']
+                        },
+                        {
+                            required: false,
+                            model: subcompany_model_1.default,
+                            where: {
+                                IsDeleted: 0,
+                                IsBlock: 0
+                            },
+                            attributes: ['id', 'company_id', 'name', 'email', 'description', 'username', 'contact_no', 'designation']
+                        }, {
+                            required: false,
+                            model: company_department_model_1.default,
+                            include: [{
+                                    model: master_department_model_1.default,
+                                    where: {
+                                        IsDeleted: 0
+                                    },
+                                    attributes: ['id', 'company_id', 'name', 'descripition']
+                                }],
+                            where: {
+                                IsDeleted: 0,
+                                IsBlock: 0
+                            },
+                            attributes: ['id', 'company_id', 'sub_company_id', 'department_id', 'contactNumber', 'designation', 'email']
+                        },
+                        {
+                            required: false,
+                            model: trainer_model_1.default,
+                            where: {
+                                IsDeleted: 0,
+                                IsBlock: 0
+                            },
+                            attributes: ['id', 'company_id', 'sub_company_id', 'department_id', 'name', 'email', 'trainer_expertise']
+                        },
+                        {
+                            required: false,
+                            model: trainee_curriculum_model_1.default,
+                            include: [{
+                                    model: curriculum_model_1.default,
+                                    where: {
+                                        IsDeleted: 0
+                                    },
+                                    attributes: ['id', 'company_id', 'name', 'sequence']
+                                }],
+                            where: {
+                                IsDeleted: 0
+                            },
+                            attributes: ['id', 'trainee_id', 'language_id', 'curriculum_id', 'technology_id']
+                        }
+                    ],
+                    where: {
+                        id: req.body.trainee_id,
+                        IsDeleted: 0
+                    },
+                }).then((TraineeData) => {
+                    res.status(response_codes_1.default.SUCCESS).json({
+                        response_code: 1,
+                        message: "The Trainee Profile fetching successfully.",
+                        data: TraineeData
+                    });
+                });
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Oops! " + err.message });
             }
         });
     }

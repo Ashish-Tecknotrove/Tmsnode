@@ -44,33 +44,65 @@ var multer = require('multer');
 var formData = multer();
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './resources/coursezip');
+        // console.log("file.fieldname->",file.fieldname);
+        if (file.fieldname === "testfile") { // if uploading zip
+            cb(null, './resources/coursezip');
+        }
+        else {
+            cb(null, './resources/coursethumb');
+        }
     },
     filename: function (req, file, cb) {
         cb(null, (0, moment_1.default)().format('YYYYMMDDHHmmss') + '_' + file.originalname.toLowerCase().split(' ').join('_'));
     }
 });
 const fileFilter = (req, file, cb) => {
-    //console.log("file->", file);
-    if (file.mimetype == "application/zip" || file.mimetype == 'application/x-zip-compressed') {
-        cb(null, true);
+    // console.log("file->", file);
+    if (file.fieldname === "testfile") { // if uploading zip
+        if (file.mimetype == "application/zip" || file.mimetype == 'application/x-zip-compressed') {
+            cb(null, true);
+        }
+        else {
+            cb({
+                success: false,
+                message: 'Invalid file type. Only .zip files are allowed.'
+            }, false);
+            //   cb(null, false);
+            // cb(new Error('Only .zip format allowed!'));
+        }
     }
     else {
-        //   cb(null, false);
-        cb(new Error('Only .zip format allowed!'));
+        if (file.mimetype == "image/png" || file.mimetype == 'image/jpeg') {
+            cb(null, true);
+        }
+        else {
+            cb({
+                success: false,
+                message: 'Invalid file type. Only jpg, png image files are allowed.'
+            }, false);
+            //   cb(null, false);
+            // cb(new Error('Only .png and .jpg format allowed!'));
+        }
     }
 };
-const upload = multer({
+const uploadLink = multer({
     storage: storage,
     fileFilter: fileFilter
 }).single('testfile');
+const uploadThumb = multer({
+    storage: storage,
+    limits: {
+        fileSize: 200000 // 200 KB
+    },
+    fileFilter: fileFilter
+}).single('testThumb');
 Router.post('/addElearningTestLink', 
 // formData.any(),
 auth_1.default.verifyAuthenticateToken, 
 // ElearningContent.checkUploadElearningLinkFile,
 function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        upload(req, res, function (err) {
+        uploadLink(req, res, function (err) {
             if (err instanceof multer.MulterError) {
                 console.log("Multer error->", err);
                 // A Multer error occurred when uploading.
@@ -90,13 +122,42 @@ function (req, res, next) {
             }
         });
     });
-}, 
-// elearningValidator.checkElearning(),
-// auth.handleValidatorError,
-elearningContent_controller_1.default.elearningTestLink);
+}, auth_1.default.handleValidatorError, elearningContent_controller_1.default.elearningTestLink);
+Router.post('/addElearningTestThumbnail', auth_1.default.verifyAuthenticateToken, function (req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        uploadThumb(req, res, function (err) {
+            /*if (err instanceof multer.MulterError) {
+                if (err.code == 'LIMIT_FILE_SIZE') {
+                    err.message = 'File Size is too large. Allowed fil size is 200KB';
+                    err.success = false;
+
+                }
+                console.log("Multer error->", err);
+                // A Multer error occurred when uploading.
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: err});
+            } else */ if (err) {
+                console.log("unknown error->", err);
+                if (err.code == 'LIMIT_FILE_SIZE') {
+                    err.message = 'File Size is too large. Allowed file size is 200KB';
+                    err.success = false;
+                }
+                console.log("unknown error->", err);
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+                // An unknown error occurred when uploading.
+            }
+            else {
+                // var dirPath ="../../../resources/test/";
+                // var destPath ="./resources/test/";
+                // fs.createReadStream(dirPath).pipe(unzip.Extract({ path: destPath }));
+                console.log("Everything went fine");
+                next();
+            }
+        });
+    });
+}, auth_1.default.handleValidatorError, elearningContent_controller_1.default.elearningTestThumbnail);
 Router.post('/updateElearningTestLink', auth_1.default.verifyAuthenticateToken, function (req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        upload(req, res, function (err) {
+        uploadLink(req, res, function (err) {
             if (err instanceof multer.MulterError) {
                 // A Multer error occurred when uploading.
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
@@ -104,9 +165,14 @@ Router.post('/updateElearningTestLink', auth_1.default.verifyAuthenticateToken, 
             else if (err) {
                 // An unknown error occurred when uploading.
                 console.log("unknown error->", err);
-                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: "Only .zip format allowed!" });
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: err
+                    // message: "Only .zip format allowed!"
+                });
             }
             else {
+                // console.log("req.files->", req.files)
                 console.log("Everything went fine");
                 next();
             }

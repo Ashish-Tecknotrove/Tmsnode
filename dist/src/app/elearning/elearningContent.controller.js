@@ -53,7 +53,11 @@ class ElearningContent {
                         folderName: zipFolderName[0]['entryName'].slice(0, -1)
                     };
                     yield eLearningmaster_model_1.default.create(obj).then(function (data) {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.ADD, data: data });
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 1,
+                            message: response_strings_1.default.ADD,
+                            data: data
+                        });
                     }).catch(err => {
                         res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                     });
@@ -78,7 +82,7 @@ class ElearningContent {
                             where: {
                                 IsDeleted: 0,
                             },
-                            attributes: ['zipname', 'folderName', 'id']
+                            attributes: ['zipname', 'folderName', 'id', 'thumbImg']
                         }
                     ],
                     // attributes:[[sequelize.literal('path'), 'virtualColumn']],
@@ -91,6 +95,7 @@ class ElearningContent {
                 }).then((result) => {
                     if (result != null) {
                         const filePath = new URL(req.protocol + '://' + req.get('host') + "/resources/course/");
+                        const thumbPath = new URL(req.protocol + '://' + req.get('host') + "/resources/coursethumb/");
                         for (let i = 0; i < result.length; i++) {
                             if (result[i]['ElearningMaster'] != null) {
                                 result[i]['dataValues']['ElearningMaster']['link'] =
@@ -98,9 +103,15 @@ class ElearningContent {
                                         "?actor=%7B%22mbox%22%3A%22mailto%3ashish@gmail.com%22%2C%22" +
                                         "name%22%3A%22Super%22%2C%22objectType%22%3A%22Agent%22%7D&auth=Basic%20Og%3D%3D&test_id=" + result[i]['id'] +
                                         "&endpoint=http%3A%2F%2F" + req.get('host') + "%2FTMS" + "%2Ftrainee" + "%2Felearning" + "%2FstoreElearningResult";
+                                let imgThumb = result[i]['ElearningMaster']['thumbImg'];
+                                result[i]['dataValues']['ElearningMaster']['thumbImg'] = imgThumb ? thumbPath + imgThumb : null;
                             }
                         }
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.GET, data: result });
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 1,
+                            message: response_strings_1.default.GET,
+                            data: result
+                        });
                     }
                     else {
                         res.status(response_codes_1.default.SUCCESS).json({ response_code: 0, message: response_strings_1.default.NOT });
@@ -134,14 +145,29 @@ class ElearningContent {
                     }
                 }).then((result) => __awaiter(this, void 0, void 0, function* () {
                     var _a;
+                    let testFileName = (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename;
+                    //TODO ZIP FILE PATH
+                    var filePath = "./resources/coursezip/" + testFileName;
+                    //TODO ZIP FILE STORING PATH
+                    var newPath = "./resources/course";
+                    //! GET AND EXTRACT ZIP FILE
+                    const zip = new AdmZip(filePath);
+                    zip.extractAllTo(newPath); //TODO EXTRACT TO COURSE FOLDER
+                    //! GET AND EXTRACT ZIP FILE
+                    const zipFolderName = zip.getEntries();
                     yield eLearningmaster_model_1.default.update({
-                        zipname: (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename
+                        zipname: testFileName,
+                        folderName: zipFolderName[0]['entryName'].slice(0, -1)
                     }, {
                         where: {
                             id: req.body.elearning_id
                         }
                     }).then((updateResult) => {
-                        res.status(response_codes_1.default.SUCCESS).json({ response_code: 1, message: response_strings_1.default.UPDATED, data: updateResult });
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 1,
+                            message: response_strings_1.default.UPDATED,
+                            data: updateResult
+                        });
                     }).catch(err => {
                         res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
                     });
@@ -360,6 +386,41 @@ class ElearningContent {
             }
             catch (err) {
                 res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err });
+            }
+        });
+    }
+    elearningTestThumbnail(req, res) {
+        var _a;
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const checkExists = yield eLearningmaster_model_1.default.findOne({
+                    where: {
+                        id: req.body.elearning_id,
+                        IsDeleted: 0
+                    },
+                });
+                if (checkExists != null) {
+                    yield eLearningmaster_model_1.default.update({
+                        thumbImg: (_a = req.file) === null || _a === void 0 ? void 0 : _a.filename
+                    }, {
+                        where: {
+                            id: req.body.elearning_id
+                        }
+                    }).then(function (data) {
+                        res.status(response_codes_1.default.SUCCESS).json({
+                            response_code: 1,
+                            message: response_strings_1.default.UPDATED
+                        });
+                    }).catch(err => {
+                        res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
+                    });
+                }
+                else {
+                    res.status(response_codes_1.default.BAD_REQUEST).json({ response_code: 0, message: response_strings_1.default.NOT });
+                }
+            }
+            catch (err) {
+                res.status(response_codes_1.default.INTERNAL_SERVER_ERROR).json({ response_code: 0, message: err.message });
             }
         });
     }

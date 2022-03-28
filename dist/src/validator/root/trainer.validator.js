@@ -78,5 +78,25 @@ class TrainerValidator {
             (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing')
         ];
     }
+    getTrainersForAssignDepartment() {
+        return [
+            (0, express_validator_1.body)('company_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+    assign_department_to_trainer() {
+        return [
+            (0, express_validator_1.body)('company_department_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('trainer_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('bit').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
+    checkAssignTrainersTrainee() {
+        return [
+            (0, express_validator_1.body)('company_department_id').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('updated_by').notEmpty().withMessage('parameter is missing'),
+            (0, express_validator_1.body)('trainer_id').notEmpty().withMessage('parameter is missing'),
+        ];
+    }
 }
 exports.default = new TrainerValidator();
