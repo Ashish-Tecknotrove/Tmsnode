@@ -1,33 +1,34 @@
-import { TINYINT } from "sequelize";
-import { DataTypes,Model } from "sequelize";
+import {TINYINT} from "sequelize";
+import {DataTypes, Model} from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import CurriculumParentCategoryTest from "../root/curriculum_parent_category_test.model";
 
 
-interface ElearningMasterAttribute{
-    id:number;
-    test_id:number;
-    zipname:string;
-    link:string;
-    created_by:string;
-    updated_by:string;
-    delete_by:string;
-    deleteAt:string;
-    IsDeleted:number
+interface ElearningMasterAttribute {
+    id: number;
+    test_id: number;
+    zipname: string;
+    link: string;
+    thumbImg: string;
+    created_by: string;
+    updated_by: string;
+    delete_by: string;
+    deleteAt: string;
+    IsDeleted: number
 }
 
-export default class ElearningMaster extends Model
-{
+export default class ElearningMaster extends Model {
     declare id: number;
     test_id!: number;
     zipname!: string;
-    folderName!:number;
+    folderName!: number;
     link!: string;
+    thumbImg!: string;
     created_by!: string;
     updated_by!: string;
     delete_by!: string;
     deleteAt!: string;
-    IsDeleted!:number;
+    IsDeleted!: number;
 
 }
 
@@ -37,43 +38,46 @@ ElearningMaster.init({
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
-      },
-      test_id: {
+    },
+    test_id: {
         type: DataTypes.INTEGER,
         references: {
-          model: CurriculumParentCategoryTest,
-          key: "id"
+            model: CurriculumParentCategoryTest,
+            key: "id"
         }
-      },
-      zipname: {
+    },
+    zipname: {
         type: DataTypes.STRING
-      },
-      folderName:{
-        type:DataTypes.STRING
-      },
-      link: {
+    },
+    folderName: {
+        type: DataTypes.STRING
+    },
+    link: {
         type: DataTypes.STRING,
-      },
-      created_by: {
+    },
+    thumbImg: {
+        type: DataTypes.STRING,
+    },
+    created_by: {
         type: DataTypes.INTEGER
-      },
-      updated_by: {
+    },
+    updated_by: {
         type: DataTypes.INTEGER
-      },
-      delete_by:{
+    },
+    delete_by: {
         type: DataTypes.INTEGER
-      },
-      deleteAt:{
+    },
+    deleteAt: {
         type: DataTypes.STRING
-      },
-      IsDeleted:{
-        type:TINYINT,
-        defaultValue:"0"
-      }
+    },
+    IsDeleted: {
+        type: TINYINT,
+        defaultValue: "0"
+    }
 
-},{
-    tableName:'elearning_master',
-    sequelize:sequelizeconnection
+}, {
+    tableName: 'elearning_master',
+    sequelize: sequelizeconnection
 });
 
 

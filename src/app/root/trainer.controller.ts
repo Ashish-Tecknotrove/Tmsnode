@@ -23,8 +23,7 @@ import MasterDepartment from '../../model/root/master_department.model';
 
 class TrainerController {
 
-    async getTrainerCount(req: Request, res: Response)
-    {
+    async getTrainerCount(req: Request, res: Response) {
         try {
             await Trainer.count({
                 where: {
@@ -40,10 +39,13 @@ class TrainerController {
                 });
 
             }).catch(err => {
-                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message
+                });
             });
         } catch (err: any) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! " + err.message});
         }
 
     }
@@ -105,14 +107,20 @@ class TrainerController {
                             UserData: UserData
                         });
                     }).catch((err: any) => {
-                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     })
                 })
             }
 
             //?get duplicate email in User but can't get trainer 
             else if (trainer.length == 0 && user.length != 0) {
-                res.status(responseCodes.BAD_REQUEST).json({response_code: 0, message: "Email of user already exists, please use another one"});
+                res.status(responseCodes.BAD_REQUEST).json({
+                    response_code: 0,
+                    message: "Email of user already exists, please use another one"
+                });
             }
 
             //?  Trainer and User both of not exists
@@ -153,12 +161,15 @@ class TrainerController {
                         }).catch((err: any) => {
                             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                                 response_code: 0,
-                                message: "Oops! "+err.message
+                                message: "Oops! " + err.message
                             });
                         })
                     })
                 }).catch(function (err: any) {
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
                 });
             }
 
@@ -214,8 +225,7 @@ class TrainerController {
                             updatedAt: responseStrings.currentTime,
                             sub_company_id: req.body.sub_company_id
                         }
-                    }
-                    else {
+                    } else {
                         updateTrainer = {
                             name: req.body.name,
                             password: req.body.password,
@@ -250,30 +260,36 @@ class TrainerController {
                         }).catch((err: any) => {
                             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                                 response_code: 0,
-                                message: "Oops! "+err.message
+                                message: "Oops! " + err.message
                             });
                         })
 
                     }).catch((err: any) => {
-                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     })
 
                 }
                 //? TRAINER NOT EXIST
                 else {
-                    res.status(responseCodes.BAD_REQUEST).json({response_code: 0, message: "Oops! An invalid trainer ID was entered, or this trainer was already deleted"});
+                    res.status(responseCodes.BAD_REQUEST).json({
+                        response_code: 0,
+                        message: "Oops! An invalid trainer ID was entered, or this trainer was already deleted"
+                    });
                 }
             }).catch((err: any) => {
                 res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: "Oops! "+err.message,
+                    message: "Oops! " + err.message,
                     data: "",
                 });
             })
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,
-                message: "Oops! "+err.message,
+                message: "Oops! " + err.message,
                 data: "",
             });
 
@@ -316,44 +332,44 @@ class TrainerController {
             //? GET ALL TRAINER BY PANELS
             await Trainer.findAll({
                 include: [
-                {
-                    model: Users,
-                    where: {
-                        IsDeleted: 0,
-                        company_id: req.body.company_id
+                    {
+                        model: Users,
+                        where: {
+                            IsDeleted: 0,
+                            company_id: req.body.company_id
+                        },
+                        required: false
                     },
-                    required: false
-                },
-                {
-                    model: SubCompany,
-                    where: {
-                        IsDeleted: 0,
-                        IsBlock: 0
+                    {
+                        model: SubCompany,
+                        where: {
+                            IsDeleted: 0,
+                            IsBlock: 0
+                        },
+                        required: false
                     },
-                    required:false
-                },
-                {
-                    model: CompanyDepartment,
-                    include:[{
-                        model:MasterDepartment
-                    }],
-                    where: {
-                        IsDeleted: 0,
-                        IsBlock: 0
+                    {
+                        model: CompanyDepartment,
+                        include: [{
+                            model: MasterDepartment
+                        }],
+                        where: {
+                            IsDeleted: 0,
+                            IsBlock: 0
+                        },
+                        required: false
                     },
-                    required:false
-                },
 
-            
-            ],
+
+                ],
                 where: where,
-                order:[['id','DESC']]
+                order: [['id', 'DESC']]
             }).then((result) => {
                 res.status(responseCodes.SUCCESS).json({response_code: 1, message: responseStrings.GET, data: result});
             }).catch((err: any) => {
                 res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: "Oops! "+err.message,
+                    message: "Oops! " + err.message,
                     data: "",
                 });
             })
@@ -361,7 +377,7 @@ class TrainerController {
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,
-                message: "Oops! "+err.message,
+                message: "Oops! " + err.message,
                 data: "",
             });
         }
@@ -401,17 +417,56 @@ class TrainerController {
                             where: {
                                 id: result.login_table_id
                             }
-                        }).then((updateRes) => {
-                            res.status(responseCodes.SUCCESS).json({response_code: 1, message: "The Trainer have been deleted."});
+                        }).then(async (updateRes) => {
+
+                            //Un Assigned All Trainees
+
+                            let unassign_all_trainee =
+                                {
+                                    trainer_id: null
+                                };
+
+                            await Trainee.update({...unassign_all_trainee}, {where: {trainer_id: req.body.trainer_id}}).then(async (unassign) => {
+
+                                let unassign_all_trainee2 =
+                                    {
+                                        IsDeleted: 1
+                                    };
+                                await Assign_trainee_to_trainer.update({...unassign_all_trainee2}, {where: {trainer_id: req.body.trainer_id}}).then(d => {
+
+                                    res.status(responseCodes.SUCCESS).json({
+                                        response_code: 1,
+                                        message: "The Trainer have been deleted."
+                                    });
+
+
+                                }).catch(err => {
+                                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                                        response_code: 0,
+                                        message: "Oops! " + err.message
+                                    });
+                                })
+
+
+                            }).catch(err => {
+                                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                                    response_code: 0,
+                                    message: "Oops! " + err.message
+                                });
+                            });
+
                         }).catch((err: any) => {
                             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                                 response_code: 0,
-                                message: "Oops! "+err.message
+                                message: "Oops! " + err.message
                             });
                         })
 
                     }).catch((err: any) => {
-                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
                     })
 
                 }
@@ -422,14 +477,14 @@ class TrainerController {
             }).catch((err: any) => {
                 res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: "Oops! "+err.message,
+                    message: "Oops! " + err.message,
                     data: "",
                 });
             })
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,
-                message: "Oops! "+err.message
+                message: "Oops! " + err.message
             });
         }
     }
@@ -451,7 +506,7 @@ class TrainerController {
                 let block_trainer_data = {}
                 let message = '';
                 if (trainer_exist[0]['IsBlock'] == 1) {
-                    
+
                     block_trainer_data = {
                         updated_by: req.body.updated_by,
                         updatedAt: responseStrings.currentTime,
@@ -483,12 +538,18 @@ class TrainerController {
                         res.status(responseCodes.SUCCESS).json({response_code: 1, message: message});
 
                     }).catch(err => {
-                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message
+                        });
 
                     });
 
                 }).catch(err => {
-                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message
+                    });
 
                 });
             } else {
@@ -498,8 +559,9 @@ class TrainerController {
                 });
             }
         } catch (err: any) {
-            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! "+err.message});
-        };
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({response_code: 0, message: "Oops! " + err.message});
+        }
+        ;
     }
 
     async assign_trainee_to_trainer(req: Request, res: Response) {
@@ -507,8 +569,7 @@ class TrainerController {
 
             if (req.body.trainees_id.length > 0) {
                 let traineeData = JSON.parse(req.body.trainees_id);
-                for (let i = 0; i < traineeData.length; i++) 
-                {
+                for (let i = 0; i < traineeData.length; i++) {
                     let insertData = {
                         trainer_id: req.body.trainer_id,
                         trainee_id: traineeData[i]['trainee_id'],
@@ -516,16 +577,15 @@ class TrainerController {
                         createdAt: responseStrings.currentTime
                     };
 
-                    
+
                     await Assign_trainee_to_trainer.create(insertData)
                         .then(async (result: any) => {
 
-                            await Trainer.findOne({where:{id:req.body.trainer_id}}).then(async(data:any)=>
-                            {
+                            await Trainer.findOne({where: {id: req.body.trainer_id}}).then(async (data: any) => {
                                 let updateData = {
                                     trainer_id: req.body.trainer_id,
-                                    sub_company_id:data["sub_company_id"],
-                                    department_id:data["department_id"],
+                                    sub_company_id: data["sub_company_id"],
+                                    department_id: data["department_id"],
                                     updated_by: req.body.created_by,
                                     updatedAt: responseStrings.currentTime
                                 }
@@ -544,18 +604,18 @@ class TrainerController {
                                 }).catch((err: any) => {
                                     res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                                         response_code: 0,
-                                        message: "Oops! "+err.message
+                                        message: "Oops! " + err.message
                                     })
                                 })
 
-                            }).catch(err=>{
+                            }).catch(err => {
 
                             });
-                            
+
                         }).catch((err: any) => {
                             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                                 response_code: 0,
-                                message: "Oops! "+err.message
+                                message: "Oops! " + err.message
                             })
                         })
 
@@ -572,7 +632,7 @@ class TrainerController {
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,
-                message: "Oops! "+err.message
+                message: "Oops! " + err.message
             })
         }
     }
@@ -608,19 +668,19 @@ class TrainerController {
                 }).catch((err: any) => {
                     res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                         response_code: 0,
-                        message: "Oops! "+err.message
+                        message: "Oops! " + err.message
                     })
                 })
             }).catch((err: any) => {
                 res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
-                    message: "Oops! "+err.message
+                    message: "Oops! " + err.message
                 })
             })
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,
-                message: "Oops! "+err.message
+                message: "Oops! " + err.message
             })
         }
     }
@@ -641,7 +701,7 @@ class TrainerController {
                     where: {
                         IsDeleted: 0,
                         language_id: req.body.language_id,
-                        technology_type_id:req.body.technology_id
+                        technology_type_id: req.body.technology_id
                     },
                     attributes: ['id', 'prefix', 'title', 'parent_id', 'technology_type_id', 'language_id']
                 }],
@@ -673,16 +733,16 @@ class TrainerController {
     async addTraineeRemarks(req: Request, res: Response) {
         try {
             await TraineeRemarks.findAll({
-                where:{
-                    IsDeleted:0,
-                    trainee_id:req.body.trainee_id,
-                    curriculum_builder_id:req.body.curriculum_builder_id
+                where: {
+                    IsDeleted: 0,
+                    trainee_id: req.body.trainee_id,
+                    curriculum_builder_id: req.body.curriculum_builder_id
                 }
-            }).then(async (result:any)=>{
-                if(result.length==0){
-                    req.body.createdAt=responseStrings.currentTime;
+            }).then(async (result: any) => {
+                if (result.length == 0) {
+                    req.body.createdAt = responseStrings.currentTime;
                     req.body.updated_by = '';
-                    await TraineeRemarks.create({...req.body}).then((addResult:any)=>{
+                    await TraineeRemarks.create({...req.body}).then((addResult: any) => {
                         res.status(responseCodes.SUCCESS).json({
                             response_code: 1,
                             message: "The Trainer Remark have been submit successfully.",
@@ -699,7 +759,7 @@ class TrainerController {
                             message: "Oops! " + err.message
                         })
                     });
-                }else {
+                } else {
                     res.status(responseCodes.BAD_REQUEST).json({
                         response_code: 0,
                         message: "Oops! Remark Already Submitted."
@@ -741,12 +801,205 @@ class TrainerController {
                     response_code: 0,
                     message: "Oops! " + err.message
                 });
-            }).catch((err:any)=>{
+            }).catch((err: any) => {
                 res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                     response_code: 0,
                     message: "Oops! " + err.message
                 })
             })
+        } catch (err: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                response_code: 0,
+                message: "Oops! " + err.message
+            })
+        }
+    }
+
+    async getTrainersForAssignDepartment(req: Request, res: Response) {
+        try {
+
+            //? GET ALL TRAINER BY PANELS
+            await Trainer.findAll({
+                include: [
+                    {
+                        model: CompanyDepartment,
+                        attributes: ['id', 'name', 'designation', 'email'],
+                        include: [{
+                            model: MasterDepartment,
+                            attributes: ['id', 'name', 'descripition'],
+                        }],
+                        where: {
+                            IsDeleted: 0,
+                            IsBlock: 0
+                        },
+                        required: false
+                    },
+                ],
+                where: {
+                    IsDeleted: 0,
+                    company_id: req.body.company_id,
+                },
+                order: [['id', 'DESC']]
+            }).then((result) => {
+                res.status(responseCodes.SUCCESS).json({response_code: 1, message: responseStrings.GET, data: result});
+            }).catch((err: any) => {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message,
+                    data: "",
+                });
+            })
+
+        } catch (err: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                response_code: 0,
+                message: "Oops! " + err.message,
+                data: "",
+            });
+        }
+    }
+
+
+    //* This for GOLD Panel
+    async checkAssignTrainersTrainee(req: Request, res: Response) {
+        try {
+            await Trainee.findAll({
+                where: {
+                    trainer_id: req.body.trainer_id,
+                    IsDeleted: 0
+                }
+            }).then(async (TraineeData) => {
+                if (TraineeData.length != 0) {
+                    res.status(responseCodes.SUCCESS).json({
+                        response_code: 1,
+                        message: "This trainer is responsible for some trainees. Would you like to change their department as well?",
+                        bit: 1
+                    });
+                } else {
+                    let updateTrainer = {
+                        department_id: req.body.company_department_id,
+                        updatedAt: responseStrings.currentTime,
+                        updated_by: req.body.updated_by,
+                    }
+                    await Trainer.update({...updateTrainer}, {
+                        where: {
+                            id: req.body.trainer_id
+                        }
+                    }).then(async (result) => {
+                        res.status(responseCodes.SUCCESS).json({
+                            response_code: 1,
+                            message: "Successfully assign department to trainer.",
+                            bit: 0
+                        });
+                    }).catch((err: any) => {
+                        res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                            response_code: 0,
+                            message: "Oops! " + err.message,
+                        });
+                    });
+                }
+            }).catch((err: any) => {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message,
+                });
+            });
+        } catch (err: any) {
+            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                response_code: 0,
+                message: "Oops! " + err.message,
+            });
+        }
+    }
+
+    //* This for GOLD Panel
+    async assign_department_to_trainer(req: Request, res: Response) {
+        try {
+            let updateTrainer = {
+                department_id: req.body.company_department_id,
+                updatedAt: responseStrings.currentTime,
+                updated_by: req.body.updated_by,
+            }
+
+
+            await Trainer.update({...updateTrainer}, {
+                where: {
+                    id: req.body.trainer_id
+                }
+            }).then(async (result) => {
+
+                let updateTrainee;
+                let message = "";
+
+                if (req.body.bit == 1) {
+                    updateTrainee = {
+                        department_id: req.body.company_department_id,
+                        updatedAt: responseStrings.currentTime,
+                        updated_by: req.body.updated_by,
+                    }
+                    message = "Successfully assign department to trainer with assigned trainee";
+                } else {
+                    updateTrainee = {
+                        department_id: 0,
+                        trainer_id: 0,
+                        updatedAt: responseStrings.currentTime,
+                        updated_by: req.body.updated_by,
+                    }
+                    message = "Successfully assign department to trainer only.";
+                }
+                await Trainee.update({...updateTrainee}, {
+                    where: {
+                        trainer_id: req.body.trainer_id,
+                        IsDeleted: 0
+                    }
+                }).then(async (TraineeResult) => {
+
+                    if (req.body.bit == 1) {
+                        let updateTraineeAssign = {
+                            IsBlock: 0,
+                            updatedAt: responseStrings.currentTime,
+                            updated_by: req.body.updated_by
+                        }
+                        await Assign_trainee_to_trainer.update({...updateTraineeAssign}, {
+                            where: {
+                                trainer_id: req.body.trainer_id,
+                                IsDeleted: 0
+                            }
+                        }).then((TraineeResult) => {
+                            res.status(responseCodes.SUCCESS).json({
+                                response_code: 1,
+                                message: message,
+                            });
+                        }).catch((err: any) => {
+                            res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                                response_code: 0,
+                                message: "Oops! " + err.message,
+                            });
+                        })
+                    } else {
+                        res.status(responseCodes.SUCCESS).json({
+                            response_code: 1,
+                            message: message,
+                        });
+                    }
+
+
+                }).catch((err: any) => {
+                    res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                        response_code: 0,
+                        message: "Oops! " + err.message,
+                    });
+                })
+
+
+            }).catch((err: any) => {
+                res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
+                    response_code: 0,
+                    message: "Oops! " + err.message
+                });
+            })
+
+
         } catch (err: any) {
             res.status(responseCodes.INTERNAL_SERVER_ERROR).json({
                 response_code: 0,

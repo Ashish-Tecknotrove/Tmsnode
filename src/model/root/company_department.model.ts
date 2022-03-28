@@ -157,3 +157,7 @@ CompanyDepartment.hasMany(Trainer,{
 Trainer.belongsTo(CompanyDepartment,{
   foreignKey: "department_id",
 })
+
+CompanyDepartment.belongsTo(Users,{
+    foreignKey:"login_table_id"
+})

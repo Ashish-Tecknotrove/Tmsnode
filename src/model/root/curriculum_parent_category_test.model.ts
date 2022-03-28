@@ -10,6 +10,7 @@ interface CurriculumParentCategoryTestAttributes {
     id: number;
     prefix: string;
     title: string;
+    description:string;
     parent_id: number;
     technology_type_id: number;
     language_id: number;
@@ -27,6 +28,7 @@ export default class CurriculumParentCategoryTest extends Model
     declare id: number;
     prefix!: string;
     title!: string;
+    description!:string;
     parent_id!: number;
     technology_type_id!: number;
     language_id!: number;
@@ -53,6 +55,9 @@ CurriculumParentCategoryTest.init({
     },
     title: {
         type: DataTypes.STRING(100)
+    },
+    description: {
+        type: DataTypes.STRING(200)
     },
     parent_id: {
         type: DataTypes.INTEGER,

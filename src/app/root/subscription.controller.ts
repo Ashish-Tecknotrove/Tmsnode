@@ -251,8 +251,12 @@ class SubscriptionController {
                                         IsDeleted:0,
                                         curriculum_id:result[i]['curriculum_id']
                                     }
-                                }
-                            ]
+                                },
+                                
+                            ],
+                            where:{
+                                IsDeleted:0
+                            }
                         }).then(count=>{
                        // console.log(data);
                         result[i]['dataValues']['userSubscription']=count;

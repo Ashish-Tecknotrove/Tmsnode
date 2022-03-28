@@ -6,6 +6,7 @@ import Trainee from "./trainee.model";
 export default class ElearningTraineeScromData extends Model
 {
     id!:number;
+    session_id!:string;
     test_id!:number;
     trainee_id!:number;
     attempt_no!:number;
@@ -27,6 +28,10 @@ ElearningTraineeScromData.init(
         type:DataTypes.INTEGER,
         primaryKey:true,
         autoIncrement:true,
+    },
+    session_id:{
+        type:DataTypes.STRING,
+        allowNull:false
     },
     test_id:{
         type:DataTypes.INTEGER,

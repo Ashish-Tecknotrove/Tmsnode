@@ -2,9 +2,12 @@ import {DataTypes, Model} from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import CurriculumParentCategoryTest from "../root/curriculum_parent_category_test.model";
 import Trainee from "../root/trainee.model";
+import ElearningStatus from "./elearning_status.model";
 
 export default class ElearningResult extends Model {
     declare id: number;
+    session_id!:number;
+    test_start!:number;
     trainee_id!: number;
     curriculum_test_id!: number;
     attempt_no!: number;
@@ -40,6 +43,14 @@ ElearningResult.init({
             key: "id"
         }
     },
+    session_id: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+    },
+    test_start: {
+        type: DataTypes.INTEGER
+    },
     curriculum_test_id: {
         type: DataTypes.INTEGER,
         references:{
@@ -57,7 +68,11 @@ ElearningResult.init({
         type: DataTypes.INTEGER
     },
     status: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER,
+        references:{
+            model:ElearningStatus,
+            key:'id'
+        }
     },
     duration: {
         type: DataTypes.STRING
@@ -111,4 +126,7 @@ CurriculumParentCategoryTest.hasMany(ElearningResult,{
 
 ElearningResult.belongsTo(CurriculumParentCategoryTest,{
     foreignKey:'curriculum_test_id'
+})
+ElearningResult.belongsTo(ElearningStatus,{
+    foreignKey:'status'
 })

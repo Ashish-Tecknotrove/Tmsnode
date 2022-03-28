@@ -6,6 +6,7 @@ import CompanyDepartment from "./company_department.model";
 import SubCompany from "./subcompany.model";
 import TraineeCurriculum from "./trainee_curriculum.model";
 import Users from "./users.model";
+import Trainer from "./trainer.model";
 
 interface TraineeAttributes {
   id: number;
@@ -269,6 +270,10 @@ Trainee.init(
     trainer_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
+        references: {
+            model: Trainer,
+            key: "id",
+        },
     },
     status: {
       type: DataTypes.STRING,
@@ -399,3 +404,8 @@ Trainee.belongsTo(CompanyDepartment,{
 CompanyDepartment.hasMany(Trainee, {
   foreignKey: "department_id",
 });
+
+
+Trainee.belongsTo(Trainer,{
+    foreignKey:"trainer_id"
+})
