@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">Driving under the influence</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/6JdaLb1XtFZ" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Driving under the influence</name>
+			<description lang="und">Driving under the influence</description>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/6hcyLcF0rLj" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Driving under the influence</name>
+			<description lang="und">Driving under the influence</description>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/6UbQ4GzO8Na" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MEDIA INTERACTION</name>
+			<description lang="und">MEDIA INTERACTION</description>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/5peUC6KEIGI" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MCQ QUIZ</name>
+			<description lang="und">MCQ QUIZ</description>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/6YdO78oZzkN" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">QUIZ RESULTS</name>
+			<description lang="und">QUIZ RESULTS</description>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/6MDikpfV7Ju" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Ramesh is invited to a dinner party. he knows he will have to drive in the night. What is his best course of action
+</name>
+			<description lang="und">Ramesh is invited to a dinner party. he knows he will have to drive in the night. What is his best course of action
+</description>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/6MDikpfV7Ju/64FsJVvsZDz" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Ramesh is invited to a dinner party. he knows he will have to drive in the night. What is his best course of action
+</name>
+			<description lang="und">Ramesh is invited to a dinner party. he knows he will have to drive in the night. What is his best course of action
+</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6StdoBZ0ejD</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_67FuK0DLoHq</id>
+					<description lang="und">Have only two pegs of alcohol</description>
+				</component>
+				<component>
+					<id>choice_6StdoBZ0ejD</id>
+					<description lang="und">Not drink any alcohol at all</description>
+				</component>
+				<component>
+					<id>choice_68yHlkjQHYC</id>
+					<description lang="und">Eat hot meal with alcoholic drinks</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/6O43x7ZFu4Z" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">What advise should ramesh’s friend give to a ramesh who has had a few alcoholic drinks at a party?
+</name>
+			<description lang="und">What advise should ramesh’s friend give to a ramesh who has had a few alcoholic drinks at a party?
+</description>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/6O43x7ZFu4Z/5cu6cxbyPAf" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">What advise should ramesh’s friend give to a ramesh who has had a few alcoholic drinks at a party?
+</name>
+			<description lang="und">What advise should ramesh’s friend give to a ramesh who has had a few alcoholic drinks at a party?
+</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6GSTO4heM80</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6qXcbQ4x0MA</id>
+					<description lang="und">Drive home carefully and slowly</description>
+				</component>
+				<component>
+					<id>choice_6GSTO4heM80</id>
+					<description lang="und">Go home by public transport</description>
+				</component>
+				<component>
+					<id>choice_5svplYM61wF</id>
+					<description lang="und">Wait for a short while them go home.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/6PLBDjmhMFQ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">The first thing in Ramesh that alcohol affects 
+</name>
+			<description lang="und">The first thing in Ramesh that alcohol affects 
+</description>
+		</activity>
+		<activity id="urn:articulate:storyline:6IEeZmf2POd/6PLBDjmhMFQ/6JFhjf7pKDF" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">The first thing in Ramesh that alcohol affects 
+</name>
+			<description lang="und">The first thing in Ramesh that alcohol affects 
+</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6bfPWDfIZrz</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5YGken7GA0K</id>
+					<description lang="und">Vision </description>
+				</component>
+				<component>
+					<id>choice_5o8iGx3DsSD</id>
+					<description lang="und">Balance</description>
+				</component>
+				<component>
+					<id>choice_6bfPWDfIZrz</id>
+					<description lang="und">Judgment</description>
+				</component>
+			</choices>
+		</activity>
+	</activities>
+</tincan>
