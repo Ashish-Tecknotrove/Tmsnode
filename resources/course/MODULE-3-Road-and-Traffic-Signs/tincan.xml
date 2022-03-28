@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://61Occ4u25Og_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">MODULE: 3 Road and Traffic Signs</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6k6D2gcPqg4" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">MODULE: 3 Road and Traffic Signs</name>
+			<description lang="und">MODULE: 3 Road and Traffic Signs</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5l1fxbqS97k" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6YvjLHEzH0u" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Untitled Slide</name>
+			<description lang="und">Untitled Slide</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6hFGvDX9rRg" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction</name>
+			<description lang="und">Introduction</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5V1WJ1SnX96" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module Objectives</name>
+			<description lang="und">Module Objectives</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5vI8Q2QhDi7" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Importance of Journey management plan</name>
+			<description lang="und">Importance of Journey management plan</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6FHgFpAEqZQ" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Knowledge Test</name>
+			<description lang="und">Knowledge Test</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5Va0JzqLP4L" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5Va0JzqLP4L/6F2TE836T31" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">There are three basic types of traffic sign those that warns, inform or give orders…</name>
+			<description lang="und">There are three basic types of traffic sign those that warns, inform or give orders…</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6ffPsL0WvN5</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5cQh5vLilH7</id>
+					<description lang="und">No Entry Sign, Signal lights and Road Markings.</description>
+				</component>
+				<component>
+					<id>choice_6ffPsL0WvN5</id>
+					<description lang="und">Informatory, Mandatory and Cautionary.</description>
+				</component>
+				<component>
+					<id>choice_6TdL1RqUIgX</id>
+					<description lang="und">Circular, Triangular, Octagon shape.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6LUJNb8ycdh" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6LUJNb8ycdh/6o5l1VQZqCD" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Bike need not have much of the space around, can easily choose to ride on...</name>
+			<description lang="und">Bike need not have much of the space around, can easily choose to ride on...</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5X99FWOeyzv</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6ZdUlWa5cnI</id>
+					<description lang="und">'No Entry' lane</description>
+				</component>
+				<component>
+					<id>choice_6D2FfcXgcEb</id>
+					<description lang="und">Opposite lane</description>
+				</component>
+				<component>
+					<id>choice_5X99FWOeyzv</id>
+					<description lang="und">Same lane</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6jcCGgbLWJ5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6jcCGgbLWJ5/6TQaAAqz9Ts" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Mandatory /Statutory Road Signs are exhibited in what shape?</name>
+			<description lang="und">Mandatory /Statutory Road Signs are exhibited in what shape?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_64LdUMEKSPe</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5XGPo8Ye6mR</id>
+					<description lang="und">Rectangular/Square.</description>
+				</component>
+				<component>
+					<id>choice_5dUYSjs0AH9</id>
+					<description lang="und">Octagon.</description>
+				</component>
+				<component>
+					<id>choice_64LdUMEKSPe</id>
+					<description lang="und">Circular.</description>
+				</component>
+				<component>
+					<id>choice_5joNe3fKcRj</id>
+					<description lang="und">Triangular.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6HoZ7VeVLNF" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6HoZ7VeVLNF/6A2sj0zuID3" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Informatory Road Signs are exhibited in what shape?</name>
+			<description lang="und">Informatory Road Signs are exhibited in what shape?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6h91pB66WuW</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6h91pB66WuW</id>
+					<description lang="und">Rectangular.</description>
+				</component>
+				<component>
+					<id>choice_5ZksH69e29c</id>
+					<description lang="und">Octagon.</description>
+				</component>
+				<component>
+					<id>choice_6Vp7ZfsgyId</id>
+					<description lang="und">Circular.</description>
+				</component>
+				<component>
+					<id>choice_6MddfVa2MBf</id>
+					<description lang="und">Triangular.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6dcW4uP21BD" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6dcW4uP21BD/6Y01IBIEyk9" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Cautionary / Warning Road Signs are exhibited in what shape?</name>
+			<description lang="und">Cautionary / Warning Road Signs are exhibited in what shape?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6XEvZGBF5DI</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5wLbL7Vq0jZ</id>
+					<description lang="und">Rectangular.</description>
+				</component>
+				<component>
+					<id>choice_6OOdRZBCpup</id>
+					<description lang="und">Octagon.</description>
+				</component>
+				<component>
+					<id>choice_5y4b658wKSy</id>
+					<description lang="und">Circular.</description>
+				</component>
+				<component>
+					<id>choice_6XEvZGBF5DI</id>
+					<description lang="und">Triangular.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5rdCvlcorF6" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5rdCvlcorF6/6GBPKxWJltr" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Identify which category road sign is not mentioned in the given list - Stop, First Aid Post, No Parking, No Overtaking, Parking, Miles stone?</name>
+			<description lang="und">Identify which category road sign is not mentioned in the given list - Stop, First Aid Post, No Parking, No Overtaking, Parking, Miles stone?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6bWT8HHIxSG</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6Br6nqmXgsq</id>
+					<description lang="und">Mandatory</description>
+				</component>
+				<component>
+					<id>choice_6bWT8HHIxSG</id>
+					<description lang="und">Cautionary</description>
+				</component>
+				<component>
+					<id>choice_6hNXSL9xaFa</id>
+					<description lang="und">Informatory</description>
+				</component>
+				<component>
+					<id>choice_5Vrtn4bGNMi</id>
+					<description lang="und">Warning</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5waetW5pIW5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5waetW5pIW5/61jrGUUll9D" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following option come under the Mandatory / Statutory Road signs?</name>
+			<description lang="und">Which of the following option come under the Mandatory / Statutory Road signs?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6oiLVdlOQh0</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5ywb3Gslrme</id>
+					<description lang="und">Hospital, Parking, Resting place, Directions.</description>
+				</component>
+				<component>
+					<id>choice_605j1JnY6pW</id>
+					<description lang="und">Round about, 'U' turn, School ahead, Speed breakers, Sharp bend.</description>
+				</component>
+				<component>
+					<id>choice_6oiLVdlOQh0</id>
+					<description lang="und">One Way, No Parking, No Overtaking, No Entry</description>
+				</component>
+				<component>
+					<id>choice_5UoJiXB8If7</id>
+					<description lang="und">None of the above</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5wKFbshzv14" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5wKFbshzv14/5fjkusoIDcN" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Which of the following Road signs option does not indicate hazardous in nature?</name>
+			<description lang="und">Which of the following Road signs option does not indicate hazardous in nature?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6NxaD1PFfcy</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6NxaD1PFfcy</id>
+					<description lang="und">Parking, Pump Station, Hospital, Food Mall.</description>
+				</component>
+				<component>
+					<id>choice_6qeTNbeBILW</id>
+					<description lang="und">Work in Progress, Railway Crossing, School ahead, 
+all restricted signs.</description>
+				</component>
+				<component>
+					<id>choice_5gPlELz2akI</id>
+					<description lang="und">Round about, Slippery road, Sharp bends, One Way, 
+Narrow road, Speed limit.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5gjrJrXc8Um" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5gjrJrXc8Um/5qoHYabChaZ" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Traffic Signal lights are of what shape?</name>
+			<description lang="und">Traffic Signal lights are of what shape?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5qo3dV3KEDQ</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6RwhH6NbDi9</id>
+					<description lang="und">Rectangular.</description>
+				</component>
+				<component>
+					<id>choice_5a8JUs8TgCX</id>
+					<description lang="und">Octagon.</description>
+				</component>
+				<component>
+					<id>choice_5qo3dV3KEDQ</id>
+					<description lang="und">Circular.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6l3HfQFssMv" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">MULTIPLE CHOICE</name>
+			<description lang="und">MULTIPLE CHOICE</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6l3HfQFssMv/62oVALNQ3Jp" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">When approaching a round-about junction what should we do?</name>
+			<description lang="und">When approaching a round-about junction what should we do?</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_5Xj0a4M4Gtd</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_62kW21aUaoD</id>
+					<description lang="und">Speed up and cross the junction before it gets jam.</description>
+				</component>
+				<component>
+					<id>choice_5Xj0a4M4Gtd</id>
+					<description lang="und">Choose appropriate lane well before entering the round about junction.</description>
+				</component>
+				<component>
+					<id>choice_5VR4FZkNVcl</id>
+					<description lang="und">Slow down your speed but, keep moving.</description>
+				</component>
+				<component>
+					<id>choice_5rpWikGvTi1</id>
+					<description lang="und">Watch out and honk to aware other road users so that they may not intercept in to your lane.</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/6SoCLVcHuYM" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">QUIZ RESULTS</name>
+			<description lang="und">QUIZ RESULTS</description>
+		</activity>
+		<activity id="http://61Occ4u25Og_course_id/5V2n9NLwfP5" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Congratulations!</name>
+			<description lang="und">Congratulations!</description>
+		</activity>
+	</activities>
+</tincan>
