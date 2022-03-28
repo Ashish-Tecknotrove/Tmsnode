@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tincan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://projecttincan.com/tincan.xsd">
+	<activities>
+		<activity id="http://5nynyQIS3yl_course_id" type="http://adlnet.gov/expapi/activities/course">
+			<name lang="und">Module 4: Inspection of Haz Cargo Loading in Vehicle and Securing them
+</name>
+			<description lang="und" />
+			<launch lang="und">index_lms.html</launch>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/5wy1kfUrphZ" type="http://adlnet.gov/expapi/activities/objective">
+			<name lang="und">Module 4: Inspection of Haz Cargo Loading in Vehicle and Securing them
+</name>
+			<description lang="und">Module 4: Inspection of Haz Cargo Loading in Vehicle and Securing them
+</description>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/6BXH9Pbk5NY" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Introduction </name>
+			<description lang="und">Introduction </description>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/5s9lNPSEdjH" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module 1: Importance of Chemical Security</name>
+			<description lang="und">Module 1: Importance of Chemical Security</description>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/6966waniTlw" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Knowledge Test</name>
+			<description lang="und">Knowledge Test</description>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/5xBdTJ6PbtV" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Module1: Summary</name>
+			<description lang="und">Module1: Summary</description>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/5cXSQ9OJF7I" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/5cXSQ9OJF7I/5wxdgvJgJUc" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6VnhYEvE1QL</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6Kz2mape921</id>
+					<description lang="und">a. There is no need to check what cargo is being loaded</description>
+				</component>
+				<component>
+					<id>choice_6VnhYEvE1QL</id>
+					<description lang="und">b. There could be penalty issued by a transport officer if the chemical cargo does not match the emergency panel</description>
+				</component>
+				<component>
+					<id>choice_6HvJLSclztb</id>
+					<description lang="und">c.The customer will refuse delivery if cargo does not match the emergency panel</description>
+				</component>
+				<component>
+					<id>choice_5jMRt2gXUXX</id>
+					<description lang="und">d.None of the above</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/6lUHmRMpKRV" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/6lUHmRMpKRV/5gYDdL9HAdj" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6oQ1z1dDHtB</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6YHz5u6ZXkv</id>
+					<description lang="und">a.He and helper must wear the safety helmet all the time during loading</description>
+				</component>
+				<component>
+					<id>choice_6lgmH57oyDD</id>
+					<description lang="und">b.He must keep the fire extinguisher handy near the loading area to use in case of emergency</description>
+				</component>
+				<component>
+					<id>choice_5pWal099C2A</id>
+					<description lang="und">c.He must keep breathing apparatus with him and helper in case of loading toxic or corrosive material in tanker</description>
+				</component>
+				<component>
+					<id>choice_6oQ1z1dDHtB</id>
+					<description lang="und">d.All of the above</description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/6E7pqEiSj8s" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/6E7pqEiSj8s/6ZGC7kffxYn" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6CXhLm2Ibzd</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_6kih62Ivu1L</id>
+					<description lang="und">a. Refrain from disclosure of the nature of the cargo carried to anyone.</description>
+				</component>
+				<component>
+					<id>choice_6hPY3vA49Ea</id>
+					<description lang="und">b. Never leave the vehicle unattended until the cargo is delivered</description>
+				</component>
+				<component>
+					<id>choice_5kssMJst78l</id>
+					<description lang="und">c. The cargo must not be loaded and left overnight at any place</description>
+				</component>
+				<component>
+					<id>choice_6CXhLm2Ibzd</id>
+					<description lang="und">d. All of the above </description>
+				</component>
+			</choices>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/6WHv3u16cUL" type="http://adlnet.gov/expapi/activities/module">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+		</activity>
+		<activity id="http://5nynyQIS3yl_course_id/6WHv3u16cUL/6cFsXbUK4BU" type="http://adlnet.gov/expapi/activities/cmi.interaction">
+			<name lang="und">Multiple Choice</name>
+			<description lang="und">Multiple Choice</description>
+			<interactionType>choice</interactionType>
+			<correctResponsePatterns>
+				<correctResponsePattern>choice_6lpGBsXg0Vr</correctResponsePattern>
+			</correctResponsePatterns>
+			<choices>
+				<component>
+					<id>choice_5wykiBJT14t</id>
+					<description lang="und">a. Ensure there are spreaders between two layers of drums  to prevent slippages</description>
+				</component>
+				<component>
+					<id>choice_5dybYIxOTjT</id>
+					<description lang="und">b. Secure the drums in the vehicle  by belting so they don’t shift</description>
+				</component>
+				<component>
+					<id>choice_6lpGBsXg0Vr</id>
+					<description lang="und">c.Both “a” and “b”</description>
+				</component>
+				<component>
+					<id>choice_6Cl153IXY4x</id>
+					<description lang="und">d.None of the above</description>
+				</component>
+			</choices>
+		</activity>
+	</activities>
+</tincan>
