@@ -330,7 +330,7 @@ class ElearningTraineeTest {
                                     "&session_id=" + session +
                                     "&attempt=" + current_attempt +
                                     "&builder_id=" + builder_id +
-                                    "&endpoint=http%3A%2F%2F" + req.get('host') + "%2FTMS" + "%2Ftrainee" + "%2Felearning" + "%2FstoreElearningResult";
+                                    "&endpoint="+protocol+"%3A%2F%2F" + req.get('host') + "%2FTMS" + "%2Ftrainee" + "%2Felearning" + "%2FstoreElearningResult";
                                 res.status(response_codes_1.default.SUCCESS).json({
                                     response_code: 1,
                                     sessionId: 'session_' + newSession['id'],
@@ -460,7 +460,7 @@ class ElearningTraineeTest {
                                 "&session_id=" + session +
                                 "&attempt=" + current_attempt +
                                 "&builder_id=" + builder_id +
-                                "&endpoint=http%3A%2F%2F" + req.get('host') + "%2FTMS" + "%2Ftrainee" + "%2Felearning" + "%2FstoreElearningResult";
+                                "&endpoint="+protocol+"%3A%2F%2F" + req.get('host') + "%2FTMS" + "%2Ftrainee" + "%2Felearning" + "%2FstoreElearningResult";
                             res.status(response_codes_1.default.SUCCESS).json({
                                 response_cod: 1,
                                 sessionId: newSession['session_id'],
