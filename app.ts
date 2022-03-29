@@ -64,6 +64,8 @@ app.use(morgan('dev'));
 
 app.use(express.static(__dirname));
 
+app.enable('trust proxy');
+
 app.get('/',(req,res)=>{
 
     res.status(200).json({message:"Welcome To TMS"});
