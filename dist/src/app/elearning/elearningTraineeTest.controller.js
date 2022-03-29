@@ -33,7 +33,7 @@ class ElearningTraineeTest {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 
-                console.log(req.protocol);
+                console.log("protocol:- " + req.protocol);
                 var trainee_id = req.body.trainee_id;
                 //TODO GET ALL TRAINEE CURRICULUM DEATAILS
                 yield trainee_curriculum_model_1.default.findAll({
