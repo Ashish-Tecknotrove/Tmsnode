@@ -32,8 +32,7 @@ class ElearningTraineeTest {
     getElearningTestData(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                
-                console.log("protocol:- " + req.protocol);
+               
                 var trainee_id = req.body.trainee_id;
                 //TODO GET ALL TRAINEE CURRICULUM DEATAILS
                 yield trainee_curriculum_model_1.default.findAll({
@@ -100,7 +99,16 @@ class ElearningTraineeTest {
                             trainee_email = data["email"];
                         });
                         //TODO TEST FILE PATH
-                        const filePath = new URL(req.protocol + '://' + req.get('host') + "/resources/course/");
+                        var protocol="";
+                        if(req.secure == true)
+                        {
+                            protocol="https";
+                        }
+                        else
+                        {
+                            protocol="http";
+                        }
+                        const filePath = new URL(protocol + '://' + req.get('host') + "/resources/course/");
                         const thumbPath = new URL(req.protocol + '://' + req.get('host') + "/resources/coursethumb/");
                         //TODO FIRST LOOP ALL DATA
                         for (let i = 0; i < elearningData.length; i++) {
