@@ -311,7 +311,19 @@ class ElearningTraineeTest {
                                 session_id: 'session_' + newSession['id']
                             };
                             yield elearning_training_session_model_1.default.update(Object.assign({}, update), { where: { id: newSession['id'] } }).then(completed => {
-                                const filePath = new URL(req.protocol + '://' + req.get('host') + "/resources/course/");
+                                var protocol="";
+                        if(req.secure == true)
+                        {
+                            protocol="https";
+                        }
+                        else
+                        {
+                            protocol="http";
+                        }
+                                
+                                const filePath = new URL(protocol + '://' + req.get('host') + "/resources/course/");
+                                
+                                
                                 const exam_url = filePath + folderName + '/index_lms.html' +
                                     "?actor=%7B%22mbox%22%3A%22mailto%3a" + trainee_data + "%22%2C%22" +
                                     "name%22%3A%22Super%22%2C%22objectType%22%3A%22Agent%22%7D&auth=Basic%20Og%3D%3D&test_id=" + test_id +
@@ -432,7 +444,16 @@ class ElearningTraineeTest {
                             createdAt: response_strings_1.default.currentTime
                         };
                         yield elearning_training_session_model_1.default.create(Object.assign({}, TraineeData)).then((newSession) => __awaiter(this, void 0, void 0, function* () {
-                            const filePath = new URL(req.protocol + '://' + req.get('host') + "/resources/course/");
+                            var protocol="";
+                        if(req.secure == true)
+                        {
+                            protocol="https";
+                        }
+                        else
+                        {
+                            protocol="http";
+                        }
+                            const filePath = new URL(protocol + '://' + req.get('host') + "/resources/course/");
                             const exam_url = filePath + folderName + '/index_lms.html' +
                                 "?actor=%7B%22mbox%22%3A%22mailto%3a" + trainee_data + "%22%2C%22" +
                                 "name%22%3A%22Super%22%2C%22objectType%22%3A%22Agent%22%7D&auth=Basic%20Og%3D%3D&test_id=" + test_id +
