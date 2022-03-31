@@ -1,5 +1,4 @@
-import {  Model } from "sequelize";
-import { DataType } from "sequelize-typescript";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Company from "./company.model";
 import CurriculumBuilder from "./curriculumbuilder.model";
@@ -42,12 +41,12 @@ export default class Curriculum extends Model
 
 Curriculum.init({
     id:{
-        type:DataType.INTEGER,
+        type:DataTypes.INTEGER,
         primaryKey:true,
         autoIncrement:true
     },
     company_id:{
-        type:DataType.INTEGER,
+        type:DataTypes.INTEGER,
         allowNull:false,
         references:{
             model:Company,
@@ -55,34 +54,34 @@ Curriculum.init({
         }
     },
     name:{
-        type:DataType.STRING(100),
+        type:DataTypes.STRING(100),
     },
     sequence:{
-        type:DataType.TINYINT,
+        type:DataTypes.TINYINT,
         defaultValue:"1"
     },
     created_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     updated_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     deleted_by: {
-        type: DataType.INTEGER
+        type: DataTypes.INTEGER
     },
     createdAt: {
-        type: DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     IsDeleted:{
-        type:DataType.TINYINT,
+        type:DataTypes.TINYINT,
         defaultValue:0
     }
 

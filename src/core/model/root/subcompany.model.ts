@@ -1,9 +1,9 @@
-import { DataType } from 'sequelize-typescript';
-import { Model} from "sequelize";
+import {DataTypes, Model} from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
+import CompanyDepartment from "./company_department.model";
+import Trainee from "./trainee.model";
 import Trainer from "./trainer.model";
 import Users from "./users.model";
-import Company from './company.model';
 
 interface SubcompanyAttribute {
 }
@@ -29,73 +29,72 @@ export default class SubCompany extends Model {
 SubCompany.init(
     {
         id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
             allowNull: false,
         },
         company_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: Company,
+                model: "companies",
                 key: "id",
             },
         },
         login_table_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
-                model: Users,
+                model: "users",
                 key: "id",
             },
         },
         name: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
             unique: true,
         },
         email:{
-            type: DataType.STRING,
+            type: DataTypes.STRING,
         },
         description: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
         },
         username:{
-            type: DataType.STRING,
+            type: DataTypes.STRING,
         },
         designation: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
         },
         contact_no: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
         },
         created_by: {
-            type: DataType.INTEGER,
-            allowNull: true
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         updated_by: {
-            type: DataType.INTEGER,
-            allowNull: false
+            type: DataTypes.INTEGER,
         },
-        deleted_by:{
-            type: DataType.INTEGER
+        deleted_by: {
+            type: DataTypes.INTEGER,
         },
         createdAt: {
-            type: DataType.STRING(100)
+            type: "TIMESTAMP",
         },
         updatedAt: {
-            type: DataType.STRING(100)
+            type: "TIMESTAMP",
         },
         deletedAt: {
-            type: DataType.STRING(100)
-        },
-        IsDeleted :{
-            type: DataType.TINYINT,
-            defaultValue:0
+            type: "TIMESTAMP",
         },
         IsBlock: {
-            type: DataType.TINYINT,
+            type: DataTypes.TINYINT,
             defaultValue: 0,
-        }
+        },
+        IsDeleted: {
+            type: DataTypes.TINYINT,
+            defaultValue: 0,
+        },
     },
     {
         sequelize: sequelizeconnection,

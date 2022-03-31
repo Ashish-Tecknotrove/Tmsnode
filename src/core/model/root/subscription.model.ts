@@ -1,5 +1,4 @@
-import { DataType } from 'sequelize-typescript';
-import { Model } from "sequelize";
+import {DataTypes, Model} from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Company from "./company.model";
 import Curriculum from "./curriculum.model";
@@ -23,11 +22,11 @@ interface SubscriptionAttributes {
     note: string;
     created_by: number
     updated_by: number
-    deleted_by: string
-    deletedAt: string
+	deleted_by:string
+	deletedAt:string
     createdAt: string
     updatedAt: string
-    IsDeleted: number
+	IsDeleted:number
 }
 
 
@@ -49,24 +48,24 @@ export default class Subscription extends Model {
     note!: string;
     created_by!: number
     updated_by!: number
-    deleted_by!: string
-    deletedAt!: string
-    createdAt!: string
-    updatedAt!: string
-    IsDeleted!: number
+	deleted_by!:string
+    deletedAt!:string
+    createdAt!:string
+    updatedAt!:string
+	IsDeleted!:number
 
 }
 
 
 Subscription.init({
     id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
     curriculum_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: Curriculum,
@@ -74,7 +73,7 @@ Subscription.init({
         }
     },
     company_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: Company,
@@ -82,71 +81,71 @@ Subscription.init({
         }
     },
     technology_type: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
     },
     course: {
-        type: DataType.STRING(50),
+        type: DataTypes.STRING(50),
 
     },
     day_no: {
-        type: DataType.STRING(50),
+        type: DataTypes.STRING(50),
         allowNull: false
     },
     calender_type: {
-        type: DataType.STRING(50),
+        type: DataTypes.STRING(50),
         allowNull: false
     },
     licence_no: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
         allowNull: false
     },
     licenceType: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
     },
     payment_type: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
         allowNull: false
     },
     activation_date: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
         allowNull: false
     },
     expiry_date: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
     },
     payment_note: {
-        type: DataType.STRING(50),
+        type: DataTypes.STRING(50),
     },
     status: {
-        type: DataType.ENUM('0', '1'),
+        type: DataTypes.ENUM('0', '1'),
         defaultValue: "1",
     },
     note: {
-        type: DataType.STRING(50),
+        type: DataTypes.STRING(50),
     },
     created_by: {
-        type: DataType.INTEGER,
-        allowNull: true
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     updated_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     deleted_by: {
-        type: DataType.INTEGER
+        type: DataTypes.INTEGER
     },
     createdAt: {
-        type: DataType.STRING(100)
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: DataType.STRING(100)
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: DataType.STRING(100)
+        type: "TIMESTAMP"
     },
-    IsDeleted: {
-        type: DataType.TINYINT,
-        defaultValue: 0
+    IsDeleted:{
+        type:DataTypes.TINYINT,
+        defaultValue:0
     }
 }, {
     sequelize: sequelizeconnection,
@@ -157,7 +156,7 @@ Subscription.init({
 // // //TODO Association With Company
 Subscription.belongsTo(Curriculum, {
     foreignKey: 'curriculum_id',
-    targetKey: "id"
+    targetKey:"id"
 });
 
 // Subscription.hasMany(Curriculum,{

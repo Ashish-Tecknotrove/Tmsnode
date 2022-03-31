@@ -1,5 +1,4 @@
-import {Model} from "sequelize";
-import { DataType } from "sequelize-typescript";
+import {DataTypes, Model} from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Curriculum from "./curriculum.model";
 import CurriculumParentCategory from "./curriculum_parent_category.model";
@@ -50,12 +49,12 @@ export default class CurriculumBuilder extends Model {
 
 CurriculumBuilder.init({
         id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
         curriculum_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
             references: {
                 model: Curriculum,
@@ -63,53 +62,53 @@ CurriculumBuilder.init({
             }
         },
         vehicle_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
         },
         curriculum_parent_category_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: CurriculumParentCategory,
                 key: "id"
             }
         },
         curriculum_parent_category_test_id: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: CurriculumParentCategoryTest,
                 key: "id"
             }
         },
         passing_marks: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
         },
         total_marks: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
         },
         attempts: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
         },
         created_by: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         updated_by: {
-            type: DataType.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         deleted_by: {
-            type: DataType.INTEGER
+            type: DataTypes.INTEGER
         },
         createdAt: {
-            type: DataType.STRING(50),
+            type: "TIMESTAMP",
         },
         updatedAt: {
-            type: DataType.STRING(50),
+            type: "TIMESTAMP",
         },
         deletedAt: {
-            type: DataType.STRING(50)
+            type: "TIMESTAMP"
         },
         IsDeleted:{
-            type:DataType.TINYINT,
+            type:DataTypes.TINYINT,
             defaultValue:0
         }
     },

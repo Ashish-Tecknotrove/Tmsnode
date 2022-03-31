@@ -1,5 +1,4 @@
-import { DataType } from 'sequelize-typescript';
-import { Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Mastermenu from "./mastermenu.model";
 
@@ -24,25 +23,25 @@ export default class MasterPanel extends Model {
 
 MasterPanel.init({
     id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
     panel: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
         allowNull: false
     },
     created_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     updated_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     IsDeleted: {
-        type: DataType.TINYINT,
+        type: DataTypes.TINYINT,
         defaultValue: 0
     }
 }, {

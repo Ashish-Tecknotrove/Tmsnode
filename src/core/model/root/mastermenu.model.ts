@@ -1,5 +1,4 @@
-import { DataType } from 'sequelize-typescript';
-import {  Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import MasterPanel from "./masterpanel.model";
 
@@ -22,16 +21,16 @@ export default class Mastermenu extends Model
 
 Mastermenu.init({
     id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
     parent_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
     },
     panel_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         references:{
             model:MasterPanel,
             key:'id'
@@ -39,31 +38,31 @@ Mastermenu.init({
         allowNull:false
     },
     menu_id: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
     },
     menu_label: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
     },
     router_link:{
-        type: DataType.STRING,
+        type: DataTypes.STRING,
     },
     icon:{
-        type: DataType.STRING
+        type: DataTypes.STRING
     },
     type:{
-        type: DataType.STRING,
+        type: DataTypes.STRING,
     },
     sequence:{
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
     },
     created_by: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
     },
     createdAt: {
-        type: DataType.STRING,
+        type: "TIMESTAMP"
     },
     IsDeleted: {
-        type: DataType.TINYINT,
+        type: DataTypes.TINYINT,
         defaultValue: 0
     }
 },{

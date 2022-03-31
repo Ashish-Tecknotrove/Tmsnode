@@ -17,8 +17,7 @@ interface CompanyContactsAttrivutes {
 }
 
 
-export default class CompanyContact extends Model
-{
+export default class CompanyContact extends Model {
     declare id: number;
     company_id!: number;
     name!: string;
@@ -67,13 +66,13 @@ CompanyContact.init({
         allowNull: false
     },
     createdAt: {
-        type: DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     updatedAt: {
-        type:  DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     deletedAt: {
-        type: DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     IsDeleted: {
         type: DataType.TINYINT,

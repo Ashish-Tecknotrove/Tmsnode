@@ -1,6 +1,6 @@
-import { DataType } from 'sequelize-typescript';
-import { Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
+import CurriculumParentCategory from "./curriculum_parent_category.model";
 
 interface TechnologyCategoryAttributes{
     id:number;
@@ -34,40 +34,40 @@ export default class TechnologyCategory extends Model{
 
 TechnologyCategory.init({
     id:{
-        type:DataType.INTEGER,
+        type:DataTypes.INTEGER,
         autoIncrement:true,
         primaryKey:true,
         allowNull:false
     },
     name:{
-        type:DataType.STRING(100),
+        type:DataTypes.STRING(100),
         allowNull:false
     },
     description:{
-        type:DataType.STRING
+        type:DataTypes.STRING
     },
     created_by: {
-        type: DataType.INTEGER,
-        allowNull: true
-    },
-    updated_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
-    deleted_by:{
-        type: DataType.INTEGER
+    updated_by: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    deleted_by: {
+        type: DataTypes.INTEGER
     },
     createdAt: {
-        type: DataType.STRING(100)
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: DataType.STRING(100)
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: DataType.STRING(100)
+        type: "TIMESTAMP"
     },
-    IsDeleted :{
-        type: DataType.TINYINT,
+    IsDeleted:{
+        type:DataTypes.TINYINT,
         defaultValue:0
     }
 },{

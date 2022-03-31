@@ -1,5 +1,4 @@
-import {  Model } from "sequelize";
-import {AllowNull, DataType} from "sequelize-typescript";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Company from "./company.model";
 import MasterDepartment from "./master_department.model";
@@ -53,81 +52,81 @@ export default class CompanyDepartment extends Model {
 CompanyDepartment.init(
   {
     id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       allowNull: false,
-  },
-      company_id: {
-          type: DataType.INTEGER,
-          allowNull: false,
-          references: {
-              model: Company,
-              key: "id",
-          },
+    },
+    company_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Company,
+        key: "id",
       },
-      sub_company_id: {
-          type: DataType.INTEGER,
-          references: {
-              model: SubCompany,
-              key: "id",
-          },
+    },
+    sub_company_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: SubCompany,
+        key: "id",
       },
-      department_id: {
-          type: DataType.INTEGER,
-          allowNull: false,
-          references: {
-              model: MasterDepartment,
-              key: "id",
-          },
+    },
+    department_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: MasterDepartment,
+        key: "id",
       },
-      login_table_id: {
-          type: DataType.INTEGER,
-          allowNull: true,
-          references: {
-              model: Users,
-              key: "id",
-          },
+    },
+    login_table_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: Users,
+        key: "id",
       },
-      name: {
-          type: DataType.STRING,
-      },
-      contactNumber: {
-          type: DataType.STRING,
-      },
-      designation: {
-          type: DataType.STRING,
-      },
-      email: {
-          type: DataType.STRING,
-      },
-      created_by: {
-          type: DataType.INTEGER,
-          allowNull: false,
-      },
-      updated_by: {
-          type: DataType.INTEGER,
-      },
-      deleted_by: {
-          type: DataType.INTEGER,
-      },
-      createdAt: {
-          type: DataType.STRING(50),
-      },
-      updatedAt: {
-          type: DataType.STRING(50),
-      },
-      deletedAt: {
-          type: DataType.STRING(50),
-      },
-      IsBlock: {
-          type: DataType.TINYINT,
-          defaultValue: 0,
-      },
-      IsDeleted: {
-          type: DataType.TINYINT,
-          defaultValue: 0,
-      }
+    },
+    name: {
+      type: DataTypes.STRING,
+    },
+    contactNumber: {
+      type: DataTypes.STRING,
+    },
+    designation: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+    },
+    created_by: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    updated_by: {
+      type: DataTypes.INTEGER,
+    },
+    deleted_by: {
+      type: DataTypes.INTEGER,
+    },
+    createdAt: {
+      type: "TIMESTAMP",
+    },
+    updatedAt: {
+      type: "TIMESTAMP",
+    },
+    deletedAt: {
+      type: "TIMESTAMP",
+    },
+    IsBlock: {
+      type: DataTypes.TINYINT,
+      defaultValue: 0,
+    },
+    IsDeleted: {
+      type: DataTypes.TINYINT,
+      defaultValue: 0,
+    },
   },
   {
     sequelize: sequelizeconnection,

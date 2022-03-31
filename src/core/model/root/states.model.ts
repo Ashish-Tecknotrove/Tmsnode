@@ -1,5 +1,4 @@
-import { DataType } from 'sequelize-typescript';
-import { Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 
 interface StatesAttributes {
@@ -38,47 +37,47 @@ export default class States extends Model {
 
 States.init({
     id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
     title: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
         allowNull: false
     },
     slug: {
-        type: DataType.STRING
+        type: DataTypes.STRING
     },
     state_code: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
         allowNull: false
     },
     country_id: {
-        type: DataType.INTEGER
+        type: DataTypes.INTEGER
     },
     created_by: {
-        type: DataType.INTEGER,
-        allowNull: true
-    },
-    updated_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
-    deleted_by:{
-        type: DataType.INTEGER
+    updated_by: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    deleted_by: {
+        type: DataTypes.INTEGER
     },
     createdAt: {
-        type: DataType.STRING(100)
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: DataType.STRING(100)
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: DataType.STRING(100)
+        type: "TIMESTAMP"
     },
     IsDeleted: {
-        type: DataType.TINYINT,
+        type: DataTypes.TINYINT,
         defaultValue: 0
     }
 }, {

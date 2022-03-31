@@ -1,9 +1,8 @@
-import { Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Company from "./company.model";
 import TechnologyCategory from "./technology.model";
 import CurriculumParentCategoryTest from "./curriculum_parent_category_test.model";
-import { DataType } from "sequelize-typescript";
 
 
 interface CurriculumParentCategoryAttributes{
@@ -38,44 +37,44 @@ export default class CurriculumParentCategory extends Model{
 
 CurriculumParentCategory.init({
     id:{
-        type:DataType.INTEGER,
+        type:DataTypes.INTEGER,
         autoIncrement:true,
         primaryKey:true,
         allowNull:false
     },
     title:{
-        type:DataType.STRING(100),
+        type:DataTypes.STRING(100),
         allowNull:false
     },
     technology_type_id:{
-        type:DataType.INTEGER,
+        type:DataTypes.INTEGER,
         references:{
             model:TechnologyCategory,
             key:"id"
         }
     },
     created_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     updated_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     deleted_by: {
-        type: DataType.INTEGER
+        type: DataTypes.INTEGER
     },
     createdAt: {
-        type: DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     IsDeleted:{
-        type:DataType.TINYINT,
+        type:DataTypes.TINYINT,
         defaultValue:0
     }
 },{

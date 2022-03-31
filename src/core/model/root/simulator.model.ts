@@ -1,85 +1,85 @@
-import { DataType } from 'sequelize-typescript';
-import { Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
+import CompanyDepartment from "./company_department.model";
+import Trainee from "./trainee.model";
 import Trainer from "./trainer.model";
-import Company from './company.model';
+import Users from "./users.model";
 
 
 
 export default class Simulator extends Model {
   id!: number;
   company_id!: number;
-  trainer_id!: number;
   name!: number;
   description!: number;
+  trainer_id!: number;
   created_by!: number;
   updated_by!: number;
   deleted_by!: string;
   deletedAt!: string;
   createdAt!: string;
   updatedAt!: string;
+  IsBlock!:number
   IsDeleted!: number;
-  IsBlock!: number
 }
 
 Simulator.init(
   {
     id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       allowNull: false,
     },
     company_id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Company,
+        model: "companies",
         key: "id",
       },
     },
     trainer_id: {
-      type: DataType.INTEGER,
-      references: {
-        model: Trainer,
-        key: "id"
-      }
+        type: DataTypes.INTEGER,
+        references:{
+            model:Trainer,
+            key:"id"
+        }
     },
     name: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       //unique: true,
     },
     description: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     created_by: {
-      type: DataType.INTEGER,
-      allowNull: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
     },
     updated_by: {
-      type: DataType.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER,
     },
     deleted_by: {
-      type: DataType.INTEGER
+      type: DataTypes.INTEGER,
     },
     createdAt: {
-      type: DataType.STRING(100)
+      type: "TIMESTAMP",
     },
     updatedAt: {
-      type: DataType.STRING(100)
+      type: "TIMESTAMP",
     },
     deletedAt: {
-      type: DataType.STRING(100)
-    },
-    IsDeleted: {
-      type: DataType.TINYINT,
-      defaultValue: 0
+      type: "TIMESTAMP",
     },
     IsBlock: {
-      type: DataType.TINYINT,
+      type: DataTypes.TINYINT,
       defaultValue: 0,
-    }
+    },
+    IsDeleted: {
+      type: DataTypes.TINYINT,
+      defaultValue: 0,
+    },
   },
   {
     sequelize: sequelizeconnection,
@@ -87,10 +87,10 @@ Simulator.init(
   }
 );
 
-Simulator.belongsTo(Trainer, {
-  foreignKey: 'trainer_id'
+Simulator.belongsTo(Trainer,{
+    foreignKey:'trainer_id'
 })
 
-Trainer.hasMany(Simulator, {
-  foreignKey: "trainer_id"
+Trainer.hasMany(Simulator,{
+    foreignKey:"trainer_id"
 });

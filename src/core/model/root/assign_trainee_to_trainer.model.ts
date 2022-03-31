@@ -68,13 +68,13 @@ Assign_trainee_to_trainer.init({
         allowNull: true
     },
     createdAt: {
-        type: DataTypes.STRING(50),
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: DataTypes.STRING(50),
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: DataTypes.STRING(50),
+        type: "TIMESTAMP",
     },
     IsBlock: {
         type: DataTypes.TINYINT,

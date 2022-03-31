@@ -1,5 +1,4 @@
-import {Model} from "sequelize";
-import {AllowNull, DataType} from "sequelize-typescript";
+import {DataTypes, Model} from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Cities from "../resources/cities.model";
 import Countries from "../resources/countries.model";
@@ -71,22 +70,22 @@ export default class Company extends Model {
 
 Company.init({
     id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
     company_name: {
-        type: DataType.STRING(100),
+        type: DataTypes.STRING(100),
         allowNull: false,
         unique: true
     },
     enrollment_id:{
-        type:DataType.STRING(100),
+        type:DataTypes.STRING(100),
         allowNull: false,
     },
     panel_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         references:{
             model:MasterPanel,
             key:'id'
@@ -94,29 +93,29 @@ Company.init({
         allowNull:false
     },
     company_type: {
-        type: DataType.TINYINT,
+        type: DataTypes.TINYINT,
         defaultValue:0,
         allowNull: true
     },
     gst: {
-        type: DataType.STRING(200),
+        type: DataTypes.STRING(200),
         allowNull: true
     },
     picture: {
-        type: DataType.STRING(255),
+        type: DataTypes.STRING(255),
         allowNull: true
     },
     simulator_count: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
     },
     address: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
     },
     pincode: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
     },
     city_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references:{
             model:"cities",
@@ -124,59 +123,59 @@ Company.init({
         }
     },
     state_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     country_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     contact_person_count: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
     },
     trainee_unique_login: {
-        type: DataType.ENUM('email', 'mobile', 'aadhar'),
+        type: DataTypes.ENUM('email', 'mobile', 'aadhar'),
         defaultValue: 'email',
         allowNull: false,
 
     },
     company_unique_id: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
     },
     api_decider: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
     },
     registration_type: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
     },
     day_no: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
     },
     calender_type: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
     },
     created_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     updated_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     deleted_by: {
-        type: DataType.INTEGER
+        type: DataTypes.INTEGER
     },
     createdAt: {
-        type: DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     IsDeleted:{
-        type:DataType.TINYINT,
+        type:DataTypes.TINYINT,
         defaultValue:0
     }
 }, {

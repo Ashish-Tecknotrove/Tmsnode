@@ -1,5 +1,4 @@
-import { Model } from "sequelize";
-import { DataType } from "sequelize-typescript";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import ElearningMaster from "../elearning/eLearningmaster.model";
 import Languages from "../language/language.model";
@@ -46,63 +45,63 @@ export default class CurriculumParentCategoryTest extends Model
 
 CurriculumParentCategoryTest.init({
     id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
     prefix: {
-        type: DataType.STRING(100)
+        type: DataTypes.STRING(100)
     },
     title: {
-        type: DataType.STRING(100)
+        type: DataTypes.STRING(100)
     },
     description: {
-        type: DataType.STRING(200)
+        type: DataTypes.STRING(200)
     },
     parent_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
             model: CurriculumParentCategory,
             key: "id"
         }
     },
     technology_type_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         references:{
             model:TechnologyCategory,
             key:"id"
         }
     },
     language_id: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
             model: Languages,
             key: "id"
         }
     },
     created_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     updated_by: {
-        type: DataType.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     deleted_by: {
-        type: DataType.INTEGER
+        type: DataTypes.INTEGER
     },
     createdAt: {
-        type: DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     IsDeleted:{
-        type:DataType.TINYINT,
+        type:DataTypes.TINYINT,
         defaultValue:0
     }
 }, {

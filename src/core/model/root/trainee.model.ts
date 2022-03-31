@@ -1,5 +1,4 @@
-import { DataType } from 'sequelize-typescript';
-import { Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelizeconnection from "../../database/sequelize";
 import Languages from "../language/language.model";
 import Company from "./company.model";
@@ -133,17 +132,17 @@ export default class Trainee extends Model {
 Trainee.init(
   {
     id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       allowNull: false,
     },
     RegNo: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     company_id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: Company,
@@ -151,21 +150,21 @@ Trainee.init(
       },
     },
     sub_company_id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       references: {
         model: SubCompany,
         key: "id",
       },
     },
     department_id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       references: {
         model: CompanyDepartment,
         key: "id",
       },
     },
     login_table_id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: Users,
@@ -173,196 +172,196 @@ Trainee.init(
       },
     },
     staff_id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
     },
     first_name: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     middle_name: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     last_name: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     email: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     contact: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     alternate_contact_no: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     aadhar_no: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     gender: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     education: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     address: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     city: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     marrital_status: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     age: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     date_of_birth: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     subscription_id: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
     },
     service_type: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     company_unique_id: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     vehicle_type: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     designation: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     department: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     course: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     fees: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     receipt_number: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     mode_of_payment: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     cheque_dd_number: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     bank_name: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     trainer_id: {
-      type: DataType.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     status: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     active_status: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     activation_date: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     expiry_date: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     driver_photo: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     license_no: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     license_issue_date: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     license_validity: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     license_image: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     experience_in_years: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     certificate_copy: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     validity_of_certificate: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     certificate_number: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     dg_trainer: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     transporter_name: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     training_schedule_date: {
-      type: DataType.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     created_by: {
-      type: DataType.INTEGER,
-      allowNull: true
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     updated_by: {
-      type: DataType.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     deleted_by: {
-      type: DataType.INTEGER
+      type: DataTypes.INTEGER,
     },
     createdAt: {
-      type: DataType.STRING(100)
+      type: "TIMESTAMP",
     },
     updatedAt: {
-      type: DataType.STRING(100)
+      type: "TIMESTAMP",
     },
     deletedAt: {
-      type: DataType.STRING(100)
-    },
-    IsDeleted: {
-      type: DataType.TINYINT,
-      defaultValue: 0
+      type: "TIMESTAMP",
     },
     IsBlock: {
-      type: DataType.TINYINT,
+      type: DataTypes.TINYINT,
       defaultValue: 0,
-    }
+    },
+    IsDeleted: {
+      type: DataTypes.TINYINT,
+      defaultValue: 0,
+    },
   },
   {
     sequelize: sequelizeconnection,
@@ -381,8 +380,8 @@ Trainee.belongsTo(Company, {
 });
 
 
-Trainee.belongsTo(SubCompany, {
-  foreignKey: 'sub_company_id'
+Trainee.belongsTo(SubCompany,{
+    foreignKey:'sub_company_id'
 })
 
 Trainee.hasMany(TraineeCurriculum, {
@@ -390,11 +389,11 @@ Trainee.hasMany(TraineeCurriculum, {
 });
 
 SubCompany.hasMany(Trainee, {
-  foreignKey: "sub_company_id"
+    foreignKey: "sub_company_id"
 })
 
-Trainee.belongsTo(CompanyDepartment, {
-  foreignKey: "department_id"
+Trainee.belongsTo(CompanyDepartment,{
+    foreignKey:"department_id"
 })
 
 CompanyDepartment.hasMany(Trainee, {
