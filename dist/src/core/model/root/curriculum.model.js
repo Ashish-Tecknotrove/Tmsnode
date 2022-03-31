@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const company_model_1 = __importDefault(require("./company.model"));
 class Curriculum extends sequelize_1.Model {
@@ -12,12 +11,12 @@ class Curriculum extends sequelize_1.Model {
 exports.default = Curriculum;
 Curriculum.init({
     id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
     company_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: company_model_1.default,
@@ -25,34 +24,34 @@ Curriculum.init({
         }
     },
     name: {
-        type: sequelize_typescript_1.DataType.STRING(100),
+        type: sequelize_1.DataTypes.STRING(100),
     },
     sequence: {
-        type: sequelize_typescript_1.DataType.TINYINT,
+        type: sequelize_1.DataTypes.TINYINT,
         defaultValue: "1"
     },
     created_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     updated_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     deleted_by: {
-        type: sequelize_typescript_1.DataType.INTEGER
+        type: sequelize_1.DataTypes.INTEGER
     },
     createdAt: {
-        type: sequelize_typescript_1.DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: sequelize_typescript_1.DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: sequelize_typescript_1.DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     IsDeleted: {
-        type: sequelize_typescript_1.DataType.TINYINT,
+        type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 0
     }
 }, {

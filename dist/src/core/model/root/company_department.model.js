@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const company_model_1 = __importDefault(require("./company.model"));
 const master_department_model_1 = __importDefault(require("./master_department.model"));
@@ -16,13 +15,13 @@ class CompanyDepartment extends sequelize_1.Model {
 exports.default = CompanyDepartment;
 CompanyDepartment.init({
     id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false,
     },
     company_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: company_model_1.default,
@@ -30,14 +29,14 @@ CompanyDepartment.init({
         },
     },
     sub_company_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: subcompany_model_1.default,
             key: "id",
         },
     },
     department_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: master_department_model_1.default,
@@ -45,7 +44,7 @@ CompanyDepartment.init({
         },
     },
     login_table_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: true,
         references: {
             model: users_model_1.default,
@@ -53,44 +52,44 @@ CompanyDepartment.init({
         },
     },
     name: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     contactNumber: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     designation: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     email: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     created_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
     },
     updated_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
     },
     deleted_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
     },
     createdAt: {
-        type: sequelize_typescript_1.DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: sequelize_typescript_1.DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: sequelize_typescript_1.DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     IsBlock: {
-        type: sequelize_typescript_1.DataType.TINYINT,
+        type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 0,
     },
     IsDeleted: {
-        type: sequelize_typescript_1.DataType.TINYINT,
+        type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 0,
-    }
+    },
 }, {
     sequelize: sequelize_2.default,
     tableName: "company_department",
@@ -112,7 +111,4 @@ CompanyDepartment.hasMany(trainer_model_1.default, {
 });
 trainer_model_1.default.belongsTo(CompanyDepartment, {
     foreignKey: "department_id",
-});
-CompanyDepartment.belongsTo(users_model_1.default, {
-    foreignKey: "login_table_id"
 });

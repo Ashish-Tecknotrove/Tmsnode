@@ -1,26 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const sequelize_2 = require("../../database/sequelize");
-const trainee_model_1 = require("./trainee.model");
+const sequelize_2 = __importDefault(require("../../database/sequelize"));
+const trainee_model_1 = __importDefault(require("./trainee.model"));
 class ElearningTraineeScromData extends sequelize_1.Model {
-    constructor() {
-        super(...arguments);
-        this.id = !;
-        this.session_id = !;
-        this.test_id = !;
-        this.trainee_id = !;
-        this.attempt_no = !;
-        this.question = !;
-        this.answer = !;
-        this.status = !;
-        this.mark = !;
-        this.created_by = !;
-        this.updated_by = !;
-        this.createdAt = !;
-        this.updatedAt = !;
-        this.IsDeleted = !;
-    }
 }
 exports.default = ElearningTraineeScromData;
 ElearningTraineeScromData.init({
@@ -28,10 +14,6 @@ ElearningTraineeScromData.init({
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-    },
-    session_id: {
-        type: sequelize_1.DataTypes.STRING,
-        allowNull: false
     },
     test_id: {
         type: sequelize_1.DataTypes.INTEGER,

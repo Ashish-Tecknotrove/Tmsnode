@@ -46,13 +46,13 @@ Assign_trainee_to_trainer.init({
         allowNull: true
     },
     createdAt: {
-        type: sequelize_1.DataTypes.STRING(50),
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: sequelize_1.DataTypes.STRING(50),
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: sequelize_1.DataTypes.STRING(50),
+        type: "TIMESTAMP",
     },
     IsBlock: {
         type: sequelize_1.DataTypes.TINYINT,

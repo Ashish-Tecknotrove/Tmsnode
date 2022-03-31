@@ -4,114 +4,109 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const language_model_1 = __importDefault(require("../language/language.model"));
 const company_model_1 = __importDefault(require("./company.model"));
 const compayuser_model_1 = __importDefault(require("./compayuser.model"));
-const usertype_model_1 = __importDefault(require("./usertype.model"));
 class Users extends sequelize_1.Model {
 }
 exports.default = Users;
 Users.init({
     id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
     company_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: company_model_1.default,
+            model: "Company",
             key: 'id'
         }
     },
     email: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false,
         unique: true
     },
     aadhar_no: {
-        type: sequelize_typescript_1.DataType.STRING
+        type: sequelize_1.DataTypes.STRING
     },
     mobile_no: {
-        type: sequelize_typescript_1.DataType.STRING
+        type: sequelize_1.DataTypes.STRING
     },
     email_verified_at: {
-        type: sequelize_typescript_1.DataType.STRING
+        type: sequelize_1.DataTypes.STRING
     },
     is_admin: {
-        type: sequelize_typescript_1.DataType.TINYINT,
+        type: sequelize_1.DataTypes.TINYINT,
         defaultValue: '0'
     },
     password: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
         allowNull: false
     },
     password_wordpress: {
-        type: sequelize_typescript_1.DataType.STRING
+        type: sequelize_1.DataTypes.STRING
     },
     user_type: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: usertype_model_1.default,
+            model: "UserType",
             key: 'id'
         }
     },
     activation_date: {
-        type: sequelize_typescript_1.DataType.DATE
+        type: sequelize_1.DataTypes.DATE
     },
     deactivation_date: {
-        type: sequelize_typescript_1.DataType.DATE
+        type: sequelize_1.DataTypes.DATE
     },
     language: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         references: {
-            model: language_model_1.default,
+            model: "Languages",
             key: 'id'
         },
         allowNull: false
     },
     portal_language: {
-        type: sequelize_typescript_1.DataType.TINYINT,
+        type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 1,
         references: {
-            model: language_model_1.default,
+            model: "Languages",
             key: 'id'
         },
     },
+    createdAt: {
+        type: "TIMESTAMP",
+    },
+    updatedAt: {
+        type: "TIMESTAMP",
+    },
     created_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
-        allowNull: true
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
     },
     updated_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     deleted_by: {
-        type: sequelize_typescript_1.DataType.INTEGER
-    },
-    createdAt: {
-        type: sequelize_typescript_1.DataType.STRING(100)
-    },
-    updatedAt: {
-        type: sequelize_typescript_1.DataType.STRING(100)
+        type: sequelize_1.DataTypes.INTEGER
     },
     deletedAt: {
-        type: sequelize_typescript_1.DataType.STRING(100)
+        type: "TIMESTAMP"
     },
     IsDeleted: {
-        type: sequelize_typescript_1.DataType.TINYINT,
-        defaultValue: 0
-    },
-    IsBlock: {
-        type: sequelize_typescript_1.DataType.TINYINT,
+        type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 0
     }
 }, {
+    timestamps: true,
     sequelize: sequelize_2.default,
     tableName: 'users'
 });

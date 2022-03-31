@@ -3,85 +3,82 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_1 = require("sequelize");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const curriculum_model_1 = __importDefault(require("./curriculum.model"));
 const technology_model_1 = __importDefault(require("./technology.model"));
 const language_model_1 = __importDefault(require("../language/language.model"));
-const trainee_model_1 = __importDefault(require("./trainee.model"));
-const users_model_1 = __importDefault(require("./users.model"));
 class TraineeCurriculum extends sequelize_1.Model {
 }
 exports.default = TraineeCurriculum;
 TraineeCurriculum.init({
     id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
     trainee_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         references: {
-            model: trainee_model_1.default,
+            model: 'trainees',
             key: 'id'
         }
     },
     trainee_user_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         references: {
-            model: users_model_1.default,
+            model: 'users',
             key: 'id'
         }
     },
     language_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         references: {
-            model: language_model_1.default,
+            model: 'languages',
             key: 'id'
         }
     },
     curriculum_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         references: {
-            model: curriculum_model_1.default,
+            model: 'curriculum',
             key: 'id'
         }
     },
     technology_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: technology_model_1.default,
             key: 'id'
         }
     },
     created_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
-        allowNull: true
-    },
-    updated_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
+    updated_by: {
+        type: sequelize_1.DataTypes.INTEGER,
+        //allowNull: false
+    },
     deleted_by: {
-        type: sequelize_typescript_1.DataType.INTEGER
+        type: sequelize_1.DataTypes.INTEGER
     },
     createdAt: {
-        type: sequelize_typescript_1.DataType.STRING(100)
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: sequelize_typescript_1.DataType.STRING(100)
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: sequelize_typescript_1.DataType.STRING(100)
-    },
-    IsDeleted: {
-        type: sequelize_typescript_1.DataType.TINYINT,
-        defaultValue: 0
+        type: "TIMESTAMP"
     },
     IsBlock: {
-        type: sequelize_typescript_1.DataType.TINYINT,
+        type: sequelize_1.DataTypes.TINYINT,
+        defaultValue: 0
+    },
+    IsDeleted: {
+        type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 0
     }
 }, {

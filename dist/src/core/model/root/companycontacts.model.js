@@ -45,13 +45,13 @@ CompanyContact.init({
         allowNull: false
     },
     createdAt: {
-        type: sequelize_typescript_1.DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     updatedAt: {
-        type: sequelize_typescript_1.DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     deletedAt: {
-        type: sequelize_typescript_1.DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     IsDeleted: {
         type: sequelize_typescript_1.DataType.TINYINT,

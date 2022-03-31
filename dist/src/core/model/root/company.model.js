@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelize_2 = __importDefault(require("../../database/sequelize"));
 const cities_model_1 = __importDefault(require("../resources/cities.model"));
 const countries_model_1 = __importDefault(require("../resources/countries.model"));
@@ -18,22 +17,22 @@ class Company extends sequelize_1.Model {
 exports.default = Company;
 Company.init({
     id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
     },
     company_name: {
-        type: sequelize_typescript_1.DataType.STRING(100),
+        type: sequelize_1.DataTypes.STRING(100),
         allowNull: false,
         unique: true
     },
     enrollment_id: {
-        type: sequelize_typescript_1.DataType.STRING(100),
+        type: sequelize_1.DataTypes.STRING(100),
         allowNull: false,
     },
     panel_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         references: {
             model: masterpanel_model_1.default,
             key: 'id'
@@ -41,29 +40,29 @@ Company.init({
         allowNull: false
     },
     company_type: {
-        type: sequelize_typescript_1.DataType.TINYINT,
+        type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 0,
         allowNull: true
     },
     gst: {
-        type: sequelize_typescript_1.DataType.STRING(200),
+        type: sequelize_1.DataTypes.STRING(200),
         allowNull: true
     },
     picture: {
-        type: sequelize_typescript_1.DataType.STRING(255),
+        type: sequelize_1.DataTypes.STRING(255),
         allowNull: true
     },
     simulator_count: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     address: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     pincode: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
     },
     city_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: "cities",
@@ -71,58 +70,58 @@ Company.init({
         }
     },
     state_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     country_id: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     contact_person_count: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     trainee_unique_login: {
-        type: sequelize_typescript_1.DataType.ENUM('email', 'mobile', 'aadhar'),
+        type: sequelize_1.DataTypes.ENUM('email', 'mobile', 'aadhar'),
         defaultValue: 'email',
         allowNull: false,
     },
     company_unique_id: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     api_decider: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     registration_type: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     day_no: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
     },
     calender_type: {
-        type: sequelize_typescript_1.DataType.STRING,
+        type: sequelize_1.DataTypes.STRING,
     },
     created_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     updated_by: {
-        type: sequelize_typescript_1.DataType.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER,
         allowNull: false
     },
     deleted_by: {
-        type: sequelize_typescript_1.DataType.INTEGER
+        type: sequelize_1.DataTypes.INTEGER
     },
     createdAt: {
-        type: sequelize_typescript_1.DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     updatedAt: {
-        type: sequelize_typescript_1.DataType.STRING(50),
+        type: "TIMESTAMP",
     },
     deletedAt: {
-        type: sequelize_typescript_1.DataType.STRING(50)
+        type: "TIMESTAMP"
     },
     IsDeleted: {
-        type: sequelize_typescript_1.DataType.TINYINT,
+        type: sequelize_1.DataTypes.TINYINT,
         defaultValue: 0
     }
 }, {
