@@ -298,7 +298,7 @@ class ElearningTraineeTest {
                                 urlHeader = "https";
                             }
                             else {
-                                urlHeader = "http";
+                                urlHeader = "https";
                             }
                             yield elearning_training_session_model_1.default.update(Object.assign({}, update), { where: { id: newSession['id'] } }).then(completed => {
                                 const filePath = new URL(urlHeader + '://' + req.get('host') + "/resources/course/");
@@ -427,7 +427,7 @@ class ElearningTraineeTest {
                                 urlHeader = "https";
                             }
                             else {
-                                urlHeader = "http";
+                                urlHeader = "https";
                             }
                             const filePath = new URL(urlHeader + '://' + req.get('host') + "/resources/course/");
                             const exam_url = filePath + folderName + '/index_lms.html' +
