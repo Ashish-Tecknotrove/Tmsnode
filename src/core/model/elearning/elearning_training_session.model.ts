@@ -46,6 +46,7 @@ ElearningTrainingSession.init({
       }
 
 },{
+  timestamps:false,
     sequelize:sequelizeconnection,
     tableName:"elearning_training_session"
 });

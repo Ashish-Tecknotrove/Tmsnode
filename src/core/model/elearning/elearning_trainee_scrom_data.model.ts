@@ -83,6 +83,7 @@ ElearningTraineeScromData.init(
         defaultValue:"0"
     }
 },{
+    timestamps:false,
     sequelize:sequelizeconnection,
     tableName:"elearning_trainee_scrom_data"
 })

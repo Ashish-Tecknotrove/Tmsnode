@@ -83,6 +83,7 @@ ElearningMaster.init({
     }
 
 }, {
+    timestamps:false,
     tableName: 'elearning_master',
     sequelize: sequelizeconnection
 });
