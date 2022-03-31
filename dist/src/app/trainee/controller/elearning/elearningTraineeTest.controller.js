@@ -293,6 +293,7 @@ class ElearningTraineeTest {
                                 session_id: 'session_' + newSession['id']
                             };
                             let urlHeader = "";
+                            console.log("Network Security:--- " + req.secure);
                             if (req.secure == true) {
                                 urlHeader = "https";
                             }
