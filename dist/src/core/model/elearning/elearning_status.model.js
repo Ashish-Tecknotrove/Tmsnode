@@ -42,6 +42,7 @@ ElearningStatus.init({
         defaultValue: 1
     }
 }, {
+    timestamps: false,
     tableName: 'elearning_status',
     sequelize: sequelize_2.default
 });

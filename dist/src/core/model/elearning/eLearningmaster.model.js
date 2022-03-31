@@ -58,6 +58,7 @@ ElearningMaster.init({
         defaultValue: "0"
     }
 }, {
+    timestamps: false,
     tableName: 'elearning_master',
     sequelize: sequelize_2.default
 });

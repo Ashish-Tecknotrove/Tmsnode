@@ -98,6 +98,7 @@ ElearningResult.init({
         defaultValue: 0
     }
 }, {
+    timestamps: false,
     tableName: 'elearning_result',
     sequelize: sequelize_2.default
 });

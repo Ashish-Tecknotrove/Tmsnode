@@ -36,6 +36,7 @@ ElearningTrainingSession.init({
         type: sequelize_typescript_1.DataType.DATE
     }
 }, {
+    timestamps: false,
     sequelize: sequelize_2.default,
     tableName: "elearning_training_session"
 });
