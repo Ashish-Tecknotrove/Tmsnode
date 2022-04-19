@@ -1,0 +1,26 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const multer_1 = __importDefault(require("multer"));
+const auth_1 = __importDefault(require("../../../core/middleware/auth"));
+const branchadmin_controller_1 = __importDefault(require("./branchadmin.controller"));
+const branchadmin_validator_1 = __importDefault(require("./branchadmin.validator"));
+const BranchAdminRoutes = (0, express_1.Router)();
+3;
+var formData = (0, multer_1.default)();
+BranchAdminRoutes.post("/getBranchAssignedDepartment", formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.getAssignedDepartment(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.get_assigned_department);
+BranchAdminRoutes.post("/getBranchAssignedTrainerWithDepartmentInfo", formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.getAssignedTrainer(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.get_assigned_trainer_with_department);
+BranchAdminRoutes.post("/AssignDepartmentToTrainer", formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.AssignDepartmentToTrainer(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.assign_trainer_to_department);
+BranchAdminRoutes.post("/getBranchAssignedTrainer", formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.getAssignedTrainer(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.get_assigned_trainer);
+BranchAdminRoutes.post("/getTrainerAssignedTrainee_with_without_assigned", formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.getTrainerassignedTrainee(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.get_trainee_assigned_to_trainer_and_not_assigned);
+BranchAdminRoutes.post("/AssignTrainee", formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.AssignTrainee(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.assign_trainee);
+BranchAdminRoutes.post("/getBranchAssignTrainee", formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.BranchTrainee(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.get_branch_assign_trainee);
+BranchAdminRoutes.post('/getTraineeSimulatorConsolidatedReport', formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.BranchTraineeSimulatorReport(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.getTraineeSimulatorConsolidatedReport);
+BranchAdminRoutes.post('/getTraineeElearingConsolidatedReport', formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.BranchTraineeElearningReport(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.getTraineeElearingConsolidatedReport);
+BranchAdminRoutes.post('/getTrainerPerfomance', formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.TrainerPerformance(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.getTrainerPerfomance);
+BranchAdminRoutes.post('/getTraineePerformanceTrack', formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.TraineePerformanceTrack(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.getTraineeTrainingReport);
+BranchAdminRoutes.post('/getDashboardCount', formData.none(), auth_1.default.verify_branchAdmin_AuthenticateToken, branchadmin_validator_1.default.getDashboardCount(), auth_1.default.handleValidatorError, branchadmin_controller_1.default.getDashboardCount);
+exports.default = BranchAdminRoutes;
